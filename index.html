@@ -972,7 +972,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;/label&gt;
       &lt;/div&gt;
 
-      &lt;p class=&quot;qr-message text-muted&quot; id=&quot;lottery-qr-message&quot; aria-live=&quot;polite&quot;&gt;Bonoloto admite de 2 a 8 combinaciones por cada QR.&lt;/p&gt;
+      &lt;p class=&quot;qr-message text-muted&quot; id=&quot;lottery-qr-message&quot; aria-live=&quot;polite&quot;&gt;Bonoloto exige 2 combinaciones para un único sorteo; admite una sola en «Semana en curso» si quedan al menos 2 sorteos.&lt;/p&gt;
 
       &lt;div class=&quot;viz-controls saved-controls&quot;&gt;
         &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-generate-qr&quot; type=&quot;button&quot;&gt;Generar QR&lt;/button&gt;
@@ -1276,6 +1276,10 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;button class=&quot;btn&quot; id=&quot;lottery-qr-previous&quot; type=&quot;button&quot;&gt;Anterior&lt;/button&gt;
       &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-qr-page&quot;&gt;QR 1 de 1&lt;/span&gt;
       &lt;button class=&quot;btn&quot; id=&quot;lottery-qr-next&quot; type=&quot;button&quot;&gt;Siguiente&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;qr-origin-summary&quot; id=&quot;lottery-qr-origin&quot; data-source=&quot;saved&quot; aria-live=&quot;polite&quot;&gt;
+      &lt;span class=&quot;qr-origin-label&quot;&gt;Procedencia de las combinaciones&lt;/span&gt;
+      &lt;strong class=&quot;qr-origin-value&quot; id=&quot;lottery-qr-origin-value&quot;&gt;Combinaciones guardadas&lt;/strong&gt;
     &lt;/div&gt;
     &lt;div class=&quot;qr-cost-summary&quot; id=&quot;lottery-qr-cost-summary&quot; aria-live=&quot;polite&quot; hidden&gt;
       &lt;div class=&quot;qr-cost-copy&quot;&gt;
@@ -2473,6 +2477,53 @@ html&gt;body{padding:0}&lt;/style&gt;
     z-index: 1;
   }
 
+  #lottery-simulator-649 .qr-origin-summary {
+    --qr-origin-colour: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem 0.7rem;
+    flex-wrap: wrap;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid color-mix(in srgb, var(--qr-origin-colour) 42%, var(--border));
+    border-radius: 0.8rem;
+    background: color-mix(in srgb, var(--qr-origin-colour) 10%, var(--card));
+    text-align: center;
+  }
+
+  #lottery-simulator-649 .qr-origin-summary[data-source=&quot;rules&quot;] {
+    --qr-origin-colour: var(--viz-series-5);
+  }
+
+  #lottery-simulator-649 .qr-origin-summary[data-source=&quot;file&quot;] {
+    --qr-origin-colour: var(--viz-series-6);
+  }
+
+  #lottery-simulator-649 .qr-origin-summary[data-source=&quot;clipboard&quot;] {
+    --qr-origin-colour: var(--viz-series-3);
+  }
+
+  #lottery-simulator-649 .qr-origin-summary[data-source=&quot;full&quot;] {
+    --qr-origin-colour: var(--viz-series-4);
+  }
+
+  #lottery-simulator-649 .qr-origin-summary[data-source=&quot;reduced&quot;] {
+    --qr-origin-colour: var(--viz-series-2);
+  }
+
+  #lottery-simulator-649 .qr-origin-label {
+    color: var(--muted-foreground);
+    font-size: 0.78rem;
+    font-weight: 750;
+    letter-spacing: 0.055em;
+    text-transform: uppercase;
+  }
+
+  #lottery-simulator-649 .qr-origin-value {
+    color: color-mix(in srgb, var(--qr-origin-colour) 82%, var(--foreground));
+    font-size: 1rem;
+  }
+
   #lottery-simulator-649 .qr-cost-summary {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
@@ -3326,6 +3377,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     const qrPreviousButton = root.querySelector(&#x27;#lottery-qr-previous&#x27;);
     const qrNextButton = root.querySelector(&#x27;#lottery-qr-next&#x27;);
     const qrPage = root.querySelector(&#x27;#lottery-qr-page&#x27;);
+    const qrOrigin = root.querySelector(&#x27;#lottery-qr-origin&#x27;);
+    const qrOriginValue = root.querySelector(&#x27;#lottery-qr-origin-value&#x27;);
     const closeQrButton = root.querySelector(&#x27;#lottery-close-qr&#x27;);
     const qrCostSummary = root.querySelector(&#x27;#lottery-qr-cost-summary&#x27;);
     const qrCostAmount = root.querySelector(&#x27;#lottery-qr-cost-amount&#x27;);
@@ -3511,6 +3564,28 @@ html&gt;body{padding:0}&lt;/style&gt;
       return [1, 4, 6].filter((drawDay) =&gt; drawDay &gt;= day).length;
     }
 
+    function getBonolotoQrRules(referenceDate = new Date()) {
+      const isWeekly = periodSelect.value === &#x27;1&#x27;;
+      const drawCount = isWeekly ? getWeeklyDrawCount(&#x27;2&#x27;, referenceDate) : 1;
+      const singleCombinationAllowed = isWeekly &amp;&amp; drawCount &gt;= 2;
+      return {
+        isWeekly,
+        drawCount,
+        singleCombinationAllowed,
+        minimumCombinations: singleCombinationAllowed ? 1 : 2
+      };
+    }
+
+    function getBonolotoSingleCombinationError(rules = getBonolotoQrRules()) {
+      if (!rules.isWeekly) {
+        return &#x27;Una sola combinación de Bonoloto solo es válida al seleccionar «Semana en curso» y cuando queden al menos 2 sorteos. Para un único sorteo necesitas 2 combinaciones.&#x27;;
+      }
+      if (rules.drawCount === 1) {
+        return &#x27;Solo queda 1 sorteo de Bonoloto esta semana; necesitas al menos 2 combinaciones. Una sola apuesta solo es válida cuando quedan 2 o más sorteos.&#x27;;
+      }
+      return &#x27;No quedan suficientes sorteos de Bonoloto esta semana para jugar una sola combinación; necesitas al menos 2 combinaciones.&#x27;;
+    }
+
     function getQrCostDetails(combinationCount) {
       const product = gameSelect.value;
       const isPrimitiva = product === &#x27;1&#x27;;
@@ -3577,13 +3652,23 @@ html&gt;body{padding:0}&lt;/style&gt;
     function updateQrGuidance() {
       const total = savedCombinations.length;
       if (gameSelect.value === &#x27;2&#x27;) {
+        const rules = getBonolotoQrRules();
         if (total === 0) {
-          setQrMessage(&#x27;Bonoloto admite de 2 a 8 combinaciones por cada QR.&#x27;);
-        } else if (total === 1) {
-          setQrMessage(&#x27;No se puede generar: en Bonoloto el mínimo son 2 combinaciones.&#x27;, true);
+          if (rules.singleCombinationAllowed) {
+            setQrMessage(`Bonoloto admite una sola combinación en «Semana en curso»: quedan ${rules.drawCount} sorteos. Para un único sorteo, el mínimo son 2.`);
+          } else if (rules.isWeekly) {
+            setQrMessage(&#x27;Bonoloto necesita al menos 2 combinaciones porque solo queda 1 sorteo esta semana.&#x27;);
+          } else {
+            setQrMessage(&#x27;Bonoloto necesita al menos 2 combinaciones para un único sorteo. Una sola combinación solo es válida en «Semana en curso» si quedan al menos 2 sorteos.&#x27;);
+          }
+        } else if (total === 1 &amp;&amp; !rules.singleCombinationAllowed) {
+          setQrMessage(getBonolotoSingleCombinationError(rules), true);
         } else {
           const qrTotal = splitQrGroups(savedCombinations).length;
-          setQrMessage(`Bonoloto preparado con ${total} combinaciones · ${qrTotal} ${qrTotal === 1 ? &#x27;QR&#x27; : &#x27;QRs&#x27;}.`);
+          const weeklyNote = total === 1
+            ? ` · válida para los ${rules.drawCount} sorteos pendientes`
+            : &#x27;&#x27;;
+          setQrMessage(`Bonoloto preparado con ${total} ${total === 1 ? &#x27;combinación&#x27; : &#x27;combinaciones&#x27;}${weeklyNote} · ${qrTotal} ${qrTotal === 1 ? &#x27;QR&#x27; : &#x27;QRs&#x27;}.`);
         }
       } else if (total === 0) {
         setQrMessage(&#x27;La Primitiva admite de 1 a 8 combinaciones por cada QR.&#x27;);
@@ -3755,9 +3840,10 @@ html&gt;body{padding:0}&lt;/style&gt;
     function splitQrGroups(combinations) {
       const groups = [];
       const isBonoloto = gameSelect.value === &#x27;2&#x27;;
+      const bonolotoRequiresTwo = isBonoloto &amp;&amp; !getBonolotoQrRules().singleCombinationAllowed;
       let index = 0;
 
-      if (isBonoloto &amp;&amp; combinations.length % 8 === 1 &amp;&amp; combinations.length &gt; 1) {
+      if (bonolotoRequiresTwo &amp;&amp; combinations.length % 8 === 1 &amp;&amp; combinations.length &gt; 1) {
         while (combinations.length - index &gt; 9) {
           groups.push(combinations.slice(index, index + 8));
           index += 8;
@@ -3774,11 +3860,65 @@ html&gt;body{padding:0}&lt;/style&gt;
       return groups;
     }
 
+    function getQrSourceDetails(source) {
+      if (source === &#x27;saved&#x27;) {
+        if (savedOrigin === &#x27;rules&#x27;) {
+          return {
+            key: &#x27;rules&#x27;,
+            label: &#x27;Generador con fijos y semifijos&#x27;,
+            description: &#x27;Combinaciones creadas en la zona de fijos y semifijos.&#x27;
+          };
+        }
+        return {
+          key: &#x27;drum&#x27;,
+          label: &#x27;Bombo · combinaciones extraídas y guardadas&#x27;,
+          description: &#x27;Combinaciones obtenidas mediante la extracción del bombo y guardadas en el boleto.&#x27;
+        };
+      }
+
+      if (source === &#x27;txt&#x27;) {
+        if (importedSource === &#x27;clipboard&#x27;) {
+          return {
+            key: &#x27;clipboard&#x27;,
+            label: &#x27;Combinaciones pegadas desde el portapapeles&#x27;,
+            description: &#x27;Combinaciones introducidas pegando texto desde el portapapeles.&#x27;
+          };
+        }
+        return {
+          key: &#x27;file&#x27;,
+          label: &#x27;Archivo TXT cargado&#x27;,
+          description: &#x27;Combinaciones importadas desde un archivo TXT.&#x27;
+        };
+      }
+
+      if (source === &#x27;development&#x27;) {
+        if (developmentViewSelect.value === &#x27;full&#x27;) {
+          return {
+            key: &#x27;full&#x27;,
+            label: &#x27;Desarrollo completo&#x27;,
+            description: &#x27;Combinaciones procedentes del desarrollo completo generado.&#x27;
+          };
+        }
+        return {
+          key: &#x27;reduced&#x27;,
+          label: &#x27;Reducción matemática&#x27;,
+          description: &#x27;Combinaciones procedentes de la reducción generada.&#x27;
+        };
+      }
+
+      return {
+        key: &#x27;saved&#x27;,
+        label: &#x27;Combinaciones guardadas&#x27;,
+        description: &#x27;Combinaciones enviadas al generador QR.&#x27;
+      };
+    }
+
     function showQrPage(index) {
       if (qrPages.length === 0) return;
 
       qrPageIndex = Math.max(0, Math.min(index, qrPages.length - 1));
       const currentPage = qrPages[qrPageIndex];
+      const sourceDetails = currentPage.source;
       qrCode.replaceChildren();
       qrText.value = currentPage.text;
       qrArea.hidden = false;
@@ -3795,9 +3935,12 @@ html&gt;body{padding:0}&lt;/style&gt;
         qrJokerLogo.src = qrGameLogoSources.joker;
       }
       qrPage.textContent = `QR ${qrPageIndex + 1} de ${qrPages.length}`;
+      qrOrigin.dataset.source = sourceDetails.key;
+      qrOriginValue.textContent = sourceDetails.label;
+      qrOrigin.title = sourceDetails.description;
       qrPreviousButton.disabled = qrPageIndex === 0;
       qrNextButton.disabled = qrPageIndex === qrPages.length - 1;
-      qrCode.setAttribute(&#x27;aria-label&#x27;, `Código QR ${qrPageIndex + 1} de ${qrPages.length}, con ${currentPage.combinations.length} combinaciones`);
+      qrCode.setAttribute(&#x27;aria-label&#x27;, `Código QR ${qrPageIndex + 1} de ${qrPages.length}, con ${currentPage.combinations.length} combinaciones. Procedencia: ${sourceDetails.label}`);
 
       new QRCode(qrCode, {
         text: currentPage.text,
@@ -3810,13 +3953,15 @@ html&gt;body{padding:0}&lt;/style&gt;
 
       updateQrCost();
       const costSummary = costSelect.value === &#x27;1&#x27; ? ` Coste estimado: ${qrCostAmount.textContent}.` : &#x27;&#x27;;
-      summary.textContent = `Mostrando el código QR ${qrPageIndex + 1} de ${qrPages.length}, con ${currentPage.combinations.length} combinaciones.${costSummary}`;
+      summary.textContent = `Mostrando el código QR ${qrPageIndex + 1} de ${qrPages.length}, con ${currentPage.combinations.length} combinaciones. Procedencia: ${sourceDetails.label}.${costSummary}`;
     }
 
     function generateQrPages(combinations, source) {
       const total = combinations.length;
       const isBonoloto = gameSelect.value === &#x27;2&#x27;;
       const sourceIsTxt = source === &#x27;txt&#x27;;
+      const bonolotoRules = isBonoloto ? getBonolotoQrRules() : null;
+      const sourceDetails = getQrSourceDetails(source);
 
       if (total === 0) {
         hideQr();
@@ -3829,13 +3974,14 @@ html&gt;body{padding:0}&lt;/style&gt;
         return;
       }
 
-      if (isBonoloto &amp;&amp; total &lt; 2) {
+      if (isBonoloto &amp;&amp; total &lt; bonolotoRules.minimumCombinations) {
         hideQr();
+        const message = getBonolotoSingleCombinationError(bonolotoRules);
         if (sourceIsTxt) {
-          txtMessage.textContent = &#x27;Bonoloto necesita al menos 2 combinaciones.&#x27;;
+          txtMessage.textContent = message;
           txtMessage.classList.add(&#x27;is-error&#x27;);
         } else {
-          setQrMessage(&#x27;No se puede generar: en Bonoloto el mínimo son 2 combinaciones.&#x27;, true);
+          setQrMessage(message, true);
         }
         return;
       }
@@ -3855,14 +4001,18 @@ html&gt;body{padding:0}&lt;/style&gt;
       const groups = splitQrGroups(combinations);
       qrPages = groups.map((group) =&gt; ({
         combinations: group,
-        text: buildQrText(group)
+        text: buildQrText(group),
+        source: sourceDetails
       }));
       qrPageIndex = 0;
       showQrPage(0);
       scrollToGeneratedQr();
 
       const gameName = isBonoloto ? &#x27;Bonoloto&#x27; : &#x27;La Primitiva&#x27;;
-      const resultMessage = `${total} ${total === 1 ? &#x27;combinación&#x27; : &#x27;combinaciones&#x27;} repartidas en ${qrPages.length} ${qrPages.length === 1 ? &#x27;código QR&#x27; : &#x27;códigos QR&#x27;}.`;
+      const weeklySingleNote = isBonoloto &amp;&amp; total === 1
+        ? ` Válida para los ${bonolotoRules.drawCount} sorteos pendientes de la semana.`
+        : &#x27;&#x27;;
+      const resultMessage = `${total} ${total === 1 ? &#x27;combinación&#x27; : &#x27;combinaciones&#x27;} repartidas en ${qrPages.length} ${qrPages.length === 1 ? &#x27;código QR&#x27; : &#x27;códigos QR&#x27;}.${weeklySingleNote}`;
       if (sourceIsTxt) {
         txtMessage.textContent = `${gameName}: ${resultMessage}`;
         txtMessage.classList.remove(&#x27;is-error&#x27;);
@@ -4589,7 +4739,12 @@ html&gt;body{padding:0}&lt;/style&gt;
       if (total === 0) return;
       const sourceLabel = importedSource === &#x27;clipboard&#x27; ? &#x27;El texto pegado&#x27; : &#x27;El archivo&#x27;;
       if (gameSelect.value === &#x27;2&#x27; &amp;&amp; total === 1) {
-        setTxtMessage(`${sourceLabel} contiene 1 combinación; Bonoloto necesita un mínimo de 2.`, true);
+        const rules = getBonolotoQrRules();
+        if (!rules.singleCombinationAllowed) {
+          setTxtMessage(`${sourceLabel} contiene 1 combinación. ${getBonolotoSingleCombinationError(rules)}`, true);
+          return;
+        }
+        setTxtMessage(`${sourceLabel} contiene 1 combinación válida para «Semana en curso»: quedan ${rules.drawCount} sorteos de Bonoloto.`);
         return;
       }
       const qrTotal = splitQrGroups(importedCombinations).length;
@@ -6680,6 +6835,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     periodSelect.addEventListener(&#x27;change&#x27;, () =&gt; {
       hideQr();
       updateQrGuidance();
+      updateTxtGuidance();
     });
     reintegroSelect.addEventListener(&#x27;change&#x27;, () =&gt; {
       hideQr();
