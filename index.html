@@ -1010,7 +1010,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;p class=&quot;qr-message text-muted&quot; id=&quot;lottery-qr-message&quot; aria-live=&quot;polite&quot;&gt;Bonoloto exige 2 combinaciones para un único sorteo; admite una sola en «Semana en curso» si quedan al menos 2 sorteos.&lt;/p&gt;
 
       &lt;div class=&quot;viz-controls saved-controls&quot;&gt;
-        &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-generate-qr&quot; type=&quot;button&quot;&gt;Generar QR&lt;/button&gt;
+        &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-generate-qr&quot; type=&quot;button&quot;&gt;Preparar QR&lt;/button&gt;
         &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-clear-saved&quot; type=&quot;button&quot; disabled&gt;Vaciar lista&lt;/button&gt;
       &lt;/div&gt;
       &lt;div class=&quot;lottery-back-row&quot;&gt;
@@ -1106,7 +1106,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;p class=&quot;bulk-message text-muted&quot; id=&quot;lottery-txt-message&quot; aria-live=&quot;polite&quot;&gt;Una combinación por línea. En el móvil puedes usar «Nueva línea» antes de pegar otro bloque.&lt;/p&gt;
 
         &lt;div class=&quot;viz-controls bulk-controls&quot;&gt;
-          &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-generate-txt-qr&quot; type=&quot;button&quot; disabled&gt;Generar QR de las combinaciones&lt;/button&gt;
+          &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-generate-txt-qr&quot; type=&quot;button&quot; disabled&gt;Preparar QR de las combinaciones&lt;/button&gt;
           &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-clear-txt&quot; type=&quot;button&quot; disabled&gt;Borrar combinaciones&lt;/button&gt;
         &lt;/div&gt;
         &lt;div class=&quot;lottery-back-row&quot;&gt;
@@ -1286,12 +1286,93 @@ html&gt;body{padding:0}&lt;/style&gt;
 
       &lt;div class=&quot;viz-controls development-actions&quot;&gt;
         &lt;button class=&quot;btn&quot; id=&quot;lottery-development-copy&quot; type=&quot;button&quot;&gt;Copiar resultado&lt;/button&gt;
-        &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-development-qr&quot; type=&quot;button&quot;&gt;Generar QR del resultado&lt;/button&gt;
+        &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-development-qr&quot; type=&quot;button&quot;&gt;Preparar QR del resultado&lt;/button&gt;
         &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-development-clear-output&quot; type=&quot;button&quot;&gt;Limpiar generador&lt;/button&gt;
       &lt;/div&gt;
     &lt;/div&gt;
     &lt;div class=&quot;lottery-back-row&quot;&gt;
       &lt;a class=&quot;lottery-back-top&quot; href=&quot;#lottery-app-top&quot; aria-label=&quot;Volver al inicio desde Desarrollos y reducciones&quot;&gt;↑ Volver al inicio&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;qr-setup-area card lottery-jump-target&quot; id=&quot;lottery-qr-setup-section&quot; aria-labelledby=&quot;lottery-qr-setup-label&quot; tabindex=&quot;-1&quot; hidden&gt;
+    &lt;div class=&quot;lottery-section-label qr-setup-heading&quot;&gt;
+      &lt;div&gt;
+        &lt;h2 id=&quot;lottery-qr-setup-label&quot;&gt;Configurar y generar QR&lt;/h2&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;Comprueba la modalidad y los datos del boleto antes de crear los códigos.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;span class=&quot;qr-setup-game-badge&quot; id=&quot;lottery-qr-setup-game-badge&quot; data-game=&quot;bonoloto&quot;&gt;BONOLOTO&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;qr-origin-summary qr-setup-source&quot; id=&quot;lottery-qr-setup-source&quot; data-source=&quot;saved&quot;&gt;
+      &lt;span class=&quot;qr-origin-label&quot;&gt;Apuestas preparadas desde&lt;/span&gt;
+      &lt;strong class=&quot;qr-origin-value&quot; id=&quot;lottery-qr-setup-source-value&quot;&gt;Combinaciones guardadas&lt;/strong&gt;
+      &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-qr-setup-count&quot;&gt;0 apuestas&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;game-options qr-setup-options&quot;&gt;
+      &lt;label class=&quot;form-label&quot; for=&quot;lottery-qr-setup-game&quot;&gt;
+        Modalidad
+        &lt;select class=&quot;form-select&quot; id=&quot;lottery-qr-setup-game&quot;&gt;
+          &lt;option value=&quot;2&quot;&gt;Bonoloto&lt;/option&gt;
+          &lt;option value=&quot;1&quot;&gt;La Primitiva&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/label&gt;
+
+      &lt;label class=&quot;form-label&quot; for=&quot;lottery-qr-setup-period&quot;&gt;
+        Sorteo
+        &lt;select class=&quot;form-select&quot; id=&quot;lottery-qr-setup-period&quot;&gt;
+          &lt;option value=&quot;0&quot;&gt;Un día&lt;/option&gt;
+          &lt;option value=&quot;1&quot;&gt;Semana en curso&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/label&gt;
+
+      &lt;label class=&quot;form-label qr-setup-primitiva-option&quot; for=&quot;lottery-qr-setup-reintegro&quot; id=&quot;lottery-qr-setup-reintegro-wrap&quot; hidden&gt;
+        Reintegro
+        &lt;select class=&quot;form-select&quot; id=&quot;lottery-qr-setup-reintegro&quot;&gt;
+          &lt;option value=&quot;0&quot;&gt;0&lt;/option&gt;
+          &lt;option value=&quot;1&quot;&gt;1&lt;/option&gt;
+          &lt;option value=&quot;2&quot;&gt;2&lt;/option&gt;
+          &lt;option value=&quot;3&quot;&gt;3&lt;/option&gt;
+          &lt;option value=&quot;4&quot;&gt;4&lt;/option&gt;
+          &lt;option value=&quot;5&quot;&gt;5&lt;/option&gt;
+          &lt;option value=&quot;6&quot;&gt;6&lt;/option&gt;
+          &lt;option value=&quot;7&quot;&gt;7&lt;/option&gt;
+          &lt;option value=&quot;8&quot;&gt;8&lt;/option&gt;
+          &lt;option value=&quot;9&quot;&gt;9&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/label&gt;
+
+      &lt;label class=&quot;form-label qr-setup-primitiva-option&quot; for=&quot;lottery-qr-setup-joker&quot; id=&quot;lottery-qr-setup-joker-wrap&quot; hidden&gt;
+        Joker
+        &lt;select class=&quot;form-select&quot; id=&quot;lottery-qr-setup-joker&quot;&gt;
+          &lt;option value=&quot;NO&quot;&gt;No&lt;/option&gt;
+          &lt;option value=&quot;0&quot;&gt;Sí&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/label&gt;
+
+      &lt;label class=&quot;form-label cost-option&quot; for=&quot;lottery-qr-setup-cost&quot;&gt;
+        Coste del boleto o QR
+        &lt;select class=&quot;form-select&quot; id=&quot;lottery-qr-setup-cost&quot;&gt;
+          &lt;option value=&quot;1&quot;&gt;Mostrar coste estimado&lt;/option&gt;
+          &lt;option value=&quot;0&quot;&gt;No mostrar&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/label&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;qr-setup-review&quot; id=&quot;lottery-qr-setup-review&quot; data-game=&quot;bonoloto&quot;&gt;
+      &lt;span&gt;Modalidad seleccionada&lt;/span&gt;
+      &lt;strong id=&quot;lottery-qr-setup-review-game&quot;&gt;BONOLOTO&lt;/strong&gt;
+      &lt;p id=&quot;lottery-qr-setup-cost-preview&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;p class=&quot;qr-setup-message text-muted&quot; id=&quot;lottery-qr-setup-message&quot; aria-live=&quot;polite&quot;&gt;Revisa los datos y confirma la generación.&lt;/p&gt;
+
+    &lt;div class=&quot;viz-controls qr-setup-actions&quot;&gt;
+      &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-qr-setup-confirm&quot; type=&quot;button&quot;&gt;Confirmar y generar QR&lt;/button&gt;
+      &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-qr-setup-cancel&quot; type=&quot;button&quot;&gt;Cancelar&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;lottery-back-row&quot;&gt;
+      &lt;a class=&quot;lottery-back-top&quot; href=&quot;#lottery-app-top&quot; aria-label=&quot;Volver al inicio desde la configuración del QR&quot;&gt;↑ Volver al inicio&lt;/a&gt;
     &lt;/div&gt;
   &lt;/section&gt;
 
@@ -2564,6 +2645,112 @@ html&gt;body{padding:0}&lt;/style&gt;
     margin-top: 0.5rem;
   }
 
+  #lottery-simulator-649 .qr-setup-area {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 2;
+    border: 2px solid color-mix(in srgb, var(--primary) 55%, var(--border));
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--primary) 8%, transparent), transparent 46%),
+      var(--card);
+    box-shadow: 0 18px 42px color-mix(in srgb, var(--primary) 12%, transparent);
+  }
+
+  #lottery-simulator-649 .qr-setup-heading {
+    align-items: flex-start;
+  }
+
+  #lottery-simulator-649 .qr-setup-heading &gt; div {
+    display: grid;
+    gap: 0.3rem;
+    min-width: 0;
+  }
+
+  #lottery-simulator-649 .qr-setup-heading p {
+    margin: 0;
+  }
+
+  #lottery-simulator-649 .qr-setup-game-badge {
+    min-width: 7.5rem;
+    padding: 0.55rem 0.85rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 850;
+    letter-spacing: 0.06em;
+    text-align: center;
+  }
+
+  #lottery-simulator-649 .qr-setup-game-badge[data-game=&quot;bonoloto&quot;] {
+    color: #b99012;
+    background: color-mix(in srgb, #d3a51f 14%, var(--card));
+  }
+
+  #lottery-simulator-649 .qr-setup-game-badge[data-game=&quot;primitiva&quot;] {
+    color: #32934f;
+    background: color-mix(in srgb, #32934f 14%, var(--card));
+  }
+
+  #lottery-simulator-649 .qr-setup-source {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  #lottery-simulator-649 .qr-setup-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #lottery-simulator-649 .qr-setup-review {
+    --qr-setup-colour: #d3a51f;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.25rem 1rem;
+    align-items: center;
+    padding: 0.9rem 1rem;
+    border: 2px solid color-mix(in srgb, var(--qr-setup-colour) 72%, var(--border));
+    border-radius: 0.9rem;
+    background: color-mix(in srgb, var(--qr-setup-colour) 10%, var(--card));
+  }
+
+  #lottery-simulator-649 .qr-setup-review[data-game=&quot;primitiva&quot;] {
+    --qr-setup-colour: #32934f;
+  }
+
+  #lottery-simulator-649 .qr-setup-review &gt; span {
+    color: var(--muted-foreground);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+  }
+
+  #lottery-simulator-649 .qr-setup-review &gt; strong {
+    color: color-mix(in srgb, var(--qr-setup-colour) 86%, var(--foreground));
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    letter-spacing: 0.055em;
+  }
+
+  #lottery-simulator-649 .qr-setup-review p {
+    grid-column: 1 / -1;
+    margin: 0.25rem 0 0;
+    color: var(--foreground);
+  }
+
+  #lottery-simulator-649 .qr-setup-message {
+    min-height: 1.5rem;
+    margin: 0;
+  }
+
+  #lottery-simulator-649 .qr-setup-message.is-error {
+    color: var(--destructive);
+  }
+
+  #lottery-simulator-649 .qr-setup-actions {
+    justify-content: flex-start;
+  }
+
   #lottery-simulator-649 .qr-area {
     display: grid;
     gap: 1rem;
@@ -3483,6 +3670,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     #lottery-simulator-649 .clipboard-controls,
     #lottery-simulator-649 .ticket-save-actions,
     #lottery-simulator-649 .ticket-import-actions,
+    #lottery-simulator-649 .qr-setup-actions,
     #lottery-simulator-649 .development-generation-actions,
     #lottery-simulator-649 .development-breakdown-pending-actions,
     #lottery-simulator-649 .development-actions {
@@ -3498,6 +3686,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     #lottery-simulator-649 .ticket-save-actions .btn,
     #lottery-simulator-649 .ticket-import-actions .btn,
     #lottery-simulator-649 .ticket-import-actions .ticket-file-button,
+    #lottery-simulator-649 .qr-setup-actions .btn,
     #lottery-simulator-649 .development-generation-actions .btn,
     #lottery-simulator-649 .development-breakdown-pending-actions .btn,
     #lottery-simulator-649 .development-actions .btn {
@@ -3535,8 +3724,17 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
 
     #lottery-simulator-649 .qr-content,
-    #lottery-simulator-649 .game-options {
+    #lottery-simulator-649 .game-options,
+    #lottery-simulator-649 .qr-setup-options {
       grid-template-columns: 1fr;
+    }
+
+    #lottery-simulator-649 .qr-setup-review {
+      grid-template-columns: 1fr;
+    }
+
+    #lottery-simulator-649 .qr-setup-game-badge {
+      justify-self: start;
     }
 
     #lottery-simulator-649 .qr-cost-summary {
@@ -3708,6 +3906,24 @@ html&gt;body{padding:0}&lt;/style&gt;
     const qrMessage = root.querySelector(&#x27;#lottery-qr-message&#x27;);
     const generateQrButton = root.querySelector(&#x27;#lottery-generate-qr&#x27;);
     const clearSavedButton = root.querySelector(&#x27;#lottery-clear-saved&#x27;);
+    const qrSetupArea = root.querySelector(&#x27;#lottery-qr-setup-section&#x27;);
+    const qrSetupGameBadge = root.querySelector(&#x27;#lottery-qr-setup-game-badge&#x27;);
+    const qrSetupSource = root.querySelector(&#x27;#lottery-qr-setup-source&#x27;);
+    const qrSetupSourceValue = root.querySelector(&#x27;#lottery-qr-setup-source-value&#x27;);
+    const qrSetupCount = root.querySelector(&#x27;#lottery-qr-setup-count&#x27;);
+    const qrSetupGameSelect = root.querySelector(&#x27;#lottery-qr-setup-game&#x27;);
+    const qrSetupPeriodSelect = root.querySelector(&#x27;#lottery-qr-setup-period&#x27;);
+    const qrSetupReintegroWrap = root.querySelector(&#x27;#lottery-qr-setup-reintegro-wrap&#x27;);
+    const qrSetupReintegroSelect = root.querySelector(&#x27;#lottery-qr-setup-reintegro&#x27;);
+    const qrSetupJokerWrap = root.querySelector(&#x27;#lottery-qr-setup-joker-wrap&#x27;);
+    const qrSetupJokerSelect = root.querySelector(&#x27;#lottery-qr-setup-joker&#x27;);
+    const qrSetupCostSelect = root.querySelector(&#x27;#lottery-qr-setup-cost&#x27;);
+    const qrSetupReview = root.querySelector(&#x27;#lottery-qr-setup-review&#x27;);
+    const qrSetupReviewGame = root.querySelector(&#x27;#lottery-qr-setup-review-game&#x27;);
+    const qrSetupCostPreview = root.querySelector(&#x27;#lottery-qr-setup-cost-preview&#x27;);
+    const qrSetupMessage = root.querySelector(&#x27;#lottery-qr-setup-message&#x27;);
+    const qrSetupConfirmButton = root.querySelector(&#x27;#lottery-qr-setup-confirm&#x27;);
+    const qrSetupCancelButton = root.querySelector(&#x27;#lottery-qr-setup-cancel&#x27;);
     const qrArea = root.querySelector(&#x27;#lottery-qr-area&#x27;);
     const qrLabel = root.querySelector(&#x27;#qr-label&#x27;);
     const qrGame = root.querySelector(&#x27;#lottery-qr-game&#x27;);
@@ -3865,6 +4081,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     let qrPages = [];
     let qrPageIndex = 0;
     let currentGeneratedTicket = null;
+    let pendingQrRequest = null;
     let savedTickets = [];
     let loadedTicketForScrutiny = null;
     let savedPageIndex = 0;
@@ -4426,8 +4643,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       return [1, 4, 6].filter((drawDay) =&gt; drawDay &gt;= day).length;
     }
 
-    function getBonolotoQrRules(referenceDate = new Date()) {
-      const isWeekly = periodSelect.value === &#x27;1&#x27;;
+    function getBonolotoQrRules(referenceDate = new Date(), periodValue = periodSelect.value) {
+      const isWeekly = periodValue === &#x27;1&#x27;;
       const drawCount = isWeekly ? getWeeklyDrawCount(&#x27;2&#x27;, referenceDate) : 1;
       const singleCombinationAllowed = isWeekly &amp;&amp; drawCount &gt;= 2;
       return {
@@ -4448,12 +4665,16 @@ html&gt;body{padding:0}&lt;/style&gt;
       return &#x27;No quedan suficientes sorteos de Bonoloto esta semana para jugar una sola combinación; necesitas al menos 2 combinaciones.&#x27;;
     }
 
-    function getQrCostDetails(combinationCount) {
-      const product = gameSelect.value;
+    function getQrCostDetailsForOptions(
+      combinationCount,
+      product,
+      period,
+      joker
+    ) {
       const isPrimitiva = product === &#x27;1&#x27;;
       const combinationPrice = isPrimitiva ? 1 : 0.5;
-      const jokerPrice = isPrimitiva &amp;&amp; jokerSelect.value === &#x27;0&#x27; ? 1 : 0;
-      const drawCount = periodSelect.value === &#x27;1&#x27; ? getWeeklyDrawCount(product) : 1;
+      const jokerPrice = isPrimitiva &amp;&amp; joker === &#x27;0&#x27; ? 1 : 0;
+      const drawCount = period === &#x27;1&#x27; ? getWeeklyDrawCount(product) : 1;
       const pricePerDraw = combinationCount * combinationPrice + jokerPrice;
       return {
         combinationCount,
@@ -4463,6 +4684,15 @@ html&gt;body{padding:0}&lt;/style&gt;
         pricePerDraw,
         total: pricePerDraw * drawCount
       };
+    }
+
+    function getQrCostDetails(combinationCount) {
+      return getQrCostDetailsForOptions(
+        combinationCount,
+        gameSelect.value,
+        periodSelect.value,
+        jokerSelect.value
+      );
     }
 
     function updateQrCost() {
@@ -4784,6 +5014,202 @@ html&gt;body{padding:0}&lt;/style&gt;
       };
     }
 
+    function getQrGroupSizesForOptions(total, product, period) {
+      const sizes = [];
+      const bonolotoRequiresTwo = product === &#x27;2&#x27;
+        &amp;&amp; !getBonolotoQrRules(new Date(), period).singleCombinationAllowed;
+      let remainingTotal = total;
+
+      if (bonolotoRequiresTwo &amp;&amp; total % 8 === 1 &amp;&amp; total &gt; 1) {
+        while (remainingTotal &gt; 9) {
+          sizes.push(8);
+          remainingTotal -= 8;
+        }
+        sizes.push(7, 2);
+        return sizes;
+      }
+
+      while (remainingTotal &gt; 0) {
+        const size = Math.min(8, remainingTotal);
+        sizes.push(size);
+        remainingTotal -= size;
+      }
+      return sizes;
+    }
+
+    function setQrSetupMessage(message, isError = false) {
+      qrSetupMessage.textContent = message;
+      qrSetupMessage.classList.toggle(&#x27;is-error&#x27;, isError);
+    }
+
+    function setQrPreparationFeedback(source, message, isError = false) {
+      if (source === &#x27;txt&#x27;) {
+        txtMessage.textContent = message;
+        txtMessage.classList.toggle(&#x27;is-error&#x27;, isError);
+      } else if (source === &#x27;development&#x27;) {
+        setDevelopmentMessage(message, isError);
+      } else {
+        setQrMessage(message, isError);
+      }
+    }
+
+    function updateQrSetupGuidance() {
+      const isPrimitiva = qrSetupGameSelect.value === &#x27;1&#x27;;
+      const gameKey = isPrimitiva ? &#x27;primitiva&#x27; : &#x27;bonoloto&#x27;;
+      const gameName = isPrimitiva ? &#x27;LA PRIMITIVA&#x27; : &#x27;BONOLOTO&#x27;;
+      const total = pendingQrRequest?.combinations?.length ?? 0;
+      const sourceDetails = pendingQrRequest?.sourceDetails;
+
+      qrSetupReintegroWrap.hidden = !isPrimitiva;
+      qrSetupJokerWrap.hidden = !isPrimitiva;
+      qrSetupGameBadge.dataset.game = gameKey;
+      qrSetupGameBadge.textContent = gameName;
+      qrSetupReview.dataset.game = gameKey;
+      qrSetupReviewGame.textContent = gameName;
+
+      if (sourceDetails) {
+        qrSetupSource.dataset.source = sourceDetails.key;
+        qrSetupSourceValue.textContent = sourceDetails.label;
+        qrSetupSource.title = sourceDetails.description;
+      }
+      qrSetupCount.textContent = `${total.toLocaleString(&#x27;es-ES&#x27;)} ${total === 1 ? &#x27;apuesta&#x27; : &#x27;apuestas&#x27;}`;
+
+      const groupSizes = getQrGroupSizesForOptions(
+        total,
+        qrSetupGameSelect.value,
+        qrSetupPeriodSelect.value
+      );
+      const qrTotal = groupSizes.length;
+      let invalidMessage = &#x27;&#x27;;
+      if (total === 0) {
+        invalidMessage = &#x27;No hay apuestas preparadas para generar los códigos QR.&#x27;;
+      } else if (!isPrimitiva) {
+        const rules = getBonolotoQrRules(new Date(), qrSetupPeriodSelect.value);
+        if (total &lt; rules.minimumCombinations) {
+          invalidMessage = getBonolotoSingleCombinationError(rules);
+        }
+      }
+
+      qrSetupConfirmButton.disabled = Boolean(invalidMessage);
+      if (invalidMessage) {
+        setQrSetupMessage(invalidMessage, true);
+      } else {
+        const periodName = qrSetupPeriodSelect.value === &#x27;1&#x27; ? &#x27;semana en curso&#x27; : &#x27;un día&#x27;;
+        const primitivaDetails = isPrimitiva
+          ? ` · reintegro ${qrSetupReintegroSelect.value} · Joker ${qrSetupJokerSelect.value === &#x27;0&#x27; ? &#x27;sí&#x27; : &#x27;no&#x27;}`
+          : &#x27;&#x27;;
+        setQrSetupMessage(
+          `${gameName}: ${total.toLocaleString(&#x27;es-ES&#x27;)} ${total === 1 ? &#x27;apuesta&#x27; : &#x27;apuestas&#x27;} para ${periodName}${primitivaDetails}. Se crearán ${qrTotal} ${qrTotal === 1 ? &#x27;QR&#x27; : &#x27;QRs&#x27;}.`
+        );
+      }
+
+      if (qrSetupCostSelect.value !== &#x27;1&#x27; || total === 0) {
+        qrSetupCostPreview.textContent = &#x27;El coste estimado no se mostrará junto a los códigos QR.&#x27;;
+        return;
+      }
+
+      const costDetails = groupSizes.map((count) =&gt; getQrCostDetailsForOptions(
+        count,
+        qrSetupGameSelect.value,
+        qrSetupPeriodSelect.value,
+        qrSetupJokerSelect.value
+      ));
+      const totalCost = costDetails.reduce((sum, details) =&gt; sum + details.total, 0);
+      const drawCount = costDetails[0]?.drawCount ?? 0;
+      const drawText = qrSetupPeriodSelect.value === &#x27;1&#x27;
+        ? `${drawCount} ${drawCount === 1 ? &#x27;sorteo pendiente&#x27; : &#x27;sorteos pendientes&#x27;} esta semana`
+        : &#x27;un único sorteo&#x27;;
+      const jokerText = isPrimitiva &amp;&amp; qrSetupJokerSelect.value === &#x27;0&#x27;
+        ? &#x27; Incluye 1,00 € de Joker por cada QR o boleto y sorteo.&#x27;
+        : &#x27;&#x27;;
+      qrSetupCostPreview.textContent = `Coste total estimado: ${formatEuro(totalCost)} para ${drawText}.${jokerText}`;
+    }
+
+    function scrollToQrSetup() {
+      const reducedMotion = window.matchMedia(&#x27;(prefers-reduced-motion: reduce)&#x27;).matches;
+      requestAnimationFrame(() =&gt; {
+        const targetTop = qrSetupArea.getBoundingClientRect().top + window.scrollY - 12;
+        window.scrollTo({
+          top: Math.max(0, targetTop),
+          behavior: reducedMotion ? &#x27;auto&#x27; : &#x27;smooth&#x27;
+        });
+        qrSetupArea.focus({ preventScroll: true });
+        quickNavLinks.forEach((item) =&gt; item.removeAttribute(&#x27;aria-current&#x27;));
+      });
+    }
+
+    function prepareQrGeneration(combinations, source) {
+      const total = combinations.length;
+      if (total === 0) {
+        hideQr();
+        const message = source === &#x27;txt&#x27;
+          ? &#x27;Carga primero un archivo TXT o un texto con combinaciones válidas.&#x27;
+          : source === &#x27;development&#x27;
+            ? &#x27;Genera primero una reducción o un desarrollo completo.&#x27;
+            : &#x27;Guarda al menos una combinación antes de preparar el QR.&#x27;;
+        setQrPreparationFeedback(source, message, true);
+        return;
+      }
+
+      hideQr();
+      const sourceDetails = getQrSourceDetails(source);
+      pendingQrRequest = { combinations, source, sourceDetails };
+      qrSetupGameSelect.value = gameSelect.value;
+      qrSetupPeriodSelect.value = periodSelect.value;
+      qrSetupReintegroSelect.value = reintegroSelect.value;
+      qrSetupJokerSelect.value = jokerSelect.value;
+      qrSetupCostSelect.value = costSelect.value;
+      qrSetupArea.hidden = false;
+      updateQrSetupGuidance();
+      setQrPreparationFeedback(
+        source,
+        `${total.toLocaleString(&#x27;es-ES&#x27;)} ${total === 1 ? &#x27;apuesta preparada&#x27; : &#x27;apuestas preparadas&#x27;}. Confirma ahora la modalidad en «Configurar y generar QR».`
+      );
+      summary.textContent = `${total.toLocaleString(&#x27;es-ES&#x27;)} apuestas enviadas a la configuración del QR.`;
+      scrollToQrSetup();
+    }
+
+    function cancelQrSetup() {
+      pendingQrRequest = null;
+      qrSetupArea.hidden = true;
+      setQrSetupMessage(&#x27;Revisa los datos y confirma la generación.&#x27;);
+      summary.textContent = &#x27;Se ha cancelado la configuración del código QR.&#x27;;
+    }
+
+    function confirmQrGeneration() {
+      if (!pendingQrRequest) {
+        setQrSetupMessage(&#x27;Vuelve a una zona de combinaciones y pulsa «Preparar QR».&#x27;, true);
+        qrSetupConfirmButton.disabled = true;
+        return;
+      }
+
+      updateQrSetupGuidance();
+      if (qrSetupConfirmButton.disabled) return;
+
+      const request = pendingQrRequest;
+      gameSelect.value = qrSetupGameSelect.value;
+      periodSelect.value = qrSetupPeriodSelect.value;
+      reintegroSelect.value = qrSetupReintegroSelect.value;
+      jokerSelect.value = qrSetupJokerSelect.value;
+      costSelect.value = qrSetupCostSelect.value;
+      updateGameOptions();
+
+      const generated = generateQrPages(
+        request.combinations,
+        request.source,
+        request.sourceDetails
+      );
+      if (!generated) {
+        pendingQrRequest = request;
+        qrSetupArea.hidden = false;
+        updateQrSetupGuidance();
+        return;
+      }
+
+      pendingQrRequest = null;
+      qrSetupArea.hidden = true;
+    }
+
     function showQrPage(index) {
       if (qrPages.length === 0) return;
 
@@ -4827,12 +5253,12 @@ html&gt;body{padding:0}&lt;/style&gt;
       summary.textContent = `Mostrando el código QR ${qrPageIndex + 1} de ${qrPages.length}, con ${currentPage.combinations.length} combinaciones. Procedencia: ${sourceDetails.label}.${costSummary}`;
     }
 
-    function generateQrPages(combinations, source) {
+    function generateQrPages(combinations, source, sourceDetailsOverride = null) {
       const total = combinations.length;
       const isBonoloto = gameSelect.value === &#x27;2&#x27;;
       const sourceIsTxt = source === &#x27;txt&#x27;;
       const bonolotoRules = isBonoloto ? getBonolotoQrRules() : null;
-      const sourceDetails = getQrSourceDetails(source);
+      const sourceDetails = sourceDetailsOverride ?? getQrSourceDetails(source);
 
       if (total === 0) {
         hideQr();
@@ -4842,7 +5268,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         } else {
           setQrMessage(&#x27;Guarda al menos una combinación antes de generar el QR.&#x27;, true);
         }
-        return;
+        return false;
       }
 
       if (isBonoloto &amp;&amp; total &lt; bonolotoRules.minimumCombinations) {
@@ -4854,7 +5280,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         } else {
           setQrMessage(message, true);
         }
-        return;
+        return false;
       }
 
       if (typeof QRCode === &#x27;undefined&#x27;) {
@@ -4866,7 +5292,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         } else {
           setQrMessage(message, true);
         }
-        return;
+        return false;
       }
 
       const groups = splitQrGroups(combinations);
@@ -4908,14 +5334,15 @@ html&gt;body{padding:0}&lt;/style&gt;
         setQrMessage(`${gameName}: ${resultMessage}`);
       }
       summary.textContent = `${gameName}: ${resultMessage}`;
+      return true;
     }
 
     function generateQr() {
-      generateQrPages(savedCombinations, &#x27;saved&#x27;);
+      prepareQrGeneration(savedCombinations, &#x27;saved&#x27;);
     }
 
     function generateTxtQr() {
-      generateQrPages(importedCombinations, &#x27;txt&#x27;);
+      prepareQrGeneration(importedCombinations, &#x27;txt&#x27;);
     }
 
     function combinationsToClipboardText(combinations) {
@@ -7189,10 +7616,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         setDevelopmentMessage(&#x27;Genera primero una reducción o un desarrollo completo.&#x27;, true);
         return;
       }
-      generateQrPages(combinations, &#x27;development&#x27;);
-      if (!qrArea.hidden) {
-        setDevelopmentMessage(`${combinations.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones enviadas al generador QR.`);
-      }
+      prepareQrGeneration(combinations, &#x27;development&#x27;);
     }
 
     function setScrutinyMessage(message, isError = false) {
@@ -7827,6 +8251,13 @@ html&gt;body{padding:0}&lt;/style&gt;
     });
     developmentCopyButton.addEventListener(&#x27;click&#x27;, copyDevelopmentResult);
     developmentQrButton.addEventListener(&#x27;click&#x27;, generateDevelopmentQr);
+    qrSetupGameSelect.addEventListener(&#x27;change&#x27;, updateQrSetupGuidance);
+    qrSetupPeriodSelect.addEventListener(&#x27;change&#x27;, updateQrSetupGuidance);
+    qrSetupReintegroSelect.addEventListener(&#x27;change&#x27;, updateQrSetupGuidance);
+    qrSetupJokerSelect.addEventListener(&#x27;change&#x27;, updateQrSetupGuidance);
+    qrSetupCostSelect.addEventListener(&#x27;change&#x27;, updateQrSetupGuidance);
+    qrSetupConfirmButton.addEventListener(&#x27;click&#x27;, confirmQrGeneration);
+    qrSetupCancelButton.addEventListener(&#x27;click&#x27;, cancelQrSetup);
     gameSelect.addEventListener(&#x27;change&#x27;, updateGameOptions);
     periodSelect.addEventListener(&#x27;change&#x27;, () =&gt; {
       hideQr();
