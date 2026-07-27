@@ -4137,7 +4137,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         actions.append(
           createTicketAction(&#x27;Ver QR&#x27;, &#x27;open&#x27;, ticket.id, &#x27;btn-primary&#x27;),
           createTicketAction(&#x27;Escrutar&#x27;, &#x27;scrutinize&#x27;, ticket.id),
-          createTicketAction(&#x27;Copiar&#x27;, &#x27;copy&#x27;, ticket.id),
+          createTicketAction(&#x27;Copiar apuestas&#x27;, &#x27;copy-bets&#x27;, ticket.id),
+          createTicketAction(&#x27;Copiar boleto&#x27;, &#x27;copy&#x27;, ticket.id),
           createTicketAction(&#x27;TXT&#x27;, &#x27;download&#x27;, ticket.id),
           createTicketAction(&#x27;Eliminar&#x27;, &#x27;delete&#x27;, ticket.id, &#x27;btn-ghost ticket-delete&#x27;)
         );
@@ -4210,6 +4211,20 @@ html&gt;body{padding:0}&lt;/style&gt;
         : result.manual
           ? &#x27;El navegador ha mostrado el boleto para copiarlo manualmente.&#x27;
           : &#x27;No se ha podido copiar el boleto. Descarga la copia TXT.&#x27;;
+      const isError = Boolean(result.error);
+      if (feedback === &#x27;import&#x27;) setTicketImportMessage(message, isError);
+      else setTicketActionMessage(message, isError);
+    }
+
+    async function copyTicketCombinations(ticket, feedback = &#x27;import&#x27;) {
+      const normalised = normaliseTicket(ticket);
+      const result = await copyTextToClipboard(combinationsToClipboardText(normalised.combinations));
+      const total = normalised.combinations.length;
+      const message = result.copied
+        ? `${total} ${total === 1 ? &#x27;apuesta copiada&#x27; : &#x27;apuestas copiadas&#x27;} de «${normalised.name}», una por línea.`
+        : result.manual
+          ? &#x27;El navegador ha mostrado las apuestas para copiarlas manualmente.&#x27;
+          : &#x27;No se han podido copiar las apuestas de este boleto.&#x27;;
       const isError = Boolean(result.error);
       if (feedback === &#x27;import&#x27;) setTicketImportMessage(message, isError);
       else setTicketActionMessage(message, isError);
@@ -4332,6 +4347,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         openSavedTicket(ticket);
       } else if (action === &#x27;scrutinize&#x27;) {
         loadTicketInScrutinizer(ticket);
+      } else if (action === &#x27;copy-bets&#x27;) {
+        await copyTicketCombinations(ticket, &#x27;import&#x27;);
       } else if (action === &#x27;copy&#x27;) {
         await copyTicketBundle(ticket, &#x27;import&#x27;);
       } else if (action === &#x27;download&#x27;) {
