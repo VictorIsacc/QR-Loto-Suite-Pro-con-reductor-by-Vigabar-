@@ -66,7 +66,7 @@
     a { color: inherit; }
 
     .guide {
-      width: min(1120px, calc(100% - 2rem));
+      width: min(1520px, calc(100% - 2rem));
       margin: 0 auto;
       padding: 1rem 0 4rem;
     }
@@ -150,14 +150,14 @@
     }
 
     h1 {
-      max-width: 760px;
+      max-width: 1100px;
       margin: 0;
       font-size: clamp(2rem, 6vw, 4rem);
       line-height: 1.05;
     }
 
     .hero p:not(.eyebrow) {
-      max-width: 720px;
+      max-width: 1050px;
       margin: 1rem 0 0;
       color: var(--muted);
       font-size: clamp(1rem, 2vw, 1.14rem);
@@ -177,8 +177,8 @@
 
     .guide-card {
       display: grid;
-      grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr);
-      gap: clamp(1.25rem, 4vw, 3rem);
+      grid-template-columns: minmax(300px, 0.78fr) minmax(0, 1.42fr);
+      gap: clamp(1.25rem, 3vw, 3rem);
       align-items: center;
       padding: clamp(1rem, 3.6vw, 2.25rem);
       margin-top: 1rem;
@@ -190,6 +190,10 @@
     }
 
     .guide-card:nth-of-type(even) .illustration { order: 2; }
+
+    .copy {
+      min-width: 0;
+    }
 
     .step-number {
       display: inline-grid;
@@ -221,7 +225,10 @@
       padding-left: 1.35rem;
     }
 
-    .steps li { margin: 0.45rem 0; }
+    .steps li {
+      margin: 0.45rem 0;
+      text-wrap: pretty;
+    }
 
     .tip {
       margin-top: 1rem;
@@ -594,7 +601,7 @@
     }
 
     @media (max-width: 760px) {
-      .guide { width: min(100% - 1rem, 1120px); }
+      .guide { width: min(100% - 1rem, 1520px); }
       .guide-card { grid-template-columns: 1fr; }
       .guide-card:nth-of-type(even) .illustration { order: initial; }
       .illustration { order: initial; }
@@ -744,6 +751,7 @@
           <li>Un <strong>fijo</strong> aparece en todas; un <strong>semifijo</strong> aparece exactamente las veces indicadas.</li>
           <li>Comprueba el contador: las posiciones «Por cubrir» se completarán con números aleatorios.</li>
           <li>Pulsa <strong>«Generar»</strong>. El programa prueba distintos repartos para evitar combinaciones repetidas.</li>
+          <li>Pulsa <strong>«Ver combinaciones generadas»</strong> para desplazarte directamente hasta la lista donde se han almacenado.</li>
           <li>Usa <strong>«Copiar fijos/semifijos»</strong> para llevar todas las combinaciones al portapapeles.</li>
         </ol>
         <div class="tip">Si aparecen posiciones sobrantes o no existen suficientes combinaciones distintas, reduce fijos, apariciones o la cantidad solicitada.</div>
@@ -775,6 +783,7 @@
           <li>Selecciona manualmente entre <strong>7 y 49 números</strong>, o indica la cantidad y pulsa <strong>«Seleccionar aleatoriamente»</strong>.</li>
           <li>Cada número tiene tres estados: primer toque, seleccionado; segundo toque, <strong>fijo</strong>; tercer toque, eliminado. Puedes marcar hasta 5 fijos, que aparecerán en todas las apuestas.</li>
           <li>Marca uno de los dos modos excluyentes: <strong>«Reducción»</strong> o <strong>«Desarrollo completo»</strong>.</li>
+          <li>Pulsa <strong>«Calcular»</strong>; el mismo botón genera el desarrollo completo o busca la reducción según el modo seleccionado.</li>
           <li>Antes de generar se muestra el total exacto de casos, la carga estimada y si el cálculo es viable en el navegador. Si existen fijos, solo se desarrollan las apuestas que los contienen.</li>
           <li>En «Reducción», elige T=5, 4, 3 o 2 y el método. K=6, M=6 y L=1 permanecen fijos.</li>
           <li>Elige entre <strong>«Garantizada · 100 %»</strong> o <strong>«Por porcentaje»</strong>. En el segundo caso indica la cobertura mínima que deben conservar los ciclos.</li>
@@ -849,6 +858,7 @@
           <li>Consulta en LAE los seis números oficiales, el complementario y, para La Primitiva, el reintegro.</li>
           <li>Selecciona la modalidad y el origen: aleatorias, fijos/semifijos, importadas, reducción o desarrollo completo.</li>
           <li>Introduce los datos oficiales y pulsa <strong>«Escrutar combinaciones»</strong>.</li>
+          <li>Al finalizar se muestran claramente la <strong>modalidad escrutada</strong> y la <strong>procedencia de las combinaciones</strong> utilizadas.</li>
           <li>El resumen separa 5 aciertos de 5 + complementario y 6 de 6 + reintegro.</li>
         </ol>
         <div class="tip">Los resultados con 3 o más aciertos se distinguen mediante colores y etiquetas. El escrutador no descarga automáticamente los resultados de LAE.</div>

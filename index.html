@@ -909,7 +909,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;/div&gt;
     &lt;/main&gt;
 
-    &lt;aside class=&quot;saved-area card lottery-jump-target&quot; id=&quot;lottery-saved-section&quot; aria-labelledby=&quot;saved-label&quot;&gt;
+    &lt;aside class=&quot;saved-area card lottery-jump-target&quot; id=&quot;lottery-saved-section&quot; aria-labelledby=&quot;saved-label&quot; tabindex=&quot;-1&quot;&gt;
       &lt;div class=&quot;lottery-section-label&quot;&gt;
         &lt;h2 id=&quot;saved-label&quot;&gt;Combinaciones guardadas&lt;/h2&gt;
         &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-saved-count&quot;&gt;0 / 8&lt;/span&gt;
@@ -1040,6 +1040,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
         &lt;div class=&quot;viz-controls bulk-controls&quot;&gt;
           &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-generate-ticket&quot; type=&quot;button&quot; disabled&gt;Generar 8 combinaciones&lt;/button&gt;
+          &lt;button class=&quot;btn&quot; id=&quot;lottery-view-rule-combinations&quot; type=&quot;button&quot; disabled&gt;Ver combinaciones generadas&lt;/button&gt;
           &lt;button class=&quot;btn&quot; id=&quot;lottery-copy-rules&quot; type=&quot;button&quot; disabled&gt;Copiar fijos/semifijos&lt;/button&gt;
           &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-clear-rules&quot; type=&quot;button&quot; disabled&gt;Quitar reglas&lt;/button&gt;
         &lt;/div&gt;
@@ -1169,7 +1170,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
         &lt;p class=&quot;development-full-count text-muted&quot; id=&quot;lottery-development-full-count&quot;&gt;Selecciona al menos 7 números.&lt;/p&gt;
         &lt;div class=&quot;viz-controls development-generation-actions&quot;&gt;
-          &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-development-generate&quot; type=&quot;button&quot; disabled&gt;Generar reducción&lt;/button&gt;
+          &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-development-generate&quot; type=&quot;button&quot; disabled&gt;Calcular&lt;/button&gt;
           &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-development-stop&quot; type=&quot;button&quot; disabled hidden&gt;Detener ciclos&lt;/button&gt;
         &lt;/div&gt;
       &lt;/div&gt;
@@ -1358,6 +1359,16 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;p class=&quot;scrutiny-message text-muted&quot; id=&quot;lottery-scrutiny-message&quot;&gt;Introduce los datos oficiales de LAE. El escrutinio se realiza en este dispositivo.&lt;/p&gt;
 
     &lt;div class=&quot;scrutiny-output&quot; id=&quot;lottery-scrutiny-output&quot; hidden&gt;
+      &lt;div class=&quot;scrutiny-context&quot; aria-label=&quot;Modalidad y procedencia del escrutinio realizado&quot; aria-live=&quot;polite&quot;&gt;
+        &lt;div class=&quot;scrutiny-context-item scrutiny-context-game&quot; id=&quot;lottery-scrutiny-context-game-item&quot; data-game=&quot;primitiva&quot;&gt;
+          &lt;span&gt;Modalidad escrutada&lt;/span&gt;
+          &lt;strong id=&quot;lottery-scrutiny-context-game&quot;&gt;La Primitiva&lt;/strong&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;scrutiny-context-item scrutiny-context-source&quot; id=&quot;lottery-scrutiny-context-source-item&quot;&gt;
+          &lt;span&gt;Procedencia de las combinaciones&lt;/span&gt;
+          &lt;strong id=&quot;lottery-scrutiny-context-source&quot;&gt;&lt;/strong&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
       &lt;div class=&quot;scrutiny-draw&quot; id=&quot;lottery-scrutiny-draw&quot; aria-label=&quot;Resultado utilizado para el escrutinio&quot;&gt;&lt;/div&gt;
       &lt;p class=&quot;scrutiny-summary&quot; id=&quot;lottery-scrutiny-summary&quot;&gt;&lt;/p&gt;
       &lt;div class=&quot;scrutiny-hit-summary-block&quot;&gt;
@@ -2637,6 +2648,43 @@ html&gt;body{padding:0}&lt;/style&gt;
     display: none;
   }
 
+  #lottery-simulator-649 .scrutiny-context {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 0.65rem;
+  }
+
+  #lottery-simulator-649 .scrutiny-context-item {
+    --scrutiny-context-colour: var(--primary);
+    display: grid;
+    gap: 0.22rem;
+    padding: 0.72rem 0.85rem;
+    border: 1px solid color-mix(in srgb, var(--scrutiny-context-colour) 42%, var(--border));
+    border-radius: 0.75rem;
+    background: color-mix(in srgb, var(--scrutiny-context-colour) 10%, var(--card));
+  }
+
+  #lottery-simulator-649 .scrutiny-context-game[data-game=&quot;primitiva&quot;] {
+    --scrutiny-context-colour: #32934f;
+  }
+
+  #lottery-simulator-649 .scrutiny-context-game[data-game=&quot;bonoloto&quot;] {
+    --scrutiny-context-colour: #d3a51f;
+  }
+
+  #lottery-simulator-649 .scrutiny-context-item span {
+    color: var(--muted-foreground);
+    font-size: 0.76rem;
+    font-weight: 750;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  #lottery-simulator-649 .scrutiny-context-item strong {
+    color: color-mix(in srgb, var(--scrutiny-context-colour) 84%, var(--foreground));
+    font-size: 1rem;
+  }
+
   #lottery-simulator-649 .scrutiny-draw {
     display: flex;
     align-items: center;
@@ -2863,8 +2911,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 3.2rem;
-    padding: 0.4rem 0.75rem;
+    min-height: 2.6rem;
+    padding: 0.3rem 0.5rem;
     border: 2px solid #b3233f;
     border-radius: 0.85rem;
     background: color-mix(in srgb, #b3233f 12%, var(--card));
@@ -2877,9 +2925,9 @@ html&gt;body{padding:0}&lt;/style&gt;
 
   #lottery-simulator-649 .qr-joker-logo {
     display: block;
-    width: auto;
-    height: 2.15rem;
-    max-width: min(8.5rem, 34vw);
+    width: min(3.9rem, 20vw);
+    height: auto;
+    max-height: 1.55rem;
     object-fit: contain;
   }
 
@@ -3351,6 +3399,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     const saveButton = root.querySelector(&#x27;#lottery-save&#x27;);
     const copyRandomButton = root.querySelector(&#x27;#lottery-copy-random&#x27;);
     const savedList = root.querySelector(&#x27;#lottery-saved-list&#x27;);
+    const savedSection = root.querySelector(&#x27;#lottery-saved-section&#x27;);
     const savedCount = root.querySelector(&#x27;#lottery-saved-count&#x27;);
     const savedPagination = root.querySelector(&#x27;#lottery-saved-pagination&#x27;);
     const savedPreviousButton = root.querySelector(&#x27;#lottery-saved-previous&#x27;);
@@ -3403,6 +3452,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     const rulePositionSemiBar = root.querySelector(&#x27;#lottery-rule-position-semi-bar&#x27;);
     const rulePositionNote = root.querySelector(&#x27;#lottery-rule-position-note&#x27;);
     const generateTicketButton = root.querySelector(&#x27;#lottery-generate-ticket&#x27;);
+    const viewRuleCombinationsButton = root.querySelector(&#x27;#lottery-view-rule-combinations&#x27;);
     const copyRulesButton = root.querySelector(&#x27;#lottery-copy-rules&#x27;);
     const clearRulesButton = root.querySelector(&#x27;#lottery-clear-rules&#x27;);
     const txtFileInput = root.querySelector(&#x27;#lottery-txt-file&#x27;);
@@ -3468,6 +3518,10 @@ html&gt;body{padding:0}&lt;/style&gt;
     const scrutinyClearButton = root.querySelector(&#x27;#lottery-scrutiny-clear&#x27;);
     const scrutinyMessage = root.querySelector(&#x27;#lottery-scrutiny-message&#x27;);
     const scrutinyOutput = root.querySelector(&#x27;#lottery-scrutiny-output&#x27;);
+    const scrutinyContextGameItem = root.querySelector(&#x27;#lottery-scrutiny-context-game-item&#x27;);
+    const scrutinyContextGame = root.querySelector(&#x27;#lottery-scrutiny-context-game&#x27;);
+    const scrutinyContextSourceItem = root.querySelector(&#x27;#lottery-scrutiny-context-source-item&#x27;);
+    const scrutinyContextSource = root.querySelector(&#x27;#lottery-scrutiny-context-source&#x27;);
     const scrutinyDraw = root.querySelector(&#x27;#lottery-scrutiny-draw&#x27;);
     const scrutinySummary = root.querySelector(&#x27;#lottery-scrutiny-summary&#x27;);
     const scrutinyHitSummary = root.querySelector(&#x27;#lottery-scrutiny-hit-summary&#x27;);
@@ -3771,6 +3825,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         ? String(savedCombinations.length)
         : `${savedCombinations.length} / 8`;
       clearSavedButton.disabled = savedCombinations.length === 0;
+      viewRuleCombinationsButton.disabled = savedOrigin !== &#x27;rules&#x27; || savedCombinations.length === 0;
       refreshSaveButton();
       updateQrGuidance();
     }
@@ -4128,6 +4183,23 @@ html&gt;body{padding:0}&lt;/style&gt;
       } else if (result.error) {
         setRuleMessage(&#x27;No se han podido copiar las combinaciones.&#x27;, true);
       }
+    }
+
+    function showRuleGeneratedCombinations() {
+      if (savedOrigin !== &#x27;rules&#x27; || savedCombinations.length === 0) {
+        setRuleMessage(&#x27;Genera primero las combinaciones con fijos o semifijos.&#x27;, true);
+        return;
+      }
+      savedPageIndex = 0;
+      renderSavedCombinations();
+      summary.textContent = `Mostrando ${savedCombinations.length} combinaciones generadas con fijos y semifijos.`;
+      requestAnimationFrame(() =&gt; {
+        savedSection.scrollIntoView({
+          behavior: reducedMotion ? &#x27;auto&#x27; : &#x27;smooth&#x27;,
+          block: &#x27;start&#x27;
+        });
+        savedSection.focus({ preventScroll: true });
+      });
     }
 
     function setRuleMessage(message, isError = false) {
@@ -5076,7 +5148,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           : mode === &#x27;full&#x27;
           ? &#x27;Generando desarrollo…&#x27;
           : developmentMethodSelect.value === &#x27;hybrid&#x27; ? &#x27;Buscando reducción…&#x27; : &#x27;Calculando…&#x27;
-        : mode === &#x27;full&#x27; ? &#x27;Generar desarrollo completo&#x27; : &#x27;Generar reducción&#x27;;
+        : &#x27;Calcular&#x27;;
       const cyclesRunning =
         developmentBusy &amp;&amp;
         !developmentBreakdownBusy &amp;&amp;
@@ -6341,6 +6413,27 @@ html&gt;body{padding:0}&lt;/style&gt;
       }
     }
 
+    function scrutinySourceDisplayName() {
+      switch (scrutinySourceSelect.value) {
+        case &#x27;current&#x27;:
+          return &#x27;Bombo · combinación extraída actual&#x27;;
+        case &#x27;random&#x27;:
+          return &#x27;Bombo · combinaciones guardadas&#x27;;
+        case &#x27;rules&#x27;:
+          return &#x27;Generador con fijos y semifijos&#x27;;
+        case &#x27;imported&#x27;:
+          return importedSource === &#x27;clipboard&#x27;
+            ? &#x27;Combinaciones pegadas desde el portapapeles&#x27;
+            : &#x27;Archivo TXT cargado&#x27;;
+        case &#x27;reduced&#x27;:
+          return &#x27;Reducción matemática&#x27;;
+        case &#x27;development&#x27;:
+          return &#x27;Desarrollo completo&#x27;;
+        default:
+          return &#x27;Combinaciones seleccionadas&#x27;;
+      }
+    }
+
     function classifyScrutinyCombination(combination, winning, complement, refund) {
       const hits = combination.filter((number) =&gt; winning.includes(number)).length;
       const complementHit = hits === 5 &amp;&amp; combination.includes(complement);
@@ -6505,15 +6598,20 @@ html&gt;body{padding:0}&lt;/style&gt;
 
       const best = [...results].sort((first, second) =&gt; first.rank - second.rank)[0];
       const gameName = isPrimitiva ? &#x27;La Primitiva&#x27; : &#x27;Bonoloto&#x27;;
+      const sourceDisplayName = scrutinySourceDisplayName();
       renderScrutinyDraw(winning, complement, refund);
       renderScrutinyHitSummary(results);
-      scrutinySummary.textContent = `${gameName} · ${results.length} ${results.length === 1 ? &#x27;combinación escrutada&#x27; : &#x27;combinaciones escrutadas&#x27;} · mejor resultado: ${best.category}.`;
+      scrutinyContextGameItem.dataset.game = isPrimitiva ? &#x27;primitiva&#x27; : &#x27;bonoloto&#x27;;
+      scrutinyContextGame.textContent = gameName;
+      scrutinyContextSourceItem.dataset.source = scrutinySourceSelect.value;
+      scrutinyContextSource.textContent = sourceDisplayName;
+      scrutinySummary.textContent = `${gameName} · Procedencia: ${sourceDisplayName} · ${results.length} ${results.length === 1 ? &#x27;combinación escrutada&#x27; : &#x27;combinaciones escrutadas&#x27;} · mejor resultado: ${best.category}.`;
       scrutinyNote.textContent = isPrimitiva
         ? `Reintegro comprobado: ${reintegroSelect.value}, el seleccionado en el generador. El Joker no se comprueba porque no se almacena su número.`
         : &#x27;Se comprueba la combinación principal. El reintegro no puede verificarse porque no se guarda con cada combinación.&#x27;;
       scrutinyOutput.hidden = false;
       setScrutinyMessage(&#x27;Escrutinio completado con los datos introducidos.&#x27;);
-      summary.textContent = `Escrutinio completado: ${results.length} combinaciones de ${gameName}.`;
+      summary.textContent = `Escrutinio completado: ${gameName} · ${sourceDisplayName} · ${results.length} combinaciones.`;
     }
 
     async function pasteScrutinyWinningCombination() {
@@ -6739,6 +6837,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     ruleTypeSelect.addEventListener(&#x27;change&#x27;, updateRuleTypeControl);
     addRuleButton.addEventListener(&#x27;click&#x27;, addNumberRule);
     generateTicketButton.addEventListener(&#x27;click&#x27;, generateTicketFromRules);
+    viewRuleCombinationsButton.addEventListener(&#x27;click&#x27;, showRuleGeneratedCombinations);
     copyRulesButton.addEventListener(&#x27;click&#x27;, copyRuleCombinations);
     clearRulesButton.addEventListener(&#x27;click&#x27;, clearNumberRules);
     txtFileInput.addEventListener(&#x27;change&#x27;, loadTxtFile);
