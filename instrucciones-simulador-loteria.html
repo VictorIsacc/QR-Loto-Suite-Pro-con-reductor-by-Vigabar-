@@ -4,6 +4,40 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <script>
+    (() => {
+      if (!/^https?:$/.test(window.location.protocol)) return;
+
+      const storageKey = 'qr-loto-suite-instructions-refresh-token';
+      const queryKey = 'actualizacion';
+
+      try {
+        const currentUrl = new URL(window.location.href);
+        const activeToken = window.sessionStorage.getItem(storageKey);
+
+        if (activeToken && currentUrl.searchParams.get(queryKey) === activeToken) {
+          currentUrl.searchParams.delete(queryKey);
+          const cleanQuery = currentUrl.searchParams.toString();
+          window.history.replaceState(
+            null,
+            '',
+            `${currentUrl.pathname}${cleanQuery ? `?${cleanQuery}` : ''}${currentUrl.hash}`
+          );
+          return;
+        }
+
+        const freshToken = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+        window.sessionStorage.setItem(storageKey, freshToken);
+        currentUrl.searchParams.set(queryKey, freshToken);
+        window.location.replace(currentUrl.toString());
+      } catch (_) {
+        // Las instrucciones continúan disponibles si el navegador bloquea sessionStorage.
+      }
+    })();
+  </script>
   <title>Instrucciones · QR Loto Suite by Vigabar®</title>
   <style>
     :root {

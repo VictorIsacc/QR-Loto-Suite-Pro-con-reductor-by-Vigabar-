@@ -4,7 +4,41 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://static.cloudflareinsights.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src 'self' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data: https://cloudflareinsights.com; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<script>
+(() => {
+  if (!/^https?:$/.test(window.location.protocol)) return;
+
+  const storageKey = 'qr-loto-suite-refresh-token';
+  const queryKey = 'actualizacion';
+
+  try {
+    const currentUrl = new URL(window.location.href);
+    const activeToken = window.sessionStorage.getItem(storageKey);
+
+    if (activeToken && currentUrl.searchParams.get(queryKey) === activeToken) {
+      currentUrl.searchParams.delete(queryKey);
+      const cleanQuery = currentUrl.searchParams.toString();
+      window.history.replaceState(
+        null,
+        '',
+        `${currentUrl.pathname}${cleanQuery ? `?${cleanQuery}` : ''}${currentUrl.hash}`
+      );
+      return;
+    }
+
+    const freshToken = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+    window.sessionStorage.setItem(storageKey, freshToken);
+    currentUrl.searchParams.set(queryKey, freshToken);
+    window.location.replace(currentUrl.toString());
+  } catch (_) {
+    // La aplicación continúa con normalidad si el navegador bloquea sessionStorage.
+  }
+})();
+</script>
 <title>QR Loto Suite by Vigabar®</title>
 <link rel="icon" type="image/webp" href="logo-loto-suite-cabecera-v2.webp">
 <style>
