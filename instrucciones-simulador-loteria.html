@@ -211,9 +211,9 @@
 
     .guide-card {
       display: grid;
-      grid-template-columns: minmax(300px, 0.78fr) minmax(0, 1.42fr);
-      gap: clamp(1.25rem, 3vw, 3rem);
-      align-items: center;
+      grid-template-columns: minmax(0, 1fr);
+      gap: clamp(1rem, 2vw, 1.5rem);
+      align-items: stretch;
       padding: clamp(1rem, 3.6vw, 2.25rem);
       margin-top: 1rem;
       border: 1px solid var(--line);
@@ -223,10 +223,11 @@
       scroll-margin-top: 1rem;
     }
 
-    .guide-card:nth-of-type(even) .illustration { order: 2; }
+    .guide-card:nth-of-type(even) .illustration { order: initial; }
 
     .copy {
       min-width: 0;
+      width: 100%;
     }
 
     .step-number {
@@ -274,6 +275,8 @@
     }
 
     .illustration {
+      box-sizing: border-box;
+      width: 100%;
       min-width: 0;
       padding: 1rem;
       border-radius: 1rem;
