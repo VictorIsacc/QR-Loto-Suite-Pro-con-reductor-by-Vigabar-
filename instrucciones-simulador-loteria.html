@@ -642,7 +642,7 @@
     <header class="hero">
       <p class="eyebrow">Guía rápida e ilustrada</p>
       <h1>QR Loto Suite</h1>
-      <p>Consulta cómo realizar sorteos, guardar combinaciones, trabajar con fijos y semifijos, crear desarrollos o reducciones, generar códigos QR y usar el escrutador.</p>
+      <p>Consulta cómo realizar sorteos, guardar combinaciones, trabajar con fijos y semifijos, crear desarrollos o reducciones, generar códigos QR, conservar boletos completos y usar el escrutador.</p>
     </header>
 
     <nav class="jump-nav" aria-label="Índice de instrucciones">
@@ -651,6 +651,7 @@
       <a class="jump-link" href="#reglas">Fijos y semifijos</a>
       <a class="jump-link" href="#reducciones">Desarrollos y reducciones</a>
       <a class="jump-link" href="#portapapeles">TXT y portapapeles</a>
+      <a class="jump-link" href="#boletos">Mis boletos</a>
       <a class="jump-link" href="#escrutador">Escrutador</a>
       <a class="jump-link" href="#movil">Uso móvil</a>
     </nav>
@@ -717,6 +718,8 @@
           <li>En <strong>«Coste del boleto o QR»</strong> puedes mostrar u ocultar el cálculo estimado. Si generas varios códigos, cada uno presenta su importe al recorrerlos con «Anterior» y «Siguiente».</li>
           <li>Pulsa <strong>«Generar QR»</strong>. La aplicación se desplazará automáticamente hasta el primer código generado; utiliza «Anterior» y «Siguiente» cuando haya más de uno.</li>
           <li>En el panel de los QR se muestra la <strong>procedencia de las combinaciones</strong>: bombo, fijos y semifijos, archivo TXT, portapapeles, desarrollo completo o reducción.</li>
+          <li>En <strong>«Conservar este boleto completo»</strong> puedes ponerle un nombre, guardarlo en «Mis boletos», copiarlo o descargar una copia TXT.</li>
+          <li>El boleto completo conserva las apuestas, todos sus QR, modalidad, periodo, reintegro, Joker y procedencia; no es lo mismo que copiar únicamente las combinaciones.</li>
         </ol>
         <div class="tip">Bonoloto cuesta 0,50 € por combinación y sorteo. Para un único sorteo exige al menos 2 combinaciones; una sola combinación únicamente es válida con «Semana en curso» cuando quedan 2 o más sorteos. La Primitiva cuesta 1 € por combinación y el Joker añade 1 € por QR y sorteo. En «Semana en curso» se cuentan los sorteos pendientes, incluido el de hoy cuando corresponda.</div>
       </div>
@@ -836,6 +839,35 @@
       </div>
     </section>
 
+    <section class="guide-card" id="boletos">
+      <div class="illustration" aria-label="Ilustración de un boleto completo guardado con sus datos y códigos QR">
+        <div class="mini-title"><span>Mis boletos</span><span>Copia completa recuperable</span></div>
+        <div class="saved-flow">
+          <div class="ticket-lines" aria-hidden="true">
+            <div class="ticket-line"><span>PRI</span><span>R:7</span><span>J:SÍ</span><span>3 QR</span></div>
+            <div class="ticket-line"><span>03</span><span>11</span><span>18</span><span>27</span><span>35</span><span>46</span></div>
+            <div class="ticket-line"><span>07</span><span>14</span><span>23</span><span>31</span><span>40</span><span>49</span></div>
+          </div>
+          <div class="arrow" aria-hidden="true">↔</div>
+          <div class="memory-box" aria-hidden="true">
+            <div class="memory-row"></div><div class="memory-row"></div><div class="memory-row"></div><div class="memory-row"></div>
+          </div>
+        </div>
+      </div>
+      <div class="copy">
+        <span class="step-number">6</span>
+        <h2>Guardar, recuperar y escrutar boletos completos</h2>
+        <ol class="steps">
+          <li>Después de generar los QR, escribe un nombre y pulsa <strong>«Guardar en Mis boletos»</strong>. Quedará almacenado en ese navegador.</li>
+          <li>Desde <strong>«Mis boletos»</strong> puedes volver a mostrar todos sus QR, enviarlo al escrutador, copiarlo, descargar su TXT o eliminarlo.</li>
+          <li>Para llevarlo a otro móvil u ordenador, usa <strong>«Copiar boleto completo»</strong> o <strong>«Descargar copia TXT»</strong>. En el otro dispositivo, pega el texto o busca el archivo y pulsa «Importar boleto».</li>
+          <li>La importación verifica que las combinaciones y los textos QR coincidan con la modalidad, el periodo, el reintegro y el Joker guardados.</li>
+          <li>Al pulsar <strong>«Escrutar»</strong> se carga automáticamente la modalidad del boleto. En La Primitiva se compara el reintegro oficial con el <strong>reintegro jugado y guardado</strong>, no con un selector elegido después.</li>
+        </ol>
+        <div class="tip">Los boletos locales pueden desaparecer si borras los datos del navegador, usas navegación privada o cambias de dispositivo. Conserva siempre una copia TXT importante. Si el navegador impide el almacenamiento o la descarga, la opción de copiar permite pegar el boleto completo en una nota o mensaje.</div>
+      </div>
+    </section>
+
     <section class="guide-card" id="escrutador">
       <div class="illustration" aria-label="Ilustración del escrutador comparando una combinación con los números oficiales">
         <div class="mini-title"><span>Combinación oficial</span><span>Resumen de aciertos</span></div>
@@ -852,16 +884,16 @@
         </div>
       </div>
       <div class="copy">
-        <span class="step-number">6</span>
+        <span class="step-number">7</span>
         <h2>Escrutar las combinaciones</h2>
         <ol class="steps">
           <li>Consulta en LAE los seis números oficiales, el complementario y, para La Primitiva, el reintegro.</li>
-          <li>Selecciona la modalidad y el origen: aleatorias, fijos/semifijos, importadas, reducción o desarrollo completo.</li>
+          <li>Selecciona la modalidad y el origen: aleatorias, fijos/semifijos, importadas, reducción, desarrollo completo o un boleto cargado desde «Mis boletos».</li>
           <li>Introduce los datos oficiales y pulsa <strong>«Escrutar combinaciones»</strong>.</li>
           <li>Al finalizar se muestran claramente la <strong>modalidad escrutada</strong> y la <strong>procedencia de las combinaciones</strong> utilizadas.</li>
           <li>El resumen separa 5 aciertos de 5 + complementario y 6 de 6 + reintegro.</li>
         </ol>
-        <div class="tip">Los resultados con 3 o más aciertos se distinguen mediante colores y etiquetas. El escrutador no descarga automáticamente los resultados de LAE.</div>
+        <div class="tip">Los resultados con 3 o más aciertos se distinguen mediante colores y etiquetas. Con un boleto completo de La Primitiva se indica el reintegro jugado, el oficial y si coinciden; el número independiente del Joker no se almacena ni se escruta. El escrutador no descarga automáticamente los resultados de LAE.</div>
       </div>
     </section>
 
@@ -889,11 +921,12 @@
         </div>
       </div>
       <div class="copy">
-        <span class="step-number">7</span>
+        <span class="step-number">8</span>
         <h2>Consejos para usarla en el móvil</h2>
         <ol class="steps">
           <li>Abre el archivo desde Chrome u otro navegador moderno.</li>
           <li>Para importar apuestas recibidas por WhatsApp, cópialas y usa <strong>«Pegar o añadir desde el portapapeles»</strong>.</li>
+          <li>Para trasladar un boleto con reintegro y QR, copia el <strong>boleto completo</strong> y recupéralo en «Mis boletos»; no pegues solo sus seis números.</li>
           <li>Si el teclado no muestra Enter, utiliza el botón <strong>«Nueva línea»</strong>.</li>
           <li>Desliza horizontalmente la barra <strong>«Acceso rápido»</strong> y utiliza <strong>«↑ Volver al inicio»</strong> para regresar a ella.</li>
           <li>Mantén el HTML principal y este archivo de instrucciones en la misma carpeta.</li>

@@ -35,7 +35,7 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
     </div>
   </div>
 </header>
-<iframe sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer" title="QR Loto Suite by Vigabar®" srcdoc="&lt;!doctype html&gt;
+<iframe sandbox="allow-scripts allow-same-origin allow-downloads allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer" title="QR Loto Suite by Vigabar®" srcdoc="&lt;!doctype html&gt;
 &lt;html lang=&quot;es&quot;&gt;
 &lt;head&gt;
 &lt;meta charset=&quot;utf-8&quot;&gt;
@@ -860,6 +860,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-rules-section&quot;&gt;Fijos y semifijos&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-txt-section&quot;&gt;TXT y portapapeles&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-development-section&quot;&gt;Desarrollos y reducciones&lt;/a&gt;
+      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-tickets-section&quot;&gt;Mis boletos&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-scrutiny-section&quot;&gt;Escrutador&lt;/a&gt;
     &lt;/div&gt;
   &lt;/nav&gt;
@@ -1297,8 +1298,56 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;textarea class=&quot;form-control&quot; id=&quot;lottery-qr-text&quot; rows=&quot;5&quot; readonly&gt;&lt;/textarea&gt;
       &lt;/label&gt;
     &lt;/div&gt;
+    &lt;div class=&quot;ticket-save-panel&quot; aria-labelledby=&quot;lottery-ticket-save-label&quot;&gt;
+      &lt;div class=&quot;ticket-save-copy&quot;&gt;
+        &lt;h3 id=&quot;lottery-ticket-save-label&quot;&gt;Conservar este boleto completo&lt;/h3&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;Guarda también la modalidad, el reintegro, el Joker, el periodo, la procedencia y todos sus QR.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;label class=&quot;form-label ticket-name-field&quot; for=&quot;lottery-ticket-name&quot;&gt;
+        Nombre del boleto
+        &lt;input class=&quot;form-control&quot; id=&quot;lottery-ticket-name&quot; type=&quot;text&quot; maxlength=&quot;60&quot; autocomplete=&quot;off&quot; placeholder=&quot;Ejemplo: Primitiva del sábado&quot;&gt;
+      &lt;/label&gt;
+      &lt;div class=&quot;viz-controls ticket-save-actions&quot;&gt;
+        &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-save-ticket&quot; type=&quot;button&quot;&gt;Guardar en Mis boletos&lt;/button&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-copy-ticket&quot; type=&quot;button&quot;&gt;Copiar boleto completo&lt;/button&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-download-ticket&quot; type=&quot;button&quot;&gt;Descargar copia TXT&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;p class=&quot;ticket-action-message text-muted&quot; id=&quot;lottery-ticket-action-message&quot; aria-live=&quot;polite&quot;&gt;La copia TXT permite recuperar el boleto en otro dispositivo o navegador.&lt;/p&gt;
+    &lt;/div&gt;
     &lt;div class=&quot;lottery-back-row&quot;&gt;
       &lt;a class=&quot;lottery-back-top&quot; href=&quot;#lottery-app-top&quot; aria-label=&quot;Volver al inicio desde el código QR&quot;&gt;↑ Volver al inicio&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;tickets-area card lottery-jump-target&quot; id=&quot;lottery-tickets-section&quot; aria-labelledby=&quot;lottery-tickets-label&quot;&gt;
+    &lt;div class=&quot;lottery-section-label tickets-heading&quot;&gt;
+      &lt;div&gt;
+        &lt;h2 id=&quot;lottery-tickets-label&quot;&gt;Mis boletos&lt;/h2&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;Boletos completos guardados en este navegador, preparados para volver a mostrar sus QR o escrutarlos con el reintegro jugado.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-ticket-count&quot;&gt;0 boletos&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;p class=&quot;ticket-storage-message text-muted&quot; id=&quot;lottery-ticket-storage-message&quot; aria-live=&quot;polite&quot;&gt;Conserva además una copia TXT: los datos locales pueden desaparecer si borras los datos del navegador.&lt;/p&gt;
+    &lt;div class=&quot;ticket-list&quot; id=&quot;lottery-ticket-list&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;ticket-import-panel&quot;&gt;
+      &lt;div class=&quot;ticket-import-copy&quot;&gt;
+        &lt;h3&gt;Recuperar un boleto completo&lt;/h3&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;Pega aquí una copia creada por la app o selecciona su archivo TXT.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;label class=&quot;form-label ticket-import-text-field&quot; for=&quot;lottery-ticket-import-text&quot;&gt;
+        Texto del boleto
+        &lt;textarea class=&quot;form-control&quot; id=&quot;lottery-ticket-import-text&quot; rows=&quot;5&quot; spellcheck=&quot;false&quot; placeholder=&quot;QR-LOTO-SUITE-BOLETO-V1…&quot;&gt;&lt;/textarea&gt;
+      &lt;/label&gt;
+      &lt;div class=&quot;viz-controls ticket-import-actions&quot;&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-ticket-paste&quot; type=&quot;button&quot;&gt;Pegar desde portapapeles&lt;/button&gt;
+        &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-ticket-import&quot; type=&quot;button&quot;&gt;Importar boleto&lt;/button&gt;
+        &lt;label class=&quot;btn ticket-file-button&quot; for=&quot;lottery-ticket-file&quot;&gt;Buscar copia TXT&lt;/label&gt;
+        &lt;input class=&quot;sr-only&quot; id=&quot;lottery-ticket-file&quot; type=&quot;file&quot; accept=&quot;.txt,.json,text/plain,application/json&quot;&gt;
+      &lt;/div&gt;
+      &lt;p class=&quot;ticket-import-message text-muted&quot; id=&quot;lottery-ticket-import-message&quot; aria-live=&quot;polite&quot;&gt;Al importar se crea una copia nueva en este navegador.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;lottery-back-row&quot;&gt;
+      &lt;a class=&quot;lottery-back-top&quot; href=&quot;#lottery-app-top&quot; aria-label=&quot;Volver al inicio desde Mis boletos&quot;&gt;↑ Volver al inicio&lt;/a&gt;
     &lt;/div&gt;
   &lt;/section&gt;
 
@@ -1329,6 +1378,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;option value=&quot;imported&quot;&gt;Archivo o texto pegado&lt;/option&gt;
           &lt;option value=&quot;reduced&quot;&gt;Reducción matemática generada&lt;/option&gt;
           &lt;option value=&quot;development&quot;&gt;Desarrollo completo generado&lt;/option&gt;
+          &lt;option value=&quot;ticket&quot;&gt;Boleto completo de «Mis boletos»&lt;/option&gt;
         &lt;/select&gt;
       &lt;/label&gt;
     &lt;/div&gt;
@@ -2522,6 +2572,10 @@ html&gt;body{padding:0}&lt;/style&gt;
     --qr-origin-colour: var(--viz-series-2);
   }
 
+  #lottery-simulator-649 .qr-origin-summary[data-source=&quot;saved-ticket&quot;] {
+    --qr-origin-colour: var(--viz-series-3);
+  }
+
   #lottery-simulator-649 .qr-origin-label {
     color: var(--muted-foreground);
     font-size: 0.78rem;
@@ -2969,6 +3023,172 @@ html&gt;body{padding:0}&lt;/style&gt;
     resize: vertical;
   }
 
+  #lottery-simulator-649 .ticket-save-panel,
+  #lottery-simulator-649 .ticket-import-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.8fr);
+    gap: 0.85rem 1rem;
+    padding: 1rem;
+    border: 1px solid color-mix(in srgb, var(--primary) 32%, var(--border));
+    border-radius: 0.95rem;
+    background: color-mix(in srgb, var(--primary) 7%, var(--card));
+  }
+
+  #lottery-simulator-649 .ticket-save-copy h3,
+  #lottery-simulator-649 .ticket-save-copy p,
+  #lottery-simulator-649 .ticket-import-copy h3,
+  #lottery-simulator-649 .ticket-import-copy p,
+  #lottery-simulator-649 .tickets-heading p,
+  #lottery-simulator-649 .ticket-storage-message,
+  #lottery-simulator-649 .ticket-action-message,
+  #lottery-simulator-649 .ticket-import-message {
+    margin: 0;
+  }
+
+  #lottery-simulator-649 .ticket-save-copy,
+  #lottery-simulator-649 .ticket-import-copy {
+    display: grid;
+    align-content: start;
+    gap: 0.3rem;
+    min-width: 0;
+  }
+
+  #lottery-simulator-649 .ticket-save-actions,
+  #lottery-simulator-649 .ticket-action-message,
+  #lottery-simulator-649 .ticket-import-text-field,
+  #lottery-simulator-649 .ticket-import-actions,
+  #lottery-simulator-649 .ticket-import-message {
+    grid-column: 1 / -1;
+  }
+
+  #lottery-simulator-649 .ticket-save-actions,
+  #lottery-simulator-649 .ticket-import-actions {
+    justify-content: flex-start;
+  }
+
+  #lottery-simulator-649 .ticket-action-message.is-error,
+  #lottery-simulator-649 .ticket-import-message.is-error,
+  #lottery-simulator-649 .ticket-storage-message.is-error {
+    color: var(--destructive);
+  }
+
+  #lottery-simulator-649 .tickets-area {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  #lottery-simulator-649 .tickets-heading {
+    align-items: flex-start;
+  }
+
+  #lottery-simulator-649 .tickets-heading &gt; div {
+    display: grid;
+    gap: 0.3rem;
+    min-width: 0;
+  }
+
+  #lottery-simulator-649 .ticket-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    gap: 0.8rem;
+  }
+
+  #lottery-simulator-649 .ticket-list-empty {
+    grid-column: 1 / -1;
+    padding: 1.2rem;
+    border: 1px dashed var(--border);
+    border-radius: 0.85rem;
+    color: var(--muted-foreground);
+    text-align: center;
+  }
+
+  #lottery-simulator-649 .ticket-card {
+    --ticket-game-colour: var(--primary);
+    display: grid;
+    align-content: start;
+    gap: 0.75rem;
+    min-width: 0;
+    padding: 0.95rem;
+    border: 1px solid color-mix(in srgb, var(--ticket-game-colour) 38%, var(--border));
+    border-radius: 0.9rem;
+    background: color-mix(in srgb, var(--ticket-game-colour) 8%, var(--card));
+  }
+
+  #lottery-simulator-649 .ticket-card[data-game=&quot;primitiva&quot;] {
+    --ticket-game-colour: #32934f;
+  }
+
+  #lottery-simulator-649 .ticket-card[data-game=&quot;bonoloto&quot;] {
+    --ticket-game-colour: #d3a51f;
+  }
+
+  #lottery-simulator-649 .ticket-card-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  #lottery-simulator-649 .ticket-card-heading strong {
+    min-width: 0;
+    color: color-mix(in srgb, var(--ticket-game-colour) 82%, var(--foreground));
+    font-size: 1.05rem;
+    overflow-wrap: anywhere;
+  }
+
+  #lottery-simulator-649 .ticket-card-date {
+    flex: 0 0 auto;
+    color: var(--muted-foreground);
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  #lottery-simulator-649 .ticket-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  #lottery-simulator-649 .ticket-card-meta span {
+    padding: 0.28rem 0.5rem;
+    border: 1px solid color-mix(in srgb, var(--ticket-game-colour) 32%, var(--border));
+    border-radius: var(--radius-full);
+    background: color-mix(in srgb, var(--ticket-game-colour) 7%, var(--card));
+    font-size: 0.78rem;
+    font-weight: 650;
+  }
+
+  #lottery-simulator-649 .ticket-card-source {
+    margin: 0;
+    color: var(--muted-foreground);
+    font-size: 0.88rem;
+    overflow-wrap: anywhere;
+  }
+
+  #lottery-simulator-649 .ticket-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  #lottery-simulator-649 .ticket-card-actions .btn {
+    min-height: 2.25rem;
+    padding: 0.42rem 0.65rem;
+    font-size: 0.84rem;
+  }
+
+  #lottery-simulator-649 .ticket-card-actions .ticket-delete {
+    margin-left: auto;
+    color: var(--destructive);
+  }
+
+  #lottery-simulator-649 .ticket-file-button {
+    cursor: pointer;
+  }
+
   @keyframes lottery-background-drift {
     0% { background-position: 0% 20%; }
     50% { background-position: 100% 80%; }
@@ -3152,6 +3372,15 @@ html&gt;body{padding:0}&lt;/style&gt;
       grid-column: 2 / -1;
       text-align: left;
     }
+
+    #lottery-simulator-649 .ticket-save-panel,
+    #lottery-simulator-649 .ticket-import-panel {
+      grid-template-columns: 1fr;
+    }
+
+    #lottery-simulator-649 .ticket-name-field {
+      grid-column: 1;
+    }
   }
 
   @media (max-width: 620px) {
@@ -3218,6 +3447,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     #lottery-simulator-649 .saved-controls,
     #lottery-simulator-649 .bulk-controls,
     #lottery-simulator-649 .clipboard-controls,
+    #lottery-simulator-649 .ticket-save-actions,
+    #lottery-simulator-649 .ticket-import-actions,
     #lottery-simulator-649 .development-generation-actions,
     #lottery-simulator-649 .development-breakdown-pending-actions,
     #lottery-simulator-649 .development-actions {
@@ -3230,10 +3461,18 @@ html&gt;body{padding:0}&lt;/style&gt;
     #lottery-simulator-649 .saved-controls .btn,
     #lottery-simulator-649 .bulk-controls .btn,
     #lottery-simulator-649 .clipboard-controls .btn,
+    #lottery-simulator-649 .ticket-save-actions .btn,
+    #lottery-simulator-649 .ticket-import-actions .btn,
+    #lottery-simulator-649 .ticket-import-actions .ticket-file-button,
     #lottery-simulator-649 .development-generation-actions .btn,
     #lottery-simulator-649 .development-breakdown-pending-actions .btn,
     #lottery-simulator-649 .development-actions .btn {
       width: 100%;
+    }
+
+    #lottery-simulator-649 .ticket-file-button {
+      box-sizing: border-box;
+      justify-content: center;
     }
 
     #lottery-simulator-649 .scrutiny-hit-summary {
@@ -3339,6 +3578,26 @@ html&gt;body{padding:0}&lt;/style&gt;
       grid-column: 2;
       justify-self: start;
     }
+
+    #lottery-simulator-649 .ticket-card-heading {
+      display: grid;
+      gap: 0.3rem;
+    }
+
+    #lottery-simulator-649 .ticket-card-date {
+      white-space: normal;
+    }
+
+    #lottery-simulator-649 .ticket-card-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    #lottery-simulator-649 .ticket-card-actions .btn,
+    #lottery-simulator-649 .ticket-card-actions .ticket-delete {
+      width: 100%;
+      margin-left: 0;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -3433,6 +3692,20 @@ html&gt;body{padding:0}&lt;/style&gt;
     const qrCostAmount = root.querySelector(&#x27;#lottery-qr-cost-amount&#x27;);
     const qrCostBreakdown = root.querySelector(&#x27;#lottery-qr-cost-breakdown&#x27;);
     const qrCostAll = root.querySelector(&#x27;#lottery-qr-cost-all&#x27;);
+    const ticketNameInput = root.querySelector(&#x27;#lottery-ticket-name&#x27;);
+    const saveTicketButton = root.querySelector(&#x27;#lottery-save-ticket&#x27;);
+    const copyTicketButton = root.querySelector(&#x27;#lottery-copy-ticket&#x27;);
+    const downloadTicketButton = root.querySelector(&#x27;#lottery-download-ticket&#x27;);
+    const ticketActionMessage = root.querySelector(&#x27;#lottery-ticket-action-message&#x27;);
+    const ticketsSection = root.querySelector(&#x27;#lottery-tickets-section&#x27;);
+    const ticketCount = root.querySelector(&#x27;#lottery-ticket-count&#x27;);
+    const ticketStorageMessage = root.querySelector(&#x27;#lottery-ticket-storage-message&#x27;);
+    const ticketList = root.querySelector(&#x27;#lottery-ticket-list&#x27;);
+    const ticketImportText = root.querySelector(&#x27;#lottery-ticket-import-text&#x27;);
+    const ticketPasteButton = root.querySelector(&#x27;#lottery-ticket-paste&#x27;);
+    const ticketImportButton = root.querySelector(&#x27;#lottery-ticket-import&#x27;);
+    const ticketFileInput = root.querySelector(&#x27;#lottery-ticket-file&#x27;);
+    const ticketImportMessage = root.querySelector(&#x27;#lottery-ticket-import-message&#x27;);
     const ruleTotalSelect = root.querySelector(&#x27;#lottery-rule-total&#x27;);
     const ruleNumberSelect = root.querySelector(&#x27;#lottery-rule-number&#x27;);
     const ruleTypeSelect = root.querySelector(&#x27;#lottery-rule-type&#x27;);
@@ -3557,10 +3830,18 @@ html&gt;body{padding:0}&lt;/style&gt;
     let developmentBreakdownCancelRequested = false;
     let qrPages = [];
     let qrPageIndex = 0;
+    let currentGeneratedTicket = null;
+    let savedTickets = [];
+    let loadedTicketForScrutiny = null;
     let savedPageIndex = 0;
     let savedCurrent = false;
     let busy = false;
     const SAVED_PAGE_SIZE = 8;
+    const TICKET_SCHEMA = &#x27;qr-loto-suite-ticket&#x27;;
+    const TICKET_VERSION = 1;
+    const TICKET_EXPORT_HEADER = &#x27;QR-LOTO-SUITE-BOLETO-V1&#x27;;
+    const TICKET_STORAGE_KEY = &#x27;qr-loto-suite.saved-tickets.v1&#x27;;
+    const TICKET_STORAGE_LIMIT = 30;
     const DEVELOPMENT_PAGE_SIZE = 8;
     const DEVELOPMENT_MIN_NUMBERS = 7;
     const DEVELOPMENT_MAX_NUMBERS = 49;
@@ -3582,6 +3863,458 @@ html&gt;body{padding:0}&lt;/style&gt;
     const wait = (milliseconds) =&gt; new Promise((resolve) =&gt; setTimeout(resolve, milliseconds));
     const combinationKey = (combination) =&gt; combination.map((number) =&gt; String(number).padStart(2, &#x27;0&#x27;)).join(&#x27;&#x27;);
 
+    function makeTicketId() {
+      return window.crypto?.randomUUID?.() ?? `ticket-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+    }
+
+    function ticketGameName(game) {
+      return game === &#x27;1&#x27; ? &#x27;La Primitiva&#x27; : &#x27;Bonoloto&#x27;;
+    }
+
+    function ticketPeriodName(period) {
+      return period === &#x27;1&#x27; ? &#x27;Semana en curso&#x27; : &#x27;Un día&#x27;;
+    }
+
+    function cleanTicketName(value, game = gameSelect.value, createdAt = new Date().toISOString()) {
+      const cleaned = String(value ?? &#x27;&#x27;).replace(/\s+/g, &#x27; &#x27;).trim().slice(0, 60);
+      if (cleaned) return cleaned;
+      const date = new Date(createdAt);
+      const readableDate = Number.isNaN(date.getTime())
+        ? new Date().toLocaleDateString(&#x27;es-ES&#x27;)
+        : date.toLocaleDateString(&#x27;es-ES&#x27;);
+      return `${ticketGameName(game)} · ${readableDate}`;
+    }
+
+    function normaliseTicketCombination(value, position) {
+      if (!Array.isArray(value) || value.length !== 6) {
+        throw new Error(`La combinación ${position} no contiene exactamente seis números.`);
+      }
+      const combination = value.map(Number).sort((first, second) =&gt; first - second);
+      if (
+        combination.some((number) =&gt; !Number.isInteger(number) || number &lt; 1 || number &gt; 49)
+        || new Set(combination).size !== 6
+      ) {
+        throw new Error(`La combinación ${position} contiene números repetidos o fuera del 1 al 49.`);
+      }
+      return combination;
+    }
+
+    function normaliseTicket(rawTicket) {
+      if (!rawTicket || typeof rawTicket !== &#x27;object&#x27; || Array.isArray(rawTicket)) {
+        throw new Error(&#x27;La copia no contiene un boleto válido.&#x27;);
+      }
+      if (rawTicket.schema !== TICKET_SCHEMA || Number(rawTicket.version) !== TICKET_VERSION) {
+        throw new Error(&#x27;La copia no pertenece a una versión compatible de QR Loto Suite.&#x27;);
+      }
+
+      const game = String(rawTicket.game);
+      const period = String(rawTicket.period);
+      if (![&#x27;1&#x27;, &#x27;2&#x27;].includes(game) || ![&#x27;0&#x27;, &#x27;1&#x27;].includes(period)) {
+        throw new Error(&#x27;La modalidad o el periodo del boleto no son válidos.&#x27;);
+      }
+
+      const reintegro = game === &#x27;1&#x27; ? String(rawTicket.reintegro) : null;
+      const joker = game === &#x27;1&#x27; ? String(rawTicket.joker) : null;
+      if (game === &#x27;1&#x27; &amp;&amp; (!/^[0-9]$/.test(reintegro) || ![&#x27;0&#x27;, &#x27;NO&#x27;].includes(joker))) {
+        throw new Error(&#x27;El reintegro o la opción Joker del boleto no son válidos.&#x27;);
+      }
+
+      if (!Array.isArray(rawTicket.combinations) || rawTicket.combinations.length === 0) {
+        throw new Error(&#x27;El boleto no contiene combinaciones.&#x27;);
+      }
+      const combinations = rawTicket.combinations.map((combination, index) =&gt; normaliseTicketCombination(combination, index + 1));
+
+      const sourceRaw = rawTicket.source &amp;&amp; typeof rawTicket.source === &#x27;object&#x27; ? rawTicket.source : {};
+      const source = {
+        key: String(sourceRaw.key ?? &#x27;saved-ticket&#x27;).slice(0, 40),
+        label: String(sourceRaw.label ?? &#x27;Boleto completo importado&#x27;).slice(0, 140),
+        description: String(sourceRaw.description ?? &#x27;Boleto completo conservado por QR Loto Suite.&#x27;).slice(0, 240)
+      };
+
+      if (!Array.isArray(rawTicket.pages) || rawTicket.pages.length === 0) {
+        throw new Error(&#x27;La copia no conserva sus códigos QR.&#x27;);
+      }
+      let cursor = 0;
+      const pages = rawTicket.pages.map((page, index) =&gt; {
+        const count = Number(page?.count);
+        const text = String(page?.text ?? &#x27;&#x27;);
+        if (!Number.isInteger(count) || count &lt; 1 || count &gt; 8 || !text) {
+          throw new Error(`El código QR ${index + 1} no es válido.`);
+        }
+        const group = combinations.slice(cursor, cursor + count);
+        cursor += count;
+        if (group.length !== count || text !== buildQrTextForTicket(group, game, period, joker, reintegro)) {
+          throw new Error(`El código QR ${index + 1} no coincide con los datos guardados del boleto.`);
+        }
+        return { count, text };
+      });
+      if (cursor !== combinations.length) {
+        throw new Error(&#x27;La cantidad de combinaciones no coincide con los códigos QR guardados.&#x27;);
+      }
+
+      const createdDate = new Date(rawTicket.createdAt);
+      const createdAt = Number.isNaN(createdDate.getTime()) ? new Date().toISOString() : createdDate.toISOString();
+      return {
+        schema: TICKET_SCHEMA,
+        version: TICKET_VERSION,
+        id: String(rawTicket.id || makeTicketId()).slice(0, 100),
+        name: cleanTicketName(rawTicket.name, game, createdAt),
+        createdAt,
+        game,
+        period,
+        reintegro,
+        joker,
+        source,
+        combinations,
+        pages
+      };
+    }
+
+    function serialiseTicket(ticket) {
+      return `${TICKET_EXPORT_HEADER}\r\n${JSON.stringify(normaliseTicket(ticket), null, 2)}`;
+    }
+
+    function parseTicketText(text) {
+      const cleaned = String(text ?? &#x27;&#x27;).replace(/^\uFEFF/, &#x27;&#x27;).trim();
+      if (!cleaned) throw new Error(&#x27;Pega o selecciona primero una copia de boleto.&#x27;);
+      const payload = cleaned.startsWith(TICKET_EXPORT_HEADER)
+        ? cleaned.slice(TICKET_EXPORT_HEADER.length).trim()
+        : cleaned;
+      let parsed;
+      try {
+        parsed = JSON.parse(payload);
+      } catch (error) {
+        throw new Error(&#x27;El texto no tiene el formato de un boleto completo exportado por la app.&#x27;);
+      }
+      return normaliseTicket(parsed);
+    }
+
+    function setTicketActionMessage(message, isError = false) {
+      ticketActionMessage.textContent = message;
+      ticketActionMessage.classList.toggle(&#x27;is-error&#x27;, isError);
+    }
+
+    function setTicketImportMessage(message, isError = false) {
+      ticketImportMessage.textContent = message;
+      ticketImportMessage.classList.toggle(&#x27;is-error&#x27;, isError);
+    }
+
+    function currentTicketSnapshot() {
+      if (!currentGeneratedTicket) return null;
+      return normaliseTicket({
+        ...currentGeneratedTicket,
+        name: cleanTicketName(ticketNameInput.value, currentGeneratedTicket.game, currentGeneratedTicket.createdAt)
+      });
+    }
+
+    function saveTicketsToBrowser() {
+      try {
+        window.localStorage.setItem(TICKET_STORAGE_KEY, JSON.stringify(savedTickets));
+        ticketStorageMessage.textContent = &#x27;Guardado local activo. Conserva además una copia TXT por si borras los datos del navegador o cambias de dispositivo.&#x27;;
+        ticketStorageMessage.classList.remove(&#x27;is-error&#x27;);
+        return true;
+      } catch (error) {
+        ticketStorageMessage.textContent = &#x27;Este navegador no permite conservar el boleto localmente o no dispone de espacio. Usa «Copiar boleto completo» o «Descargar copia TXT».&#x27;;
+        ticketStorageMessage.classList.add(&#x27;is-error&#x27;);
+        return false;
+      }
+    }
+
+    function loadTicketsFromBrowser() {
+      try {
+        const stored = window.localStorage.getItem(TICKET_STORAGE_KEY);
+        if (!stored) {
+          savedTickets = [];
+          return;
+        }
+        const parsed = JSON.parse(stored);
+        savedTickets = Array.isArray(parsed)
+          ? parsed.slice(0, TICKET_STORAGE_LIMIT).map(normaliseTicket)
+          : [];
+        ticketStorageMessage.textContent = savedTickets.length &gt; 0
+          ? `Guardado local activo: ${savedTickets.length} ${savedTickets.length === 1 ? &#x27;boleto recuperado&#x27; : &#x27;boletos recuperados&#x27;} en este navegador. Conserva también copias TXT.`
+          : &#x27;Conserva además una copia TXT: los datos locales pueden desaparecer si borras los datos del navegador.&#x27;;
+        ticketStorageMessage.classList.remove(&#x27;is-error&#x27;);
+      } catch (error) {
+        savedTickets = [];
+        ticketStorageMessage.textContent = &#x27;No se han podido leer los boletos guardados en este navegador. Puedes recuperarlos desde una copia TXT.&#x27;;
+        ticketStorageMessage.classList.add(&#x27;is-error&#x27;);
+      }
+    }
+
+    function createTicketAction(label, action, id, className = &#x27;&#x27;) {
+      const button = document.createElement(&#x27;button&#x27;);
+      button.type = &#x27;button&#x27;;
+      button.className = `btn ${className}`.trim();
+      button.textContent = label;
+      button.dataset.ticketAction = action;
+      button.dataset.ticketId = id;
+      return button;
+    }
+
+    function renderSavedTickets() {
+      ticketList.replaceChildren();
+      ticketCount.textContent = `${savedTickets.length} ${savedTickets.length === 1 ? &#x27;boleto&#x27; : &#x27;boletos&#x27;}`;
+      if (savedTickets.length === 0) {
+        const empty = document.createElement(&#x27;p&#x27;);
+        empty.className = &#x27;ticket-list-empty&#x27;;
+        empty.textContent = &#x27;Todavía no hay boletos completos guardados en este navegador.&#x27;;
+        ticketList.appendChild(empty);
+        return;
+      }
+
+      savedTickets.forEach((ticket) =&gt; {
+        const card = document.createElement(&#x27;article&#x27;);
+        card.className = &#x27;ticket-card&#x27;;
+        card.dataset.game = ticket.game === &#x27;1&#x27; ? &#x27;primitiva&#x27; : &#x27;bonoloto&#x27;;
+
+        const heading = document.createElement(&#x27;div&#x27;);
+        heading.className = &#x27;ticket-card-heading&#x27;;
+        const name = document.createElement(&#x27;strong&#x27;);
+        name.textContent = ticket.name;
+        const date = document.createElement(&#x27;span&#x27;);
+        date.className = &#x27;ticket-card-date&#x27;;
+        date.textContent = new Date(ticket.createdAt).toLocaleString(&#x27;es-ES&#x27;, { dateStyle: &#x27;short&#x27;, timeStyle: &#x27;short&#x27; });
+        heading.append(name, date);
+
+        const meta = document.createElement(&#x27;div&#x27;);
+        meta.className = &#x27;ticket-card-meta&#x27;;
+        const metaValues = [
+          ticketGameName(ticket.game),
+          `${ticket.combinations.length} ${ticket.combinations.length === 1 ? &#x27;apuesta&#x27; : &#x27;apuestas&#x27;}`,
+          `${ticket.pages.length} ${ticket.pages.length === 1 ? &#x27;QR&#x27; : &#x27;QR&#x27;}`,
+          ticketPeriodName(ticket.period)
+        ];
+        if (ticket.game === &#x27;1&#x27;) {
+          metaValues.push(`R: ${ticket.reintegro}`, ticket.joker === &#x27;0&#x27; ? &#x27;Joker: sí&#x27; : &#x27;Joker: no&#x27;);
+        }
+        metaValues.forEach((value) =&gt; {
+          const item = document.createElement(&#x27;span&#x27;);
+          item.textContent = value;
+          meta.appendChild(item);
+        });
+
+        const source = document.createElement(&#x27;p&#x27;);
+        source.className = &#x27;ticket-card-source&#x27;;
+        source.textContent = `Procedencia original: ${ticket.source.label}`;
+
+        const actions = document.createElement(&#x27;div&#x27;);
+        actions.className = &#x27;ticket-card-actions&#x27;;
+        actions.append(
+          createTicketAction(&#x27;Ver QR&#x27;, &#x27;open&#x27;, ticket.id, &#x27;btn-primary&#x27;),
+          createTicketAction(&#x27;Escrutar&#x27;, &#x27;scrutinize&#x27;, ticket.id),
+          createTicketAction(&#x27;Copiar&#x27;, &#x27;copy&#x27;, ticket.id),
+          createTicketAction(&#x27;TXT&#x27;, &#x27;download&#x27;, ticket.id),
+          createTicketAction(&#x27;Eliminar&#x27;, &#x27;delete&#x27;, ticket.id, &#x27;btn-ghost ticket-delete&#x27;)
+        );
+        card.append(heading, meta, source, actions);
+        ticketList.appendChild(card);
+      });
+    }
+
+    function rebuildQrPagesFromTicket(ticket) {
+      let cursor = 0;
+      const source = {
+        key: &#x27;saved-ticket&#x27;,
+        label: `Mis boletos · ${ticket.name}`,
+        description: `Boleto completo guardado. Procedencia original: ${ticket.source.label}`
+      };
+      return ticket.pages.map((page) =&gt; {
+        const combinations = ticket.combinations.slice(cursor, cursor + page.count).map((combination) =&gt; [...combination]);
+        cursor += page.count;
+        return { combinations, text: page.text, source };
+      });
+    }
+
+    function openSavedTicket(ticket) {
+      const normalised = normaliseTicket(ticket);
+      gameSelect.value = normalised.game;
+      periodSelect.value = normalised.period;
+      if (normalised.game === &#x27;1&#x27;) {
+        reintegroSelect.value = normalised.reintegro;
+        jokerSelect.value = normalised.joker;
+      }
+      updateGameOptions();
+      currentGeneratedTicket = normalised;
+      ticketNameInput.value = normalised.name;
+      qrPages = rebuildQrPagesFromTicket(normalised);
+      qrPageIndex = 0;
+      showQrPage(0);
+      setTicketActionMessage(&#x27;Boleto recuperado con todos sus datos. Puedes actualizar su nombre, copiarlo o descargarlo.&#x27;);
+      scrollToGeneratedQr();
+    }
+
+    function loadTicketInScrutinizer(ticket) {
+      loadedTicketForScrutiny = normaliseTicket(ticket);
+      scrutinySourceSelect.value = &#x27;ticket&#x27;;
+      scrutinyGameSelect.value = loadedTicketForScrutiny.game;
+      updateScrutinyGame();
+      setScrutinyMessage(
+        loadedTicketForScrutiny.game === &#x27;1&#x27;
+          ? `Boleto «${loadedTicketForScrutiny.name}» cargado. Se usará su reintegro jugado (${loadedTicketForScrutiny.reintegro}). Introduce el resultado oficial.`
+          : `Boleto «${loadedTicketForScrutiny.name}» cargado. Introduce el resultado oficial de Bonoloto.`
+      );
+      const targetTop = root.querySelector(&#x27;#lottery-scrutiny-section&#x27;).getBoundingClientRect().top + window.scrollY - 12;
+      window.scrollTo({ top: Math.max(0, targetTop), behavior: reducedMotion ? &#x27;auto&#x27; : &#x27;smooth&#x27; });
+    }
+
+    function safeTicketFilename(ticket) {
+      const safeName = ticket.name
+        .normalize(&#x27;NFD&#x27;)
+        .replace(/[\u0300-\u036f]/g, &#x27;&#x27;)
+        .replace(/[^a-zA-Z0-9_-]+/g, &#x27;-&#x27;)
+        .replace(/^-+|-+$/g, &#x27;&#x27;)
+        .slice(0, 60) || &#x27;boleto&#x27;;
+      return `${safeName}-QR-Loto-Suite.txt`;
+    }
+
+    async function copyTicketBundle(ticket, feedback = &#x27;action&#x27;) {
+      const normalised = normaliseTicket(ticket);
+      const result = await copyTextToClipboard(serialiseTicket(normalised));
+      const message = result.copied
+        ? `Boleto completo «${normalised.name}» copiado al portapapeles.`
+        : result.manual
+          ? &#x27;El navegador ha mostrado el boleto para copiarlo manualmente.&#x27;
+          : &#x27;No se ha podido copiar el boleto. Descarga la copia TXT.&#x27;;
+      const isError = Boolean(result.error);
+      if (feedback === &#x27;import&#x27;) setTicketImportMessage(message, isError);
+      else setTicketActionMessage(message, isError);
+    }
+
+    function downloadTicketBundle(ticket, feedback = &#x27;action&#x27;) {
+      const normalised = normaliseTicket(ticket);
+      try {
+        const blob = new Blob([`\uFEFF${serialiseTicket(normalised)}`], { type: &#x27;text/plain;charset=utf-8&#x27; });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement(&#x27;a&#x27;);
+        link.href = url;
+        link.download = safeTicketFilename(normalised);
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        setTimeout(() =&gt; URL.revokeObjectURL(url), 1000);
+        const message = `Copia TXT de «${normalised.name}» preparada para descargar.`;
+        if (feedback === &#x27;import&#x27;) setTicketImportMessage(message);
+        else setTicketActionMessage(message);
+      } catch (error) {
+        const message = &#x27;Este navegador no ha permitido la descarga. Usa la opción de copiar el boleto completo.&#x27;;
+        if (feedback === &#x27;import&#x27;) setTicketImportMessage(message, true);
+        else setTicketActionMessage(message, true);
+      }
+    }
+
+    function saveCurrentTicket() {
+      const ticket = currentTicketSnapshot();
+      if (!ticket) {
+        setTicketActionMessage(&#x27;Genera o abre primero un boleto con códigos QR.&#x27;, true);
+        return;
+      }
+      const existingIndex = savedTickets.findIndex((savedTicket) =&gt; savedTicket.id === ticket.id);
+      if (existingIndex === -1 &amp;&amp; savedTickets.length &gt;= TICKET_STORAGE_LIMIT) {
+        setTicketActionMessage(`Se ha alcanzado el límite de ${TICKET_STORAGE_LIMIT} boletos locales. Elimina alguno o descarga este boleto como TXT.`, true);
+        return;
+      }
+      const previousTickets = [...savedTickets];
+      if (existingIndex === -1) savedTickets.unshift(ticket);
+      else savedTickets.splice(existingIndex, 1, ticket);
+      if (!saveTicketsToBrowser()) {
+        savedTickets = previousTickets;
+        renderSavedTickets();
+        setTicketActionMessage(&#x27;No se ha podido guardar localmente. Usa «Copiar boleto completo» o «Descargar copia TXT».&#x27;, true);
+        return;
+      }
+      currentGeneratedTicket = ticket;
+      ticketNameInput.value = ticket.name;
+      renderSavedTickets();
+      setTicketActionMessage(existingIndex === -1 ? &#x27;Boleto guardado en «Mis boletos».&#x27; : &#x27;Boleto actualizado en «Mis boletos».&#x27;);
+    }
+
+    function importTicketBundle(text) {
+      if (savedTickets.length &gt;= TICKET_STORAGE_LIMIT) {
+        setTicketImportMessage(`Se ha alcanzado el límite de ${TICKET_STORAGE_LIMIT} boletos locales. Elimina alguno antes de importar.`, true);
+        return;
+      }
+      try {
+        const imported = parseTicketText(text);
+        imported.id = makeTicketId();
+        const previousTickets = [...savedTickets];
+        savedTickets.unshift(imported);
+        if (!saveTicketsToBrowser()) {
+          savedTickets = previousTickets;
+          renderSavedTickets();
+          setTicketImportMessage(&#x27;La copia es válida, pero el navegador no ha podido conservarla. Libera espacio o ábrela desde el archivo cuando la necesites.&#x27;, true);
+          return;
+        }
+        ticketImportText.value = &#x27;&#x27;;
+        renderSavedTickets();
+        setTicketImportMessage(`Boleto «${imported.name}» importado con ${imported.combinations.length} combinaciones y ${imported.pages.length} QR.`);
+      } catch (error) {
+        setTicketImportMessage(error.message, true);
+      }
+    }
+
+    async function pasteTicketFromClipboard() {
+      const clipboard = findReadableClipboard();
+      if (!clipboard) {
+        ticketImportText.focus();
+        setTicketImportMessage(&#x27;Mantén pulsado dentro del cuadro y elige «Pegar»; después pulsa «Importar boleto».&#x27;);
+        return;
+      }
+      try {
+        const text = await clipboard.readText();
+        if (!text.trim()) {
+          setTicketImportMessage(&#x27;El portapapeles está vacío.&#x27;, true);
+          return;
+        }
+        ticketImportText.value = text;
+        setTicketImportMessage(&#x27;Boleto pegado. Pulsa «Importar boleto» para comprobarlo y guardarlo.&#x27;);
+      } catch (error) {
+        ticketImportText.focus();
+        setTicketImportMessage(&#x27;El navegador no permite leer el portapapeles automáticamente. Pega el texto manteniendo pulsado dentro del cuadro.&#x27;);
+      }
+    }
+
+    async function loadTicketFile() {
+      const file = ticketFileInput.files?.[0];
+      if (!file) return;
+      try {
+        const text = await file.text();
+        ticketImportText.value = text;
+        importTicketBundle(text);
+      } catch (error) {
+        setTicketImportMessage(&#x27;No se ha podido leer el archivo seleccionado.&#x27;, true);
+      } finally {
+        ticketFileInput.value = &#x27;&#x27;;
+      }
+    }
+
+    async function handleTicketListAction(event) {
+      const button = event.target.closest(&#x27;[data-ticket-action][data-ticket-id]&#x27;);
+      if (!button) return;
+      const ticket = savedTickets.find((item) =&gt; item.id === button.dataset.ticketId);
+      if (!ticket) return;
+      const action = button.dataset.ticketAction;
+      if (action === &#x27;open&#x27;) {
+        openSavedTicket(ticket);
+      } else if (action === &#x27;scrutinize&#x27;) {
+        loadTicketInScrutinizer(ticket);
+      } else if (action === &#x27;copy&#x27;) {
+        await copyTicketBundle(ticket, &#x27;import&#x27;);
+      } else if (action === &#x27;download&#x27;) {
+        downloadTicketBundle(ticket, &#x27;import&#x27;);
+      } else if (action === &#x27;delete&#x27;) {
+        if (!window.confirm(`¿Eliminar «${ticket.name}» de este navegador?`)) return;
+        savedTickets = savedTickets.filter((item) =&gt; item.id !== ticket.id);
+        saveTicketsToBrowser();
+        if (loadedTicketForScrutiny?.id === ticket.id) {
+          loadedTicketForScrutiny = null;
+          if (scrutinySourceSelect.value === &#x27;ticket&#x27;) scrutinySourceSelect.value = &#x27;current&#x27;;
+        }
+        renderSavedTickets();
+        setTicketImportMessage(`Boleto «${ticket.name}» eliminado de este navegador.`);
+      }
+    }
+
     function hideQr() {
       qrArea.hidden = true;
       qrCode.replaceChildren();
@@ -3591,6 +4324,9 @@ html&gt;body{padding:0}&lt;/style&gt;
       qrCostBreakdown.textContent = &#x27;&#x27;;
       qrCostAll.textContent = &#x27;&#x27;;
       qrCostAll.hidden = true;
+      currentGeneratedTicket = null;
+      ticketNameInput.value = &#x27;&#x27;;
+      setTicketActionMessage(&#x27;La copia TXT permite recuperar el boleto en otro dispositivo o navegador.&#x27;);
     }
 
     function scrollToGeneratedQr() {
@@ -3884,12 +4620,20 @@ html&gt;body{padding:0}&lt;/style&gt;
       summary.textContent = &#x27;Se han eliminado todas las combinaciones guardadas.&#x27;;
     }
 
-    function buildQrText(combinations) {
-      const product = gameSelect.value;
-      const weekly = periodSelect.value;
+    function buildQrTextForTicket(combinations, product, weekly, joker, reintegro) {
       const bets = combinations.map((combination, index) =&gt; `.${index + 1}=${combinationKey(combination)}`).join(&#x27;&#x27;);
-      const primitivaFields = product === &#x27;1&#x27; ? `J=${jokerSelect.value};R=${reintegroSelect.value};` : &#x27;&#x27;;
+      const primitivaFields = product === &#x27;1&#x27; ? `J=${joker};R=${reintegro};` : &#x27;&#x27;;
       return `A=1;P=${product};W=${weekly};${bets};${primitivaFields}`;
+    }
+
+    function buildQrText(combinations) {
+      return buildQrTextForTicket(
+        combinations,
+        gameSelect.value,
+        periodSelect.value,
+        jokerSelect.value,
+        reintegroSelect.value
+      );
     }
 
     function splitQrGroups(combinations) {
@@ -4059,6 +4803,23 @@ html&gt;body{padding:0}&lt;/style&gt;
         text: buildQrText(group),
         source: sourceDetails
       }));
+      const createdAt = new Date().toISOString();
+      currentGeneratedTicket = normaliseTicket({
+        schema: TICKET_SCHEMA,
+        version: TICKET_VERSION,
+        id: makeTicketId(),
+        name: cleanTicketName(&#x27;&#x27;, gameSelect.value, createdAt),
+        createdAt,
+        game: gameSelect.value,
+        period: periodSelect.value,
+        reintegro: gameSelect.value === &#x27;1&#x27; ? reintegroSelect.value : null,
+        joker: gameSelect.value === &#x27;1&#x27; ? jokerSelect.value : null,
+        source: sourceDetails,
+        combinations: combinations.map((combination) =&gt; [...combination]),
+        pages: qrPages.map((page) =&gt; ({ count: page.combinations.length, text: page.text }))
+      });
+      ticketNameInput.value = currentGeneratedTicket.name;
+      setTicketActionMessage(&#x27;Este boleto ya puede guardarse en el navegador, copiarse o descargarse como TXT.&#x27;);
       qrPageIndex = 0;
       showQrPage(0);
       scrollToGeneratedQr();
@@ -6389,6 +7150,10 @@ html&gt;body{padding:0}&lt;/style&gt;
           return developmentReducedCombinations.map((combination) =&gt; [...combination]);
         case &#x27;development&#x27;:
           return developmentFullCombinations.map((combination) =&gt; [...combination]);
+        case &#x27;ticket&#x27;:
+          return loadedTicketForScrutiny
+            ? loadedTicketForScrutiny.combinations.map((combination) =&gt; [...combination])
+            : [];
         default:
           return [];
       }
@@ -6408,6 +7173,10 @@ html&gt;body{padding:0}&lt;/style&gt;
           return &#x27;combinaciones de la reducción matemática&#x27;;
         case &#x27;development&#x27;:
           return &#x27;combinaciones del desarrollo completo&#x27;;
+        case &#x27;ticket&#x27;:
+          return loadedTicketForScrutiny
+            ? `combinaciones del boleto completo «${loadedTicketForScrutiny.name}»`
+            : &#x27;combinaciones de un boleto completo guardado&#x27;;
         default:
           return &#x27;combinaciones&#x27;;
       }
@@ -6429,17 +7198,21 @@ html&gt;body{padding:0}&lt;/style&gt;
           return &#x27;Reducción matemática&#x27;;
         case &#x27;development&#x27;:
           return &#x27;Desarrollo completo&#x27;;
+        case &#x27;ticket&#x27;:
+          return loadedTicketForScrutiny
+            ? `Mis boletos · ${loadedTicketForScrutiny.name}`
+            : &#x27;Mis boletos · ninguno cargado&#x27;;
         default:
           return &#x27;Combinaciones seleccionadas&#x27;;
       }
     }
 
-    function classifyScrutinyCombination(combination, winning, complement, refund) {
+    function classifyScrutinyCombination(combination, winning, complement, refund, playedRefund) {
       const hits = combination.filter((number) =&gt; winning.includes(number)).length;
       const complementHit = hits === 5 &amp;&amp; combination.includes(complement);
       const isPrimitiva = scrutinyGameSelect.value === &#x27;1&#x27;;
       const refundChecked = isPrimitiva &amp;&amp; Number.isInteger(refund);
-      const refundHit = refundChecked &amp;&amp; Number(reintegroSelect.value) === refund;
+      const refundHit = refundChecked &amp;&amp; Number.isInteger(playedRefund) &amp;&amp; playedRefund === refund;
       let category = &#x27;Sin premio principal&#x27;;
       let rank = 7;
       let prizeTone = &#x27;&#x27;;
@@ -6539,10 +7312,24 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
 
     function scrutinizeCombinations() {
+      const scrutinizedTicket = scrutinySourceSelect.value === &#x27;ticket&#x27; ? loadedTicketForScrutiny : null;
+      if (scrutinySourceSelect.value === &#x27;ticket&#x27; &amp;&amp; !scrutinizedTicket) {
+        setScrutinyMessage(&#x27;Abre «Mis boletos» y pulsa «Escrutar» en el boleto que quieras comprobar.&#x27;, true);
+        return;
+      }
+      if (scrutinizedTicket &amp;&amp; scrutinizedTicket.game !== scrutinyGameSelect.value) {
+        scrutinyGameSelect.value = scrutinizedTicket.game;
+        updateScrutinyGame();
+        setScrutinyMessage(`La modalidad se ha ajustado a ${ticketGameName(scrutinizedTicket.game)}, que es la guardada en el boleto. Revisa el resultado oficial y vuelve a escrutar.`, true);
+        return;
+      }
       const winning = parseScrutinyWinningCombination();
       const complement = Number(scrutinyComplementInput.value);
       const refund = scrutinyRefundInput.value === &#x27;&#x27; ? null : Number(scrutinyRefundInput.value);
       const isPrimitiva = scrutinyGameSelect.value === &#x27;1&#x27;;
+      const playedRefund = isPrimitiva
+        ? Number(scrutinizedTicket ? scrutinizedTicket.reintegro : reintegroSelect.value)
+        : null;
       const combinations = getScrutinyCombinations();
 
       if (!winning) {
@@ -6568,7 +7355,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
       const results = combinations.map((combination) =&gt; ({
         combination,
-        ...classifyScrutinyCombination(combination, winning, complement, refund)
+        ...classifyScrutinyCombination(combination, winning, complement, refund, playedRefund)
       }));
 
       scrutinyList.replaceChildren();
@@ -6606,9 +7393,18 @@ html&gt;body{padding:0}&lt;/style&gt;
       scrutinyContextSourceItem.dataset.source = scrutinySourceSelect.value;
       scrutinyContextSource.textContent = sourceDisplayName;
       scrutinySummary.textContent = `${gameName} · Procedencia: ${sourceDisplayName} · ${results.length} ${results.length === 1 ? &#x27;combinación escrutada&#x27; : &#x27;combinaciones escrutadas&#x27;} · mejor resultado: ${best.category}.`;
-      scrutinyNote.textContent = isPrimitiva
-        ? `Reintegro comprobado: ${reintegroSelect.value}, el seleccionado en el generador. El Joker no se comprueba porque no se almacena su número.`
-        : &#x27;Se comprueba la combinación principal. El reintegro no puede verificarse porque no se guarda con cada combinación.&#x27;;
+      if (isPrimitiva &amp;&amp; scrutinizedTicket) {
+        const jokerNote = scrutinizedTicket.joker === &#x27;0&#x27;
+          ? &#x27;El boleto incluye Joker, aunque su número independiente no se almacena ni puede escrutarse.&#x27;
+          : &#x27;El boleto no incluye Joker.&#x27;;
+        scrutinyNote.textContent = `Reintegro jugado: ${playedRefund} · reintegro oficial: ${refund} · ${playedRefund === refund ? &#x27;coincide&#x27; : &#x27;no coincide&#x27;}. ${jokerNote}`;
+      } else if (isPrimitiva) {
+        scrutinyNote.textContent = `Reintegro comprobado: ${playedRefund}, el seleccionado actualmente en el generador. El Joker no se comprueba porque no se almacena su número.`;
+      } else {
+        scrutinyNote.textContent = scrutinizedTicket
+          ? &#x27;Boleto completo de Bonoloto: se comprueba la combinación principal; esta modalidad no guarda reintegro en el boleto.&#x27;
+          : &#x27;Se comprueba la combinación principal. El reintegro no puede verificarse porque no se guarda con cada combinación.&#x27;;
+      }
       scrutinyOutput.hidden = false;
       setScrutinyMessage(&#x27;Escrutinio completado con los datos introducidos.&#x27;);
       summary.textContent = `Escrutinio completado: ${gameName} · ${sourceDisplayName} · ${results.length} combinaciones.`;
@@ -6629,7 +7425,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           return;
         }
         scrutinyWinningInput.value = text.trim();
-        setScrutinyMessage(&#x27;Combinación pegada. Comprueba el complementario, el reintegro y la fecha antes de escrutar.&#x27;);
+        setScrutinyMessage(&#x27;Combinación pegada. Comprueba el complementario, el reintegro y la modalidad antes de escrutar.&#x27;);
       } catch (error) {
         scrutinyWinningInput.focus();
         setScrutinyMessage(&#x27;El navegador no permite leer el portapapeles automáticamente. Pega los seis números directamente en el campo.&#x27;);
@@ -6641,6 +7437,14 @@ html&gt;body{padding:0}&lt;/style&gt;
       scrutinyRefundInput.disabled = !isPrimitiva;
       if (!isPrimitiva) scrutinyRefundInput.value = &#x27;&#x27;;
       scrutinyOutput.hidden = true;
+      if (scrutinySourceSelect.value === &#x27;ticket&#x27; &amp;&amp; loadedTicketForScrutiny) {
+        setScrutinyMessage(
+          isPrimitiva
+            ? `Boleto «${loadedTicketForScrutiny.name}» cargado. Reintegro jugado guardado: ${loadedTicketForScrutiny.reintegro}. Introduce el resultado oficial.`
+            : `Boleto «${loadedTicketForScrutiny.name}» cargado. Introduce los 6 números y el complementario oficiales.`
+        );
+        return;
+      }
       setScrutinyMessage(
         isPrimitiva
           ? &#x27;Introduce los 6 números, el complementario y el reintegro oficiales.&#x27;
@@ -6826,6 +7630,27 @@ html&gt;body{padding:0}&lt;/style&gt;
     closeQrButton.addEventListener(&#x27;click&#x27;, hideQr);
     qrPreviousButton.addEventListener(&#x27;click&#x27;, () =&gt; showQrPage(qrPageIndex - 1));
     qrNextButton.addEventListener(&#x27;click&#x27;, () =&gt; showQrPage(qrPageIndex + 1));
+    saveTicketButton.addEventListener(&#x27;click&#x27;, saveCurrentTicket);
+    copyTicketButton.addEventListener(&#x27;click&#x27;, async () =&gt; {
+      const ticket = currentTicketSnapshot();
+      if (!ticket) {
+        setTicketActionMessage(&#x27;Genera o abre primero un boleto con códigos QR.&#x27;, true);
+        return;
+      }
+      await copyTicketBundle(ticket);
+    });
+    downloadTicketButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+      const ticket = currentTicketSnapshot();
+      if (!ticket) {
+        setTicketActionMessage(&#x27;Genera o abre primero un boleto con códigos QR.&#x27;, true);
+        return;
+      }
+      downloadTicketBundle(ticket);
+    });
+    ticketPasteButton.addEventListener(&#x27;click&#x27;, pasteTicketFromClipboard);
+    ticketImportButton.addEventListener(&#x27;click&#x27;, () =&gt; importTicketBundle(ticketImportText.value));
+    ticketFileInput.addEventListener(&#x27;change&#x27;, loadTicketFile);
+    ticketList.addEventListener(&#x27;click&#x27;, handleTicketListAction);
     ruleTotalSelect.addEventListener(&#x27;change&#x27;, handleRuleTotalChange);
     ruleFrequencySelect.addEventListener(&#x27;change&#x27;, () =&gt; {
       const total = getRuleCombinationTotal();
@@ -6948,6 +7773,14 @@ html&gt;body{padding:0}&lt;/style&gt;
     scrutinyGameSelect.addEventListener(&#x27;change&#x27;, updateScrutinyGame);
     scrutinySourceSelect.addEventListener(&#x27;change&#x27;, () =&gt; {
       scrutinyOutput.hidden = true;
+      if (scrutinySourceSelect.value === &#x27;ticket&#x27;) {
+        if (loadedTicketForScrutiny) {
+          scrutinyGameSelect.value = loadedTicketForScrutiny.game;
+          updateScrutinyGame();
+        } else {
+          setScrutinyMessage(&#x27;Abre «Mis boletos» y pulsa «Escrutar» en el boleto que quieras comprobar.&#x27;, true);
+        }
+      }
     });
     scrutinyPasteButton.addEventListener(&#x27;click&#x27;, pasteScrutinyWinningCombination);
     scrutinyCheckButton.addEventListener(&#x27;click&#x27;, scrutinizeCombinations);
@@ -6978,6 +7811,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     updateRuleQuantityControls();
     updateRuleTypeControl();
     renderNumberRules();
+    loadTicketsFromBrowser();
+    renderSavedTickets();
     updateScrutinyGame();
     resetDraw();
     renderSavedCombinations();
