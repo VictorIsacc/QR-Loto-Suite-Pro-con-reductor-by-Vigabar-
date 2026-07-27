@@ -4303,9 +4303,30 @@ html&gt;body{padding:0}&lt;/style&gt;
       } else if (action === &#x27;download&#x27;) {
         downloadTicketBundle(ticket, &#x27;import&#x27;);
       } else if (action === &#x27;delete&#x27;) {
-        if (!window.confirm(`¿Eliminar «${ticket.name}» de este navegador?`)) return;
+        if (button.dataset.deleteConfirmed !== &#x27;true&#x27;) {
+          ticketList.querySelectorAll(&#x27;[data-ticket-action=&quot;delete&quot;]&#x27;).forEach((deleteButton) =&gt; {
+            deleteButton.dataset.deleteConfirmed = &#x27;false&#x27;;
+            deleteButton.textContent = &#x27;Eliminar&#x27;;
+          });
+          button.dataset.deleteConfirmed = &#x27;true&#x27;;
+          button.textContent = &#x27;Confirmar eliminación&#x27;;
+          setTicketImportMessage(`Pulsa otra vez «Confirmar eliminación» para borrar «${ticket.name}».`);
+          setTimeout(() =&gt; {
+            if (!button.isConnected || button.dataset.deleteConfirmed !== &#x27;true&#x27;) return;
+            button.dataset.deleteConfirmed = &#x27;false&#x27;;
+            button.textContent = &#x27;Eliminar&#x27;;
+            setTicketImportMessage(&#x27;Eliminación cancelada por falta de confirmación.&#x27;);
+          }, 6000);
+          return;
+        }
+        const previousTickets = [...savedTickets];
         savedTickets = savedTickets.filter((item) =&gt; item.id !== ticket.id);
-        saveTicketsToBrowser();
+        if (!saveTicketsToBrowser()) {
+          savedTickets = previousTickets;
+          renderSavedTickets();
+          setTicketImportMessage(&#x27;El navegador no ha podido guardar la eliminación. Inténtalo de nuevo o revisa sus permisos de almacenamiento.&#x27;, true);
+          return;
+        }
         if (loadedTicketForScrutiny?.id === ticket.id) {
           loadedTicketForScrutiny = null;
           if (scrutinySourceSelect.value === &#x27;ticket&#x27;) scrutinySourceSelect.value = &#x27;current&#x27;;
