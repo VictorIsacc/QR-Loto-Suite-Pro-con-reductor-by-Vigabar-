@@ -890,7 +890,6 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;div class=&quot;lottery-quick-links&quot;&gt;
       &lt;a class=&quot;lottery-quick-link is-help&quot; id=&quot;lottery-instructions&quot; href=&quot;instrucciones-simulador-loteria.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Instrucciones&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-sorteo-section&quot;&gt;Sorteo&lt;/a&gt;
-      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-saved-section&quot;&gt;Guardar y QR&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-rules-section&quot;&gt;Fijos y semifijos&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-txt-section&quot;&gt;TXT y portapapeles&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-development-section&quot;&gt;Desarrollos y reducciones&lt;/a&gt;
@@ -938,6 +937,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;button class=&quot;btn&quot; id=&quot;lottery-save&quot; type=&quot;button&quot; disabled&gt;Guardar combinación&lt;/button&gt;
         &lt;button class=&quot;btn&quot; id=&quot;lottery-copy-random&quot; type=&quot;button&quot; disabled&gt;Copiar combinaciones aleatorias&lt;/button&gt;
         &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-reset&quot; type=&quot;button&quot;&gt;Nuevo sorteo&lt;/button&gt;
+        &lt;a class=&quot;btn lottery-mobile-saved-link&quot; href=&quot;#lottery-saved-section&quot; aria-label=&quot;Ver las combinaciones guardadas&quot;&gt;Ver combinaciones guardadas&lt;/a&gt;
       &lt;/div&gt;
       &lt;div class=&quot;lottery-back-row&quot;&gt;
         &lt;a class=&quot;lottery-back-top&quot; href=&quot;#lottery-app-top&quot; aria-label=&quot;Volver al inicio desde la zona de sorteo&quot;&gt;↑ Volver al inicio&lt;/a&gt;
@@ -957,7 +957,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;button class=&quot;btn&quot; id=&quot;lottery-saved-next&quot; type=&quot;button&quot;&gt;Siguientes&lt;/button&gt;
       &lt;/div&gt;
 
-      &lt;div class=&quot;game-options&quot;&gt;
+      &lt;div class=&quot;game-options qr-persisted-settings&quot; hidden aria-hidden=&quot;true&quot;&gt;
         &lt;label class=&quot;form-label&quot; for=&quot;lottery-game&quot;&gt;
           Juego
           &lt;select class=&quot;form-select&quot; id=&quot;lottery-game&quot;&gt;
@@ -1007,14 +1007,14 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;/label&gt;
       &lt;/div&gt;
 
-      &lt;p class=&quot;qr-message text-muted&quot; id=&quot;lottery-qr-message&quot; aria-live=&quot;polite&quot;&gt;Bonoloto exige 2 combinaciones para un único sorteo; admite una sola en «Semana en curso» si quedan al menos 2 sorteos.&lt;/p&gt;
+      &lt;p class=&quot;qr-message text-muted qr-persisted-settings&quot; id=&quot;lottery-qr-message&quot; aria-live=&quot;polite&quot; hidden&gt;Bonoloto exige 2 combinaciones para un único sorteo; admite una sola en «Semana en curso» si quedan al menos 2 sorteos.&lt;/p&gt;
 
       &lt;div class=&quot;viz-controls saved-controls&quot;&gt;
         &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-generate-qr&quot; type=&quot;button&quot;&gt;Preparar QR&lt;/button&gt;
         &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-clear-saved&quot; type=&quot;button&quot; disabled&gt;Vaciar lista&lt;/button&gt;
       &lt;/div&gt;
       &lt;div class=&quot;lottery-back-row&quot;&gt;
-        &lt;a class=&quot;lottery-back-top&quot; href=&quot;#lottery-app-top&quot; aria-label=&quot;Volver al inicio desde Guardar y QR&quot;&gt;↑ Volver al inicio&lt;/a&gt;
+        &lt;a class=&quot;lottery-back-top&quot; href=&quot;#lottery-app-top&quot; aria-label=&quot;Volver al inicio desde las combinaciones guardadas&quot;&gt;↑ Volver al inicio&lt;/a&gt;
       &lt;/div&gt;
     &lt;/aside&gt;
   &lt;/div&gt;
@@ -2055,6 +2055,10 @@ html&gt;body{padding:0}&lt;/style&gt;
     z-index: 1;
   }
 
+  #lottery-simulator-649 .lottery-mobile-saved-link {
+    display: none;
+  }
+
   #lottery-simulator-649 #lottery-reset.is-next-draw-ready {
     border-color: color-mix(in srgb, var(--primary) 82%, var(--border));
     color: var(--primary-foreground);
@@ -2119,6 +2123,10 @@ html&gt;body{padding:0}&lt;/style&gt;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.75rem;
+  }
+
+  #lottery-simulator-649 .qr-persisted-settings {
+    display: none !important;
   }
 
   #lottery-simulator-649 .primitiva-option {
@@ -3538,6 +3546,12 @@ html&gt;body{padding:0}&lt;/style&gt;
       gap: 1.5rem;
     }
 
+    #lottery-simulator-649 .lottery-mobile-saved-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     #lottery-simulator-649 .lottery-drum {
       width: min(92%, 20rem);
     }
@@ -3859,7 +3873,7 @@ html&gt;body{padding:0}&lt;/style&gt;
   (() =&gt; {
     const root = document.getElementById(&#x27;lottery-simulator-649&#x27;);
     const quickNavLinks = Array.from(root.querySelectorAll(&#x27;.lottery-quick-link[href^=&quot;#&quot;]&#x27;));
-    const sectionScrollLinks = Array.from(root.querySelectorAll(&#x27;.lottery-quick-link[href^=&quot;#&quot;], .lottery-back-top[href^=&quot;#&quot;]&#x27;));
+    const sectionScrollLinks = Array.from(root.querySelectorAll(&#x27;.lottery-quick-link[href^=&quot;#&quot;], .lottery-back-top[href^=&quot;#&quot;], .lottery-mobile-saved-link[href^=&quot;#&quot;]&#x27;));
     sectionScrollLinks.forEach((link) =&gt; {
       link.addEventListener(&#x27;click&#x27;, (event) =&gt; {
         const targetId = link.getAttribute(&#x27;href&#x27;).slice(1);
@@ -4863,6 +4877,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         ? String(savedCombinations.length)
         : `${savedCombinations.length} / 8`;
       clearSavedButton.disabled = savedCombinations.length === 0;
+      generateQrButton.disabled = savedCombinations.length === 0;
       viewRuleCombinationsButton.disabled = savedOrigin !== &#x27;rules&#x27; || savedCombinations.length === 0;
       refreshSaveButton();
       updateQrGuidance();
