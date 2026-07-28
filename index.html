@@ -76,7 +76,9 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
 </header>
 <div class="loto-suite-new" role="status">
   <strong>NUEVO</strong>
-  Ya puedes configurar filtros y decidir en cada generador si calcular con ellos o sin ellos.
+  Filtros de combinaciones
+  <strong>NUEVO</strong>
+  Suma digital posicional con equivalencias naturales de 1, 7, 28, 84 o 210.
 </div>
 <script>
 window.setTimeout(() => {
@@ -906,6 +908,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;div class=&quot;lottery-quick-links&quot;&gt;
       &lt;a class=&quot;lottery-quick-link is-help&quot; id=&quot;lottery-instructions&quot; href=&quot;instrucciones-simulador-loteria.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Instrucciones&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link is-new&quot; href=&quot;#lottery-filters-section&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;NUEVO&lt;/span&gt; Filtros&lt;/a&gt;
+      &lt;a class=&quot;lottery-quick-link is-new&quot; href=&quot;#lottery-digital-section&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;NUEVO&lt;/span&gt; Suma digital posicional&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-sorteo-section&quot;&gt;Sorteo&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-rules-section&quot;&gt;Fijos y semifijos&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-txt-section&quot;&gt;TXT y portapapeles&lt;/a&gt;
@@ -1037,6 +1040,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;div class=&quot;viz-controls saved-controls&quot;&gt;
         &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-generate-qr&quot; type=&quot;button&quot;&gt;Preparar QR&lt;/button&gt;
         &lt;button class=&quot;btn lottery-filter-source-button&quot; id=&quot;lottery-filter-saved&quot; type=&quot;button&quot; data-filter-source=&quot;random&quot; disabled&gt;Filtrar guardadas&lt;/button&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-reduce-saved&quot; type=&quot;button&quot; disabled&gt;Pasar al reductor&lt;/button&gt;
         &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-clear-saved&quot; type=&quot;button&quot; disabled&gt;Vaciar lista&lt;/button&gt;
       &lt;/div&gt;
       &lt;div class=&quot;lottery-back-row&quot;&gt;
@@ -1111,6 +1115,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;button class=&quot;btn&quot; id=&quot;lottery-view-rule-combinations&quot; type=&quot;button&quot; disabled&gt;Ver combinaciones generadas&lt;/button&gt;
           &lt;button class=&quot;btn&quot; id=&quot;lottery-copy-rules&quot; type=&quot;button&quot; disabled&gt;Copiar fijos/semifijos&lt;/button&gt;
           &lt;button class=&quot;btn lottery-filter-source-button&quot; id=&quot;lottery-filter-rules&quot; type=&quot;button&quot; data-filter-source=&quot;rules&quot; disabled&gt;Filtrar estas combinaciones&lt;/button&gt;
+          &lt;button class=&quot;btn&quot; id=&quot;lottery-reduce-rules&quot; type=&quot;button&quot; disabled&gt;Pasar al reductor&lt;/button&gt;
           &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-clear-rules&quot; type=&quot;button&quot; disabled&gt;Quitar reglas&lt;/button&gt;
         &lt;/div&gt;
         &lt;div class=&quot;lottery-back-row&quot;&gt;
@@ -1149,6 +1154,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;div class=&quot;viz-controls bulk-controls&quot;&gt;
           &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-generate-txt-qr&quot; type=&quot;button&quot; disabled&gt;Preparar QR de las combinaciones&lt;/button&gt;
           &lt;button class=&quot;btn lottery-filter-source-button&quot; id=&quot;lottery-filter-imported&quot; type=&quot;button&quot; data-filter-source=&quot;imported&quot; disabled&gt;Filtrar combinaciones cargadas&lt;/button&gt;
+          &lt;button class=&quot;btn&quot; id=&quot;lottery-reduce-imported&quot; type=&quot;button&quot; disabled&gt;Pasar al reductor&lt;/button&gt;
           &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-clear-txt&quot; type=&quot;button&quot; disabled&gt;Borrar combinaciones&lt;/button&gt;
         &lt;/div&gt;
         &lt;div class=&quot;lottery-back-row&quot;&gt;
@@ -1158,13 +1164,18 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;/div&gt;
   &lt;/section&gt;
 
-  &lt;section class=&quot;development-area card lottery-jump-target&quot; id=&quot;lottery-development-section&quot; aria-labelledby=&quot;development-label&quot;&gt;
+  &lt;section class=&quot;development-area card lottery-jump-target&quot; id=&quot;lottery-development-section&quot; aria-labelledby=&quot;development-label&quot; tabindex=&quot;-1&quot;&gt;
     &lt;div class=&quot;lottery-section-label development-heading&quot;&gt;
       &lt;div&gt;
         &lt;h2 id=&quot;development-label&quot;&gt;Desarrollo y reducción de números&lt;/h2&gt;
         &lt;p class=&quot;text-muted&quot;&gt;Selecciona entre 7 y 49 números, marca hasta 5 fijos y elige entre desarrollo completo o reducción. Antes de generar verás el número de casos y si el cálculo es adecuado para este dispositivo.&lt;/p&gt;
       &lt;/div&gt;
       &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-development-selected-count&quot;&gt;0 / 49&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;development-external-source&quot; id=&quot;lottery-development-external-source&quot; hidden aria-live=&quot;polite&quot;&gt;
+      &lt;strong&gt;Universo recibido&lt;/strong&gt;
+      &lt;span id=&quot;lottery-development-external-source-text&quot;&gt;&lt;/span&gt;
     &lt;/div&gt;
 
     &lt;div class=&quot;development-grid&quot;&gt;
@@ -1346,6 +1357,86 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;/div&gt;
   &lt;/section&gt;
 
+  &lt;section class=&quot;digital-area card lottery-jump-target&quot; id=&quot;lottery-digital-section&quot; aria-labelledby=&quot;lottery-digital-label&quot; tabindex=&quot;-1&quot;&gt;
+    &lt;div class=&quot;lottery-section-label digital-heading&quot;&gt;
+      &lt;div&gt;
+        &lt;h2 id=&quot;lottery-digital-label&quot;&gt;Desarrollo por suma digital posicional&lt;/h2&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;Genera todas las combinaciones de números naturales equivalentes a los valores digitales seleccionados en P1–P6 y SDCD, siempre ordenadas de menor a mayor y sin números repetidos.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-digital-total-badge&quot;&gt;Sin calcular&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;digital-explanation&quot;&gt;
+      &lt;strong&gt;Cómo se calcula&lt;/strong&gt;
+      &lt;p&gt;La raíz digital de cada número ocupa su posición natural P1–P6. La SDCD es la raíz digital de la suma de los seis valores digitales. Con los nueve valores activos en todas las columnas se representan las 13.983.816 combinaciones del 6/49.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;digital-panel-scroll&quot; tabindex=&quot;0&quot; aria-label=&quot;Panel desplazable de valores de suma digital&quot;&gt;
+      &lt;div class=&quot;digital-panel&quot; id=&quot;lottery-digital-panel&quot; aria-label=&quot;Selección de raíces digitales por posición y SDCD&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;digital-equivalence-panel&quot; aria-labelledby=&quot;lottery-digital-equivalence-label&quot;&gt;
+      &lt;div&gt;
+        &lt;h3 id=&quot;lottery-digital-equivalence-label&quot;&gt;Cantidad de equivalencias naturales admitida&lt;/h3&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;Activa las cantidades permitidas. Solo se desarrollarán las combinaciones digitales que tengan exactamente 1, 7, 28, 84 o 210 combinaciones naturales equivalentes.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;digital-equivalence-options&quot; id=&quot;lottery-digital-equivalence-options&quot;&gt;
+        &lt;button class=&quot;digital-equivalence-button&quot; type=&quot;button&quot; data-digital-equivalence=&quot;1&quot; aria-pressed=&quot;false&quot;&gt;1&lt;/button&gt;
+        &lt;button class=&quot;digital-equivalence-button&quot; type=&quot;button&quot; data-digital-equivalence=&quot;7&quot; aria-pressed=&quot;false&quot;&gt;7&lt;/button&gt;
+        &lt;button class=&quot;digital-equivalence-button&quot; type=&quot;button&quot; data-digital-equivalence=&quot;28&quot; aria-pressed=&quot;false&quot;&gt;28&lt;/button&gt;
+        &lt;button class=&quot;digital-equivalence-button&quot; type=&quot;button&quot; data-digital-equivalence=&quot;84&quot; aria-pressed=&quot;false&quot;&gt;84&lt;/button&gt;
+        &lt;button class=&quot;digital-equivalence-button&quot; type=&quot;button&quot; data-digital-equivalence=&quot;210&quot; aria-pressed=&quot;false&quot;&gt;210&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;digital-selection-summary&quot; id=&quot;lottery-digital-selection-summary&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
+
+    &lt;div class=&quot;digital-analysis&quot; aria-label=&quot;Resumen del desarrollo digital&quot;&gt;
+      &lt;div&gt;&lt;span&gt;Combinaciones digitales&lt;/span&gt;&lt;strong id=&quot;lottery-digital-pattern-total&quot;&gt;Pendiente&lt;/strong&gt;&lt;/div&gt;
+      &lt;div&gt;&lt;span&gt;Combinaciones naturales&lt;/span&gt;&lt;strong id=&quot;lottery-digital-natural-total&quot;&gt;Pendiente&lt;/strong&gt;&lt;/div&gt;
+      &lt;div&gt;&lt;span&gt;Límite seguro del dispositivo&lt;/span&gt;&lt;strong id=&quot;lottery-digital-safe-limit&quot;&gt;Pendiente&lt;/strong&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;digital-equivalence-breakdown&quot; id=&quot;lottery-digital-equivalence-breakdown&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
+
+    &lt;div class=&quot;viz-controls digital-main-actions&quot;&gt;
+      &lt;button class=&quot;btn&quot; id=&quot;lottery-digital-select-all&quot; type=&quot;button&quot;&gt;Activar todo&lt;/button&gt;
+      &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-digital-clear-selection&quot; type=&quot;button&quot;&gt;Desactivar todo&lt;/button&gt;
+      &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-digital-generate&quot; type=&quot;button&quot;&gt;Calcular y generar desarrollo&lt;/button&gt;
+      &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-digital-cancel&quot; type=&quot;button&quot; hidden disabled&gt;Cancelar cálculo&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;p class=&quot;digital-message text-muted&quot; id=&quot;lottery-digital-message&quot; aria-live=&quot;polite&quot;&gt;La selección comienza desactivada. Activa al menos un valor en P1–P6 y SDCD, y una equivalencia; después el programa calculará el total exacto.&lt;/p&gt;
+
+    &lt;div class=&quot;digital-output&quot; id=&quot;lottery-digital-output&quot; hidden&gt;
+      &lt;div class=&quot;lottery-section-label digital-result-heading&quot;&gt;
+        &lt;div&gt;
+          &lt;h3&gt;Desarrollo natural equivalente&lt;/h3&gt;
+          &lt;p class=&quot;text-muted&quot; id=&quot;lottery-digital-result-description&quot;&gt;&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-digital-result-count&quot;&gt;0 combinaciones&lt;/span&gt;
+      &lt;/div&gt;
+
+      &lt;ol class=&quot;digital-result-list&quot; id=&quot;lottery-digital-result-list&quot; aria-label=&quot;Combinaciones naturales equivalentes generadas&quot;&gt;&lt;/ol&gt;
+      &lt;div class=&quot;viz-controls digital-pagination&quot; id=&quot;lottery-digital-pagination&quot; hidden&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-digital-previous&quot; type=&quot;button&quot;&gt;Anteriores&lt;/button&gt;
+        &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-digital-page&quot;&gt;1 de 1&lt;/span&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-digital-next&quot; type=&quot;button&quot;&gt;Siguientes&lt;/button&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;viz-controls digital-result-actions&quot;&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-digital-copy&quot; type=&quot;button&quot;&gt;Copiar desarrollo&lt;/button&gt;
+        &lt;button class=&quot;btn lottery-filter-source-button&quot; id=&quot;lottery-filter-digital&quot; type=&quot;button&quot; data-filter-source=&quot;digital&quot;&gt;Pasar desarrollo a filtros&lt;/button&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-digital-reducer&quot; type=&quot;button&quot; disabled&gt;Pasar desarrollo al reductor&lt;/button&gt;
+        &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-digital-qr&quot; type=&quot;button&quot;&gt;Preparar QR del desarrollo&lt;/button&gt;
+        &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-digital-clear-result&quot; type=&quot;button&quot;&gt;Limpiar resultado&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;lottery-back-row&quot;&gt;
+      &lt;a class=&quot;lottery-back-top&quot; href=&quot;#lottery-app-top&quot; aria-label=&quot;Volver al inicio desde Desarrollo por suma digital posicional&quot;&gt;↑ Volver al inicio&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
   &lt;section class=&quot;filters-area card lottery-jump-target&quot; id=&quot;lottery-filters-section&quot; aria-labelledby=&quot;lottery-filters-label&quot; tabindex=&quot;-1&quot;&gt;
     &lt;div class=&quot;lottery-section-label filters-heading&quot;&gt;
       &lt;div&gt;
@@ -1364,6 +1455,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;option value=&quot;imported&quot;&gt;Archivo TXT o texto pegado&lt;/option&gt;
           &lt;option value=&quot;reduced&quot;&gt;Reducción matemática generada&lt;/option&gt;
           &lt;option value=&quot;development&quot;&gt;Desarrollo completo generado&lt;/option&gt;
+          &lt;option value=&quot;digital&quot;&gt;Desarrollo por suma digital posicional&lt;/option&gt;
           &lt;option value=&quot;ticket&quot;&gt;Boleto completo de «Mis boletos»&lt;/option&gt;
         &lt;/select&gt;
       &lt;/label&gt;
@@ -1538,6 +1630,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;div class=&quot;viz-controls filter-result-actions&quot;&gt;
         &lt;button class=&quot;btn&quot; id=&quot;lottery-filter-copy&quot; type=&quot;button&quot;&gt;Copiar filtradas&lt;/button&gt;
         &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-filter-qr&quot; type=&quot;button&quot;&gt;Preparar QR&lt;/button&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-filter-reducer&quot; type=&quot;button&quot; disabled&gt;Pasar al reductor&lt;/button&gt;
         &lt;button class=&quot;btn&quot; id=&quot;lottery-filter-scrutiny&quot; type=&quot;button&quot;&gt;Enviar al escrutador&lt;/button&gt;
       &lt;/div&gt;
     &lt;/div&gt;
@@ -1744,6 +1837,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;option value=&quot;imported&quot;&gt;Archivo o texto pegado&lt;/option&gt;
           &lt;option value=&quot;reduced&quot;&gt;Reducción matemática generada&lt;/option&gt;
           &lt;option value=&quot;development&quot;&gt;Desarrollo completo generado&lt;/option&gt;
+          &lt;option value=&quot;digital&quot;&gt;Desarrollo por suma digital posicional&lt;/option&gt;
           &lt;option value=&quot;filtered&quot;&gt;Resultado de la zona de filtros&lt;/option&gt;
           &lt;option value=&quot;ticket&quot;&gt;Boleto completo de «Mis boletos»&lt;/option&gt;
         &lt;/select&gt;
@@ -2581,6 +2675,29 @@ html&gt;body{padding:0}&lt;/style&gt;
     margin: 0;
   }
 
+  #lottery-simulator-649 .development-external-source {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem 0.75rem;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid rgba(34, 211, 238, 0.48);
+    border-radius: calc(var(--radius) - 0.2rem);
+    background: rgba(8, 145, 178, 0.13);
+  }
+
+  #lottery-simulator-649 .development-external-source[hidden] {
+    display: none;
+  }
+
+  #lottery-simulator-649 .development-external-source strong {
+    color: var(--accent);
+  }
+
+  #lottery-simulator-649 .development-external-source span {
+    color: var(--muted);
+  }
+
   #lottery-simulator-649 .development-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.35fr) minmax(15rem, 0.65fr);
@@ -2912,6 +3029,318 @@ html&gt;body{padding:0}&lt;/style&gt;
     justify-content: flex-start;
   }
 
+  #lottery-simulator-649 .digital-area {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 1;
+    border: 1px solid color-mix(in srgb, #06b6d4 42%, var(--border));
+    background:
+      linear-gradient(135deg, color-mix(in srgb, #06b6d4 8%, transparent), transparent 46%),
+      var(--card);
+  }
+
+  #lottery-simulator-649 .digital-heading {
+    align-items: flex-start;
+  }
+
+  #lottery-simulator-649 .digital-heading h2,
+  #lottery-simulator-649 .digital-heading p,
+  #lottery-simulator-649 .digital-result-heading h3,
+  #lottery-simulator-649 .digital-result-heading p,
+  #lottery-simulator-649 .digital-equivalence-panel h3,
+  #lottery-simulator-649 .digital-equivalence-panel p,
+  #lottery-simulator-649 .digital-explanation p {
+    margin: 0;
+  }
+
+  #lottery-simulator-649 .digital-explanation {
+    display: grid;
+    gap: 0.3rem;
+    padding: 0.8rem 0.9rem;
+    border-left: 0.28rem solid #06b6d4;
+    border-radius: 0.65rem;
+    background: color-mix(in srgb, #06b6d4 8%, var(--muted));
+  }
+
+  #lottery-simulator-649 .digital-panel-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 0.25rem 0.2rem 0.45rem;
+    border: 1px solid color-mix(in srgb, #06b6d4 30%, var(--border));
+    border-radius: 0.85rem;
+    background: color-mix(in srgb, var(--background) 78%, #062d38 22%);
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #lottery-simulator-649 .digital-panel {
+    display: grid;
+    grid-template-columns: minmax(4.2rem, 0.85fr) repeat(7, minmax(2.7rem, 1fr));
+    gap: 0.28rem;
+    min-width: 25rem;
+    padding: 0.35rem;
+  }
+
+  #lottery-simulator-649 .digital-grid-cell {
+    min-width: 0;
+    min-height: 2.25rem;
+    display: grid;
+    place-items: center;
+    padding: 0.28rem;
+    border: 1px solid color-mix(in srgb, #38bdf8 28%, var(--border));
+    border-radius: 0.35rem;
+    color: var(--foreground);
+    background: color-mix(in srgb, #082f49 32%, var(--card));
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+  }
+
+  #lottery-simulator-649 .digital-grid-cell[data-digital-column=&quot;6&quot;] {
+    border-left-color: #f59e0b;
+    border-left-width: 2px;
+  }
+
+  #lottery-simulator-649 .digital-grid-label {
+    color: #7dd3fc;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+  }
+
+  #lottery-simulator-649 .digital-grid-header {
+    color: #a5f3fc;
+    background: color-mix(in srgb, #0891b2 28%, var(--card));
+    font-size: 0.78rem;
+    font-weight: 850;
+  }
+
+  #lottery-simulator-649 .digital-random-count {
+    width: 100%;
+    min-height: 2.25rem;
+    padding: 0.2rem;
+    border: 1px solid color-mix(in srgb, #38bdf8 38%, var(--border));
+    border-radius: 0.35rem;
+    color: var(--foreground);
+    background: var(--card);
+    text-align: center;
+  }
+
+  #lottery-simulator-649 .digital-panel-button {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.25rem;
+    padding: 0.25rem;
+    border: 1px solid color-mix(in srgb, #38bdf8 32%, var(--border));
+    border-radius: 0.35rem;
+    color: var(--foreground);
+    background: color-mix(in srgb, #082f49 28%, var(--card));
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  #lottery-simulator-649 .digital-panel-button:is(:hover, :focus-visible) {
+    border-color: #22d3ee;
+  }
+
+  #lottery-simulator-649 .digital-value-button[aria-pressed=&quot;true&quot;] {
+    color: #1f1800;
+    border-color: #fde68a;
+    background: linear-gradient(145deg, #fff36a, #facc15);
+    box-shadow: 0 0 0 1px color-mix(in srgb, #facc15 45%, transparent);
+    font-weight: 850;
+  }
+
+  #lottery-simulator-649 .digital-column-all {
+    color: #052e16;
+    border-color: #86efac;
+    background: linear-gradient(145deg, #4ade80, #22c55e);
+    font-weight: 900;
+  }
+
+  #lottery-simulator-649 .digital-equivalence-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.85rem;
+    align-items: center;
+    padding: 0.85rem 0.95rem;
+    border: 1px solid color-mix(in srgb, #f59e0b 38%, var(--border));
+    border-radius: 0.8rem;
+    background: color-mix(in srgb, #f59e0b 7%, var(--card));
+  }
+
+  #lottery-simulator-649 .digital-equivalence-panel &gt; div:first-child {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  #lottery-simulator-649 .digital-equivalence-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.4rem;
+  }
+
+  #lottery-simulator-649 .digital-equivalence-button {
+    min-width: 3.2rem;
+    min-height: 2.6rem;
+    padding: 0.45rem 0.65rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--muted-foreground);
+    background: var(--muted);
+    font-weight: 850;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  #lottery-simulator-649 .digital-equivalence-button[aria-pressed=&quot;true&quot;] {
+    color: #241600;
+    border-color: #fde68a;
+    background: linear-gradient(145deg, #fcd34d, #f59e0b);
+    box-shadow: 0 0 0 1px color-mix(in srgb, #f59e0b 45%, transparent);
+  }
+
+  #lottery-simulator-649 .digital-selection-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  #lottery-simulator-649 .digital-selection-chip,
+  #lottery-simulator-649 .digital-equivalence-stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.4rem 0.58rem;
+    border: 1px solid color-mix(in srgb, #06b6d4 30%, var(--border));
+    border-radius: 999px;
+    background: color-mix(in srgb, #06b6d4 7%, var(--muted));
+    font-size: 0.8rem;
+  }
+
+  #lottery-simulator-649 .digital-selection-chip strong {
+    color: #67e8f9;
+  }
+
+  #lottery-simulator-649 .digital-analysis {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+
+  #lottery-simulator-649 .digital-analysis &gt; div {
+    display: grid;
+    gap: 0.18rem;
+    padding: 0.7rem;
+    border-radius: 0.7rem;
+    background: var(--muted);
+    text-align: center;
+  }
+
+  #lottery-simulator-649 .digital-analysis span {
+    color: var(--muted-foreground);
+    font-size: 0.76rem;
+  }
+
+  #lottery-simulator-649 .digital-analysis strong {
+    color: #67e8f9;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #lottery-simulator-649 .digital-equivalence-breakdown {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  #lottery-simulator-649 .digital-equivalence-stat strong {
+    color: #fbbf24;
+  }
+
+  #lottery-simulator-649 .digital-main-actions,
+  #lottery-simulator-649 .digital-result-actions {
+    justify-content: flex-start;
+  }
+
+  #lottery-simulator-649 .digital-message {
+    min-height: 1.4em;
+    margin: 0;
+  }
+
+  #lottery-simulator-649 .digital-message.is-error {
+    color: var(--destructive);
+  }
+
+  #lottery-simulator-649 .digital-message.is-warning {
+    color: #f59e0b;
+    font-weight: 650;
+  }
+
+  #lottery-simulator-649 .digital-output {
+    display: grid;
+    gap: 0.8rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  #lottery-simulator-649 .digital-output[hidden] {
+    display: none;
+  }
+
+  #lottery-simulator-649 .digital-result-heading {
+    align-items: flex-start;
+  }
+
+  #lottery-simulator-649 .digital-result-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  #lottery-simulator-649 .digital-result-item {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.25rem 0.65rem;
+    align-items: center;
+    min-width: 0;
+    padding: 0.6rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 0.65rem;
+    background: color-mix(in srgb, #06b6d4 6%, var(--muted));
+  }
+
+  #lottery-simulator-649 .digital-result-index {
+    grid-row: 1 / 3;
+    color: #22d3ee;
+    font-size: 0.78rem;
+    font-weight: 850;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #lottery-simulator-649 .digital-result-numbers {
+    min-width: 0;
+    font-weight: 800;
+    letter-spacing: 0.035em;
+    overflow-wrap: anywhere;
+  }
+
+  #lottery-simulator-649 .digital-result-roots {
+    color: var(--muted-foreground);
+    font-size: 0.74rem;
+    overflow-wrap: anywhere;
+  }
+
+  #lottery-simulator-649 .digital-pagination {
+    justify-content: space-between;
+  }
+
   #lottery-simulator-649 .pasted-combinations-label {
     margin-top: 0.75rem;
   }
@@ -3074,6 +3503,10 @@ html&gt;body{padding:0}&lt;/style&gt;
 
   #lottery-simulator-649 .qr-origin-summary[data-source=&quot;filtered&quot;] {
     --qr-origin-colour: #f59e0b;
+  }
+
+  #lottery-simulator-649 .qr-origin-summary[data-source=&quot;digital&quot;] {
+    --qr-origin-colour: #06b6d4;
   }
 
   #lottery-simulator-649 .qr-origin-label {
@@ -4230,6 +4663,15 @@ html&gt;body{padding:0}&lt;/style&gt;
       grid-template-columns: 1fr;
     }
 
+    #lottery-simulator-649 .digital-equivalence-panel {
+      grid-template-columns: 1fr;
+      align-items: stretch;
+    }
+
+    #lottery-simulator-649 .digital-equivalence-options {
+      justify-content: flex-start;
+    }
+
     #lottery-simulator-649 .filter-source-layout,
     #lottery-simulator-649 .filter-profile-fields,
     #lottery-simulator-649 .filter-grid {
@@ -4368,6 +4810,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     #lottery-simulator-649 .development-generation-actions,
     #lottery-simulator-649 .development-breakdown-pending-actions,
     #lottery-simulator-649 .development-actions,
+    #lottery-simulator-649 .digital-main-actions,
+    #lottery-simulator-649 .digital-result-actions,
     #lottery-simulator-649 .filter-main-actions,
     #lottery-simulator-649 .filter-result-actions {
       display: grid;
@@ -4386,6 +4830,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     #lottery-simulator-649 .development-generation-actions .btn,
     #lottery-simulator-649 .development-breakdown-pending-actions .btn,
     #lottery-simulator-649 .development-actions .btn,
+    #lottery-simulator-649 .digital-main-actions .btn,
+    #lottery-simulator-649 .digital-result-actions .btn,
     #lottery-simulator-649 .filter-main-actions .btn,
     #lottery-simulator-649 .filter-result-actions .btn {
       width: 100%;
@@ -4458,6 +4904,23 @@ html&gt;body{padding:0}&lt;/style&gt;
       grid-template-columns: 1fr;
     }
 
+    #lottery-simulator-649 .digital-analysis {
+      grid-template-columns: 1fr;
+    }
+
+    #lottery-simulator-649 .digital-panel {
+      min-width: 23.5rem;
+      gap: 0.2rem;
+      padding: 0.25rem;
+    }
+
+    #lottery-simulator-649 .digital-grid-cell,
+    #lottery-simulator-649 .digital-panel-button,
+    #lottery-simulator-649 .digital-random-count {
+      min-height: 2.1rem;
+      font-size: 0.76rem;
+    }
+
     #lottery-simulator-649 .filter-range-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -4494,6 +4957,21 @@ html&gt;body{padding:0}&lt;/style&gt;
     #lottery-simulator-649 {
       padding: 0.5rem;
       border-radius: 0.8rem;
+    }
+
+    #lottery-simulator-649 .digital-panel {
+      min-width: 22rem;
+      grid-template-columns: minmax(3.6rem, 0.8fr) repeat(7, minmax(2.35rem, 1fr));
+    }
+
+    #lottery-simulator-649 .digital-equivalence-options {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    #lottery-simulator-649 .digital-equivalence-button {
+      min-width: 0;
+      padding-inline: 0.3rem;
     }
 
     #lottery-simulator-649 .rule-form {
@@ -4640,6 +5118,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     const costSelect = root.querySelector(&#x27;#lottery-show-cost&#x27;);
     const qrMessage = root.querySelector(&#x27;#lottery-qr-message&#x27;);
     const generateQrButton = root.querySelector(&#x27;#lottery-generate-qr&#x27;);
+    const reduceSavedButton = root.querySelector(&#x27;#lottery-reduce-saved&#x27;);
     const clearSavedButton = root.querySelector(&#x27;#lottery-clear-saved&#x27;);
     const qrSetupArea = root.querySelector(&#x27;#lottery-qr-setup-section&#x27;);
     const qrSetupGameBadge = root.querySelector(&#x27;#lottery-qr-setup-game-badge&#x27;);
@@ -4716,6 +5195,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     const generateTicketButton = root.querySelector(&#x27;#lottery-generate-ticket&#x27;);
     const viewRuleCombinationsButton = root.querySelector(&#x27;#lottery-view-rule-combinations&#x27;);
     const copyRulesButton = root.querySelector(&#x27;#lottery-copy-rules&#x27;);
+    const reduceRulesButton = root.querySelector(&#x27;#lottery-reduce-rules&#x27;);
     const clearRulesButton = root.querySelector(&#x27;#lottery-clear-rules&#x27;);
     const txtFileInput = root.querySelector(&#x27;#lottery-txt-file&#x27;);
     const pastedCombinationsInput = root.querySelector(&#x27;#lottery-pasted-combinations&#x27;);
@@ -4724,12 +5204,16 @@ html&gt;body{padding:0}&lt;/style&gt;
     const loadPastedButton = root.querySelector(&#x27;#lottery-load-pasted&#x27;);
     const txtMessage = root.querySelector(&#x27;#lottery-txt-message&#x27;);
     const generateTxtQrButton = root.querySelector(&#x27;#lottery-generate-txt-qr&#x27;);
+    const reduceImportedButton = root.querySelector(&#x27;#lottery-reduce-imported&#x27;);
     const clearTxtButton = root.querySelector(&#x27;#lottery-clear-txt&#x27;);
+    const developmentSection = root.querySelector(&#x27;#lottery-development-section&#x27;);
     const developmentSelectedCount = root.querySelector(&#x27;#lottery-development-selected-count&#x27;);
     const developmentRandomTotalInput = root.querySelector(&#x27;#lottery-development-random-total&#x27;);
     const developmentRandomNumbersButton = root.querySelector(&#x27;#lottery-development-random-numbers&#x27;);
     const developmentClearButton = root.querySelector(&#x27;#lottery-development-clear&#x27;);
     const developmentNumberGrid = root.querySelector(&#x27;#lottery-development-number-grid&#x27;);
+    const developmentExternalSourceSummary = root.querySelector(&#x27;#lottery-development-external-source&#x27;);
+    const developmentExternalSourceText = root.querySelector(&#x27;#lottery-development-external-source-text&#x27;);
     const developmentV = root.querySelector(&#x27;#lottery-development-v&#x27;);
     const developmentF = root.querySelector(&#x27;#lottery-development-f&#x27;);
     const developmentModeInputs = [...root.querySelectorAll(&#x27;input[name=&quot;lottery-development-mode&quot;]&#x27;)];
@@ -4770,6 +5254,32 @@ html&gt;body{padding:0}&lt;/style&gt;
     const developmentCopyButton = root.querySelector(&#x27;#lottery-development-copy&#x27;);
     const developmentQrButton = root.querySelector(&#x27;#lottery-development-qr&#x27;);
     const developmentClearOutputButton = root.querySelector(&#x27;#lottery-development-clear-output&#x27;);
+    const digitalSection = root.querySelector(&#x27;#lottery-digital-section&#x27;);
+    const digitalTotalBadge = root.querySelector(&#x27;#lottery-digital-total-badge&#x27;);
+    const digitalPanel = root.querySelector(&#x27;#lottery-digital-panel&#x27;);
+    const digitalEquivalenceOptions = root.querySelector(&#x27;#lottery-digital-equivalence-options&#x27;);
+    const digitalSelectionSummary = root.querySelector(&#x27;#lottery-digital-selection-summary&#x27;);
+    const digitalPatternTotal = root.querySelector(&#x27;#lottery-digital-pattern-total&#x27;);
+    const digitalNaturalTotal = root.querySelector(&#x27;#lottery-digital-natural-total&#x27;);
+    const digitalSafeLimit = root.querySelector(&#x27;#lottery-digital-safe-limit&#x27;);
+    const digitalEquivalenceBreakdown = root.querySelector(&#x27;#lottery-digital-equivalence-breakdown&#x27;);
+    const digitalSelectAllButton = root.querySelector(&#x27;#lottery-digital-select-all&#x27;);
+    const digitalClearSelectionButton = root.querySelector(&#x27;#lottery-digital-clear-selection&#x27;);
+    const digitalGenerateButton = root.querySelector(&#x27;#lottery-digital-generate&#x27;);
+    const digitalCancelButton = root.querySelector(&#x27;#lottery-digital-cancel&#x27;);
+    const digitalMessage = root.querySelector(&#x27;#lottery-digital-message&#x27;);
+    const digitalOutput = root.querySelector(&#x27;#lottery-digital-output&#x27;);
+    const digitalResultDescription = root.querySelector(&#x27;#lottery-digital-result-description&#x27;);
+    const digitalResultCount = root.querySelector(&#x27;#lottery-digital-result-count&#x27;);
+    const digitalResultList = root.querySelector(&#x27;#lottery-digital-result-list&#x27;);
+    const digitalPagination = root.querySelector(&#x27;#lottery-digital-pagination&#x27;);
+    const digitalPreviousButton = root.querySelector(&#x27;#lottery-digital-previous&#x27;);
+    const digitalNextButton = root.querySelector(&#x27;#lottery-digital-next&#x27;);
+    const digitalPage = root.querySelector(&#x27;#lottery-digital-page&#x27;);
+    const digitalCopyButton = root.querySelector(&#x27;#lottery-digital-copy&#x27;);
+    const digitalReducerButton = root.querySelector(&#x27;#lottery-digital-reducer&#x27;);
+    const digitalQrButton = root.querySelector(&#x27;#lottery-digital-qr&#x27;);
+    const digitalClearResultButton = root.querySelector(&#x27;#lottery-digital-clear-result&#x27;);
     const filterSection = root.querySelector(&#x27;#lottery-filters-section&#x27;);
     const filterSourceSelect = root.querySelector(&#x27;#lottery-filter-source&#x27;);
     const filterSourceSummary = root.querySelector(&#x27;#lottery-filter-source-summary&#x27;);
@@ -4799,12 +5309,14 @@ html&gt;body{padding:0}&lt;/style&gt;
     const filterPage = root.querySelector(&#x27;#lottery-filter-page&#x27;);
     const filterCopyButton = root.querySelector(&#x27;#lottery-filter-copy&#x27;);
     const filterQrButton = root.querySelector(&#x27;#lottery-filter-qr&#x27;);
+    const filterReducerButton = root.querySelector(&#x27;#lottery-filter-reducer&#x27;);
     const filterScrutinyButton = root.querySelector(&#x27;#lottery-filter-scrutiny&#x27;);
     const filterCurrentButton = root.querySelector(&#x27;#lottery-filter-current&#x27;);
     const filterSavedButton = root.querySelector(&#x27;#lottery-filter-saved&#x27;);
     const filterRulesButton = root.querySelector(&#x27;#lottery-filter-rules&#x27;);
     const filterImportedButton = root.querySelector(&#x27;#lottery-filter-imported&#x27;);
     const filterDevelopmentButton = root.querySelector(&#x27;#lottery-filter-development&#x27;);
+    const filterDigitalButton = root.querySelector(&#x27;#lottery-filter-digital&#x27;);
     const scrutinyGameSelect = root.querySelector(&#x27;#lottery-scrutiny-game&#x27;);
     const scrutinySourceSelect = root.querySelector(&#x27;#lottery-scrutiny-source&#x27;);
     const scrutinyWinningInput = root.querySelector(&#x27;#lottery-scrutiny-winning&#x27;);
@@ -4841,17 +5353,28 @@ html&gt;body{padding:0}&lt;/style&gt;
     let numberRules = [];
     let developmentSelectedNumbers = [];
     let developmentFixedNumbers = [];
+    let developmentExternalSource = null;
     let developmentReducedCombinations = [];
     let developmentFullCombinations = [];
     let developmentBreakdownData = { conditioned: [], general: [] };
     let developmentPendingBreakdown = null;
     let developmentGeneratedFixedNumbers = [];
+    let developmentGeneratedExternalSourceLabel = &#x27;&#x27;;
     let developmentPageIndex = 0;
     let developmentRunCounter = 0;
     let developmentBusy = false;
     let developmentStopRequested = false;
     let developmentBreakdownBusy = false;
     let developmentBreakdownCancelRequested = false;
+    let digitalSelections = Array.from({ length: 7 }, () =&gt; new Set());
+    let digitalEquivalenceSelections = new Set();
+    let digitalGeneratedCombinations = [];
+    let digitalGeneratedPatternCount = 0;
+    let digitalPageIndex = 0;
+    let digitalBusy = false;
+    let digitalCancelRequested = false;
+    let digitalQrWarningArmed = false;
+    let digitalLastAnalysis = null;
     let qrPages = [];
     let qrPageIndex = 0;
     let currentGeneratedTicket = null;
@@ -4893,6 +5416,12 @@ html&gt;body{padding:0}&lt;/style&gt;
     const DEVELOPMENT_FULL_CASE_LIMIT = 200000;
     const DEVELOPMENT_MOBILE_CASE_LIMIT = 200000;
     const DEVELOPMENT_BREAKDOWN_COMPARISON_LIMIT = 100000000;
+    const DIGITAL_PAGE_SIZE = 20;
+    const DIGITAL_DESKTOP_COMBINATION_LIMIT = 200000;
+    const DIGITAL_MOBILE_COMBINATION_LIMIT = 100000;
+    const DIGITAL_QR_WARNING_THRESHOLD = 8000;
+    const DIGITAL_COLUMN_LABELS = [&#x27;P1&#x27;, &#x27;P2&#x27;, &#x27;P3&#x27;, &#x27;P4&#x27;, &#x27;P5&#x27;, &#x27;P6&#x27;, &#x27;SDCD&#x27;];
+    const DIGITAL_EQUIVALENCE_VALUES = [1, 7, 28, 84, 210];
     const euroFormatter = new Intl.NumberFormat(&#x27;es-ES&#x27;, {
       style: &#x27;currency&#x27;,
       currency: &#x27;EUR&#x27;
@@ -4900,6 +5429,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     const wait = (milliseconds) =&gt; new Promise((resolve) =&gt; setTimeout(resolve, milliseconds));
     const combinationKey = (combination) =&gt; combination.map((number) =&gt; String(number).padStart(2, &#x27;0&#x27;)).join(&#x27;&#x27;);
+    const digitalRoot = (number) =&gt; ((Math.trunc(Number(number)) - 1) % 9 + 9) % 9 + 1;
 
     const FILTER_FIGURES_WITH_SIX_GROUPS = [
       &#x27;6-0&#x27;, &#x27;5-1&#x27;, &#x27;4-2&#x27;, &#x27;4-1-1&#x27;, &#x27;3-3&#x27;, &#x27;3-2-1&#x27;,
@@ -4909,6 +5439,559 @@ html&gt;body{padding:0}&lt;/style&gt;
       &#x27;6-0&#x27;, &#x27;5-1&#x27;, &#x27;4-2&#x27;, &#x27;4-1-1&#x27;, &#x27;3-3&#x27;, &#x27;3-2-1&#x27;,
       &#x27;3-1-1-1&#x27;, &#x27;2-2-2&#x27;, &#x27;2-2-1-1&#x27;, &#x27;2-1-1-1-1&#x27;, &#x27;1-1-1-1-1-1&#x27;
     ];
+
+    function setDigitalMessage(message, tone = &#x27;&#x27;) {
+      digitalMessage.textContent = message;
+      digitalMessage.classList.toggle(&#x27;is-error&#x27;, tone === &#x27;error&#x27;);
+      digitalMessage.classList.toggle(&#x27;is-warning&#x27;, tone === &#x27;warning&#x27;);
+    }
+
+    function digitalDeviceLimit() {
+      return window.matchMedia(&#x27;(max-width: 760px)&#x27;).matches
+        ? DIGITAL_MOBILE_COMBINATION_LIMIT
+        : DIGITAL_DESKTOP_COMBINATION_LIMIT;
+    }
+
+    function createDigitalPanelCell(tagName, text, className, column = null) {
+      const element = document.createElement(tagName);
+      element.className = className;
+      if (text !== null) element.textContent = text;
+      if (column !== null) element.dataset.digitalColumn = String(column);
+      return element;
+    }
+
+    function buildDigitalPanel() {
+      digitalPanel.replaceChildren();
+
+      const randomButton = createDigitalPanelCell(
+        &#x27;button&#x27;,
+        &#x27;Azar&#x27;,
+        &#x27;digital-panel-button digital-grid-label&#x27;
+      );
+      randomButton.type = &#x27;button&#x27;;
+      randomButton.id = &#x27;lottery-digital-randomize&#x27;;
+      randomButton.title = &#x27;Activa al azar la cantidad indicada en cada columna&#x27;;
+      digitalPanel.appendChild(randomButton);
+
+      DIGITAL_COLUMN_LABELS.forEach((label, column) =&gt; {
+        const select = createDigitalPanelCell(
+          &#x27;select&#x27;,
+          null,
+          &#x27;digital-random-count&#x27;,
+          column
+        );
+        select.dataset.digitalRandomCount = String(column);
+        select.setAttribute(&#x27;aria-label&#x27;, `Cantidad aleatoria de valores para ${label}`);
+        for (let count = 1; count &lt;= 9; count += 1) {
+          const option = document.createElement(&#x27;option&#x27;);
+          option.value = String(count);
+          option.textContent = String(count);
+          option.selected = count === 1;
+          select.appendChild(option);
+        }
+        digitalPanel.appendChild(select);
+      });
+
+      digitalPanel.appendChild(
+        createDigitalPanelCell(&#x27;span&#x27;, &#x27;Todos&#x27;, &#x27;digital-grid-cell digital-grid-label&#x27;)
+      );
+      DIGITAL_COLUMN_LABELS.forEach((label, column) =&gt; {
+        const button = createDigitalPanelCell(
+          &#x27;button&#x27;,
+          &#x27;✓&#x27;,
+          &#x27;digital-panel-button digital-column-all&#x27;,
+          column
+        );
+        button.type = &#x27;button&#x27;;
+        button.dataset.digitalSelectColumn = String(column);
+        button.setAttribute(&#x27;aria-label&#x27;, `Activar los nueve valores de ${label}`);
+        button.title = `Activar 1–9 en ${label}`;
+        digitalPanel.appendChild(button);
+      });
+
+      digitalPanel.appendChild(
+        createDigitalPanelCell(&#x27;span&#x27;, &#x27;DR9&#x27;, &#x27;digital-grid-cell digital-grid-header&#x27;)
+      );
+      DIGITAL_COLUMN_LABELS.forEach((label, column) =&gt; {
+        digitalPanel.appendChild(
+          createDigitalPanelCell(&#x27;span&#x27;, label, &#x27;digital-grid-cell digital-grid-header&#x27;, column)
+        );
+      });
+
+      for (let value = 1; value &lt;= 9; value += 1) {
+        digitalPanel.appendChild(
+          createDigitalPanelCell(&#x27;span&#x27;, `Nº ${value}`, &#x27;digital-grid-cell digital-grid-label&#x27;)
+        );
+        DIGITAL_COLUMN_LABELS.forEach((label, column) =&gt; {
+          const button = createDigitalPanelCell(
+            &#x27;button&#x27;,
+            String(value),
+            &#x27;digital-panel-button digital-value-button&#x27;,
+            column
+          );
+          button.type = &#x27;button&#x27;;
+          button.dataset.digitalValue = String(value);
+          button.setAttribute(&#x27;aria-label&#x27;, `${label}, valor digital ${value}`);
+          digitalPanel.appendChild(button);
+        });
+      }
+      renderDigitalPanel();
+    }
+
+    function renderDigitalPanel() {
+      digitalPanel.querySelectorAll(&#x27;[data-digital-value]&#x27;).forEach((button) =&gt; {
+        const column = Number(button.dataset.digitalColumn);
+        const value = Number(button.dataset.digitalValue);
+        button.setAttribute(
+          &#x27;aria-pressed&#x27;,
+          digitalSelections[column]?.has(value) ? &#x27;true&#x27; : &#x27;false&#x27;
+        );
+      });
+      digitalEquivalenceOptions.querySelectorAll(&#x27;[data-digital-equivalence]&#x27;).forEach((button) =&gt; {
+        button.setAttribute(
+          &#x27;aria-pressed&#x27;,
+          digitalEquivalenceSelections.has(Number(button.dataset.digitalEquivalence))
+            ? &#x27;true&#x27;
+            : &#x27;false&#x27;
+        );
+      });
+      renderDigitalSelectionSummary();
+      refreshDigitalControls();
+    }
+
+    function renderDigitalSelectionSummary() {
+      digitalSelectionSummary.replaceChildren();
+      DIGITAL_COLUMN_LABELS.forEach((label, column) =&gt; {
+        const chip = document.createElement(&#x27;span&#x27;);
+        chip.className = &#x27;digital-selection-chip&#x27;;
+        const name = document.createElement(&#x27;strong&#x27;);
+        name.textContent = label;
+        chip.append(name, document.createTextNode(`${digitalSelections[column].size} de 9`));
+        digitalSelectionSummary.appendChild(chip);
+      });
+      const equivalences = document.createElement(&#x27;span&#x27;);
+      equivalences.className = &#x27;digital-selection-chip&#x27;;
+      const name = document.createElement(&#x27;strong&#x27;);
+      name.textContent = &#x27;Equivalencias&#x27;;
+      const selected = DIGITAL_EQUIVALENCE_VALUES
+        .filter((value) =&gt; digitalEquivalenceSelections.has(value))
+        .join(&#x27; · &#x27;);
+      equivalences.append(name, document.createTextNode(selected || &#x27;ninguna&#x27;));
+      digitalSelectionSummary.appendChild(equivalences);
+    }
+
+    function refreshDigitalControls() {
+      const hasEveryColumn = digitalSelections.every((selection) =&gt; selection.size &gt; 0);
+      const hasEquivalences = digitalEquivalenceSelections.size &gt; 0;
+      digitalGenerateButton.disabled = digitalBusy || !hasEveryColumn || !hasEquivalences;
+      digitalSelectAllButton.disabled = digitalBusy;
+      digitalClearSelectionButton.disabled = digitalBusy;
+      digitalCancelButton.hidden = !digitalBusy;
+      digitalCancelButton.disabled = !digitalBusy || digitalCancelRequested;
+      digitalPanel.querySelectorAll(&#x27;button, select&#x27;).forEach((control) =&gt; {
+        control.disabled = digitalBusy;
+      });
+      digitalEquivalenceOptions.querySelectorAll(&#x27;button&#x27;).forEach((control) =&gt; {
+        control.disabled = digitalBusy;
+      });
+    }
+
+    function resetDigitalQrWarning() {
+      digitalQrWarningArmed = false;
+      digitalQrButton.textContent = &#x27;Preparar QR del desarrollo&#x27;;
+    }
+
+    function clearDigitalGeneratedResult(message = &#x27;&#x27;) {
+      digitalGeneratedCombinations = [];
+      digitalGeneratedPatternCount = 0;
+      digitalPageIndex = 0;
+      digitalLastAnalysis = null;
+      digitalOutput.hidden = true;
+      digitalResultList.replaceChildren();
+      digitalPagination.hidden = true;
+      digitalPatternTotal.textContent = &#x27;Pendiente&#x27;;
+      digitalNaturalTotal.textContent = &#x27;Pendiente&#x27;;
+      digitalSafeLimit.textContent = digitalDeviceLimit().toLocaleString(&#x27;es-ES&#x27;);
+      digitalEquivalenceBreakdown.replaceChildren();
+      digitalTotalBadge.textContent = &#x27;Sin calcular&#x27;;
+      digitalReducerButton.disabled = true;
+      resetDigitalQrWarning();
+      refreshFilterSourceButtons();
+      if (message) setDigitalMessage(message);
+    }
+
+    function invalidateDigitalDevelopment(message = &#x27;Selección modificada. Pulsa «Calcular y generar desarrollo».&#x27;) {
+      if (digitalBusy) return;
+      clearDigitalGeneratedResult(message);
+      renderDigitalPanel();
+    }
+
+    function setAllDigitalValues(active) {
+      if (digitalBusy) return;
+      digitalSelections = Array.from(
+        { length: 7 },
+        () =&gt; new Set(active ? Array.from({ length: 9 }, (_, index) =&gt; index + 1) : [])
+      );
+      digitalEquivalenceSelections = new Set(active ? DIGITAL_EQUIVALENCE_VALUES : []);
+      invalidateDigitalDevelopment(
+        active
+          ? &#x27;Se han activado los nueve valores en P1–P6 y SDCD, además de las cinco equivalencias.&#x27;
+          : &#x27;Se ha desactivado toda la selección. Activa al menos un valor en cada columna y una equivalencia.&#x27;
+      );
+    }
+
+    function randomizeDigitalSelections() {
+      if (digitalBusy) return;
+      digitalSelections = DIGITAL_COLUMN_LABELS.map((label, column) =&gt; {
+        const requested = Math.min(
+          9,
+          Math.max(
+            1,
+            Math.trunc(
+              Number(
+                digitalPanel.querySelector(`[data-digital-random-count=&quot;${column}&quot;]`)?.value
+              )
+            ) || 1
+          )
+        );
+        const shuffled = Array.from({ length: 9 }, (_, index) =&gt; index + 1);
+        for (let index = shuffled.length - 1; index &gt; 0; index -= 1) {
+          const other = Math.floor(Math.random() * (index + 1));
+          [shuffled[index], shuffled[other]] = [shuffled[other], shuffled[index]];
+        }
+        return new Set(shuffled.slice(0, requested));
+      });
+      invalidateDigitalDevelopment(
+        &#x27;Selección aleatoria realizada con la cantidad indicada en cada columna.&#x27;
+      );
+    }
+
+    function countDigitalPatternEquivalents(pattern) {
+      let ways = Array(pattern[0] &lt;= 4 ? 6 : 5).fill(1);
+      for (let position = 1; position &lt; 6; position += 1) {
+        const nextLength = pattern[position] &lt;= 4 ? 6 : 5;
+        const strictLayerIncrease = pattern[position - 1] &gt;= pattern[position] ? 1 : 0;
+        const prefixes = [];
+        let total = 0;
+        ways.forEach((value) =&gt; {
+          total += value;
+          prefixes.push(total);
+        });
+        ways = Array.from({ length: nextLength }, (_, layer) =&gt; {
+          const limit = layer - strictLayerIncrease;
+          if (limit &lt; 0) return 0;
+          return prefixes[Math.min(limit, prefixes.length - 1)] ?? 0;
+        });
+      }
+      return ways.reduce((total, value) =&gt; total + value, 0);
+    }
+
+    function expandDigitalPattern(pattern) {
+      const combinations = [];
+      const current = [];
+
+      function visit(position, previousLayer) {
+        if (position === 6) {
+          combinations.push([...current]);
+          return;
+        }
+        const minimumLayer = position === 0
+          ? 0
+          : previousLayer + (pattern[position - 1] &gt;= pattern[position] ? 1 : 0);
+        const maximumLayer = pattern[position] &lt;= 4 ? 5 : 4;
+        for (let layer = minimumLayer; layer &lt;= maximumLayer; layer += 1) {
+          current.push(pattern[position] + 9 * layer);
+          visit(position + 1, layer);
+          current.pop();
+        }
+      }
+
+      visit(0, 0);
+      return combinations;
+    }
+
+    async function analyseDigitalPatterns(safeLimit) {
+      const allowedPositions = digitalSelections
+        .slice(0, 6)
+        .map((selection) =&gt; [...selection].sort((first, second) =&gt; first - second));
+      const allowedSdcd = digitalSelections[6];
+      const pattern = Array(6).fill(0);
+      const classStats = Object.fromEntries(
+        DIGITAL_EQUIVALENCE_VALUES.map((value) =&gt; [
+          value,
+          { patterns: 0, natural: 0, active: digitalEquivalenceSelections.has(value) }
+        ])
+      );
+      const patterns = [];
+      let keepPatterns = true;
+      let patternCount = 0;
+      let naturalTotal = 0;
+
+      function visit(position, digitalSum) {
+        if (position === 6) {
+          if (!allowedSdcd.has(digitalRoot(digitalSum))) return;
+          const equivalenceCount = countDigitalPatternEquivalents(pattern);
+          if (!DIGITAL_EQUIVALENCE_VALUES.includes(equivalenceCount)) return;
+          const stats = classStats[equivalenceCount];
+          stats.patterns += 1;
+          stats.natural += equivalenceCount;
+          if (!digitalEquivalenceSelections.has(equivalenceCount)) return;
+          patternCount += 1;
+          naturalTotal += equivalenceCount;
+          if (keepPatterns) {
+            if (naturalTotal &lt;= safeLimit) {
+              patterns.push([...pattern]);
+            } else {
+              patterns.length = 0;
+              keepPatterns = false;
+            }
+          }
+          return;
+        }
+
+        allowedPositions[position].forEach((value) =&gt; {
+          pattern[position] = value;
+          visit(position + 1, digitalSum + value);
+        });
+      }
+
+      const firstValues = allowedPositions[0];
+      for (let index = 0; index &lt; firstValues.length; index += 1) {
+        pattern[0] = firstValues[index];
+        visit(1, firstValues[index]);
+        setDigitalMessage(
+          `Analizando combinaciones digitales… ${index + 1} de ${firstValues.length} bloques.`
+        );
+        await wait(0);
+        if (digitalCancelRequested) return null;
+      }
+
+      return {
+        patternCount,
+        naturalTotal,
+        classStats,
+        patterns: keepPatterns ? patterns : [],
+        withinLimit: naturalTotal &lt;= safeLimit
+      };
+    }
+
+    function renderDigitalAnalysis(analysis, safeLimit) {
+      digitalPatternTotal.textContent = analysis.patternCount.toLocaleString(&#x27;es-ES&#x27;);
+      digitalNaturalTotal.textContent = analysis.naturalTotal.toLocaleString(&#x27;es-ES&#x27;);
+      digitalSafeLimit.textContent = safeLimit.toLocaleString(&#x27;es-ES&#x27;);
+      digitalTotalBadge.textContent = `${analysis.naturalTotal.toLocaleString(&#x27;es-ES&#x27;)} naturales`;
+      digitalEquivalenceBreakdown.replaceChildren();
+      DIGITAL_EQUIVALENCE_VALUES.forEach((value) =&gt; {
+        const stats = analysis.classStats[value];
+        const chip = document.createElement(&#x27;span&#x27;);
+        chip.className = &#x27;digital-equivalence-stat&#x27;;
+        const title = document.createElement(&#x27;strong&#x27;);
+        title.textContent = `${value} eq.`;
+        const description = stats.active
+          ? `${stats.patterns.toLocaleString(&#x27;es-ES&#x27;)} digitales · ${stats.natural.toLocaleString(&#x27;es-ES&#x27;)} naturales`
+          : &#x27;desactivada&#x27;;
+        chip.append(title, document.createTextNode(description));
+        digitalEquivalenceBreakdown.appendChild(chip);
+      });
+    }
+
+    function renderDigitalResults() {
+      const total = digitalGeneratedCombinations.length;
+      const pageTotal = Math.max(1, Math.ceil(total / DIGITAL_PAGE_SIZE));
+      digitalPageIndex = Math.min(Math.max(0, digitalPageIndex), pageTotal - 1);
+      const start = digitalPageIndex * DIGITAL_PAGE_SIZE;
+      digitalResultList.replaceChildren();
+      digitalGeneratedCombinations
+        .slice(start, start + DIGITAL_PAGE_SIZE)
+        .forEach((combination, pageIndex) =&gt; {
+          const item = document.createElement(&#x27;li&#x27;);
+          item.className = &#x27;digital-result-item&#x27;;
+          const index = document.createElement(&#x27;span&#x27;);
+          index.className = &#x27;digital-result-index&#x27;;
+          index.textContent = String(start + pageIndex + 1).padStart(2, &#x27;0&#x27;);
+          const numbers = document.createElement(&#x27;span&#x27;);
+          numbers.className = &#x27;digital-result-numbers&#x27;;
+          numbers.textContent = combination
+            .map((number) =&gt; String(number).padStart(2, &#x27;0&#x27;))
+            .join(&#x27; · &#x27;);
+          const roots = combination.map(digitalRoot);
+          const detail = document.createElement(&#x27;span&#x27;);
+          detail.className = &#x27;digital-result-roots&#x27;;
+          const equivalenceTotal = countDigitalPatternEquivalents(roots);
+          detail.textContent = `DR ${roots.join(&#x27;-&#x27;)} · SDCD ${digitalRoot(
+            roots.reduce((sum, value) =&gt; sum + value, 0)
+          )} · ${equivalenceTotal} ${equivalenceTotal === 1 ? &#x27;equivalencia&#x27; : &#x27;equivalencias&#x27;}`;
+          item.append(index, numbers, detail);
+          digitalResultList.appendChild(item);
+        });
+      digitalOutput.hidden = total === 0;
+      digitalResultCount.textContent = `${total.toLocaleString(&#x27;es-ES&#x27;)} ${total === 1 ? &#x27;combinación&#x27; : &#x27;combinaciones&#x27;}`;
+      digitalPagination.hidden = total &lt;= DIGITAL_PAGE_SIZE;
+      digitalPage.textContent = `${digitalPageIndex + 1} de ${pageTotal}`;
+      digitalPreviousButton.disabled = digitalPageIndex === 0;
+      digitalNextButton.disabled = digitalPageIndex &gt;= pageTotal - 1;
+      filterDigitalButton.disabled = total === 0;
+      digitalCopyButton.disabled = total === 0;
+      digitalReducerButton.disabled = total &lt; 2;
+      digitalReducerButton.title = total &lt; 2
+        ? &#x27;Se necesitan al menos 2 combinaciones para realizar una reducción.&#x27;
+        : &#x27;&#x27;;
+      digitalQrButton.disabled = total === 0;
+    }
+
+    async function generateDigitalDevelopment() {
+      if (digitalBusy) return;
+      if (digitalSelections.some((selection) =&gt; selection.size === 0)) {
+        setDigitalMessage(
+          &#x27;Activa al menos un valor en cada una de las columnas P1–P6 y SDCD.&#x27;,
+          &#x27;error&#x27;
+        );
+        return;
+      }
+      if (digitalEquivalenceSelections.size === 0) {
+        setDigitalMessage(&#x27;Activa al menos una cantidad de equivalencias naturales.&#x27;, &#x27;error&#x27;);
+        return;
+      }
+
+      digitalBusy = true;
+      digitalCancelRequested = false;
+      digitalGeneratedCombinations = [];
+      digitalGeneratedPatternCount = 0;
+      digitalOutput.hidden = true;
+      resetDigitalQrWarning();
+      refreshDigitalControls();
+      const safeLimit = digitalDeviceLimit();
+      digitalSafeLimit.textContent = safeLimit.toLocaleString(&#x27;es-ES&#x27;);
+
+      try {
+        const analysis = await analyseDigitalPatterns(safeLimit);
+        if (!analysis || digitalCancelRequested) {
+          setDigitalMessage(&#x27;Cálculo cancelado. No se ha sustituido ningún desarrollo.&#x27;, &#x27;warning&#x27;);
+          return;
+        }
+        digitalLastAnalysis = analysis;
+        renderDigitalAnalysis(analysis, safeLimit);
+
+        if (analysis.naturalTotal === 0) {
+          setDigitalMessage(
+            &#x27;No existen combinaciones naturales que cumplan simultáneamente la selección posicional, la SDCD y las equivalencias activadas.&#x27;,
+            &#x27;error&#x27;
+          );
+          return;
+        }
+        if (!analysis.withinLimit) {
+          setDigitalMessage(
+            `El desarrollo contiene ${analysis.naturalTotal.toLocaleString(&#x27;es-ES&#x27;)} combinaciones naturales y supera el límite seguro de ${safeLimit.toLocaleString(&#x27;es-ES&#x27;)} para este dispositivo. Desactiva valores posicionales, valores de SDCD o clases de equivalencias antes de generarlo.`,
+            &#x27;warning&#x27;
+          );
+          return;
+        }
+
+        const patterns = analysis.patterns;
+        analysis.patterns = [];
+        const generated = [];
+        for (let index = 0; index &lt; patterns.length; index += 1) {
+          generated.push(...expandDigitalPattern(patterns[index]));
+          if ((index + 1) % 250 === 0) {
+            const percentage = Math.round((index + 1) / patterns.length * 100);
+            setDigitalMessage(`Generando equivalencias naturales… ${percentage} %`);
+            await wait(0);
+            if (digitalCancelRequested) break;
+          }
+        }
+
+        if (digitalCancelRequested) {
+          setDigitalMessage(&#x27;Generación cancelada. No se ha guardado un resultado parcial.&#x27;, &#x27;warning&#x27;);
+          return;
+        }
+        if (generated.length !== analysis.naturalTotal) {
+          throw new Error(
+            `el recuento previsto era ${analysis.naturalTotal.toLocaleString(&#x27;es-ES&#x27;)} y se han construido ${generated.length.toLocaleString(&#x27;es-ES&#x27;)}`
+          );
+        }
+
+        digitalGeneratedCombinations = generated;
+        digitalGeneratedPatternCount = analysis.patternCount;
+        digitalPageIndex = 0;
+        const naturalDescription = generated.length === 1
+          ? &#x27;1 combinación natural equivalente&#x27;
+          : `${generated.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones naturales equivalentes`;
+        const naturalMessage = generated.length === 1
+          ? &#x27;1 combinación natural&#x27;
+          : `${generated.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones naturales`;
+        digitalResultDescription.textContent = analysis.patternCount === 1
+          ? `1 combinación digital posicional ha desarrollado ${naturalDescription}.`
+          : `${analysis.patternCount.toLocaleString(&#x27;es-ES&#x27;)} combinaciones digitales posicionales han desarrollado ${generated.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones naturales equivalentes.`;
+        renderDigitalResults();
+        refreshFilterSourceButtons();
+        setDigitalMessage(
+          analysis.patternCount === 1
+            ? `Desarrollo completado: ${naturalMessage}, procedente de 1 combinación digital.`
+            : `Desarrollo completado: ${naturalMessage}, procedentes de ${analysis.patternCount.toLocaleString(&#x27;es-ES&#x27;)} combinaciones digitales.`
+        );
+      } catch (error) {
+        digitalGeneratedCombinations = [];
+        digitalGeneratedPatternCount = 0;
+        digitalOutput.hidden = true;
+        refreshFilterSourceButtons();
+        setDigitalMessage(
+          `No se ha podido completar el desarrollo: ${error.message || &#x27;error desconocido&#x27;}.`,
+          &#x27;error&#x27;
+        );
+      } finally {
+        digitalBusy = false;
+        digitalCancelRequested = false;
+        refreshDigitalControls();
+      }
+    }
+
+    function cancelDigitalDevelopment() {
+      if (!digitalBusy || digitalCancelRequested) return;
+      digitalCancelRequested = true;
+      digitalCancelButton.disabled = true;
+      setDigitalMessage(
+        &#x27;Cancelación solicitada. El proceso se detendrá al finalizar el bloque actual.&#x27;,
+        &#x27;warning&#x27;
+      );
+    }
+
+    async function copyDigitalDevelopment() {
+      if (digitalGeneratedCombinations.length === 0) {
+        setDigitalMessage(&#x27;Genera primero un desarrollo natural equivalente.&#x27;, &#x27;error&#x27;);
+        return;
+      }
+      const result = await copyTextToClipboard(
+        combinationsToClipboardText(digitalGeneratedCombinations)
+      );
+      if (result.copied) {
+        setDigitalMessage(
+          `${digitalGeneratedCombinations.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones copiadas, una por línea.`
+        );
+      } else if (result.manual) {
+        setDigitalMessage(&#x27;El navegador ha mostrado el desarrollo para copiarlo manualmente.&#x27;);
+      } else {
+        setDigitalMessage(&#x27;No se ha podido copiar el desarrollo.&#x27;, &#x27;error&#x27;);
+      }
+    }
+
+    function generateDigitalQr() {
+      const total = digitalGeneratedCombinations.length;
+      if (total === 0) {
+        setDigitalMessage(&#x27;Genera primero un desarrollo natural equivalente.&#x27;, &#x27;error&#x27;);
+        return;
+      }
+      if (total &gt; DIGITAL_QR_WARNING_THRESHOLD &amp;&amp; !digitalQrWarningArmed) {
+        digitalQrWarningArmed = true;
+        digitalQrButton.textContent = &#x27;Confirmar preparación de QR&#x27;;
+        setDigitalMessage(
+          `Este desarrollo contiene ${total.toLocaleString(&#x27;es-ES&#x27;)} apuestas y puede producir aproximadamente ${Math.ceil(total / 8).toLocaleString(&#x27;es-ES&#x27;)} códigos QR. Pulsa de nuevo para enviarlo a la configuración QR.`,
+          &#x27;warning&#x27;
+        );
+        return;
+      }
+      resetDigitalQrWarning();
+      prepareQrGeneration(digitalGeneratedCombinations, &#x27;digital&#x27;);
+    }
 
     function createFilterRangeRow(container, label, key, limits = {}) {
       const row = document.createElement(&#x27;div&#x27;);
@@ -5468,6 +6551,16 @@ html&gt;body{padding:0}&lt;/style&gt;
           combinations: developmentFullCombinations
         };
       }
+      if (source === &#x27;digital&#x27;) {
+        return {
+          key: &#x27;digital&#x27;,
+          label: &#x27;Desarrollo por suma digital posicional&#x27;,
+          description: digitalGeneratedCombinations.length
+            ? &#x27;Combinaciones naturales equivalentes generadas mediante P1–P6, SDCD y las clases de equivalencia seleccionadas.&#x27;
+            : &#x27;Todavía no se ha generado un desarrollo por suma digital posicional.&#x27;,
+          combinations: digitalGeneratedCombinations
+        };
+      }
       if (source === &#x27;ticket&#x27;) {
         return {
           key: &#x27;saved-ticket&#x27;,
@@ -5489,6 +6582,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       filterRulesButton.disabled = ruleGeneratedCombinations.length === 0;
       filterImportedButton.disabled = importedCombinations.length === 0;
       filterDevelopmentButton.disabled = getActiveDevelopmentCombinations().length === 0;
+      filterDigitalButton.disabled = digitalGeneratedCombinations.length === 0;
       filterDevelopmentButton.dataset.filterSource = developmentViewSelect.value === &#x27;full&#x27;
         ? &#x27;development&#x27;
         : &#x27;reduced&#x27;;
@@ -5503,6 +6597,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       filterResultList.replaceChildren();
       filterPagination.hidden = true;
       filterResultCount.textContent = &#x27;0 resultantes&#x27;;
+      filterReducerButton.disabled = true;
       root.querySelectorAll(&#x27;[data-filter-eliminated]&#x27;).forEach((label) =&gt; {
         label.textContent = &#x27;0 eliminadas&#x27;;
       });
@@ -5847,6 +6942,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       const hasResults = filteredCombinations.length &gt; 0;
       filterCopyButton.disabled = !hasResults;
       filterQrButton.disabled = !hasResults;
+      filterReducerButton.disabled = filteredCombinations.length &lt; 2;
       filterScrutinyButton.disabled = !hasResults;
     }
 
@@ -6765,6 +7861,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         : `${savedCombinations.length} / 8`;
       clearSavedButton.disabled = savedCombinations.length === 0;
       generateQrButton.disabled = savedCombinations.length === 0;
+      reduceSavedButton.disabled = savedCombinations.length &lt; 2;
+      reduceRulesButton.disabled = ruleGeneratedCombinations.length &lt; 2;
       viewRuleCombinationsButton.disabled = savedOrigin !== &#x27;rules&#x27; || savedCombinations.length === 0;
       refreshSaveButton();
       updateQrGuidance();
@@ -6938,6 +8036,14 @@ html&gt;body{padding:0}&lt;/style&gt;
         };
       }
 
+      if (source === &#x27;digital&#x27;) {
+        return {
+          key: &#x27;digital&#x27;,
+          label: &#x27;Desarrollo por suma digital posicional&#x27;,
+          description: &#x27;Combinaciones naturales equivalentes procedentes de la selección P1–P6, SDCD y equivalencias.&#x27;
+        };
+      }
+
       return {
         key: &#x27;saved&#x27;,
         label: &#x27;Combinaciones guardadas&#x27;,
@@ -6979,6 +8085,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         txtMessage.classList.toggle(&#x27;is-error&#x27;, isError);
       } else if (source === &#x27;development&#x27;) {
         setDevelopmentMessage(message, isError);
+      } else if (source === &#x27;digital&#x27;) {
+        setDigitalMessage(message, isError ? &#x27;error&#x27; : &#x27;&#x27;);
       } else if (source === &#x27;filtered&#x27;) {
         setFilterMessage(message, isError);
       } else {
@@ -7079,6 +8187,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           ? &#x27;Carga primero un archivo TXT o un texto con combinaciones válidas.&#x27;
           : source === &#x27;development&#x27;
             ? &#x27;Genera primero una reducción o un desarrollo completo.&#x27;
+            : source === &#x27;digital&#x27;
+              ? &#x27;Genera primero un desarrollo por suma digital posicional.&#x27;
             : source === &#x27;filtered&#x27;
               ? &#x27;Aplica primero los filtros y conserva al menos una combinación.&#x27;
             : &#x27;Guarda al menos una combinación antes de preparar el QR.&#x27;;
@@ -8059,6 +9169,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       const hasPastedText = pastedCombinationsInput.value.trim().length &gt; 0;
       const hasFile = Boolean(txtFileInput.files?.[0]);
       loadPastedButton.disabled = !hasPastedText;
+      reduceImportedButton.disabled = importedCombinations.length &lt; 2;
       clearTxtButton.disabled = !hasPastedText &amp;&amp; !hasFile &amp;&amp; importedCombinations.length === 0;
     }
 
@@ -8066,6 +9177,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       importedCombinations = [];
       importedSource = null;
       generateTxtQrButton.disabled = true;
+      reduceImportedButton.disabled = true;
       refreshFilterSourceButtons();
     }
 
@@ -8322,6 +9434,128 @@ html&gt;body{padding:0}&lt;/style&gt;
       return { caseTotal, limit, feasible, workload };
     }
 
+    function getExternalDevelopmentFeasibility(source, guarantee) {
+      const caseTotal = source?.combinations?.length ?? 0;
+      const uniqueTotal = source?.numbers?.length ?? 0;
+      const technicalLimit =
+        DEVELOPMENT_REDUCTION_CASE_LIMITS[guarantee] ||
+        DEVELOPMENT_REDUCTION_CASE_LIMITS[4];
+      const mobileLikeDevice =
+        window.matchMedia(&#x27;(max-width: 760px)&#x27;).matches ||
+        window.matchMedia(&#x27;(pointer: coarse)&#x27;).matches;
+      const limit = mobileLikeDevice
+        ? Math.min(technicalLimit, DEVELOPMENT_MOBILE_CASE_LIMIT)
+        : technicalLimit;
+      const feasible =
+        caseTotal &gt;= 2 &amp;&amp;
+        uniqueTotal &gt;= DEVELOPMENT_MIN_NUMBERS &amp;&amp;
+        uniqueTotal &lt;= DEVELOPMENT_MAX_NUMBERS &amp;&amp;
+        caseTotal &lt;= limit;
+      const workload = caseTotal &lt;= DEVELOPMENT_DENSE_CASE_LIMIT
+        ? &#x27;ligera&#x27;
+        : caseTotal &lt;= 100000
+          ? &#x27;moderada&#x27;
+          : &#x27;alta&#x27;;
+      return { caseTotal, limit, feasible, workload };
+    }
+
+    function renderDevelopmentExternalSource() {
+      const source = developmentExternalSource;
+      developmentExternalSourceSummary.hidden = !source;
+      if (!source) {
+        developmentExternalSourceText.textContent = &#x27;&#x27;;
+        return;
+      }
+      developmentExternalSourceText.textContent =
+        `${source.label} · ${source.combinations.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones · ${source.numbers.length} números naturales distintos.`;
+    }
+
+    function scrollToDevelopment() {
+      requestAnimationFrame(() =&gt; {
+        const targetTop =
+          developmentSection.getBoundingClientRect().top + window.scrollY - 12;
+        window.scrollTo({
+          top: Math.max(0, targetTop),
+          behavior: reducedMotion ? &#x27;auto&#x27; : &#x27;smooth&#x27;
+        });
+        developmentSection.focus({ preventScroll: true });
+        quickNavLinks.forEach((item) =&gt; item.removeAttribute(&#x27;aria-current&#x27;));
+        const quickDevelopmentLink = quickNavLinks.find(
+          (link) =&gt; link.getAttribute(&#x27;href&#x27;) === &#x27;#lottery-development-section&#x27;
+        );
+        quickDevelopmentLink?.setAttribute(&#x27;aria-current&#x27;, &#x27;location&#x27;);
+      });
+    }
+
+    function sendCombinationsToReducer(combinations, sourceDetails, feedback) {
+      if (developmentBusy) {
+        feedback?.(
+          &#x27;El reductor está realizando un cálculo. Detén o espera a que termine antes de enviar otro conjunto.&#x27;,
+          true
+        );
+        return false;
+      }
+      const seen = new Set();
+      const prepared = [];
+      combinations.forEach((combination) =&gt; {
+        const normalised = [...combination].sort((first, second) =&gt; first - second);
+        if (
+          normalised.length !== 6 ||
+          new Set(normalised).size !== 6 ||
+          normalised.some((number) =&gt; !Number.isInteger(number) || number &lt; 1 || number &gt; 49)
+        ) {
+          return;
+        }
+        const key = combinationKey(normalised);
+        if (seen.has(key)) return;
+        seen.add(key);
+        prepared.push(normalised);
+      });
+
+      if (prepared.length &lt; 2) {
+        feedback?.(
+          &#x27;Se necesitan al menos 2 combinaciones distintas para utilizar el reductor.&#x27;,
+          true
+        );
+        return false;
+      }
+
+      const numbers = [...new Set(prepared.flat())].sort(
+        (first, second) =&gt; first - second
+      );
+      if (numbers.length &lt; DEVELOPMENT_MIN_NUMBERS) {
+        feedback?.(
+          `Las combinaciones solo reúnen ${numbers.length} números distintos; el reductor necesita al menos ${DEVELOPMENT_MIN_NUMBERS}.`,
+          true
+        );
+        return false;
+      }
+
+      developmentExternalSource = {
+        key: sourceDetails.key,
+        label: sourceDetails.label,
+        combinations: prepared.map((combination) =&gt; [...combination]),
+        numbers
+      };
+      developmentSelectedNumbers = numbers.slice();
+      developmentFixedNumbers = [];
+      developmentModeInputs.forEach((input) =&gt; {
+        input.checked = input.value === &#x27;reduced&#x27;;
+      });
+      invalidateDevelopmentResults(
+        `${prepared.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones recibidas desde «${sourceDetails.label}». Elige la garantía, la cobertura y el método para reducir únicamente este universo.`
+      );
+      renderDevelopmentExternalSource();
+      refreshDevelopmentControls();
+      feedback?.(
+        `${prepared.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones enviadas al reductor sin perder su procedencia.`
+      );
+      summary.textContent =
+        `${prepared.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones de ${sourceDetails.label} preparadas en el reductor.`;
+      scrollToDevelopment();
+      return true;
+    }
+
     function getDevelopmentMode() {
       return developmentModeInputs.find((input) =&gt; input.checked)?.value || &#x27;reduced&#x27;;
     }
@@ -8375,6 +9609,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       developmentBreakdownTableWrap.hidden = false;
       developmentBreakdownNote.hidden = false;
       developmentGeneratedFixedNumbers = [];
+      developmentGeneratedExternalSourceLabel = &#x27;&#x27;;
       createDevelopmentViewOptions(getDevelopmentMode());
       setDevelopmentMessage(message);
       hideQr();
@@ -8382,23 +9617,34 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
 
     function refreshDevelopmentControls() {
+      const externalSource = developmentExternalSource;
+      if (externalSource) {
+        developmentSelectedNumbers = externalSource.numbers.slice();
+        developmentFixedNumbers = [];
+        developmentModeInputs.forEach((input) =&gt; {
+          input.checked = input.value === &#x27;reduced&#x27;;
+        });
+      }
       const total = developmentSelectedNumbers.length;
       developmentFixedNumbers = developmentFixedNumbers.filter((number) =&gt; developmentSelectedNumbers.includes(number));
       const fixedTotal = developmentFixedNumbers.length;
-      const mode = getDevelopmentMode();
+      const mode = externalSource ? &#x27;reduced&#x27; : getDevelopmentMode();
       const reductionMode = mode === &#x27;reduced&#x27;;
       const percentageMode = getDevelopmentCoverageMode() === &#x27;percentage&#x27;;
       const guarantee = Number(developmentGuaranteeSelect.value);
-      const feasibility = getDevelopmentFeasibility(total, fixedTotal, mode, guarantee);
+      const feasibility = externalSource
+        ? getExternalDevelopmentFeasibility(externalSource, guarantee)
+        : getDevelopmentFeasibility(total, fixedTotal, mode, guarantee);
+      renderDevelopmentExternalSource();
       developmentSelectedCount.textContent = `${total} / ${DEVELOPMENT_MAX_NUMBERS}`;
       developmentV.textContent = String(total);
       developmentF.textContent = String(fixedTotal);
-      developmentClearButton.disabled = developmentBusy || total === 0;
+      developmentClearButton.disabled = developmentBusy || (!externalSource &amp;&amp; total === 0);
       developmentClearOutputButton.disabled = developmentBusy;
-      developmentRandomNumbersButton.disabled = developmentBusy;
-      developmentRandomTotalInput.disabled = developmentBusy;
+      developmentRandomNumbersButton.disabled = developmentBusy || Boolean(externalSource);
+      developmentRandomTotalInput.disabled = developmentBusy || Boolean(externalSource);
       developmentModeInputs.forEach((input) =&gt; {
-        input.disabled = developmentBusy;
+        input.disabled = developmentBusy || Boolean(externalSource);
       });
       developmentGuaranteeWrap.hidden = !reductionMode;
       developmentCoverageWrap.hidden = !reductionMode;
@@ -8429,7 +9675,13 @@ html&gt;body{padding:0}&lt;/style&gt;
 
       const fullTotal = total &gt;= 6 ? exactCombinationCount(total - fixedTotal, 6 - fixedTotal) : 0;
       const generalTotal = total &gt;= 6 ? exactCombinationCount(total, 6) : 0;
-      if (total &lt; 7) {
+      if (externalSource) {
+        const sourceText =
+          `Se reducirán únicamente las ${feasibility.caseTotal.toLocaleString(&#x27;es-ES&#x27;)} combinaciones recibidas desde «${externalSource.label}»; no se creará un desarrollo nuevo con sus ${total} números distintos.`;
+        developmentFullCount.textContent = feasibility.feasible
+          ? `${sourceText} Carga estimada ${feasibility.workload}.`
+          : `${sourceText} El universo supera el límite seguro de ${feasibility.limit.toLocaleString(&#x27;es-ES&#x27;)} combinaciones para esta garantía y dispositivo.`;
+      } else if (total &lt; 7) {
         developmentFullCount.textContent = `Selecciona ${7 - total} ${7 - total === 1 ? &#x27;número más&#x27; : &#x27;números más&#x27;}.`;
       } else if (mode === &#x27;full&#x27;) {
         const baseText = fixedTotal &gt; 0
@@ -8465,7 +9717,7 @@ html&gt;body{padding:0}&lt;/style&gt;
               ? `Número ${number}, seleccionado. Toca para convertirlo en fijo.`
               : `Número ${number}, no seleccionado. Toca para seleccionarlo.`
         );
-        button.disabled = developmentBusy;
+        button.disabled = developmentBusy || Boolean(externalSource);
       });
     }
 
@@ -8489,6 +9741,12 @@ html&gt;body{padding:0}&lt;/style&gt;
       const total = developmentSelectedNumbers.length;
       const fixedTotal = developmentFixedNumbers.length;
       const introductoryText = prefix ? `${prefix} ` : &#x27;&#x27;;
+      if (developmentExternalSource) {
+        setDevelopmentMessage(
+          `${introductoryText}${developmentExternalSource.combinations.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones de «${developmentExternalSource.label}» preparadas. Elige la garantía, la cobertura y el método; la reducción conservará este universo condicionado.`
+        );
+        return;
+      }
       if (total &lt; DEVELOPMENT_MIN_NUMBERS) {
         setDevelopmentMessage(`${introductoryText}Selecciona entre ${DEVELOPMENT_MIN_NUMBERS} y ${DEVELOPMENT_MAX_NUMBERS} números.`);
         return;
@@ -8569,9 +9827,10 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     function clearDevelopmentNumbers() {
       if (developmentBusy) return;
+      developmentExternalSource = null;
       developmentSelectedNumbers = [];
       developmentFixedNumbers = [];
-      invalidateDevelopmentResults(&#x27;Se han eliminado los números seleccionados y la reducción o desarrollo generado.&#x27;);
+      invalidateDevelopmentResults(&#x27;Se han eliminado el universo recibido, los números seleccionados y la reducción o desarrollo generado.&#x27;);
       scrutinyOutput.hidden = true;
       summary.textContent = &#x27;Generador y reductor limpiados.&#x27;;
       refreshDevelopmentControls();
@@ -9187,10 +10446,12 @@ html&gt;body{padding:0}&lt;/style&gt;
         developmentBreakdownNote.textContent =
           &#x27;Este desglose general complementa la garantía condicionada. La cobertura es acumulada y no incluye complementario, reintegro ni Joker.&#x27;;
       } else {
-        developmentBreakdownDescription.textContent =
-          &#x27;Casos posibles al acertar los 6 números seleccionados y cantidad mínima–máxima de apuestas premiadas en la reducción.&#x27;;
-        developmentBreakdownNote.textContent =
-          &#x27;La cobertura es acumulada: por ejemplo, «5 si 6» incluye todos los casos con al menos 5 aciertos. No se incluyen complementario, reintegro ni Joker.&#x27;;
+        developmentBreakdownDescription.textContent = developmentGeneratedExternalSourceLabel
+          ? `Desglose condicionado al universo recibido desde «${developmentGeneratedExternalSourceLabel}» y cantidad mínima–máxima de apuestas premiadas.`
+          : &#x27;Casos posibles al acertar los 6 números seleccionados y cantidad mínima–máxima de apuestas premiadas en la reducción.&#x27;;
+        developmentBreakdownNote.textContent = developmentGeneratedExternalSourceLabel
+          ? &#x27;La cobertura solo se refiere a las combinaciones del universo recibido. Es acumulada y no incluye complementario, reintegro ni Joker.&#x27;
+          : &#x27;La cobertura es acumulada: por ejemplo, «5 si 6» incluye todos los casos con al menos 5 aciertos. No se incluyen complementario, reintegro ni Joker.&#x27;;
       }
     }
 
@@ -9227,8 +10488,12 @@ html&gt;body{padding:0}&lt;/style&gt;
       );
 
       try {
-        let winningEntries = createSixNumberEntries(pending.numbers, pending.fixedNumbers);
-        if (pending.filterConfiguration) {
+        let winningEntries = pending.universeCombinations
+          ? pending.universeCombinations.map((combination) =&gt;
+              createDevelopmentEntryFromCombination(pending.numbers, combination)
+            )
+          : createSixNumberEntries(pending.numbers, pending.fixedNumbers);
+        if (pending.filterConfiguration &amp;&amp; !pending.universeAlreadyFiltered) {
           winningEntries = winningEntries.filter((entry) =&gt;
             combinationPassesActiveFilters(entry.combination, pending.filterConfiguration)
           );
@@ -9332,14 +10597,38 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     async function generateDevelopmentReduction() {
       if (developmentBusy) return;
-      const numbers = developmentSelectedNumbers.slice();
-      const fixedNumbers = developmentFixedNumbers
-        .filter((number) =&gt; numbers.includes(number))
-        .slice()
-        .sort((first, second) =&gt; first - second);
-      const mode = getDevelopmentMode();
+      const externalSource = developmentExternalSource
+        ? {
+            key: developmentExternalSource.key,
+            label: developmentExternalSource.label,
+            combinations: developmentExternalSource.combinations.map(
+              (combination) =&gt; combination.slice()
+            ),
+            numbers: developmentExternalSource.numbers.slice()
+          }
+        : null;
+      const numbers = externalSource
+        ? externalSource.numbers.slice()
+        : developmentSelectedNumbers.slice();
+      const fixedNumbers = externalSource
+        ? []
+        : developmentFixedNumbers
+            .filter((number) =&gt; numbers.includes(number))
+            .slice()
+            .sort((first, second) =&gt; first - second);
+      const mode = externalSource ? &#x27;reduced&#x27; : getDevelopmentMode();
       const guarantee = Number(developmentGuaranteeSelect.value);
-      if (numbers.length &lt; DEVELOPMENT_MIN_NUMBERS || numbers.length &gt; DEVELOPMENT_MAX_NUMBERS) {
+      if (
+        externalSource
+        &amp;&amp; (externalSource.combinations.length &lt; 2 || numbers.length &lt; DEVELOPMENT_MIN_NUMBERS)
+      ) {
+        setDevelopmentMessage(
+          &#x27;El universo recibido necesita al menos 2 combinaciones distintas y 7 números naturales diferentes.&#x27;,
+          true
+        );
+        return;
+      }
+      if (!externalSource &amp;&amp; (numbers.length &lt; DEVELOPMENT_MIN_NUMBERS || numbers.length &gt; DEVELOPMENT_MAX_NUMBERS)) {
         setDevelopmentMessage(
           `Selecciona entre ${DEVELOPMENT_MIN_NUMBERS} y ${DEVELOPMENT_MAX_NUMBERS} números antes de generar.`,
           true
@@ -9350,10 +10639,14 @@ html&gt;body{padding:0}&lt;/style&gt;
         setDevelopmentMessage(&#x27;Puedes utilizar como máximo 5 números fijos.&#x27;, true);
         return;
       }
-      const feasibility = getDevelopmentFeasibility(numbers.length, fixedNumbers.length, mode, guarantee);
+      const feasibility = externalSource
+        ? getExternalDevelopmentFeasibility(externalSource, guarantee)
+        : getDevelopmentFeasibility(numbers.length, fixedNumbers.length, mode, guarantee);
       if (!feasibility.feasible) {
         setDevelopmentMessage(
-          `Los ${feasibility.caseTotal.toLocaleString(&#x27;es-ES&#x27;)} casos superan el límite seguro de ${feasibility.limit.toLocaleString(&#x27;es-ES&#x27;)} para esta opción. Añade fijos, selecciona menos números o cambia la garantía.`,
+          externalSource
+            ? `Las ${feasibility.caseTotal.toLocaleString(&#x27;es-ES&#x27;)} combinaciones recibidas superan el límite seguro de ${feasibility.limit.toLocaleString(&#x27;es-ES&#x27;)} para esta garantía y dispositivo. Reduce o filtra primero la lista.`
+            : `Los ${feasibility.caseTotal.toLocaleString(&#x27;es-ES&#x27;)} casos superan el límite seguro de ${feasibility.limit.toLocaleString(&#x27;es-ES&#x27;)} para esta opción. Añade fijos, selecciona menos números o cambia la garantía.`,
           true
         );
         return;
@@ -9378,19 +10671,29 @@ html&gt;body{padding:0}&lt;/style&gt;
       const requestedPercentage = getDevelopmentRequestedPercentage();
       const percentageMode = getDevelopmentCoverageMode() === &#x27;percentage&#x27;;
       const method = developmentMethodSelect.value;
-      const generalUniverseTotal = exactCombinationCount(numbers.length, 6);
-      const conditionedUniverseTotal = exactCombinationCount(
-        numbers.length - fixedNumbers.length,
-        6 - fixedNumbers.length
-      );
+      const generalUniverseTotal = externalSource
+        ? externalSource.combinations.length
+        : exactCombinationCount(numbers.length, 6);
+      const conditionedUniverseTotal = externalSource
+        ? externalSource.combinations.length
+        : exactCombinationCount(
+            numbers.length - fixedNumbers.length,
+            6 - fixedNumbers.length
+          );
       setDevelopmentMessage(
-        fixedNumbers.length &gt; 0
+        externalSource
+          ? `Preparando las ${conditionedUniverseTotal.toLocaleString(&#x27;es-ES&#x27;)} combinaciones recibidas desde «${externalSource.label}»${filtersApplied ? &#x27; para aplicar además los filtros activos&#x27; : &#x27;&#x27;}…`
+          : fixedNumbers.length &gt; 0
           ? `Preparando ${conditionedUniverseTotal.toLocaleString(&#x27;es-ES&#x27;)} casos condicionados y ${generalUniverseTotal.toLocaleString(&#x27;es-ES&#x27;)} casos generales${filtersApplied ? &#x27; para aplicar los filtros activos&#x27; : &#x27;&#x27;}…`
           : `Preparando ${generalUniverseTotal.toLocaleString(&#x27;es-ES&#x27;)} combinaciones posibles${filtersApplied ? &#x27; para aplicar los filtros activos&#x27; : &#x27;&#x27;}…`
       );
 
       try {
-        let conditionedEntries = createSixNumberEntries(numbers, fixedNumbers);
+        let conditionedEntries = externalSource
+          ? externalSource.combinations.map((combination) =&gt;
+              createDevelopmentEntryFromCombination(numbers, combination)
+            )
+          : createSixNumberEntries(numbers, fixedNumbers);
         const unfilteredConditionedTotal = conditionedEntries.length;
         if (filterConfiguration) {
           conditionedEntries = conditionedEntries.filter((entry) =&gt;
@@ -9566,6 +10869,10 @@ html&gt;body{padding:0}&lt;/style&gt;
               numbers: numbers.slice(),
               fixedNumbers: fixedNumbers.slice(),
               combinations: selectedTicketEntries.map((entry) =&gt; entry.combination.slice()),
+              universeCombinations: externalSource
+                ? conditionedEntries.map((entry) =&gt; entry.combination.slice())
+                : null,
+              universeAlreadyFiltered: Boolean(externalSource),
               caseTotal: conditionedEntries.length,
               ticketTotal: selectedTicketEntries.length,
               comparisonTotal: conditionedComparisonTotal,
@@ -9573,6 +10880,7 @@ html&gt;body{padding:0}&lt;/style&gt;
             }
           : null;
         developmentGeneratedFixedNumbers = fixedNumbers.slice();
+        developmentGeneratedExternalSourceLabel = externalSource?.label ?? &#x27;&#x27;;
         developmentBreakdownViewSelect.value = &#x27;conditioned&#x27;;
         if (conditionedBreakdown.length &gt; 0) renderSelectedDevelopmentPrizeBreakdown();
 
@@ -9595,9 +10903,12 @@ html&gt;body{padding:0}&lt;/style&gt;
         const coverageNotation = percentageMode
           ? ` · objetivo ${formatDevelopmentPercentage(requestedPercentage)} · real ${formatDevelopmentPercentage(verification.coveragePercentage)}`
           : &#x27; · cobertura 100 %&#x27;;
-        developmentNotation.textContent = `C(${numbers.length},6,${guarantee},6,1)=${developmentReducedCombinations.length}${fixedNotation}${coverageNotation} · método ${methodLabel}${filtersApplied ? &#x27; · filtros activos&#x27; : &#x27;&#x27;}`;
-        developmentVerification.textContent =
-          `${verification.coveredTotal.toLocaleString(&#x27;es-ES&#x27;)} de ${conditionedEntries.length.toLocaleString(&#x27;es-ES&#x27;)} casos ${fixedNumbers.length &gt; 0 ? &#x27;condicionados &#x27; : &#x27;&#x27;}cubiertos${filtersApplied ? &#x27; · garantía condicionada a los filtros activos&#x27; : &#x27;&#x27;}`;
+        developmentNotation.textContent = externalSource
+          ? `U(${conditionedEntries.length.toLocaleString(&#x27;es-ES&#x27;)},T=${guarantee},M=6,L=1)=${developmentReducedCombinations.length}${coverageNotation} · método ${methodLabel} · origen ${externalSource.label}${filtersApplied ? &#x27; · filtros activos&#x27; : &#x27;&#x27;}`
+          : `C(${numbers.length},6,${guarantee},6,1)=${developmentReducedCombinations.length}${fixedNotation}${coverageNotation} · método ${methodLabel}${filtersApplied ? &#x27; · filtros activos&#x27; : &#x27;&#x27;}`;
+        developmentVerification.textContent = externalSource
+          ? `${verification.coveredTotal.toLocaleString(&#x27;es-ES&#x27;)} de ${conditionedEntries.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones del universo recibido cubiertas${filtersApplied ? &#x27; · garantía condicionada además a los filtros activos&#x27; : &#x27;&#x27;}`
+          : `${verification.coveredTotal.toLocaleString(&#x27;es-ES&#x27;)} de ${conditionedEntries.length.toLocaleString(&#x27;es-ES&#x27;)} casos ${fixedNumbers.length &gt; 0 ? &#x27;condicionados &#x27; : &#x27;&#x27;}cubiertos${filtersApplied ? &#x27; · garantía condicionada a los filtros activos&#x27; : &#x27;&#x27;}`;
         developmentOutput.hidden = false;
         renderDevelopmentResults();
         if (developmentPendingBreakdown) renderPendingDevelopmentBreakdown();
@@ -9609,17 +10920,22 @@ html&gt;body{padding:0}&lt;/style&gt;
           ? &#x27; El desglose detallado queda pendiente por el tamaño del cálculo; puedes solicitarlo voluntariamente desde el aviso mostrado bajo la reducción. La cobertura indicada sí ha sido comprobada.&#x27;
           : &#x27;&#x27;;
         setDevelopmentMessage(
-          fixedNumbers.length &gt; 0
+          externalSource
+            ? `Reducción del universo «${externalSource.label}» comprobada: cobertura real ${formatDevelopmentPercentage(verification.coveragePercentage)} para ${guarantee} aciertos cuando la combinación ganadora pertenece a las ${conditionedEntries.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones recibidas${filtersApplied ? &#x27; y cumple también los filtros activos&#x27; : &#x27;&#x27;}.${searchText}${breakdownText} El resultado conserva las condiciones de su zona de origen y es el mejor encontrado, no una prueba de mínimo absoluto.`
+            : fixedNumbers.length &gt; 0
             ? `Reducción condicionada comprobada: cobertura real ${formatDevelopmentPercentage(verification.coveragePercentage)} para ${guarantee} aciertos si los ${fixedNumbers.length} fijos están entre los 6 ganadores${filtersApplied ? &#x27; y el caso ganador cumple los filtros activos&#x27; : &#x27;&#x27;}.${searchText}${breakdownText} El resultado es el mejor encontrado, no una prueba de mínimo absoluto.`
             : `Reducción comprobada con cobertura real ${formatDevelopmentPercentage(verification.coveragePercentage)} para ${guarantee} aciertos si los 6 ganadores están entre los ${numbers.length} elegidos${filtersApplied ? &#x27; y cumplen los filtros activos&#x27; : &#x27;&#x27;}.${searchText}${breakdownText} El resultado es el mejor encontrado, no una prueba de mínimo absoluto.`
         );
-        summary.textContent = `Reducción C(${numbers.length},6,${guarantee},6,1) comprobada con ${developmentReducedCombinations.length} combinaciones y ${formatDevelopmentPercentage(verification.coveragePercentage)} de cobertura${fixedNumbers.length &gt; 0 || filtersApplied ? &#x27; condicionada&#x27; : &#x27;&#x27;}${filtersApplied ? &#x27; a los filtros activos&#x27; : &#x27;&#x27;}.`;
+        summary.textContent = externalSource
+          ? `Reducción de ${externalSource.label} comprobada con ${developmentReducedCombinations.length} combinaciones y ${formatDevelopmentPercentage(verification.coveragePercentage)} de cobertura condicionada al universo recibido${filtersApplied ? &#x27; y a los filtros activos&#x27; : &#x27;&#x27;}.`
+          : `Reducción C(${numbers.length},6,${guarantee},6,1) comprobada con ${developmentReducedCombinations.length} combinaciones y ${formatDevelopmentPercentage(verification.coveragePercentage)} de cobertura${fixedNumbers.length &gt; 0 || filtersApplied ? &#x27; condicionada&#x27; : &#x27;&#x27;}${filtersApplied ? &#x27; a los filtros activos&#x27; : &#x27;&#x27;}.`;
       } catch (error) {
         developmentReducedCombinations = [];
         developmentFullCombinations = [];
         developmentBreakdownData = { conditioned: [], general: [] };
         developmentPendingBreakdown = null;
         developmentGeneratedFixedNumbers = [];
+        developmentGeneratedExternalSourceLabel = &#x27;&#x27;;
         developmentBreakdownBody.replaceChildren();
         developmentOutput.hidden = true;
         setDevelopmentMessage(`No se ha podido generar la reducción: ${error.message}`, true);
@@ -9689,6 +11005,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           return developmentReducedCombinations.map((combination) =&gt; [...combination]);
         case &#x27;development&#x27;:
           return developmentFullCombinations.map((combination) =&gt; [...combination]);
+        case &#x27;digital&#x27;:
+          return digitalGeneratedCombinations.map((combination) =&gt; [...combination]);
         case &#x27;ticket&#x27;:
           return loadedTicketForScrutiny
             ? loadedTicketForScrutiny.combinations.map((combination) =&gt; [...combination])
@@ -9714,6 +11032,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           return &#x27;combinaciones de la reducción matemática&#x27;;
         case &#x27;development&#x27;:
           return &#x27;combinaciones del desarrollo completo&#x27;;
+        case &#x27;digital&#x27;:
+          return &#x27;combinaciones del desarrollo por suma digital posicional&#x27;;
         case &#x27;ticket&#x27;:
           return loadedTicketForScrutiny
             ? `combinaciones del boleto completo «${loadedTicketForScrutiny.name}»`
@@ -9743,6 +11063,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           return &#x27;Reducción matemática&#x27;;
         case &#x27;development&#x27;:
           return &#x27;Desarrollo completo&#x27;;
+        case &#x27;digital&#x27;:
+          return &#x27;Desarrollo por suma digital posicional&#x27;;
         case &#x27;ticket&#x27;:
           return loadedTicketForScrutiny
             ? `Mis boletos · ${loadedTicketForScrutiny.name}`
@@ -10174,6 +11496,19 @@ html&gt;body{padding:0}&lt;/style&gt;
     copyRandomButton.addEventListener(&#x27;click&#x27;, copyRandomCombinations);
     clearSavedButton.addEventListener(&#x27;click&#x27;, clearSavedCombinations);
     generateQrButton.addEventListener(&#x27;click&#x27;, generateQr);
+    reduceSavedButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+      const fromRules = savedOrigin === &#x27;rules&#x27;;
+      sendCombinationsToReducer(
+        savedCombinations,
+        {
+          key: fromRules ? &#x27;rules-saved&#x27; : &#x27;drum-saved&#x27;,
+          label: fromRules
+            ? &#x27;Generador con fijos y semifijos · combinaciones guardadas&#x27;
+            : &#x27;Bombo · combinaciones guardadas&#x27;
+        },
+        (message, isError = false) =&gt; setQrMessage(message, isError)
+      );
+    });
     generateTxtQrButton.addEventListener(&#x27;click&#x27;, generateTxtQr);
     closeQrButton.addEventListener(&#x27;click&#x27;, hideQr);
     qrPreviousButton.addEventListener(&#x27;click&#x27;, () =&gt; showQrPage(qrPageIndex - 1));
@@ -10212,14 +11547,118 @@ html&gt;body{padding:0}&lt;/style&gt;
     generateTicketButton.addEventListener(&#x27;click&#x27;, generateTicketFromRules);
     viewRuleCombinationsButton.addEventListener(&#x27;click&#x27;, showRuleGeneratedCombinations);
     copyRulesButton.addEventListener(&#x27;click&#x27;, copyRuleCombinations);
+    reduceRulesButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+      sendCombinationsToReducer(
+        ruleGeneratedCombinations,
+        {
+          key: &#x27;rules&#x27;,
+          label: &#x27;Generador con fijos y semifijos&#x27;
+        },
+        (message, isError = false) =&gt; setRuleMessage(message, isError)
+      );
+    });
     clearRulesButton.addEventListener(&#x27;click&#x27;, clearNumberRules);
     txtFileInput.addEventListener(&#x27;change&#x27;, loadTxtFile);
     pasteClipboardButton.addEventListener(&#x27;click&#x27;, pasteCombinationsFromClipboard);
     newlinePastedButton.addEventListener(&#x27;click&#x27;, insertPastedCombinationNewline);
     loadPastedButton.addEventListener(&#x27;click&#x27;, loadPastedCombinations);
+    reduceImportedButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+      const fromClipboard = importedSource === &#x27;clipboard&#x27;;
+      sendCombinationsToReducer(
+        importedCombinations,
+        {
+          key: fromClipboard ? &#x27;clipboard&#x27; : &#x27;file&#x27;,
+          label: fromClipboard
+            ? &#x27;Combinaciones pegadas desde el portapapeles&#x27;
+            : &#x27;Archivo TXT cargado&#x27;
+        },
+        (message, isError = false) =&gt; setTxtMessage(message, isError)
+      );
+    });
     pastedCombinationsInput.addEventListener(&#x27;input&#x27;, handlePastedCombinationsInput);
     pastedCombinationsInput.addEventListener(&#x27;paste&#x27;, handleManualCombinationPaste);
     clearTxtButton.addEventListener(&#x27;click&#x27;, clearTxtFile);
+    digitalPanel.addEventListener(&#x27;click&#x27;, (event) =&gt; {
+      const randomButton = event.target.closest(&#x27;#lottery-digital-randomize&#x27;);
+      if (randomButton) {
+        randomizeDigitalSelections();
+        return;
+      }
+
+      const selectColumnButton = event.target.closest(&#x27;[data-digital-select-column]&#x27;);
+      if (selectColumnButton) {
+        const column = Number(selectColumnButton.dataset.digitalSelectColumn);
+        digitalSelections[column] = new Set(
+          Array.from({ length: 9 }, (_, index) =&gt; index + 1)
+        );
+        invalidateDigitalDevelopment(
+          `Se han activado los nueve valores de ${DIGITAL_COLUMN_LABELS[column]}.`
+        );
+        return;
+      }
+
+      const valueButton = event.target.closest(&#x27;[data-digital-value]&#x27;);
+      if (!valueButton) return;
+      const column = Number(valueButton.dataset.digitalColumn);
+      const value = Number(valueButton.dataset.digitalValue);
+      if (digitalSelections[column].has(value)) {
+        digitalSelections[column].delete(value);
+      } else {
+        digitalSelections[column].add(value);
+      }
+      invalidateDigitalDevelopment(
+        `${DIGITAL_COLUMN_LABELS[column]} actualizado: ${digitalSelections[column].size} de 9 valores activos.`
+      );
+    });
+    digitalEquivalenceOptions.addEventListener(&#x27;click&#x27;, (event) =&gt; {
+      const button = event.target.closest(&#x27;[data-digital-equivalence]&#x27;);
+      if (!button || digitalBusy) return;
+      const value = Number(button.dataset.digitalEquivalence);
+      if (digitalEquivalenceSelections.has(value)) {
+        digitalEquivalenceSelections.delete(value);
+      } else {
+        digitalEquivalenceSelections.add(value);
+      }
+      invalidateDigitalDevelopment(
+        digitalEquivalenceSelections.size
+          ? `Equivalencias activas: ${DIGITAL_EQUIVALENCE_VALUES.filter((item) =&gt; digitalEquivalenceSelections.has(item)).join(&#x27;, &#x27;)}.`
+          : &#x27;No hay equivalencias activas. Selecciona al menos una.&#x27;
+      );
+    });
+    digitalSelectAllButton.addEventListener(&#x27;click&#x27;, () =&gt; setAllDigitalValues(true));
+    digitalClearSelectionButton.addEventListener(&#x27;click&#x27;, () =&gt; setAllDigitalValues(false));
+    digitalGenerateButton.addEventListener(&#x27;click&#x27;, generateDigitalDevelopment);
+    digitalCancelButton.addEventListener(&#x27;click&#x27;, cancelDigitalDevelopment);
+    digitalPreviousButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+      digitalPageIndex = Math.max(0, digitalPageIndex - 1);
+      renderDigitalResults();
+    });
+    digitalNextButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+      const pageTotal = Math.max(
+        1,
+        Math.ceil(digitalGeneratedCombinations.length / DIGITAL_PAGE_SIZE)
+      );
+      digitalPageIndex = Math.min(pageTotal - 1, digitalPageIndex + 1);
+      renderDigitalResults();
+    });
+    digitalCopyButton.addEventListener(&#x27;click&#x27;, copyDigitalDevelopment);
+    digitalQrButton.addEventListener(&#x27;click&#x27;, generateDigitalQr);
+    digitalReducerButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+      sendCombinationsToReducer(
+        digitalGeneratedCombinations,
+        {
+          key: &#x27;digital&#x27;,
+          label: &#x27;Desarrollo por suma digital posicional&#x27;
+        },
+        (message, isError = false) =&gt;
+          setDigitalMessage(message, isError ? &#x27;error&#x27; : &#x27;&#x27;)
+      );
+    });
+    digitalClearResultButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+      clearDigitalGeneratedResult(
+        &#x27;Se ha eliminado el desarrollo generado; la selección digital se conserva.&#x27;
+      );
+    });
     root.querySelectorAll(&#x27;.lottery-filter-source-button&#x27;).forEach((button) =&gt; {
       button.addEventListener(&#x27;click&#x27;, () =&gt; openFiltersForSource(button.dataset.filterSource));
     });
@@ -10251,6 +11690,16 @@ html&gt;body{padding:0}&lt;/style&gt;
     });
     filterCopyButton.addEventListener(&#x27;click&#x27;, copyFilteredCombinations);
     filterQrButton.addEventListener(&#x27;click&#x27;, generateFilteredQr);
+    filterReducerButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+      sendCombinationsToReducer(
+        filteredCombinations,
+        {
+          key: &#x27;filtered&#x27;,
+          label: filteredSourceDetails?.label ?? &#x27;Resultado de la zona de filtros&#x27;
+        },
+        (message, isError = false) =&gt; setFilterMessage(message, isError)
+      );
+    });
     filterScrutinyButton.addEventListener(&#x27;click&#x27;, sendFilteredToScrutinizer);
     developmentFilterModeSelect.addEventListener(&#x27;change&#x27;, () =&gt; {
       invalidateDevelopmentResults(
@@ -10401,6 +11850,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       if (!button) return;
       removeNumberRule(Number(button.dataset.removeRule));
     });
+    buildDigitalPanel();
+    clearDigitalGeneratedResult();
     buildFilterControls();
     loadFilterProfilesFromBrowser();
     renderFilterProfiles();
