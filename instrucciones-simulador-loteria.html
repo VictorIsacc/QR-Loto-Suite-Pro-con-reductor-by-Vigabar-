@@ -679,13 +679,14 @@
     <header class="hero">
       <p class="eyebrow">Guía rápida e ilustrada</p>
       <h1>QR Loto Suite</h1>
-      <p>Consulta cómo realizar sorteos, guardar combinaciones, trabajar con fijos y semifijos, crear desarrollos o reducciones, generar códigos QR, conservar boletos completos y usar el escrutador.</p>
+      <p>Consulta cómo realizar sorteos, guardar combinaciones, configurar filtros, trabajar con fijos y semifijos, crear desarrollos o reducciones, generar códigos QR, conservar boletos completos y usar el escrutador.</p>
     </header>
 
     <nav class="jump-nav" aria-label="Índice de instrucciones">
       <a class="jump-link" href="#sorteo">Sorteo</a>
       <a class="jump-link" href="#qr">Combinaciones y QR</a>
       <a class="jump-link" href="#reglas">Fijos y semifijos</a>
+      <a class="jump-link" href="#filtros">Filtros</a>
       <a class="jump-link" href="#reducciones">Desarrollos y reducciones</a>
       <a class="jump-link" href="#portapapeles">TXT y portapapeles</a>
       <a class="jump-link" href="#boletos">Mis boletos</a>
@@ -693,7 +694,7 @@
       <a class="jump-link" href="#movil">Uso móvil</a>
     </nav>
 
-    <p class="final-note">En la aplicación, la barra <strong>«Acceso rápido»</strong> permite ir directamente a las zonas principales y abrir estas instrucciones. Al final de cada zona encontrarás <strong>«↑ Volver al inicio»</strong> para regresar a esa barra.</p>
+    <p class="final-note">En la aplicación, la barra <strong>«Acceso rápido»</strong> permite ir directamente a las zonas principales y abrir estas instrucciones. «Filtros» aparece justo después de «Instrucciones». El aviso de novedad situado bajo la cabecera se recoge automáticamente después de 15 segundos para despejar la pantalla. Al final de cada zona encontrarás <strong>«↑ Volver al inicio»</strong>.</p>
 
     <section class="guide-card" id="sorteo">
       <div class="illustration" aria-label="Ilustración del bombo extrayendo seis bolas y ordenándolas">
@@ -718,6 +719,7 @@
           <li>Pulsa <strong>«Extraer bola»</strong>. El bombo gira y mezcla las bolas antes de cada extracción.</li>
           <li>Repite hasta obtener las seis bolas. Ningún número puede repetirse.</li>
           <li>La aplicación muestra el orden de salida y la combinación ordenada de menor a mayor.</li>
+          <li>En <strong>«Al guardar»</strong> decide si aceptas cualquier combinación o si debe cumplir todos los filtros activos.</li>
           <li>Pulsa <strong>«Guardar combinación»</strong> si quieres conservarla. Si todavía quedan huecos en el boleto, <strong>«Nuevo sorteo»</strong> quedará resaltado para preparar la siguiente.</li>
           <li>En teléfonos, pulsa <strong>«Ver combinaciones guardadas»</strong> para bajar directamente desde el bombo hasta la lista.</li>
         </ol>
@@ -758,7 +760,7 @@
           <li>En La Primitiva también debes comprobar el reintegro y activar o desactivar Joker. Su logotipo rojo aparecerá junto al de La Primitiva únicamente cuando el QR incluya Joker.</li>
           <li>En <strong>«Coste del boleto o QR»</strong> puedes mostrar u ocultar el cálculo estimado. La configuración central anticipa el coste total antes de confirmar.</li>
           <li>Pulsa <strong>«Confirmar y generar QR»</strong>. Solo entonces se crean los códigos y la aplicación se desplaza automáticamente hasta el primero; utiliza «Anterior» y «Siguiente» cuando haya más de uno.</li>
-          <li>En el panel de los QR se muestra la <strong>procedencia de las combinaciones</strong>: bombo, fijos y semifijos, archivo TXT, portapapeles, desarrollo completo o reducción.</li>
+          <li>En el panel de los QR se muestra la <strong>procedencia de las combinaciones</strong>: bombo, fijos y semifijos, archivo TXT, portapapeles, desarrollo completo, reducción o resultado de la zona de filtros.</li>
           <li>En <strong>«Conservar este boleto completo»</strong> puedes ponerle un nombre, guardarlo en «Mis boletos», copiarlo o descargar una copia TXT.</li>
           <li>El boleto completo conserva las apuestas, todos sus QR, modalidad, periodo, reintegro, Joker y procedencia; no es lo mismo que copiar únicamente las combinaciones.</li>
         </ol>
@@ -794,11 +796,51 @@
           <li>Indica cuántas combinaciones deseas generar.</li>
           <li>Un <strong>fijo</strong> aparece en todas; un <strong>semifijo</strong> aparece exactamente las veces indicadas.</li>
           <li>Comprueba el contador: las posiciones «Por cubrir» se completarán con números aleatorios.</li>
+          <li>En <strong>«Generación»</strong> elige «Sin filtros» o «Aplicar filtros activos».</li>
           <li>Pulsa <strong>«Generar»</strong>. El programa prueba distintos repartos para evitar combinaciones repetidas.</li>
           <li>Pulsa <strong>«Ver combinaciones generadas»</strong> para desplazarte directamente hasta la lista donde se han almacenado.</li>
           <li>Usa <strong>«Copiar fijos/semifijos»</strong> para llevar todas las combinaciones al portapapeles.</li>
         </ol>
         <div class="tip">Si aparecen posiciones sobrantes o no existen suficientes combinaciones distintas, reduce fijos, apariciones o la cantidad solicitada.</div>
+      </div>
+    </section>
+
+    <section class="guide-card" id="filtros">
+      <div class="illustration" aria-label="Ilustración de varios filtros aplicados a una lista de combinaciones">
+        <div class="mini-title"><span>Filtros activos</span><span>Una configuración común</span></div>
+        <div class="position-board">
+          <div class="rules" aria-hidden="true">
+            <div class="rule-chip"><strong>1</strong>Bajos y altos</div>
+            <div class="rule-chip"><strong>2</strong>Decenas</div>
+            <div class="rule-chip"><strong>5</strong>Raíces digitales</div>
+            <div class="rule-chip"><strong>6</strong>Pares e impares</div>
+            <div class="rule-chip"><strong>8</strong>Sumas</div>
+            <div class="rule-chip"><strong>9</strong>Terminaciones</div>
+          </div>
+          <div class="position-track" aria-hidden="true"><span class="fixed" style="width:72%"></span><span class="random" style="width:28%"></span></div>
+          <div class="position-values">
+            <div><small>Entrada</small><strong>120</strong></div>
+            <div><small>Cumplen</small><strong>86</strong></div>
+            <div><small>Eliminadas</small><strong>34</strong></div>
+            <div><small>Salida</small><strong>QR</strong></div>
+          </div>
+        </div>
+      </div>
+      <div class="copy">
+        <span class="step-number">4</span>
+        <h2>Configurar y aplicar filtros</h2>
+        <ol class="steps">
+          <li>Entra en <strong>«Filtros»</strong> desde el segundo botón del acceso rápido y configura los criterios una sola vez.</li>
+          <li>Activa únicamente las tarjetas que quieras exigir. Se incluyen bajos/altos, decenas y figuras, distancias, grupos de números, raíces digitales y figuras, pares/impares, números seguidos, rangos de sumas, terminaciones y figuras, y posiciones.</li>
+          <li>En <strong>«Grupos de números»</strong> puedes definir hasta 10 grupos. Escribe un rango con un guion entre el número menor y el mayor —por ejemplo, <strong>1-9</strong>— y separa los números sueltos mediante espacios o comas —por ejemplo, <strong>3, 12 27</strong>—.</li>
+          <li>En <strong>«Mis configuraciones de filtros»</strong> escribe un nombre y pulsa <strong>«Guardar configuración»</strong>. Puedes conservar varias plantillas; si vuelves a guardar con el mismo nombre, se actualizará la existente.</li>
+          <li>Para recuperar una plantilla, selecciónala y pulsa <strong>«Cargar»</strong>. Sus valores y filtros activos volverán al panel; después podrás aplicarlos a cualquier procedencia. «Eliminar» requiere una segunda pulsación de confirmación.</li>
+          <li>En el bombo, fijos/semifijos, TXT/portapapeles y desarrollos/reducciones utiliza su selector para trabajar <strong>con los filtros activos o sin ellos</strong>.</li>
+          <li>También puedes filtrar después una lista ya creada mediante los botones «Filtrar» de cada zona. La cabecera de filtros muestra siempre la <strong>procedencia seleccionada</strong> y la cantidad de combinaciones disponibles.</li>
+          <li>Pulsa <strong>«Aplicar filtros»</strong>. Se mostrará cuántas combinaciones elimina cada criterio y una lista paginada de las que cumplen todos.</li>
+          <li>El resultado filtrado puede copiarse, enviarse a la configuración QR o llevarse directamente al escrutador; su procedencia seguirá identificada.</li>
+        </ol>
+        <div class="tip"><strong>Importante:</strong> las configuraciones se guardan localmente en el navegador y siguen disponibles al volver a abrir la aplicación, pero pueden perderse al borrar sus datos, usar navegación privada, cambiar de navegador o utilizar otro dispositivo. Si aplicas filtros durante una reducción, la cobertura y el desglose se calculan sobre los casos que cumplen esos filtros. La aplicación lo identifica como <strong>«garantía condicionada a los filtros activos»</strong>; no debe interpretarse como garantía sobre todos los casos del desarrollo original. Para evitar bloqueos, el filtrado posterior admite como máximo 200.000 combinaciones en móvil y 1.000.000 en ordenador.</div>
       </div>
     </section>
 
@@ -821,12 +863,13 @@
         </div>
       </div>
       <div class="copy">
-        <span class="step-number">4</span>
+        <span class="step-number">6</span>
         <h2>Crear un desarrollo completo o una reducción</h2>
         <ol class="steps">
           <li>Selecciona manualmente entre <strong>7 y 49 números</strong>, o indica la cantidad y pulsa <strong>«Seleccionar aleatoriamente»</strong>.</li>
           <li>Cada número tiene tres estados: primer toque, seleccionado; segundo toque, <strong>fijo</strong>; tercer toque, eliminado. Puedes marcar hasta 5 fijos, que aparecerán en todas las apuestas.</li>
           <li>Marca uno de los dos modos excluyentes: <strong>«Reducción»</strong> o <strong>«Desarrollo completo»</strong>.</li>
+          <li>En <strong>«Uso de los filtros configurados»</strong> decide si el cálculo debe respetar los filtros activos.</li>
           <li>Pulsa <strong>«Calcular»</strong>; el mismo botón genera el desarrollo completo o busca la reducción según el modo seleccionado.</li>
           <li>Antes de generar se muestra el total exacto de casos, la carga estimada y si el cálculo es viable en el navegador. Si existen fijos, solo se desarrollan las apuestas que los contienen.</li>
           <li>En «Reducción», elige T=5, 4, 3 o 2 y el método. K=6, M=6 y L=1 permanecen fijos.</li>
@@ -834,6 +877,7 @@
           <li>Con ciclos, observa el menor B y pulsa <strong>«Detener ciclos»</strong> cuando quieras conservarlo. «Aleatorio · un solo intento» ofrece un resultado más rápido.</li>
           <li>En las reducciones, consulta el <strong>desglose por categorías</strong> para conocer la cobertura acumulada y los premios posibles de 6, 5, 4, 3, 2, 1 o 0 aciertos. Si el sistema es extraordinariamente grande, se muestra un aviso con los casos, apuestas y comparaciones estimadas. Desde ese aviso puedes solicitar voluntariamente el desglose completo o cancelar el cálculo sin perder la reducción.</li>
           <li>Cuando hay fijos puedes alternar entre el <strong>desglose condicionado</strong>, que supone acertados todos los fijos, y el <strong>desglose general</strong> sobre todos los posibles resultados, siempre que el tamaño permita calcular ambos con seguridad.</li>
+          <li>Si hay filtros activos, la notación, la verificación y los mensajes indican que la garantía y el desglose están condicionados por esos filtros.</li>
           <li>Después puedes copiar el resultado, generar sus QR o seleccionarlo como origen en el escrutador.</li>
           <li>Pulsa <strong>«Limpiar generador»</strong> para borrar a la vez los números seleccionados y cualquier reducción o desarrollo generado.</li>
         </ol>
@@ -873,6 +917,7 @@
         <ol class="steps">
           <li>Puedes seleccionar un archivo TXT o pegar las combinaciones directamente.</li>
           <li>Escribe los seis números de cada apuesta en una misma línea, separados por espacios, comas u otros separadores.</li>
+          <li>En <strong>«Al cargar las combinaciones»</strong> decide si quieres conservar todas las válidas o aceptar únicamente las que cumplan los filtros activos.</li>
           <li>Pulsa <strong>«Cargar texto pegado»</strong> para guardarlas temporalmente en la memoria de la aplicación.</li>
           <li>Pulsa <strong>«Preparar QR de las combinaciones»</strong>, revisa la modalidad y los demás datos en la configuración central y termina con <strong>«Confirmar y generar QR»</strong>.</li>
         </ol>
@@ -896,7 +941,7 @@
         </div>
       </div>
       <div class="copy">
-        <span class="step-number">6</span>
+        <span class="step-number">7</span>
         <h2>Guardar, recuperar y escrutar boletos completos</h2>
         <ol class="steps">
           <li>Después de generar los QR, escribe un nombre y pulsa <strong>«Guardar en Mis boletos»</strong>. Quedará almacenado en ese navegador.</li>
@@ -927,11 +972,11 @@
         </div>
       </div>
       <div class="copy">
-        <span class="step-number">7</span>
+        <span class="step-number">8</span>
         <h2>Escrutar las combinaciones</h2>
         <ol class="steps">
           <li>Consulta en LAE los seis números oficiales, el complementario y, para La Primitiva, el reintegro.</li>
-          <li>Selecciona la modalidad y el origen: aleatorias, fijos/semifijos, importadas, reducción, desarrollo completo o un boleto cargado desde «Mis boletos».</li>
+          <li>Selecciona la modalidad y el origen: aleatorias, fijos/semifijos, importadas, reducción, desarrollo completo, <strong>resultado filtrado</strong> o un boleto cargado desde «Mis boletos».</li>
           <li>Introduce los datos oficiales y pulsa <strong>«Escrutar combinaciones»</strong>.</li>
           <li>Al finalizar se muestran claramente la <strong>modalidad escrutada</strong> y la <strong>procedencia de las combinaciones</strong> utilizadas.</li>
           <li>El resumen separa 5 aciertos de 5 + complementario y 6 de 6 + reintegro.</li>
@@ -964,7 +1009,7 @@
         </div>
       </div>
       <div class="copy">
-        <span class="step-number">8</span>
+        <span class="step-number">9</span>
         <h2>Consejos para usarla en el móvil</h2>
         <ol class="steps">
           <li>Abre el archivo desde Chrome u otro navegador moderno.</li>
@@ -972,6 +1017,7 @@
           <li>Para trasladar un boleto con reintegro y QR, copia el <strong>boleto completo</strong> y recupéralo en «Mis boletos»; no pegues solo sus seis números.</li>
           <li>Si el teclado no muestra Enter, utiliza el botón <strong>«Nueva línea»</strong>.</li>
           <li>Desliza horizontalmente la barra <strong>«Acceso rápido»</strong> y utiliza <strong>«↑ Volver al inicio»</strong> para regresar a ella.</li>
+          <li>El aviso de la novedad de filtros desaparece a los 15 segundos para devolver ese espacio a la aplicación.</li>
           <li>Mantén el HTML principal y este archivo de instrucciones en la misma carpeta.</li>
         </ol>
       </div>

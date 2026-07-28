@@ -44,7 +44,7 @@
 <style>
 :root{color-scheme:light dark;background:light-dark(rgb(255 255 255),rgb(24 24 24))}
 html,body{margin:0;min-height:100%}
-body{box-sizing:border-box;height:100vh;height:100dvh;padding:clamp(.25rem,1vw,1rem);display:grid;grid-template-rows:auto minmax(0,1fr);gap:clamp(.3rem,.7vw,.7rem);overflow:hidden;background:inherit}
+body{box-sizing:border-box;height:100vh;height:100dvh;padding:clamp(.25rem,1vw,1rem);display:grid;grid-template-rows:auto auto minmax(0,1fr);gap:clamp(.3rem,.7vw,.7rem);overflow:hidden;background:inherit}
 .loto-suite-header{box-sizing:border-box;width:100%;max-width:1800px;height:clamp(96px,9vw,144px);margin:0 auto;position:relative;overflow:hidden;border:1px solid rgb(77 190 255 / 28%);border-radius:clamp(14px,1.4vw,22px);background:#061127 url("cabecera-circuitos-loto-suite.webp") center/cover no-repeat;box-shadow:0 8px 28px rgb(0 15 42 / 32%)}
 .loto-suite-header::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgb(1 10 28 / 8%),rgb(5 16 42 / 34%) 34%,rgb(5 15 38 / 32%) 66%,rgb(14 4 31 / 10%));pointer-events:none}
 .loto-suite-brand{position:relative;z-index:1;height:100%;display:flex;align-items:center;justify-content:center;gap:clamp(.7rem,1.7vw,1.45rem);padding:clamp(.45rem,.8vw,.8rem) clamp(.75rem,2.5vw,2.5rem)}
@@ -54,9 +54,14 @@ body{box-sizing:border-box;height:100vh;height:100dvh;padding:clamp(.25rem,1vw,1
 .loto-suite-by{justify-self:start;margin:.35rem 0 0 82%;color:#9fc9dc;font:500 clamp(.86rem,1.35vw,1.25rem)/1.05 "Segoe UI",Arial,sans-serif;letter-spacing:.035em;white-space:nowrap}
 .loto-suite-by strong{color:#2eddf4;font-size:1.22em;text-shadow:0 0 10px rgb(46 221 244 / 45%)}
 .loto-suite-by sup{position:relative;top:-.34em;margin-left:.08em;color:#70eaff;font-size:.5em}
+.loto-suite-new{box-sizing:border-box;width:100%;max-width:1800px;max-height:5rem;margin:0 auto;padding:clamp(.45rem,.8vw,.7rem) clamp(.65rem,1.6vw,1.2rem);display:flex;align-items:center;justify-content:center;gap:.65rem;overflow:hidden;border:1px solid light-dark(rgb(217 119 6 / 55%),rgb(251 191 36 / 62%));border-radius:clamp(10px,1vw,15px);color:light-dark(#8a4b04,#ffd36a);background:light-dark(rgb(255 247 225 / 94%),rgb(70 42 7 / 72%));font:750 clamp(.78rem,1.05vw,.98rem)/1.3 "Segoe UI",Arial,sans-serif;text-align:center;box-shadow:0 0 0 rgb(245 158 11 / 0%);animation:loto-suite-new-pulse 1.55s ease-in-out infinite alternate;transition:max-height .32s ease,margin .32s ease,padding .32s ease,border-width .32s ease,opacity .22s ease}
+.loto-suite-new.is-hidden{max-height:0;margin-block:calc(clamp(.3rem,.7vw,.7rem) * -.5);padding-block:0;border-width:0;opacity:0;animation:none;pointer-events:none}
+.loto-suite-new strong{flex:0 0 auto;padding:.2rem .48rem;border-radius:999px;color:#111827;background:#fbbf24;font-size:.68em;font-weight:900;letter-spacing:.07em}
+@keyframes loto-suite-new-pulse{from{border-color:light-dark(rgb(217 119 6 / 42%),rgb(251 191 36 / 45%));box-shadow:0 0 0 rgb(245 158 11 / 0%);opacity:.84}to{border-color:#fbbf24;box-shadow:0 0 15px rgb(245 158 11 / 24%);opacity:1}}
 iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin:0 auto;border:0}
-@media(max-width:600px){body{padding:.25rem;gap:.25rem}.loto-suite-header{height:88px;border-radius:14px}.loto-suite-brand{gap:.55rem;padding:.35rem .55rem}.loto-suite-logo{width:64px;height:64px;border-radius:18%}.loto-suite-title{font-size:clamp(1.12rem,6.2vw,1.72rem);letter-spacing:.01em}.loto-suite-by{justify-self:end;margin:.25rem .15rem 0 0;font-size:.72rem}}
+@media(max-width:600px){body{padding:.25rem;gap:.25rem}.loto-suite-header{height:88px;border-radius:14px}.loto-suite-brand{gap:.55rem;padding:.35rem .55rem}.loto-suite-logo{width:64px;height:64px;border-radius:18%}.loto-suite-title{font-size:clamp(1.12rem,6.2vw,1.72rem);letter-spacing:.01em}.loto-suite-by{justify-self:end;margin:.25rem .15rem 0 0;font-size:.72rem}.loto-suite-new{padding:.42rem .55rem;gap:.45rem;border-radius:10px;font-size:.72rem}}
 @media(max-width:370px){.loto-suite-logo{width:56px;height:56px}.loto-suite-title{font-size:1.05rem}.loto-suite-by{font-size:.67rem}}
+@media(prefers-reduced-motion:reduce){.loto-suite-new{animation:none}}
 </style>
 </head>
 <body>
@@ -69,6 +74,17 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
     </div>
   </div>
 </header>
+<div class="loto-suite-new" role="status">
+  <strong>NUEVO</strong>
+  Ya puedes configurar filtros y decidir en cada generador si calcular con ellos o sin ellos.
+</div>
+<script>
+window.setTimeout(() => {
+  const notice = document.querySelector('.loto-suite-new');
+  if (!notice) return;
+  notice.classList.add('is-hidden');
+}, 15000);
+</script>
 <iframe sandbox="allow-scripts allow-same-origin allow-downloads allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer" title="QR Loto Suite by Vigabar®" srcdoc="&lt;!doctype html&gt;
 &lt;html lang=&quot;es&quot;&gt;
 &lt;head&gt;
@@ -889,6 +905,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;span class=&quot;lottery-quick-nav-label&quot;&gt;Acceso rápido&lt;/span&gt;
     &lt;div class=&quot;lottery-quick-links&quot;&gt;
       &lt;a class=&quot;lottery-quick-link is-help&quot; id=&quot;lottery-instructions&quot; href=&quot;instrucciones-simulador-loteria.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Instrucciones&lt;/a&gt;
+      &lt;a class=&quot;lottery-quick-link is-new&quot; href=&quot;#lottery-filters-section&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;NUEVO&lt;/span&gt; Filtros&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-sorteo-section&quot;&gt;Sorteo&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-rules-section&quot;&gt;Fijos y semifijos&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-txt-section&quot;&gt;TXT y portapapeles&lt;/a&gt;
@@ -936,7 +953,15 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-draw&quot; type=&quot;button&quot;&gt;Extraer bola · 1 de 6&lt;/button&gt;
         &lt;button class=&quot;btn&quot; id=&quot;lottery-save&quot; type=&quot;button&quot; disabled&gt;Guardar combinación&lt;/button&gt;
         &lt;button class=&quot;btn&quot; id=&quot;lottery-copy-random&quot; type=&quot;button&quot; disabled&gt;Copiar combinaciones aleatorias&lt;/button&gt;
+        &lt;button class=&quot;btn lottery-filter-source-button&quot; id=&quot;lottery-filter-current&quot; type=&quot;button&quot; data-filter-source=&quot;current&quot; disabled&gt;Filtrar combinación actual&lt;/button&gt;
         &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-reset&quot; type=&quot;button&quot;&gt;Nuevo sorteo&lt;/button&gt;
+        &lt;label class=&quot;form-label zone-filter-mode&quot; for=&quot;lottery-draw-filter-mode&quot;&gt;
+          Al guardar
+          &lt;select class=&quot;form-select&quot; id=&quot;lottery-draw-filter-mode&quot;&gt;
+            &lt;option value=&quot;off&quot; selected&gt;Sin filtros&lt;/option&gt;
+            &lt;option value=&quot;active&quot;&gt;Exigir filtros activos&lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/label&gt;
         &lt;a class=&quot;btn lottery-mobile-saved-link&quot; href=&quot;#lottery-saved-section&quot; aria-label=&quot;Ver las combinaciones guardadas&quot;&gt;Ver combinaciones guardadas&lt;/a&gt;
       &lt;/div&gt;
       &lt;div class=&quot;lottery-back-row&quot;&gt;
@@ -1011,6 +1036,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
       &lt;div class=&quot;viz-controls saved-controls&quot;&gt;
         &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-generate-qr&quot; type=&quot;button&quot;&gt;Preparar QR&lt;/button&gt;
+        &lt;button class=&quot;btn lottery-filter-source-button&quot; id=&quot;lottery-filter-saved&quot; type=&quot;button&quot; data-filter-source=&quot;random&quot; disabled&gt;Filtrar guardadas&lt;/button&gt;
         &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-clear-saved&quot; type=&quot;button&quot; disabled&gt;Vaciar lista&lt;/button&gt;
       &lt;/div&gt;
       &lt;div class=&quot;lottery-back-row&quot;&gt;
@@ -1032,6 +1058,13 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;label class=&quot;form-label rule-total-label&quot; for=&quot;lottery-rule-total&quot;&gt;
           Cantidad de combinaciones · de 1 a 100
           &lt;input class=&quot;form-control&quot; id=&quot;lottery-rule-total&quot; type=&quot;number&quot; inputmode=&quot;numeric&quot; min=&quot;1&quot; max=&quot;100&quot; step=&quot;1&quot; value=&quot;8&quot; autocomplete=&quot;off&quot;&gt;
+        &lt;/label&gt;
+        &lt;label class=&quot;form-label zone-filter-mode&quot; for=&quot;lottery-rules-filter-mode&quot;&gt;
+          Generación
+          &lt;select class=&quot;form-select&quot; id=&quot;lottery-rules-filter-mode&quot;&gt;
+            &lt;option value=&quot;off&quot; selected&gt;Sin filtros&lt;/option&gt;
+            &lt;option value=&quot;active&quot;&gt;Aplicar filtros activos&lt;/option&gt;
+          &lt;/select&gt;
         &lt;/label&gt;
 
         &lt;div class=&quot;rule-position-summary&quot; id=&quot;lottery-rule-position-summary&quot; aria-live=&quot;polite&quot;&gt;
@@ -1077,6 +1110,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-generate-ticket&quot; type=&quot;button&quot; disabled&gt;Generar 8 combinaciones&lt;/button&gt;
           &lt;button class=&quot;btn&quot; id=&quot;lottery-view-rule-combinations&quot; type=&quot;button&quot; disabled&gt;Ver combinaciones generadas&lt;/button&gt;
           &lt;button class=&quot;btn&quot; id=&quot;lottery-copy-rules&quot; type=&quot;button&quot; disabled&gt;Copiar fijos/semifijos&lt;/button&gt;
+          &lt;button class=&quot;btn lottery-filter-source-button&quot; id=&quot;lottery-filter-rules&quot; type=&quot;button&quot; data-filter-source=&quot;rules&quot; disabled&gt;Filtrar estas combinaciones&lt;/button&gt;
           &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-clear-rules&quot; type=&quot;button&quot; disabled&gt;Quitar reglas&lt;/button&gt;
         &lt;/div&gt;
         &lt;div class=&quot;lottery-back-row&quot;&gt;
@@ -1096,6 +1130,13 @@ html&gt;body{padding:0}&lt;/style&gt;
           O pega aquí las combinaciones
           &lt;textarea class=&quot;form-control&quot; id=&quot;lottery-pasted-combinations&quot; rows=&quot;5&quot; inputmode=&quot;text&quot; enterkeyhint=&quot;enter&quot; autocapitalize=&quot;off&quot; autocomplete=&quot;off&quot; spellcheck=&quot;false&quot; placeholder=&quot;07 12 23 31 38 46&amp;#10;09 18 24 27 35 44&quot;&gt;&lt;/textarea&gt;
         &lt;/label&gt;
+        &lt;label class=&quot;form-label zone-filter-mode&quot; for=&quot;lottery-txt-filter-mode&quot;&gt;
+          Al cargar las combinaciones
+          &lt;select class=&quot;form-select&quot; id=&quot;lottery-txt-filter-mode&quot;&gt;
+            &lt;option value=&quot;off&quot; selected&gt;Conservar todas&lt;/option&gt;
+            &lt;option value=&quot;active&quot;&gt;Aplicar filtros activos&lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/label&gt;
 
         &lt;div class=&quot;viz-controls bulk-controls clipboard-controls&quot;&gt;
           &lt;button class=&quot;btn&quot; id=&quot;lottery-paste-clipboard&quot; type=&quot;button&quot;&gt;Pegar o añadir desde el portapapeles&lt;/button&gt;
@@ -1107,6 +1148,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
         &lt;div class=&quot;viz-controls bulk-controls&quot;&gt;
           &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-generate-txt-qr&quot; type=&quot;button&quot; disabled&gt;Preparar QR de las combinaciones&lt;/button&gt;
+          &lt;button class=&quot;btn lottery-filter-source-button&quot; id=&quot;lottery-filter-imported&quot; type=&quot;button&quot; data-filter-source=&quot;imported&quot; disabled&gt;Filtrar combinaciones cargadas&lt;/button&gt;
           &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-clear-txt&quot; type=&quot;button&quot; disabled&gt;Borrar combinaciones&lt;/button&gt;
         &lt;/div&gt;
         &lt;div class=&quot;lottery-back-row&quot;&gt;
@@ -1164,6 +1206,14 @@ html&gt;body{padding:0}&lt;/style&gt;
             &lt;span&gt;&lt;strong&gt;Desarrollo completo&lt;/strong&gt;&lt;small&gt;Genera todas las combinaciones posibles.&lt;/small&gt;&lt;/span&gt;
           &lt;/label&gt;
         &lt;/fieldset&gt;
+
+        &lt;label class=&quot;form-label zone-filter-mode&quot; for=&quot;lottery-development-filter-mode&quot;&gt;
+          Uso de los filtros configurados
+          &lt;select class=&quot;form-select&quot; id=&quot;lottery-development-filter-mode&quot;&gt;
+            &lt;option value=&quot;off&quot; selected&gt;Calcular sin filtros&lt;/option&gt;
+            &lt;option value=&quot;active&quot;&gt;Calcular con filtros activos&lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/label&gt;
 
         &lt;label class=&quot;form-label&quot; id=&quot;lottery-development-guarantee-wrap&quot; for=&quot;lottery-development-guarantee&quot;&gt;
           Garantía T
@@ -1286,12 +1336,213 @@ html&gt;body{padding:0}&lt;/style&gt;
 
       &lt;div class=&quot;viz-controls development-actions&quot;&gt;
         &lt;button class=&quot;btn&quot; id=&quot;lottery-development-copy&quot; type=&quot;button&quot;&gt;Copiar resultado&lt;/button&gt;
+        &lt;button class=&quot;btn lottery-filter-source-button&quot; id=&quot;lottery-filter-development&quot; type=&quot;button&quot; data-filter-source=&quot;development&quot;&gt;Filtrar resultado&lt;/button&gt;
         &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-development-qr&quot; type=&quot;button&quot;&gt;Preparar QR del resultado&lt;/button&gt;
         &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-development-clear-output&quot; type=&quot;button&quot;&gt;Limpiar generador&lt;/button&gt;
       &lt;/div&gt;
     &lt;/div&gt;
     &lt;div class=&quot;lottery-back-row&quot;&gt;
       &lt;a class=&quot;lottery-back-top&quot; href=&quot;#lottery-app-top&quot; aria-label=&quot;Volver al inicio desde Desarrollos y reducciones&quot;&gt;↑ Volver al inicio&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;filters-area card lottery-jump-target&quot; id=&quot;lottery-filters-section&quot; aria-labelledby=&quot;lottery-filters-label&quot; tabindex=&quot;-1&quot;&gt;
+    &lt;div class=&quot;lottery-section-label filters-heading&quot;&gt;
+      &lt;div&gt;
+        &lt;h2 id=&quot;lottery-filters-label&quot;&gt;Filtros de combinaciones&lt;/h2&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;Selecciona la procedencia, activa los criterios que necesites y conserva únicamente las combinaciones que los cumplen.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-filter-result-count&quot;&gt;0 resultantes&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;filter-source-layout&quot;&gt;
+      &lt;label class=&quot;form-label&quot; for=&quot;lottery-filter-source&quot;&gt;
+        Combinaciones que se van a filtrar
+        &lt;select class=&quot;form-select&quot; id=&quot;lottery-filter-source&quot;&gt;
+          &lt;option value=&quot;current&quot;&gt;Bombo · combinación extraída actual&lt;/option&gt;
+          &lt;option value=&quot;random&quot;&gt;Bombo · combinaciones guardadas&lt;/option&gt;
+          &lt;option value=&quot;rules&quot;&gt;Generador con fijos y semifijos&lt;/option&gt;
+          &lt;option value=&quot;imported&quot;&gt;Archivo TXT o texto pegado&lt;/option&gt;
+          &lt;option value=&quot;reduced&quot;&gt;Reducción matemática generada&lt;/option&gt;
+          &lt;option value=&quot;development&quot;&gt;Desarrollo completo generado&lt;/option&gt;
+          &lt;option value=&quot;ticket&quot;&gt;Boleto completo de «Mis boletos»&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/label&gt;
+      &lt;div class=&quot;filter-source-summary&quot; id=&quot;lottery-filter-source-summary&quot; data-source=&quot;current&quot; aria-live=&quot;polite&quot;&gt;
+        &lt;span&gt;Procedencia seleccionada&lt;/span&gt;
+        &lt;strong id=&quot;lottery-filter-source-name&quot;&gt;Bombo · combinación extraída actual&lt;/strong&gt;
+        &lt;small id=&quot;lottery-filter-source-description&quot;&gt;Todavía no hay una combinación completa para filtrar.&lt;/small&gt;
+        &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-filter-source-count&quot;&gt;0 combinaciones&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;filter-profile-panel&quot; aria-labelledby=&quot;lottery-filter-profile-label&quot;&gt;
+      &lt;div class=&quot;filter-profile-heading&quot;&gt;
+        &lt;div&gt;
+          &lt;strong id=&quot;lottery-filter-profile-label&quot;&gt;Mis configuraciones de filtros&lt;/strong&gt;
+          &lt;small&gt;Guarda los criterios actuales con un nombre para recuperarlos en otra ocasión.&lt;/small&gt;
+        &lt;/div&gt;
+        &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-filter-profile-count&quot;&gt;0 guardadas&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;filter-profile-fields&quot;&gt;
+        &lt;label class=&quot;form-label&quot; for=&quot;lottery-filter-profile-name&quot;&gt;
+          Nombre de la configuración
+          &lt;input class=&quot;form-control&quot; id=&quot;lottery-filter-profile-name&quot; type=&quot;text&quot; maxlength=&quot;60&quot; autocomplete=&quot;off&quot; placeholder=&quot;Ejemplo: Equilibrada 3 pares&quot;&gt;
+        &lt;/label&gt;
+        &lt;label class=&quot;form-label&quot; for=&quot;lottery-filter-profile-select&quot;&gt;
+          Configuración guardada
+          &lt;select class=&quot;form-select&quot; id=&quot;lottery-filter-profile-select&quot;&gt;
+            &lt;option value=&quot;&quot;&gt;Selecciona una configuración&lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/label&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;viz-controls filter-profile-actions&quot;&gt;
+        &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-filter-profile-save&quot; type=&quot;button&quot;&gt;Guardar configuración&lt;/button&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-filter-profile-load&quot; type=&quot;button&quot; disabled&gt;Cargar&lt;/button&gt;
+        &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-filter-profile-delete&quot; type=&quot;button&quot; disabled&gt;Eliminar&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;p class=&quot;filter-profile-message text-muted&quot; id=&quot;lottery-filter-profile-message&quot; aria-live=&quot;polite&quot;&gt;Las configuraciones se conservan localmente en este navegador.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;filter-grid&quot; id=&quot;lottery-filter-grid&quot;&gt;
+      &lt;details class=&quot;filter-card&quot; data-filter-card=&quot;low-high&quot;&gt;
+        &lt;summary&gt;&lt;span class=&quot;filter-number&quot;&gt;1&lt;/span&gt;&lt;strong&gt;Bajos y altos&lt;/strong&gt;&lt;span class=&quot;filter-eliminated&quot; data-filter-eliminated=&quot;low-high&quot;&gt;0 eliminadas&lt;/span&gt;&lt;/summary&gt;
+        &lt;div class=&quot;filter-card-body&quot;&gt;
+          &lt;label class=&quot;filter-enable&quot;&gt;&lt;input type=&quot;checkbox&quot; data-filter-enabled=&quot;low-high&quot;&gt; Activar este filtro&lt;/label&gt;
+          &lt;p class=&quot;text-muted&quot;&gt;Bajos: 01–24 · Altos: 25–49.&lt;/p&gt;
+          &lt;div class=&quot;filter-range-grid&quot;&gt;
+            &lt;label class=&quot;form-label&quot;&gt;Bajos mínimos&lt;input class=&quot;form-control&quot; id=&quot;lottery-filter-low-min&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;6&quot; value=&quot;0&quot;&gt;&lt;/label&gt;
+            &lt;label class=&quot;form-label&quot;&gt;Bajos máximos&lt;input class=&quot;form-control&quot; id=&quot;lottery-filter-low-max&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;6&quot; value=&quot;6&quot;&gt;&lt;/label&gt;
+            &lt;label class=&quot;form-label&quot;&gt;Altos mínimos&lt;input class=&quot;form-control&quot; id=&quot;lottery-filter-high-min&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;6&quot; value=&quot;0&quot;&gt;&lt;/label&gt;
+            &lt;label class=&quot;form-label&quot;&gt;Altos máximos&lt;input class=&quot;form-control&quot; id=&quot;lottery-filter-high-max&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;6&quot; value=&quot;6&quot;&gt;&lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/details&gt;
+
+      &lt;details class=&quot;filter-card&quot; data-filter-card=&quot;decades&quot;&gt;
+        &lt;summary&gt;&lt;span class=&quot;filter-number&quot;&gt;2&lt;/span&gt;&lt;strong&gt;Decenas y figuras&lt;/strong&gt;&lt;span class=&quot;filter-eliminated&quot; data-filter-eliminated=&quot;decades&quot;&gt;0 eliminadas&lt;/span&gt;&lt;/summary&gt;
+        &lt;div class=&quot;filter-card-body&quot;&gt;
+          &lt;label class=&quot;filter-enable&quot;&gt;&lt;input type=&quot;checkbox&quot; data-filter-enabled=&quot;decades&quot;&gt; Activar este filtro&lt;/label&gt;
+          &lt;div class=&quot;filter-count-rows&quot; id=&quot;lottery-filter-decade-rows&quot;&gt;&lt;/div&gt;
+          &lt;div class=&quot;filter-figures&quot;&gt;&lt;span&gt;Figuras admitidas · ninguna marcada equivale a todas&lt;/span&gt;&lt;div class=&quot;filter-chip-grid&quot; id=&quot;lottery-filter-decade-figures&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/details&gt;
+
+      &lt;details class=&quot;filter-card&quot; data-filter-card=&quot;distances&quot;&gt;
+        &lt;summary&gt;&lt;span class=&quot;filter-number&quot;&gt;3&lt;/span&gt;&lt;strong&gt;Distancias&lt;/strong&gt;&lt;span class=&quot;filter-eliminated&quot; data-filter-eliminated=&quot;distances&quot;&gt;0 eliminadas&lt;/span&gt;&lt;/summary&gt;
+        &lt;div class=&quot;filter-card-body&quot;&gt;
+          &lt;label class=&quot;filter-enable&quot;&gt;&lt;input type=&quot;checkbox&quot; data-filter-enabled=&quot;distances&quot;&gt; Activar este filtro&lt;/label&gt;
+          &lt;p class=&quot;text-muted&quot;&gt;Las posiciones se calculan después de ordenar los seis números.&lt;/p&gt;
+          &lt;div class=&quot;filter-count-rows&quot; id=&quot;lottery-filter-distance-rows&quot;&gt;&lt;/div&gt;
+          &lt;div class=&quot;filter-range-grid&quot;&gt;
+            &lt;label class=&quot;form-label&quot;&gt;Amplitud mínima&lt;input class=&quot;form-control&quot; id=&quot;lottery-filter-span-min&quot; type=&quot;number&quot; min=&quot;5&quot; max=&quot;48&quot; value=&quot;5&quot;&gt;&lt;/label&gt;
+            &lt;label class=&quot;form-label&quot;&gt;Amplitud máxima&lt;input class=&quot;form-control&quot; id=&quot;lottery-filter-span-max&quot; type=&quot;number&quot; min=&quot;5&quot; max=&quot;48&quot; value=&quot;48&quot;&gt;&lt;/label&gt;
+            &lt;label class=&quot;form-label&quot;&gt;Suma de distancias mínima&lt;input class=&quot;form-control&quot; id=&quot;lottery-filter-pair-distance-min&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;1000&quot; value=&quot;0&quot;&gt;&lt;/label&gt;
+            &lt;label class=&quot;form-label&quot;&gt;Suma de distancias máxima&lt;input class=&quot;form-control&quot; id=&quot;lottery-filter-pair-distance-max&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;1000&quot; value=&quot;1000&quot;&gt;&lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/details&gt;
+
+      &lt;details class=&quot;filter-card&quot; data-filter-card=&quot;groups&quot;&gt;
+        &lt;summary&gt;&lt;span class=&quot;filter-number&quot;&gt;4&lt;/span&gt;&lt;strong&gt;Grupos de números&lt;/strong&gt;&lt;span class=&quot;filter-eliminated&quot; data-filter-eliminated=&quot;groups&quot;&gt;0 eliminadas&lt;/span&gt;&lt;/summary&gt;
+        &lt;div class=&quot;filter-card-body&quot;&gt;
+          &lt;label class=&quot;filter-enable&quot;&gt;&lt;input type=&quot;checkbox&quot; data-filter-enabled=&quot;groups&quot;&gt; Activar este filtro&lt;/label&gt;
+          &lt;p class=&quot;text-muted&quot;&gt;&lt;strong&gt;Hasta 10 grupos.&lt;/strong&gt; Para indicar un rango, escribe un guion entre el número menor y el mayor: 1-9. Para números sueltos, sepáralos con espacios o comas: 3, 12 27.&lt;/p&gt;
+          &lt;div class=&quot;filter-groups&quot; id=&quot;lottery-filter-groups&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/details&gt;
+
+      &lt;details class=&quot;filter-card&quot; data-filter-card=&quot;digital-roots&quot;&gt;
+        &lt;summary&gt;&lt;span class=&quot;filter-number&quot;&gt;5&lt;/span&gt;&lt;strong&gt;Raíces digitales y figuras&lt;/strong&gt;&lt;span class=&quot;filter-eliminated&quot; data-filter-eliminated=&quot;digital-roots&quot;&gt;0 eliminadas&lt;/span&gt;&lt;/summary&gt;
+        &lt;div class=&quot;filter-card-body&quot;&gt;
+          &lt;label class=&quot;filter-enable&quot;&gt;&lt;input type=&quot;checkbox&quot; data-filter-enabled=&quot;digital-roots&quot;&gt; Activar este filtro&lt;/label&gt;
+          &lt;p class=&quot;text-muted&quot;&gt;Ejemplo de raíz 1: 01, 10, 19, 28, 37 y 46.&lt;/p&gt;
+          &lt;div class=&quot;filter-count-rows&quot; id=&quot;lottery-filter-root-rows&quot;&gt;&lt;/div&gt;
+          &lt;div class=&quot;filter-figures&quot;&gt;&lt;span&gt;Figuras admitidas · ninguna marcada equivale a todas&lt;/span&gt;&lt;div class=&quot;filter-chip-grid&quot; id=&quot;lottery-filter-root-figures&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/details&gt;
+
+      &lt;details class=&quot;filter-card&quot; data-filter-card=&quot;parity&quot;&gt;
+        &lt;summary&gt;&lt;span class=&quot;filter-number&quot;&gt;6&lt;/span&gt;&lt;strong&gt;Pares e impares&lt;/strong&gt;&lt;span class=&quot;filter-eliminated&quot; data-filter-eliminated=&quot;parity&quot;&gt;0 eliminadas&lt;/span&gt;&lt;/summary&gt;
+        &lt;div class=&quot;filter-card-body&quot;&gt;
+          &lt;label class=&quot;filter-enable&quot;&gt;&lt;input type=&quot;checkbox&quot; data-filter-enabled=&quot;parity&quot;&gt; Activar este filtro&lt;/label&gt;
+          &lt;p class=&quot;text-muted&quot;&gt;Marca las distribuciones admitidas. Si no marcas ninguna se admitirán todas.&lt;/p&gt;
+          &lt;div class=&quot;filter-chip-grid&quot; id=&quot;lottery-filter-parity-figures&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/details&gt;
+
+      &lt;details class=&quot;filter-card&quot; data-filter-card=&quot;consecutives&quot;&gt;
+        &lt;summary&gt;&lt;span class=&quot;filter-number&quot;&gt;7&lt;/span&gt;&lt;strong&gt;Números seguidos&lt;/strong&gt;&lt;span class=&quot;filter-eliminated&quot; data-filter-eliminated=&quot;consecutives&quot;&gt;0 eliminadas&lt;/span&gt;&lt;/summary&gt;
+        &lt;div class=&quot;filter-card-body&quot;&gt;
+          &lt;label class=&quot;filter-enable&quot;&gt;&lt;input type=&quot;checkbox&quot; data-filter-enabled=&quot;consecutives&quot;&gt; Activar este filtro&lt;/label&gt;
+          &lt;div class=&quot;filter-range-grid&quot;&gt;
+            &lt;label class=&quot;form-label&quot;&gt;Enlaces consecutivos mínimos&lt;input class=&quot;form-control&quot; id=&quot;lottery-filter-consecutive-min&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;5&quot; value=&quot;0&quot;&gt;&lt;/label&gt;
+            &lt;label class=&quot;form-label&quot;&gt;Enlaces consecutivos máximos&lt;input class=&quot;form-control&quot; id=&quot;lottery-filter-consecutive-max&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;5&quot; value=&quot;5&quot;&gt;&lt;/label&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;filter-figures&quot;&gt;&lt;span&gt;Figuras de cadenas admitidas&lt;/span&gt;&lt;div class=&quot;filter-chip-grid&quot; id=&quot;lottery-filter-consecutive-figures&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/details&gt;
+
+      &lt;details class=&quot;filter-card&quot; data-filter-card=&quot;sums&quot;&gt;
+        &lt;summary&gt;&lt;span class=&quot;filter-number&quot;&gt;8&lt;/span&gt;&lt;strong&gt;Rangos de sumas&lt;/strong&gt;&lt;span class=&quot;filter-eliminated&quot; data-filter-eliminated=&quot;sums&quot;&gt;0 eliminadas&lt;/span&gt;&lt;/summary&gt;
+        &lt;div class=&quot;filter-card-body&quot;&gt;
+          &lt;label class=&quot;filter-enable&quot;&gt;&lt;input type=&quot;checkbox&quot; data-filter-enabled=&quot;sums&quot;&gt; Activar este filtro&lt;/label&gt;
+          &lt;p class=&quot;text-muted&quot;&gt;Puedes indicar hasta diez intervalos alternativos. Basta con que la suma esté en uno de ellos.&lt;/p&gt;
+          &lt;div class=&quot;filter-sum-intervals&quot; id=&quot;lottery-filter-sum-intervals&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/details&gt;
+
+      &lt;details class=&quot;filter-card&quot; data-filter-card=&quot;endings&quot;&gt;
+        &lt;summary&gt;&lt;span class=&quot;filter-number&quot;&gt;9&lt;/span&gt;&lt;strong&gt;Terminaciones y figuras&lt;/strong&gt;&lt;span class=&quot;filter-eliminated&quot; data-filter-eliminated=&quot;endings&quot;&gt;0 eliminadas&lt;/span&gt;&lt;/summary&gt;
+        &lt;div class=&quot;filter-card-body&quot;&gt;
+          &lt;label class=&quot;filter-enable&quot;&gt;&lt;input type=&quot;checkbox&quot; data-filter-enabled=&quot;endings&quot;&gt; Activar este filtro&lt;/label&gt;
+          &lt;div class=&quot;filter-count-rows&quot; id=&quot;lottery-filter-ending-rows&quot;&gt;&lt;/div&gt;
+          &lt;div class=&quot;filter-range-grid&quot;&gt;
+            &lt;label class=&quot;form-label&quot;&gt;Suma de terminaciones mínima&lt;input class=&quot;form-control&quot; id=&quot;lottery-filter-ending-sum-min&quot; type=&quot;number&quot; min=&quot;2&quot; max=&quot;53&quot; value=&quot;2&quot;&gt;&lt;/label&gt;
+            &lt;label class=&quot;form-label&quot;&gt;Suma de terminaciones máxima&lt;input class=&quot;form-control&quot; id=&quot;lottery-filter-ending-sum-max&quot; type=&quot;number&quot; min=&quot;2&quot; max=&quot;53&quot; value=&quot;53&quot;&gt;&lt;/label&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;filter-figures&quot;&gt;&lt;span&gt;Figuras admitidas · ninguna marcada equivale a todas&lt;/span&gt;&lt;div class=&quot;filter-chip-grid&quot; id=&quot;lottery-filter-ending-figures&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/details&gt;
+
+      &lt;details class=&quot;filter-card&quot; data-filter-card=&quot;positions&quot;&gt;
+        &lt;summary&gt;&lt;span class=&quot;filter-number&quot;&gt;10&lt;/span&gt;&lt;strong&gt;Posiciones&lt;/strong&gt;&lt;span class=&quot;filter-eliminated&quot; data-filter-eliminated=&quot;positions&quot;&gt;0 eliminadas&lt;/span&gt;&lt;/summary&gt;
+        &lt;div class=&quot;filter-card-body&quot;&gt;
+          &lt;label class=&quot;filter-enable&quot;&gt;&lt;input type=&quot;checkbox&quot; data-filter-enabled=&quot;positions&quot;&gt; Activar este filtro&lt;/label&gt;
+          &lt;p class=&quot;text-muted&quot;&gt;Para cada bola ordenada puedes escribir números o rangos admitidos. Una casilla vacía admite cualquier número.&lt;/p&gt;
+          &lt;div class=&quot;filter-position-rows&quot; id=&quot;lottery-filter-position-rows&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/details&gt;
+    &lt;/div&gt;
+
+    &lt;p class=&quot;filter-message text-muted&quot; id=&quot;lottery-filter-message&quot; aria-live=&quot;polite&quot;&gt;Selecciona una procedencia con combinaciones disponibles.&lt;/p&gt;
+    &lt;div class=&quot;viz-controls filter-main-actions&quot;&gt;
+      &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-filter-apply&quot; type=&quot;button&quot; disabled&gt;Aplicar filtros&lt;/button&gt;
+      &lt;button class=&quot;btn&quot; id=&quot;lottery-filter-cancel&quot; type=&quot;button&quot; hidden disabled&gt;Cancelar filtrado&lt;/button&gt;
+      &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-filter-reset&quot; type=&quot;button&quot;&gt;Restablecer filtros&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;filter-output&quot; id=&quot;lottery-filter-output&quot; hidden&gt;
+      &lt;div class=&quot;filter-output-heading&quot;&gt;
+        &lt;div&gt;
+          &lt;h3&gt;Combinaciones filtradas&lt;/h3&gt;
+          &lt;p class=&quot;text-muted&quot; id=&quot;lottery-filter-output-summary&quot;&gt;&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-filter-output-count&quot;&gt;0 combinaciones&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;ol class=&quot;filter-result-list&quot; id=&quot;lottery-filter-result-list&quot; aria-label=&quot;Combinaciones que cumplen los filtros&quot;&gt;&lt;/ol&gt;
+      &lt;div class=&quot;viz-controls filter-pagination&quot; id=&quot;lottery-filter-pagination&quot; hidden&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-filter-previous&quot; type=&quot;button&quot;&gt;Anteriores&lt;/button&gt;
+        &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-filter-page&quot;&gt;1 de 1&lt;/span&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-filter-next&quot; type=&quot;button&quot;&gt;Siguientes&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;viz-controls filter-result-actions&quot;&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-filter-copy&quot; type=&quot;button&quot;&gt;Copiar filtradas&lt;/button&gt;
+        &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-filter-qr&quot; type=&quot;button&quot;&gt;Preparar QR&lt;/button&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-filter-scrutiny&quot; type=&quot;button&quot;&gt;Enviar al escrutador&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;lottery-back-row&quot;&gt;
+      &lt;a class=&quot;lottery-back-top&quot; href=&quot;#lottery-app-top&quot; aria-label=&quot;Volver al inicio desde Filtros&quot;&gt;↑ Volver al inicio&lt;/a&gt;
     &lt;/div&gt;
   &lt;/section&gt;
 
@@ -1493,6 +1744,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;option value=&quot;imported&quot;&gt;Archivo o texto pegado&lt;/option&gt;
           &lt;option value=&quot;reduced&quot;&gt;Reducción matemática generada&lt;/option&gt;
           &lt;option value=&quot;development&quot;&gt;Desarrollo completo generado&lt;/option&gt;
+          &lt;option value=&quot;filtered&quot;&gt;Resultado de la zona de filtros&lt;/option&gt;
           &lt;option value=&quot;ticket&quot;&gt;Boleto completo de «Mis boletos»&lt;/option&gt;
         &lt;/select&gt;
       &lt;/label&gt;
@@ -1718,6 +1970,21 @@ html&gt;body{padding:0}&lt;/style&gt;
     color: var(--primary-foreground);
     background: linear-gradient(115deg, var(--primary), color-mix(in srgb, var(--primary) 68%, var(--viz-series-5)));
     box-shadow: 0 0.35rem 0.9rem color-mix(in srgb, var(--primary) 24%, transparent);
+  }
+
+  #lottery-simulator-649 .lottery-quick-link.is-new {
+    border-color: color-mix(in srgb, #f59e0b 72%, var(--border));
+    background: color-mix(in srgb, #f59e0b 12%, var(--secondary));
+  }
+
+  #lottery-simulator-649 .lottery-quick-link.is-new &gt; span {
+    padding: 0.16rem 0.35rem;
+    border-radius: var(--radius-full);
+    color: #111827;
+    background: #fbbf24;
+    font-size: 0.62rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
   }
 
   #lottery-simulator-649 .lottery-quick-link[aria-current=&quot;location&quot;] {
@@ -2805,6 +3072,10 @@ html&gt;body{padding:0}&lt;/style&gt;
     --qr-origin-colour: var(--viz-series-3);
   }
 
+  #lottery-simulator-649 .qr-origin-summary[data-source=&quot;filtered&quot;] {
+    --qr-origin-colour: #f59e0b;
+  }
+
   #lottery-simulator-649 .qr-origin-label {
     color: var(--muted-foreground);
     font-size: 0.78rem;
@@ -3418,6 +3689,401 @@ html&gt;body{padding:0}&lt;/style&gt;
     cursor: pointer;
   }
 
+  #lottery-simulator-649 .filters-area {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 1;
+    border: 1px solid color-mix(in srgb, #8b5cf6 38%, var(--border));
+    background:
+      linear-gradient(135deg, color-mix(in srgb, #8b5cf6 7%, transparent), transparent 42%),
+      var(--card);
+  }
+
+  #lottery-simulator-649 .zone-filter-mode {
+    min-width: min(100%, 15rem);
+    padding: 0.45rem 0.6rem;
+    border: 1px solid color-mix(in srgb, #8b5cf6 28%, var(--border));
+    border-radius: 0.65rem;
+    background: color-mix(in srgb, #8b5cf6 6%, var(--card));
+  }
+
+  #lottery-simulator-649 .lottery-controls .zone-filter-mode {
+    margin-left: auto;
+  }
+
+  #lottery-simulator-649 .filters-heading {
+    align-items: flex-start;
+  }
+
+  #lottery-simulator-649 .filters-heading &gt; div,
+  #lottery-simulator-649 .filter-output-heading &gt; div {
+    display: grid;
+    gap: 0.3rem;
+    min-width: 0;
+  }
+
+  #lottery-simulator-649 .filters-heading p,
+  #lottery-simulator-649 .filter-output-heading p,
+  #lottery-simulator-649 .filter-card p {
+    margin: 0;
+  }
+
+  #lottery-simulator-649 .filter-source-layout {
+    display: grid;
+    grid-template-columns: minmax(15rem, 0.75fr) minmax(0, 1.25fr);
+    gap: 0.85rem;
+    align-items: stretch;
+  }
+
+  #lottery-simulator-649 .filter-source-summary {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.18rem 0.75rem;
+    align-content: center;
+    min-width: 0;
+    padding: 0.85rem 1rem;
+    border: 1px solid color-mix(in srgb, #8b5cf6 36%, var(--border));
+    border-radius: 0.8rem;
+    background: color-mix(in srgb, #8b5cf6 8%, var(--card));
+  }
+
+  #lottery-simulator-649 .filter-source-summary &gt; span:first-child {
+    color: var(--muted-foreground);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  #lottery-simulator-649 .filter-source-summary strong,
+  #lottery-simulator-649 .filter-source-summary small {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  #lottery-simulator-649 .filter-source-summary strong {
+    color: color-mix(in srgb, #a78bfa 82%, var(--foreground));
+  }
+
+  #lottery-simulator-649 .filter-source-summary small {
+    grid-column: 1;
+    color: var(--muted-foreground);
+  }
+
+  #lottery-simulator-649 .filter-source-summary .viz-badge {
+    grid-column: 2;
+    grid-row: 1 / 4;
+    align-self: center;
+  }
+
+  #lottery-simulator-649 .filter-profile-panel {
+    display: grid;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid color-mix(in srgb, #0ea5e9 34%, var(--border));
+    border-radius: 0.85rem;
+    background:
+      linear-gradient(135deg, color-mix(in srgb, #0ea5e9 8%, transparent), transparent 55%),
+      color-mix(in srgb, var(--card) 95%, #0ea5e9 5%);
+  }
+
+  #lottery-simulator-649 .filter-profile-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  #lottery-simulator-649 .filter-profile-heading &gt; div {
+    display: grid;
+    gap: 0.18rem;
+    min-width: 0;
+  }
+
+  #lottery-simulator-649 .filter-profile-heading strong {
+    color: color-mix(in srgb, #38bdf8 82%, var(--foreground));
+    font-size: 1.02rem;
+  }
+
+  #lottery-simulator-649 .filter-profile-heading small,
+  #lottery-simulator-649 .filter-profile-message {
+    color: var(--muted-foreground);
+  }
+
+  #lottery-simulator-649 .filter-profile-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  #lottery-simulator-649 .filter-profile-actions {
+    margin-top: 0;
+  }
+
+  #lottery-simulator-649 .filter-profile-message {
+    min-height: 1.3em;
+    margin: 0;
+  }
+
+  #lottery-simulator-649 .filter-profile-message.is-error {
+    color: var(--destructive);
+  }
+
+  #lottery-simulator-649 .filter-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  #lottery-simulator-649 .filter-card {
+    min-width: 0;
+    border: 1px solid var(--border);
+    border-radius: 0.85rem;
+    background: color-mix(in srgb, var(--card) 92%, #8b5cf6 8%);
+    overflow: clip;
+  }
+
+  #lottery-simulator-649 .filter-card[open] {
+    border-color: color-mix(in srgb, #8b5cf6 42%, var(--border));
+    box-shadow: 0 10px 28px color-mix(in srgb, #8b5cf6 8%, transparent);
+  }
+
+  #lottery-simulator-649 .filter-card summary {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.6rem;
+    align-items: center;
+    min-height: 3.1rem;
+    padding: 0.65rem 0.75rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  #lottery-simulator-649 .filter-card summary::-webkit-details-marker {
+    display: none;
+  }
+
+  #lottery-simulator-649 .filter-card summary::after {
+    content: &quot;⌄&quot;;
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+    color: var(--muted-foreground);
+    font-size: 1.05rem;
+    transform: rotate(0deg);
+    transition: transform 160ms ease;
+  }
+
+  #lottery-simulator-649 .filter-card[open] summary::after {
+    transform: rotate(180deg);
+  }
+
+  #lottery-simulator-649 .filter-card summary strong {
+    grid-column: 2;
+    min-width: 0;
+  }
+
+  #lottery-simulator-649 .filter-number {
+    display: inline-grid;
+    place-items: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    background: color-mix(in srgb, #8b5cf6 18%, var(--muted));
+    color: #a78bfa;
+    font-weight: 800;
+  }
+
+  #lottery-simulator-649 .filter-eliminated {
+    grid-column: 2;
+    color: var(--muted-foreground);
+    font-size: 0.78rem;
+  }
+
+  #lottery-simulator-649 .filter-card.is-active .filter-number {
+    background: #8b5cf6;
+    color: #fff;
+    box-shadow: 0 0 0 3px color-mix(in srgb, #8b5cf6 18%, transparent);
+  }
+
+  #lottery-simulator-649 .filter-card.is-active .filter-eliminated {
+    color: #f59e0b;
+    font-weight: 700;
+  }
+
+  #lottery-simulator-649 .filter-card-body {
+    display: grid;
+    gap: 0.75rem;
+    padding: 0.25rem 0.85rem 0.9rem;
+    border-top: 1px solid var(--border);
+  }
+
+  #lottery-simulator-649 .filter-enable {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    width: fit-content;
+    min-height: 2.2rem;
+    color: color-mix(in srgb, #a78bfa 82%, var(--foreground));
+    font-weight: 750;
+    cursor: pointer;
+  }
+
+  #lottery-simulator-649 .filter-enable input,
+  #lottery-simulator-649 .filter-chip input {
+    accent-color: #8b5cf6;
+  }
+
+  #lottery-simulator-649 .filter-range-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.55rem;
+  }
+
+  #lottery-simulator-649 .filter-count-rows,
+  #lottery-simulator-649 .filter-groups,
+  #lottery-simulator-649 .filter-sum-intervals,
+  #lottery-simulator-649 .filter-position-rows {
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  #lottery-simulator-649 .filter-count-row,
+  #lottery-simulator-649 .filter-group-row,
+  #lottery-simulator-649 .filter-sum-row,
+  #lottery-simulator-649 .filter-position-row {
+    display: grid;
+    grid-template-columns: minmax(8.5rem, 1fr) minmax(4.5rem, 0.42fr) minmax(4.5rem, 0.42fr);
+    gap: 0.5rem;
+    align-items: end;
+  }
+
+  #lottery-simulator-649 .filter-group-row {
+    grid-template-columns: minmax(12rem, 1.7fr) minmax(4.5rem, 0.42fr) minmax(4.5rem, 0.42fr);
+  }
+
+  #lottery-simulator-649 .filter-sum-row {
+    grid-template-columns: auto minmax(5rem, 1fr) minmax(5rem, 1fr);
+  }
+
+  #lottery-simulator-649 .filter-position-row {
+    grid-template-columns: minmax(6rem, 0.35fr) minmax(13rem, 1.65fr);
+  }
+
+  #lottery-simulator-649 .filter-row-label {
+    align-self: center;
+    color: var(--muted-foreground);
+    font-weight: 650;
+  }
+
+  #lottery-simulator-649 .filter-figures {
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  #lottery-simulator-649 .filter-figures &gt; span {
+    color: var(--muted-foreground);
+    font-size: 0.82rem;
+    font-weight: 650;
+  }
+
+  #lottery-simulator-649 .filter-chip-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  #lottery-simulator-649 .filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 2rem;
+    padding: 0.28rem 0.52rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    background: var(--muted);
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+  #lottery-simulator-649 .filter-message {
+    margin: 0;
+    padding: 0.75rem 0.9rem;
+    border-left: 3px solid #8b5cf6;
+    border-radius: 0 0.6rem 0.6rem 0;
+    background: color-mix(in srgb, #8b5cf6 7%, transparent);
+  }
+
+  #lottery-simulator-649 .filter-message.is-error {
+    border-left-color: var(--destructive);
+    color: var(--destructive);
+    background: color-mix(in srgb, var(--destructive) 7%, transparent);
+  }
+
+  #lottery-simulator-649 .filter-main-actions,
+  #lottery-simulator-649 .filter-result-actions {
+    justify-content: flex-start;
+  }
+
+  #lottery-simulator-649 .filter-output {
+    display: grid;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  #lottery-simulator-649 .filter-output[hidden] {
+    display: none;
+  }
+
+  #lottery-simulator-649 .filter-output-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  #lottery-simulator-649 .filter-result-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #lottery-simulator-649 .filter-result-item {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.65rem;
+    align-items: center;
+    min-width: 0;
+    padding: 0.58rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 0.65rem;
+    background: color-mix(in srgb, #8b5cf6 6%, var(--muted));
+  }
+
+  #lottery-simulator-649 .filter-result-index {
+    color: #a78bfa;
+    font-size: 0.8rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #lottery-simulator-649 .filter-result-numbers {
+    min-width: 0;
+    font-weight: 750;
+    letter-spacing: 0.035em;
+    overflow-wrap: anywhere;
+  }
+
+  #lottery-simulator-649 .filter-pagination {
+    justify-content: space-between;
+  }
+
   @keyframes lottery-background-drift {
     0% { background-position: 0% 20%; }
     50% { background-position: 100% 80%; }
@@ -3564,6 +4230,20 @@ html&gt;body{padding:0}&lt;/style&gt;
       grid-template-columns: 1fr;
     }
 
+    #lottery-simulator-649 .filter-source-layout,
+    #lottery-simulator-649 .filter-profile-fields,
+    #lottery-simulator-649 .filter-grid {
+      grid-template-columns: 1fr;
+    }
+
+    #lottery-simulator-649 .filter-profile-heading {
+      align-items: flex-start;
+    }
+
+    #lottery-simulator-649 .filter-profile-actions .btn {
+      flex: 1 1 10rem;
+    }
+
     #lottery-simulator-649 .bulk-section + .bulk-section {
       padding-top: 1rem;
       padding-left: 0;
@@ -3687,7 +4367,9 @@ html&gt;body{padding:0}&lt;/style&gt;
     #lottery-simulator-649 .qr-setup-actions,
     #lottery-simulator-649 .development-generation-actions,
     #lottery-simulator-649 .development-breakdown-pending-actions,
-    #lottery-simulator-649 .development-actions {
+    #lottery-simulator-649 .development-actions,
+    #lottery-simulator-649 .filter-main-actions,
+    #lottery-simulator-649 .filter-result-actions {
       display: grid;
       grid-template-columns: 1fr;
       width: 100%;
@@ -3703,7 +4385,9 @@ html&gt;body{padding:0}&lt;/style&gt;
     #lottery-simulator-649 .qr-setup-actions .btn,
     #lottery-simulator-649 .development-generation-actions .btn,
     #lottery-simulator-649 .development-breakdown-pending-actions .btn,
-    #lottery-simulator-649 .development-actions .btn {
+    #lottery-simulator-649 .development-actions .btn,
+    #lottery-simulator-649 .filter-main-actions .btn,
+    #lottery-simulator-649 .filter-result-actions .btn {
       width: 100%;
     }
 
@@ -3772,6 +4456,21 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     #lottery-simulator-649 .development-list {
       grid-template-columns: 1fr;
+    }
+
+    #lottery-simulator-649 .filter-range-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #lottery-simulator-649 .filter-source-summary {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    #lottery-simulator-649 .filter-source-summary .viz-badge {
+      grid-column: 1;
+      grid-row: auto;
+      justify-self: start;
+      margin-top: 0.35rem;
     }
 
     #lottery-simulator-649 .qr-code {
@@ -3843,6 +4542,28 @@ html&gt;body{padding:0}&lt;/style&gt;
     #lottery-simulator-649 .ticket-card-actions .ticket-delete {
       width: 100%;
       margin-left: 0;
+    }
+
+    #lottery-simulator-649 .filter-count-row,
+    #lottery-simulator-649 .filter-group-row,
+    #lottery-simulator-649 .filter-sum-row,
+    #lottery-simulator-649 .filter-position-row {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    #lottery-simulator-649 .filter-count-row .filter-row-label,
+    #lottery-simulator-649 .filter-group-row &gt; .form-label:first-child,
+    #lottery-simulator-649 .filter-sum-row .filter-row-label,
+    #lottery-simulator-649 .filter-position-row .filter-row-label {
+      grid-column: 1 / -1;
+    }
+
+    #lottery-simulator-649 .filter-position-row &gt; .form-label {
+      grid-column: 1 / -1;
+    }
+
+    #lottery-simulator-649 .filter-output-heading {
+      display: grid;
     }
   }
 
@@ -3988,6 +4709,10 @@ html&gt;body{padding:0}&lt;/style&gt;
     const rulePositionFixedBar = root.querySelector(&#x27;#lottery-rule-position-fixed-bar&#x27;);
     const rulePositionSemiBar = root.querySelector(&#x27;#lottery-rule-position-semi-bar&#x27;);
     const rulePositionNote = root.querySelector(&#x27;#lottery-rule-position-note&#x27;);
+    const drawFilterModeSelect = root.querySelector(&#x27;#lottery-draw-filter-mode&#x27;);
+    const rulesFilterModeSelect = root.querySelector(&#x27;#lottery-rules-filter-mode&#x27;);
+    const txtFilterModeSelect = root.querySelector(&#x27;#lottery-txt-filter-mode&#x27;);
+    const developmentFilterModeSelect = root.querySelector(&#x27;#lottery-development-filter-mode&#x27;);
     const generateTicketButton = root.querySelector(&#x27;#lottery-generate-ticket&#x27;);
     const viewRuleCombinationsButton = root.querySelector(&#x27;#lottery-view-rule-combinations&#x27;);
     const copyRulesButton = root.querySelector(&#x27;#lottery-copy-rules&#x27;);
@@ -4045,6 +4770,41 @@ html&gt;body{padding:0}&lt;/style&gt;
     const developmentCopyButton = root.querySelector(&#x27;#lottery-development-copy&#x27;);
     const developmentQrButton = root.querySelector(&#x27;#lottery-development-qr&#x27;);
     const developmentClearOutputButton = root.querySelector(&#x27;#lottery-development-clear-output&#x27;);
+    const filterSection = root.querySelector(&#x27;#lottery-filters-section&#x27;);
+    const filterSourceSelect = root.querySelector(&#x27;#lottery-filter-source&#x27;);
+    const filterSourceSummary = root.querySelector(&#x27;#lottery-filter-source-summary&#x27;);
+    const filterSourceName = root.querySelector(&#x27;#lottery-filter-source-name&#x27;);
+    const filterSourceDescription = root.querySelector(&#x27;#lottery-filter-source-description&#x27;);
+    const filterSourceCount = root.querySelector(&#x27;#lottery-filter-source-count&#x27;);
+    const filterResultCount = root.querySelector(&#x27;#lottery-filter-result-count&#x27;);
+    const filterProfileNameInput = root.querySelector(&#x27;#lottery-filter-profile-name&#x27;);
+    const filterProfileSelect = root.querySelector(&#x27;#lottery-filter-profile-select&#x27;);
+    const filterProfileCount = root.querySelector(&#x27;#lottery-filter-profile-count&#x27;);
+    const filterProfileSaveButton = root.querySelector(&#x27;#lottery-filter-profile-save&#x27;);
+    const filterProfileLoadButton = root.querySelector(&#x27;#lottery-filter-profile-load&#x27;);
+    const filterProfileDeleteButton = root.querySelector(&#x27;#lottery-filter-profile-delete&#x27;);
+    const filterProfileMessage = root.querySelector(&#x27;#lottery-filter-profile-message&#x27;);
+    const filterGrid = root.querySelector(&#x27;#lottery-filter-grid&#x27;);
+    const filterMessage = root.querySelector(&#x27;#lottery-filter-message&#x27;);
+    const filterApplyButton = root.querySelector(&#x27;#lottery-filter-apply&#x27;);
+    const filterCancelButton = root.querySelector(&#x27;#lottery-filter-cancel&#x27;);
+    const filterResetButton = root.querySelector(&#x27;#lottery-filter-reset&#x27;);
+    const filterOutput = root.querySelector(&#x27;#lottery-filter-output&#x27;);
+    const filterOutputSummary = root.querySelector(&#x27;#lottery-filter-output-summary&#x27;);
+    const filterOutputCount = root.querySelector(&#x27;#lottery-filter-output-count&#x27;);
+    const filterResultList = root.querySelector(&#x27;#lottery-filter-result-list&#x27;);
+    const filterPagination = root.querySelector(&#x27;#lottery-filter-pagination&#x27;);
+    const filterPreviousButton = root.querySelector(&#x27;#lottery-filter-previous&#x27;);
+    const filterNextButton = root.querySelector(&#x27;#lottery-filter-next&#x27;);
+    const filterPage = root.querySelector(&#x27;#lottery-filter-page&#x27;);
+    const filterCopyButton = root.querySelector(&#x27;#lottery-filter-copy&#x27;);
+    const filterQrButton = root.querySelector(&#x27;#lottery-filter-qr&#x27;);
+    const filterScrutinyButton = root.querySelector(&#x27;#lottery-filter-scrutiny&#x27;);
+    const filterCurrentButton = root.querySelector(&#x27;#lottery-filter-current&#x27;);
+    const filterSavedButton = root.querySelector(&#x27;#lottery-filter-saved&#x27;);
+    const filterRulesButton = root.querySelector(&#x27;#lottery-filter-rules&#x27;);
+    const filterImportedButton = root.querySelector(&#x27;#lottery-filter-imported&#x27;);
+    const filterDevelopmentButton = root.querySelector(&#x27;#lottery-filter-development&#x27;);
     const scrutinyGameSelect = root.querySelector(&#x27;#lottery-scrutiny-game&#x27;);
     const scrutinySourceSelect = root.querySelector(&#x27;#lottery-scrutiny-source&#x27;);
     const scrutinyWinningInput = root.querySelector(&#x27;#lottery-scrutiny-winning&#x27;);
@@ -4098,6 +4858,14 @@ html&gt;body{padding:0}&lt;/style&gt;
     let pendingQrRequest = null;
     let savedTickets = [];
     let loadedTicketForScrutiny = null;
+    let loadedTicketForFilters = null;
+    let filteredCombinations = [];
+    let filteredSourceDetails = null;
+    let filterPageIndex = 0;
+    let filterBusy = false;
+    let filterCancelRequested = false;
+    let savedFilterProfiles = [];
+    let filterProfilePendingDeleteId = null;
     let savedPageIndex = 0;
     let savedCurrent = false;
     let busy = false;
@@ -4107,7 +4875,12 @@ html&gt;body{padding:0}&lt;/style&gt;
     const TICKET_EXPORT_HEADER = &#x27;QR-LOTO-SUITE-BOLETO-V1&#x27;;
     const TICKET_STORAGE_KEY = &#x27;qr-loto-suite.saved-tickets.v1&#x27;;
     const TICKET_STORAGE_LIMIT = 30;
+    const FILTER_PROFILE_STORAGE_KEY = &#x27;qr-loto-suite.filter-profiles.v1&#x27;;
+    const FILTER_PROFILE_STORAGE_LIMIT = 50;
     const DEVELOPMENT_PAGE_SIZE = 8;
+    const FILTER_PAGE_SIZE = 20;
+    const FILTER_DESKTOP_COMBINATION_LIMIT = 1000000;
+    const FILTER_MOBILE_COMBINATION_LIMIT = 200000;
     const DEVELOPMENT_MIN_NUMBERS = 7;
     const DEVELOPMENT_MAX_NUMBERS = 49;
     const DEVELOPMENT_DENSE_CASE_LIMIT = 5005;
@@ -4127,6 +4900,1108 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     const wait = (milliseconds) =&gt; new Promise((resolve) =&gt; setTimeout(resolve, milliseconds));
     const combinationKey = (combination) =&gt; combination.map((number) =&gt; String(number).padStart(2, &#x27;0&#x27;)).join(&#x27;&#x27;);
+
+    const FILTER_FIGURES_WITH_SIX_GROUPS = [
+      &#x27;6-0&#x27;, &#x27;5-1&#x27;, &#x27;4-2&#x27;, &#x27;4-1-1&#x27;, &#x27;3-3&#x27;, &#x27;3-2-1&#x27;,
+      &#x27;3-1-1-1&#x27;, &#x27;2-2-2&#x27;, &#x27;2-2-1-1&#x27;, &#x27;2-1-1-1-1&#x27;
+    ];
+    const FILTER_FIGURES_WITH_MANY_GROUPS = [
+      &#x27;6-0&#x27;, &#x27;5-1&#x27;, &#x27;4-2&#x27;, &#x27;4-1-1&#x27;, &#x27;3-3&#x27;, &#x27;3-2-1&#x27;,
+      &#x27;3-1-1-1&#x27;, &#x27;2-2-2&#x27;, &#x27;2-2-1-1&#x27;, &#x27;2-1-1-1-1&#x27;, &#x27;1-1-1-1-1-1&#x27;
+    ];
+
+    function createFilterRangeRow(container, label, key, limits = {}) {
+      const row = document.createElement(&#x27;div&#x27;);
+      row.className = &#x27;filter-count-row&#x27;;
+      const title = document.createElement(&#x27;span&#x27;);
+      title.className = &#x27;filter-row-label&#x27;;
+      title.textContent = label;
+
+      const minLabel = document.createElement(&#x27;label&#x27;);
+      minLabel.className = &#x27;form-label&#x27;;
+      minLabel.textContent = &#x27;Mín.&#x27;;
+      const minInput = document.createElement(&#x27;input&#x27;);
+      minInput.className = &#x27;form-control&#x27;;
+      minInput.type = &#x27;number&#x27;;
+      minInput.min = String(limits.minimum ?? 0);
+      minInput.max = String(limits.maximum ?? 6);
+      minInput.value = String(limits.defaultMin ?? limits.minimum ?? 0);
+      minInput.defaultValue = minInput.value;
+      minInput.dataset.filterMin = key;
+      minLabel.appendChild(minInput);
+
+      const maxLabel = document.createElement(&#x27;label&#x27;);
+      maxLabel.className = &#x27;form-label&#x27;;
+      maxLabel.textContent = &#x27;Máx.&#x27;;
+      const maxInput = document.createElement(&#x27;input&#x27;);
+      maxInput.className = &#x27;form-control&#x27;;
+      maxInput.type = &#x27;number&#x27;;
+      maxInput.min = String(limits.minimum ?? 0);
+      maxInput.max = String(limits.maximum ?? 6);
+      maxInput.value = String(limits.defaultMax ?? limits.maximum ?? 6);
+      maxInput.defaultValue = maxInput.value;
+      maxInput.dataset.filterMax = key;
+      maxLabel.appendChild(maxInput);
+
+      row.append(title, minLabel, maxLabel);
+      container.appendChild(row);
+    }
+
+    function createFilterFigureChips(container, figures, group, formatter = (value) =&gt; value) {
+      figures.forEach((figure) =&gt; {
+        const label = document.createElement(&#x27;label&#x27;);
+        label.className = &#x27;filter-chip&#x27;;
+        const input = document.createElement(&#x27;input&#x27;);
+        input.type = &#x27;checkbox&#x27;;
+        input.value = figure;
+        input.dataset.filterFigure = group;
+        label.append(input, document.createTextNode(formatter(figure)));
+        container.appendChild(label);
+      });
+    }
+
+    function buildFilterControls() {
+      const decadeRows = root.querySelector(&#x27;#lottery-filter-decade-rows&#x27;);
+      [&#x27;01–09&#x27;, &#x27;10–19&#x27;, &#x27;20–29&#x27;, &#x27;30–39&#x27;, &#x27;40–49&#x27;].forEach((label, index) =&gt; {
+        createFilterRangeRow(decadeRows, `Decena ${label}`, `decade-${index}`);
+      });
+      createFilterFigureChips(
+        root.querySelector(&#x27;#lottery-filter-decade-figures&#x27;),
+        FILTER_FIGURES_WITH_SIX_GROUPS,
+        &#x27;decades&#x27;
+      );
+
+      const distanceRows = root.querySelector(&#x27;#lottery-filter-distance-rows&#x27;);
+      for (let index = 0; index &lt; 5; index += 1) {
+        createFilterRangeRow(
+          distanceRows,
+          `Bolas ${index + 1} y ${index + 2}`,
+          `distance-${index}`,
+          { minimum: 1, maximum: 48, defaultMin: 1, defaultMax: 48 }
+        );
+      }
+
+      const groups = root.querySelector(&#x27;#lottery-filter-groups&#x27;);
+      for (let index = 0; index &lt; 10; index += 1) {
+        const row = document.createElement(&#x27;div&#x27;);
+        row.className = &#x27;filter-group-row&#x27;;
+        const numbersLabel = document.createElement(&#x27;label&#x27;);
+        numbersLabel.className = &#x27;form-label&#x27;;
+        numbersLabel.textContent = `Grupo ${index + 1}`;
+        const numbersInput = document.createElement(&#x27;input&#x27;);
+        numbersInput.className = &#x27;form-control&#x27;;
+        numbersInput.type = &#x27;text&#x27;;
+        numbersInput.inputMode = &#x27;numeric&#x27;;
+        numbersInput.placeholder = index === 0 ? &#x27;Ejemplo: 1-9, 19 29, 39, 49&#x27; : &#x27;Rangos con guion; sueltos con espacio o coma&#x27;;
+        numbersInput.dataset.filterGroupNumbers = String(index);
+        numbersLabel.appendChild(numbersInput);
+
+        const minLabel = document.createElement(&#x27;label&#x27;);
+        minLabel.className = &#x27;form-label&#x27;;
+        minLabel.textContent = &#x27;Mín.&#x27;;
+        const minInput = document.createElement(&#x27;input&#x27;);
+        minInput.className = &#x27;form-control&#x27;;
+        minInput.type = &#x27;number&#x27;;
+        minInput.min = &#x27;0&#x27;;
+        minInput.max = &#x27;6&#x27;;
+        minInput.value = &#x27;0&#x27;;
+        minInput.defaultValue = &#x27;0&#x27;;
+        minInput.dataset.filterGroupMin = String(index);
+        minLabel.appendChild(minInput);
+
+        const maxLabel = document.createElement(&#x27;label&#x27;);
+        maxLabel.className = &#x27;form-label&#x27;;
+        maxLabel.textContent = &#x27;Máx.&#x27;;
+        const maxInput = document.createElement(&#x27;input&#x27;);
+        maxInput.className = &#x27;form-control&#x27;;
+        maxInput.type = &#x27;number&#x27;;
+        maxInput.min = &#x27;0&#x27;;
+        maxInput.max = &#x27;6&#x27;;
+        maxInput.value = &#x27;6&#x27;;
+        maxInput.defaultValue = &#x27;6&#x27;;
+        maxInput.dataset.filterGroupMax = String(index);
+        maxLabel.appendChild(maxInput);
+        row.append(numbersLabel, minLabel, maxLabel);
+        groups.appendChild(row);
+      }
+
+      const rootRows = root.querySelector(&#x27;#lottery-filter-root-rows&#x27;);
+      for (let index = 1; index &lt;= 9; index += 1) {
+        createFilterRangeRow(rootRows, `Raíz ${index}`, `root-${index}`);
+      }
+      createFilterFigureChips(
+        root.querySelector(&#x27;#lottery-filter-root-figures&#x27;),
+        FILTER_FIGURES_WITH_MANY_GROUPS,
+        &#x27;digital-roots&#x27;
+      );
+
+      createFilterFigureChips(
+        root.querySelector(&#x27;#lottery-filter-parity-figures&#x27;),
+        Array.from({ length: 7 }, (_, even) =&gt; `${even}-${6 - even}`),
+        &#x27;parity&#x27;,
+        (value) =&gt; {
+          const [even, odd] = value.split(&#x27;-&#x27;);
+          return `${even} pares · ${odd} impares`;
+        }
+      );
+
+      createFilterFigureChips(
+        root.querySelector(&#x27;#lottery-filter-consecutive-figures&#x27;),
+        FILTER_FIGURES_WITH_MANY_GROUPS,
+        &#x27;consecutives&#x27;
+      );
+
+      const sumIntervals = root.querySelector(&#x27;#lottery-filter-sum-intervals&#x27;);
+      for (let index = 0; index &lt; 10; index += 1) {
+        const row = document.createElement(&#x27;div&#x27;);
+        row.className = &#x27;filter-sum-row&#x27;;
+        const title = document.createElement(&#x27;span&#x27;);
+        title.className = &#x27;filter-row-label&#x27;;
+        title.textContent = `Intervalo ${index + 1}`;
+
+        const minLabel = document.createElement(&#x27;label&#x27;);
+        minLabel.className = &#x27;form-label&#x27;;
+        minLabel.textContent = &#x27;Suma mínima&#x27;;
+        const minInput = document.createElement(&#x27;input&#x27;);
+        minInput.className = &#x27;form-control&#x27;;
+        minInput.type = &#x27;number&#x27;;
+        minInput.min = &#x27;21&#x27;;
+        minInput.max = &#x27;279&#x27;;
+        minInput.value = index === 0 ? &#x27;21&#x27; : &#x27;&#x27;;
+        minInput.defaultValue = minInput.value;
+        minInput.dataset.filterSumMin = String(index);
+        minLabel.appendChild(minInput);
+
+        const maxLabel = document.createElement(&#x27;label&#x27;);
+        maxLabel.className = &#x27;form-label&#x27;;
+        maxLabel.textContent = &#x27;Suma máxima&#x27;;
+        const maxInput = document.createElement(&#x27;input&#x27;);
+        maxInput.className = &#x27;form-control&#x27;;
+        maxInput.type = &#x27;number&#x27;;
+        maxInput.min = &#x27;21&#x27;;
+        maxInput.max = &#x27;279&#x27;;
+        maxInput.value = index === 0 ? &#x27;279&#x27; : &#x27;&#x27;;
+        maxInput.defaultValue = maxInput.value;
+        maxInput.dataset.filterSumMax = String(index);
+        maxLabel.appendChild(maxInput);
+        row.append(title, minLabel, maxLabel);
+        sumIntervals.appendChild(row);
+      }
+
+      const endingRows = root.querySelector(&#x27;#lottery-filter-ending-rows&#x27;);
+      for (let index = 0; index &lt;= 9; index += 1) {
+        createFilterRangeRow(endingRows, `Terminados en ${index}`, `ending-${index}`);
+      }
+      createFilterFigureChips(
+        root.querySelector(&#x27;#lottery-filter-ending-figures&#x27;),
+        FILTER_FIGURES_WITH_MANY_GROUPS,
+        &#x27;endings&#x27;
+      );
+
+      const positionRows = root.querySelector(&#x27;#lottery-filter-position-rows&#x27;);
+      for (let index = 0; index &lt; 6; index += 1) {
+        const row = document.createElement(&#x27;div&#x27;);
+        row.className = &#x27;filter-position-row&#x27;;
+        const title = document.createElement(&#x27;span&#x27;);
+        title.className = &#x27;filter-row-label&#x27;;
+        title.textContent = `Bola ${index + 1}`;
+        const label = document.createElement(&#x27;label&#x27;);
+        label.className = &#x27;form-label&#x27;;
+        label.textContent = &#x27;Números admitidos&#x27;;
+        const input = document.createElement(&#x27;input&#x27;);
+        input.className = &#x27;form-control&#x27;;
+        input.type = &#x27;text&#x27;;
+        input.inputMode = &#x27;numeric&#x27;;
+        input.placeholder = index === 0 ? &#x27;Ejemplo: 1-12, 14, 18&#x27; : &#x27;Vacío = cualquiera&#x27;;
+        input.dataset.filterPosition = String(index);
+        label.appendChild(input);
+        row.append(title, label);
+        positionRows.appendChild(row);
+      }
+    }
+
+    function setFilterProfileMessage(message, isError = false) {
+      filterProfileMessage.textContent = message;
+      filterProfileMessage.classList.toggle(&#x27;is-error&#x27;, isError);
+    }
+
+    function makeFilterProfileId() {
+      return window.crypto?.randomUUID?.()
+        ?? `filter-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+    }
+
+    function cleanFilterProfileName(value) {
+      return String(value ?? &#x27;&#x27;).replace(/\s+/g, &#x27; &#x27;).trim().slice(0, 60);
+    }
+
+    function filterControlKey(input) {
+      if (input.id) return `id:${input.id}`;
+      const dataKey = Object.entries(input.dataset)
+        .sort(([first], [second]) =&gt; first.localeCompare(second))
+        .map(([key, value]) =&gt; `${key}:${value}`)
+        .join(&#x27;|&#x27;);
+      const fixedValue = input.dataset.filterFigure ? `|option:${input.value}` : &#x27;&#x27;;
+      return `data:${dataKey}${fixedValue}`;
+    }
+
+    function snapshotFilterControls() {
+      return [...filterGrid.querySelectorAll(&#x27;input&#x27;)].map((input) =&gt; {
+        const saved = { key: filterControlKey(input) };
+        if (input.type === &#x27;checkbox&#x27;) saved.checked = input.checked;
+        else saved.value = input.value;
+        return saved;
+      });
+    }
+
+    function normaliseFilterProfile(profile) {
+      if (!profile || typeof profile !== &#x27;object&#x27;) {
+        throw new Error(&#x27;Configuración de filtros no válida.&#x27;);
+      }
+      const name = cleanFilterProfileName(profile.name);
+      if (!name || !Array.isArray(profile.controls)) {
+        throw new Error(&#x27;Configuración de filtros incompleta.&#x27;);
+      }
+      const controls = profile.controls
+        .slice(0, 500)
+        .filter((control) =&gt; control &amp;&amp; typeof control.key === &#x27;string&#x27;)
+        .map((control) =&gt; ({
+          key: control.key.slice(0, 180),
+          ...(Object.prototype.hasOwnProperty.call(control, &#x27;checked&#x27;)
+            ? { checked: Boolean(control.checked) }
+            : { value: String(control.value ?? &#x27;&#x27;).slice(0, 500) })
+        }));
+      return {
+        id: String(profile.id || makeFilterProfileId()).slice(0, 100),
+        name,
+        createdAt: String(profile.createdAt || new Date().toISOString()),
+        updatedAt: String(profile.updatedAt || profile.createdAt || new Date().toISOString()),
+        controls
+      };
+    }
+
+    function saveFilterProfilesToBrowser() {
+      try {
+        window.localStorage.setItem(
+          FILTER_PROFILE_STORAGE_KEY,
+          JSON.stringify(savedFilterProfiles)
+        );
+        return true;
+      } catch (error) {
+        setFilterProfileMessage(
+          &#x27;Este navegador no permite guardar la configuración o no dispone de espacio. Los filtros actuales continúan aplicados, pero no se conservarán al cerrar.&#x27;,
+          true
+        );
+        return false;
+      }
+    }
+
+    function loadFilterProfilesFromBrowser() {
+      try {
+        const stored = window.localStorage.getItem(FILTER_PROFILE_STORAGE_KEY);
+        if (!stored) {
+          savedFilterProfiles = [];
+          return;
+        }
+        const parsed = JSON.parse(stored);
+        savedFilterProfiles = Array.isArray(parsed)
+          ? parsed
+            .slice(0, FILTER_PROFILE_STORAGE_LIMIT)
+            .map((profile) =&gt; {
+              try {
+                return normaliseFilterProfile(profile);
+              } catch (error) {
+                return null;
+              }
+            })
+            .filter(Boolean)
+          : [];
+        setFilterProfileMessage(
+          savedFilterProfiles.length &gt; 0
+            ? `${savedFilterProfiles.length} ${savedFilterProfiles.length === 1 ? &#x27;configuración recuperada&#x27; : &#x27;configuraciones recuperadas&#x27;} en este navegador.`
+            : &#x27;Las configuraciones se conservan localmente en este navegador.&#x27;
+        );
+      } catch (error) {
+        savedFilterProfiles = [];
+        setFilterProfileMessage(
+          &#x27;No se han podido leer las configuraciones guardadas en este navegador.&#x27;,
+          true
+        );
+      }
+    }
+
+    function renderFilterProfiles(selectedId = filterProfileSelect.value) {
+      filterProfileSelect.replaceChildren();
+      const placeholder = document.createElement(&#x27;option&#x27;);
+      placeholder.value = &#x27;&#x27;;
+      placeholder.textContent = savedFilterProfiles.length
+        ? &#x27;Selecciona una configuración&#x27;
+        : &#x27;No hay configuraciones guardadas&#x27;;
+      filterProfileSelect.appendChild(placeholder);
+      savedFilterProfiles.forEach((profile) =&gt; {
+        const option = document.createElement(&#x27;option&#x27;);
+        option.value = profile.id;
+        option.textContent = profile.name;
+        filterProfileSelect.appendChild(option);
+      });
+      filterProfileSelect.value = savedFilterProfiles.some((profile) =&gt; profile.id === selectedId)
+        ? selectedId
+        : &#x27;&#x27;;
+      const total = savedFilterProfiles.length;
+      filterProfileCount.textContent = `${total} ${total === 1 ? &#x27;guardada&#x27; : &#x27;guardadas&#x27;}`;
+      const hasSelection = Boolean(filterProfileSelect.value);
+      filterProfileLoadButton.disabled = !hasSelection || filterBusy;
+      filterProfileDeleteButton.disabled = !hasSelection || filterBusy;
+    }
+
+    function applyFilterControlSnapshot(controls) {
+      const savedByKey = new Map(controls.map((control) =&gt; [control.key, control]));
+      filterGrid.querySelectorAll(&#x27;input&#x27;).forEach((input) =&gt; {
+        if (input.type === &#x27;checkbox&#x27;) input.checked = false;
+        else input.value = input.defaultValue;
+        const saved = savedByKey.get(filterControlKey(input));
+        if (!saved) return;
+        if (input.type === &#x27;checkbox&#x27;) input.checked = Boolean(saved.checked);
+        else input.value = String(saved.value ?? &#x27;&#x27;);
+      });
+    }
+
+    function saveCurrentFilterProfile() {
+      if (filterBusy) return;
+      const name = cleanFilterProfileName(filterProfileNameInput.value);
+      if (!name) {
+        setFilterProfileMessage(&#x27;Escribe un nombre para identificar la configuración.&#x27;, true);
+        filterProfileNameInput.focus();
+        return;
+      }
+      try {
+        readFilterConfiguration();
+      } catch (error) {
+        setFilterProfileMessage(
+          `${error.message || &#x27;Revisa la configuración de los filtros.&#x27;} Corrígelo antes de guardarla.`,
+          true
+        );
+        return;
+      }
+
+      const now = new Date().toISOString();
+      const existingIndex = savedFilterProfiles.findIndex(
+        (profile) =&gt; profile.name.localeCompare(name, &#x27;es&#x27;, { sensitivity: &#x27;base&#x27; }) === 0
+      );
+      if (existingIndex === -1 &amp;&amp; savedFilterProfiles.length &gt;= FILTER_PROFILE_STORAGE_LIMIT) {
+        setFilterProfileMessage(
+          `Se ha alcanzado el límite de ${FILTER_PROFILE_STORAGE_LIMIT} configuraciones. Elimina alguna antes de guardar otra.`,
+          true
+        );
+        return;
+      }
+      const previousProfiles = [...savedFilterProfiles];
+      const profile = normaliseFilterProfile({
+        id: existingIndex &gt;= 0 ? savedFilterProfiles[existingIndex].id : makeFilterProfileId(),
+        name,
+        createdAt: existingIndex &gt;= 0 ? savedFilterProfiles[existingIndex].createdAt : now,
+        updatedAt: now,
+        controls: snapshotFilterControls()
+      });
+      if (existingIndex &gt;= 0) savedFilterProfiles.splice(existingIndex, 1);
+      savedFilterProfiles.unshift(profile);
+      if (!saveFilterProfilesToBrowser()) {
+        savedFilterProfiles = previousProfiles;
+        renderFilterProfiles();
+        return;
+      }
+      filterProfilePendingDeleteId = null;
+      filterProfileDeleteButton.textContent = &#x27;Eliminar&#x27;;
+      filterProfileNameInput.value = profile.name;
+      renderFilterProfiles(profile.id);
+      setFilterProfileMessage(
+        existingIndex &gt;= 0
+          ? `Configuración «${profile.name}» actualizada.`
+          : `Configuración «${profile.name}» guardada para usarla en otra ocasión.`
+      );
+    }
+
+    function loadSelectedFilterProfile() {
+      if (filterBusy) return;
+      const profile = savedFilterProfiles.find(
+        (savedProfile) =&gt; savedProfile.id === filterProfileSelect.value
+      );
+      if (!profile) {
+        setFilterProfileMessage(&#x27;Selecciona la configuración que quieres cargar.&#x27;, true);
+        return;
+      }
+      const previousControls = snapshotFilterControls();
+      applyFilterControlSnapshot(profile.controls);
+      try {
+        readFilterConfiguration();
+      } catch (error) {
+        applyFilterControlSnapshot(previousControls);
+        setFilterProfileMessage(
+          &#x27;La configuración guardada no es compatible con esta versión y no se ha aplicado.&#x27;,
+          true
+        );
+        return;
+      }
+      filterProfileNameInput.value = profile.name;
+      filterProfilePendingDeleteId = null;
+      filterProfileDeleteButton.textContent = &#x27;Eliminar&#x27;;
+      refreshFilterCardStates();
+      clearFilteredResult(
+        `Configuración «${profile.name}» cargada. Pulsa «Aplicar filtros» para obtener un nuevo resultado.`
+      );
+      updateFilterSourceSummary(false);
+      setFilterProfileMessage(`Configuración «${profile.name}» cargada correctamente.`);
+    }
+
+    function deleteSelectedFilterProfile() {
+      if (filterBusy) return;
+      const profile = savedFilterProfiles.find(
+        (savedProfile) =&gt; savedProfile.id === filterProfileSelect.value
+      );
+      if (!profile) {
+        setFilterProfileMessage(&#x27;Selecciona la configuración que quieres eliminar.&#x27;, true);
+        return;
+      }
+      if (filterProfilePendingDeleteId !== profile.id) {
+        filterProfilePendingDeleteId = profile.id;
+        filterProfileDeleteButton.textContent = &#x27;Confirmar eliminación&#x27;;
+        setFilterProfileMessage(
+          `Pulsa otra vez para eliminar definitivamente «${profile.name}».`,
+          true
+        );
+        return;
+      }
+      const previousProfiles = [...savedFilterProfiles];
+      savedFilterProfiles = savedFilterProfiles.filter(
+        (savedProfile) =&gt; savedProfile.id !== profile.id
+      );
+      if (!saveFilterProfilesToBrowser()) {
+        savedFilterProfiles = previousProfiles;
+        return;
+      }
+      filterProfilePendingDeleteId = null;
+      filterProfileDeleteButton.textContent = &#x27;Eliminar&#x27;;
+      filterProfileNameInput.value = &#x27;&#x27;;
+      renderFilterProfiles(&#x27;&#x27;);
+      setFilterProfileMessage(`Configuración «${profile.name}» eliminada.`);
+    }
+
+    function handleFilterProfileSelection() {
+      const profile = savedFilterProfiles.find(
+        (savedProfile) =&gt; savedProfile.id === filterProfileSelect.value
+      );
+      filterProfilePendingDeleteId = null;
+      filterProfileDeleteButton.textContent = &#x27;Eliminar&#x27;;
+      filterProfileNameInput.value = profile?.name ?? &#x27;&#x27;;
+      renderFilterProfiles(profile?.id ?? &#x27;&#x27;);
+      if (profile) {
+        setFilterProfileMessage(`Seleccionada «${profile.name}». Pulsa «Cargar» para aplicarla.`);
+      }
+    }
+
+    function setFilterMessage(message, isError = false) {
+      filterMessage.textContent = message;
+      filterMessage.classList.toggle(&#x27;is-error&#x27;, isError);
+    }
+
+    function filterSourceDetails(source = filterSourceSelect.value) {
+      if (source === &#x27;current&#x27;) {
+        const combinations = drawn.length === 6 ? [[...drawn].sort((first, second) =&gt; first - second)] : [];
+        return {
+          key: &#x27;current&#x27;,
+          label: &#x27;Bombo · combinación extraída actual&#x27;,
+          description: combinations.length
+            ? &#x27;La combinación completa que aparece actualmente en la zona del bombo.&#x27;
+            : &#x27;Todavía no hay una combinación completa para filtrar.&#x27;,
+          combinations
+        };
+      }
+      if (source === &#x27;random&#x27;) {
+        const combinations = savedOrigin === &#x27;random&#x27; ? savedCombinations : [];
+        return {
+          key: &#x27;random&#x27;,
+          label: &#x27;Bombo · combinaciones guardadas&#x27;,
+          description: combinations.length
+            ? &#x27;Combinaciones extraídas mediante el bombo y guardadas en la lista.&#x27;
+            : &#x27;No hay combinaciones aleatorias guardadas.&#x27;,
+          combinations
+        };
+      }
+      if (source === &#x27;rules&#x27;) {
+        return {
+          key: &#x27;rules&#x27;,
+          label: &#x27;Generador con fijos y semifijos&#x27;,
+          description: ruleGeneratedCombinations.length
+            ? &#x27;Combinaciones creadas aplicando los fijos y semifijos seleccionados.&#x27;
+            : &#x27;Todavía no se han generado combinaciones con fijos y semifijos.&#x27;,
+          combinations: ruleGeneratedCombinations
+        };
+      }
+      if (source === &#x27;imported&#x27;) {
+        return {
+          key: importedSource === &#x27;clipboard&#x27; ? &#x27;clipboard&#x27; : &#x27;file&#x27;,
+          label: importedSource === &#x27;clipboard&#x27;
+            ? &#x27;Combinaciones pegadas desde el portapapeles&#x27;
+            : &#x27;Archivo TXT cargado&#x27;,
+          description: importedCombinations.length
+            ? &#x27;Combinaciones cargadas en la zona de TXT y portapapeles.&#x27;
+            : &#x27;Todavía no se han cargado combinaciones desde TXT o portapapeles.&#x27;,
+          combinations: importedCombinations
+        };
+      }
+      if (source === &#x27;reduced&#x27;) {
+        return {
+          key: &#x27;reduced&#x27;,
+          label: &#x27;Reducción matemática&#x27;,
+          description: developmentReducedCombinations.length
+            ? &#x27;Combinaciones que forman la última reducción calculada.&#x27;
+            : &#x27;Todavía no se ha generado una reducción.&#x27;,
+          combinations: developmentReducedCombinations
+        };
+      }
+      if (source === &#x27;development&#x27;) {
+        return {
+          key: &#x27;full&#x27;,
+          label: &#x27;Desarrollo completo&#x27;,
+          description: developmentFullCombinations.length
+            ? &#x27;Combinaciones que forman el último desarrollo completo.&#x27;
+            : &#x27;Todavía no se ha generado un desarrollo completo.&#x27;,
+          combinations: developmentFullCombinations
+        };
+      }
+      if (source === &#x27;ticket&#x27;) {
+        return {
+          key: &#x27;saved-ticket&#x27;,
+          label: loadedTicketForFilters
+            ? `Mis boletos · ${loadedTicketForFilters.name}`
+            : &#x27;Mis boletos · ninguno seleccionado&#x27;,
+          description: loadedTicketForFilters
+            ? `Apuestas del boleto completo guardado «${loadedTicketForFilters.name}».`
+            : &#x27;Pulsa «Filtrar» en uno de los boletos guardados.&#x27;,
+          combinations: loadedTicketForFilters?.combinations ?? []
+        };
+      }
+      return { key: &#x27;unknown&#x27;, label: &#x27;Procedencia desconocida&#x27;, description: &#x27;&#x27;, combinations: [] };
+    }
+
+    function refreshFilterSourceButtons() {
+      filterCurrentButton.disabled = drawn.length !== 6;
+      filterSavedButton.disabled = savedOrigin !== &#x27;random&#x27; || savedCombinations.length === 0;
+      filterRulesButton.disabled = ruleGeneratedCombinations.length === 0;
+      filterImportedButton.disabled = importedCombinations.length === 0;
+      filterDevelopmentButton.disabled = getActiveDevelopmentCombinations().length === 0;
+      filterDevelopmentButton.dataset.filterSource = developmentViewSelect.value === &#x27;full&#x27;
+        ? &#x27;development&#x27;
+        : &#x27;reduced&#x27;;
+      if (filterSourceSelect.value) updateFilterSourceSummary(false);
+    }
+
+    function clearFilteredResult(message = &#x27;&#x27;) {
+      filteredCombinations = [];
+      filteredSourceDetails = null;
+      filterPageIndex = 0;
+      filterOutput.hidden = true;
+      filterResultList.replaceChildren();
+      filterPagination.hidden = true;
+      filterResultCount.textContent = &#x27;0 resultantes&#x27;;
+      root.querySelectorAll(&#x27;[data-filter-eliminated]&#x27;).forEach((label) =&gt; {
+        label.textContent = &#x27;0 eliminadas&#x27;;
+      });
+      if (message) setFilterMessage(message);
+    }
+
+    function updateFilterSourceSummary(clearResult = true) {
+      const details = filterSourceDetails();
+      filterSourceSummary.dataset.source = details.key;
+      filterSourceName.textContent = details.label;
+      filterSourceDescription.textContent = details.description;
+      filterSourceCount.textContent = `${details.combinations.length.toLocaleString(&#x27;es-ES&#x27;)} ${details.combinations.length === 1 ? &#x27;combinación&#x27; : &#x27;combinaciones&#x27;}`;
+      filterApplyButton.disabled = filterBusy || details.combinations.length === 0;
+      if (clearResult) {
+        clearFilteredResult(
+          details.combinations.length
+            ? `${details.combinations.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones preparadas. Activa los filtros que necesites y pulsa «Aplicar filtros».`
+            : details.description
+        );
+      }
+    }
+
+    function scrollToFilters() {
+      requestAnimationFrame(() =&gt; {
+        const targetTop = filterSection.getBoundingClientRect().top + window.scrollY - 12;
+        window.scrollTo({ top: Math.max(0, targetTop), behavior: reducedMotion ? &#x27;auto&#x27; : &#x27;smooth&#x27; });
+        filterSection.focus({ preventScroll: true });
+        quickNavLinks.forEach((item) =&gt; item.removeAttribute(&#x27;aria-current&#x27;));
+        const quickFilterLink = quickNavLinks.find((link) =&gt; link.getAttribute(&#x27;href&#x27;) === &#x27;#lottery-filters-section&#x27;);
+        quickFilterLink?.setAttribute(&#x27;aria-current&#x27;, &#x27;location&#x27;);
+      });
+    }
+
+    function openFiltersForSource(source, ticket = null) {
+      if (ticket) loadedTicketForFilters = normaliseTicket(ticket);
+      filterSourceSelect.value = source;
+      updateFilterSourceSummary();
+      scrollToFilters();
+    }
+
+    function parseFilterNumberSet(value) {
+      const text = String(value ?? &#x27;&#x27;).trim();
+      if (!text) return null;
+      const numbers = new Set();
+      const tokens = text.split(/[\s,;]+/).filter(Boolean);
+      tokens.forEach((token) =&gt; {
+        const rangeMatch = token.match(/^(\d{1,2})-(\d{1,2})$/);
+        if (rangeMatch) {
+          let start = Number(rangeMatch[1]);
+          let end = Number(rangeMatch[2]);
+          if (start &gt; end) [start, end] = [end, start];
+          for (let number = start; number &lt;= end; number += 1) {
+            if (number &gt;= 1 &amp;&amp; number &lt;= 49) numbers.add(number);
+          }
+          return;
+        }
+        const number = Number(token);
+        if (Number.isInteger(number) &amp;&amp; number &gt;= 1 &amp;&amp; number &lt;= 49) numbers.add(number);
+      });
+      if (numbers.size === 0) throw new Error(`No se reconoce la lista «${text}».`);
+      return numbers;
+    }
+
+    function readFilterRange(key, minimum, maximum, label) {
+      const minInput = filterGrid.querySelector(`[data-filter-min=&quot;${key}&quot;]`);
+      const maxInput = filterGrid.querySelector(`[data-filter-max=&quot;${key}&quot;]`);
+      const min = Math.trunc(Number(minInput?.value));
+      const max = Math.trunc(Number(maxInput?.value));
+      if (!Number.isInteger(min) || !Number.isInteger(max) || min &lt; minimum || max &gt; maximum || min &gt; max) {
+        throw new Error(`${label}: revisa los valores mínimo y máximo.`);
+      }
+      return { min, max };
+    }
+
+    function readStaticRange(minId, maxId, minimum, maximum, label) {
+      const min = Math.trunc(Number(root.querySelector(minId).value));
+      const max = Math.trunc(Number(root.querySelector(maxId).value));
+      if (!Number.isInteger(min) || !Number.isInteger(max) || min &lt; minimum || max &gt; maximum || min &gt; max) {
+        throw new Error(`${label}: revisa los valores mínimo y máximo.`);
+      }
+      return { min, max };
+    }
+
+    function selectedFilterFigures(group) {
+      return new Set(
+        [...filterGrid.querySelectorAll(`[data-filter-figure=&quot;${group}&quot;]:checked`)]
+          .map((input) =&gt; input.value)
+      );
+    }
+
+    function readFilterConfiguration() {
+      const enabled = [...filterGrid.querySelectorAll(&#x27;[data-filter-enabled]:checked&#x27;)]
+        .map((input) =&gt; input.dataset.filterEnabled);
+      const configuration = { enabled };
+
+      configuration.low = readStaticRange(&#x27;#lottery-filter-low-min&#x27;, &#x27;#lottery-filter-low-max&#x27;, 0, 6, &#x27;Bajos&#x27;);
+      configuration.high = readStaticRange(&#x27;#lottery-filter-high-min&#x27;, &#x27;#lottery-filter-high-max&#x27;, 0, 6, &#x27;Altos&#x27;);
+      configuration.decades = Array.from({ length: 5 }, (_, index) =&gt; (
+        readFilterRange(`decade-${index}`, 0, 6, `Decena ${index + 1}`)
+      ));
+      configuration.decadeFigures = selectedFilterFigures(&#x27;decades&#x27;);
+      configuration.distances = Array.from({ length: 5 }, (_, index) =&gt; (
+        readFilterRange(`distance-${index}`, 1, 48, `Distancia ${index + 1}`)
+      ));
+      configuration.span = readStaticRange(&#x27;#lottery-filter-span-min&#x27;, &#x27;#lottery-filter-span-max&#x27;, 5, 48, &#x27;Amplitud&#x27;);
+      configuration.pairDistance = readStaticRange(
+        &#x27;#lottery-filter-pair-distance-min&#x27;,
+        &#x27;#lottery-filter-pair-distance-max&#x27;,
+        0,
+        1000,
+        &#x27;Suma de distancias&#x27;
+      );
+
+      configuration.groups = Array.from({ length: 10 }, (_, index) =&gt; {
+        const set = parseFilterNumberSet(filterGrid.querySelector(`[data-filter-group-numbers=&quot;${index}&quot;]`).value);
+        const min = Math.trunc(Number(filterGrid.querySelector(`[data-filter-group-min=&quot;${index}&quot;]`).value));
+        const max = Math.trunc(Number(filterGrid.querySelector(`[data-filter-group-max=&quot;${index}&quot;]`).value));
+        if (!Number.isInteger(min) || !Number.isInteger(max) || min &lt; 0 || max &gt; 6 || min &gt; max) {
+          throw new Error(`Grupo ${index + 1}: revisa los aciertos mínimo y máximo.`);
+        }
+        return { set, min, max };
+      });
+
+      configuration.roots = Array.from({ length: 9 }, (_, index) =&gt; (
+        readFilterRange(`root-${index + 1}`, 0, 6, `Raíz ${index + 1}`)
+      ));
+      configuration.rootFigures = selectedFilterFigures(&#x27;digital-roots&#x27;);
+      configuration.parityFigures = selectedFilterFigures(&#x27;parity&#x27;);
+      configuration.consecutive = readStaticRange(
+        &#x27;#lottery-filter-consecutive-min&#x27;,
+        &#x27;#lottery-filter-consecutive-max&#x27;,
+        0,
+        5,
+        &#x27;Números seguidos&#x27;
+      );
+      configuration.consecutiveFigures = selectedFilterFigures(&#x27;consecutives&#x27;);
+
+      configuration.sums = Array.from({ length: 10 }, (_, index) =&gt; {
+        const minValue = filterGrid.querySelector(`[data-filter-sum-min=&quot;${index}&quot;]`).value.trim();
+        const maxValue = filterGrid.querySelector(`[data-filter-sum-max=&quot;${index}&quot;]`).value.trim();
+        if (!minValue &amp;&amp; !maxValue) return null;
+        const min = Math.trunc(Number(minValue));
+        const max = Math.trunc(Number(maxValue));
+        if (!Number.isInteger(min) || !Number.isInteger(max) || min &lt; 21 || max &gt; 279 || min &gt; max) {
+          throw new Error(`Intervalo de sumas ${index + 1}: indica un mínimo y un máximo válidos.`);
+        }
+        return { min, max };
+      }).filter(Boolean);
+
+      configuration.endings = Array.from({ length: 10 }, (_, index) =&gt; (
+        readFilterRange(`ending-${index}`, 0, 6, `Terminación ${index}`)
+      ));
+      configuration.endingFigures = selectedFilterFigures(&#x27;endings&#x27;);
+      configuration.endingSum = readStaticRange(
+        &#x27;#lottery-filter-ending-sum-min&#x27;,
+        &#x27;#lottery-filter-ending-sum-max&#x27;,
+        2,
+        53,
+        &#x27;Suma de terminaciones&#x27;
+      );
+      configuration.positions = Array.from({ length: 6 }, (_, index) =&gt; (
+        parseFilterNumberSet(filterGrid.querySelector(`[data-filter-position=&quot;${index}&quot;]`).value)
+      ));
+      return configuration;
+    }
+
+    function filterFigure(counts) {
+      const present = counts.filter((count) =&gt; count &gt; 0).sort((first, second) =&gt; second - first);
+      if (present.length === 1) return `${present[0]}-0`;
+      return present.join(&#x27;-&#x27;);
+    }
+
+    function analyseFilterCombination(combination) {
+      const numbers = [...combination].sort((first, second) =&gt; first - second);
+      const decadeCounts = Array(5).fill(0);
+      const rootCounts = Array(9).fill(0);
+      const endingCounts = Array(10).fill(0);
+      let low = 0;
+      let even = 0;
+      let sum = 0;
+      let endingSum = 0;
+      numbers.forEach((number) =&gt; {
+        if (number &lt;= 24) low += 1;
+        if (number % 2 === 0) even += 1;
+        sum += number;
+        const decade = number &lt; 10 ? 0 : Math.floor(number / 10);
+        decadeCounts[decade] += 1;
+        const digitalRoot = ((number - 1) % 9);
+        rootCounts[digitalRoot] += 1;
+        const ending = number % 10;
+        endingCounts[ending] += 1;
+        endingSum += ending;
+      });
+
+      const distances = numbers.slice(1).map((number, index) =&gt; number - numbers[index]);
+      let pairDistanceSum = 0;
+      for (let first = 0; first &lt; numbers.length; first += 1) {
+        for (let second = first + 1; second &lt; numbers.length; second += 1) {
+          pairDistanceSum += numbers[second] - numbers[first];
+        }
+      }
+
+      const runs = [];
+      let currentRun = 1;
+      distances.forEach((distance) =&gt; {
+        if (distance === 1) {
+          currentRun += 1;
+        } else {
+          runs.push(currentRun);
+          currentRun = 1;
+        }
+      });
+      runs.push(currentRun);
+      const consecutiveLinks = runs.reduce((total, length) =&gt; total + Math.max(0, length - 1), 0);
+
+      return {
+        numbers,
+        low,
+        high: 6 - low,
+        even,
+        odd: 6 - even,
+        sum,
+        decadeCounts,
+        decadeFigure: filterFigure(decadeCounts),
+        rootCounts,
+        rootFigure: filterFigure(rootCounts),
+        endingCounts,
+        endingFigure: filterFigure(endingCounts),
+        endingSum,
+        distances,
+        span: numbers[5] - numbers[0],
+        pairDistanceSum,
+        consecutiveLinks,
+        consecutiveFigure: filterFigure(runs)
+      };
+    }
+
+    function valueInRange(value, range) {
+      return value &gt;= range.min &amp;&amp; value &lt;= range.max;
+    }
+
+    function filterCombinationPasses(key, metrics, configuration) {
+      if (key === &#x27;low-high&#x27;) {
+        return valueInRange(metrics.low, configuration.low)
+          &amp;&amp; valueInRange(metrics.high, configuration.high);
+      }
+      if (key === &#x27;decades&#x27;) {
+        return metrics.decadeCounts.every((count, index) =&gt; valueInRange(count, configuration.decades[index]))
+          &amp;&amp; (configuration.decadeFigures.size === 0 || configuration.decadeFigures.has(metrics.decadeFigure));
+      }
+      if (key === &#x27;distances&#x27;) {
+        return metrics.distances.every((distance, index) =&gt; valueInRange(distance, configuration.distances[index]))
+          &amp;&amp; valueInRange(metrics.span, configuration.span)
+          &amp;&amp; valueInRange(metrics.pairDistanceSum, configuration.pairDistance);
+      }
+      if (key === &#x27;groups&#x27;) {
+        return configuration.groups.every((group) =&gt; {
+          if (!group.set) return true;
+          const count = metrics.numbers.filter((number) =&gt; group.set.has(number)).length;
+          return count &gt;= group.min &amp;&amp; count &lt;= group.max;
+        });
+      }
+      if (key === &#x27;digital-roots&#x27;) {
+        return metrics.rootCounts.every((count, index) =&gt; valueInRange(count, configuration.roots[index]))
+          &amp;&amp; (configuration.rootFigures.size === 0 || configuration.rootFigures.has(metrics.rootFigure));
+      }
+      if (key === &#x27;parity&#x27;) {
+        return configuration.parityFigures.size === 0
+          || configuration.parityFigures.has(`${metrics.even}-${metrics.odd}`);
+      }
+      if (key === &#x27;consecutives&#x27;) {
+        return valueInRange(metrics.consecutiveLinks, configuration.consecutive)
+          &amp;&amp; (configuration.consecutiveFigures.size === 0
+            || configuration.consecutiveFigures.has(metrics.consecutiveFigure));
+      }
+      if (key === &#x27;sums&#x27;) {
+        return configuration.sums.length === 0
+          || configuration.sums.some((range) =&gt; valueInRange(metrics.sum, range));
+      }
+      if (key === &#x27;endings&#x27;) {
+        return metrics.endingCounts.every((count, index) =&gt; valueInRange(count, configuration.endings[index]))
+          &amp;&amp; valueInRange(metrics.endingSum, configuration.endingSum)
+          &amp;&amp; (configuration.endingFigures.size === 0
+            || configuration.endingFigures.has(metrics.endingFigure));
+      }
+      if (key === &#x27;positions&#x27;) {
+        return configuration.positions.every((set, index) =&gt; !set || set.has(metrics.numbers[index]));
+      }
+      return true;
+    }
+
+    function combinationPassesActiveFilters(combination, configuration) {
+      const metrics = analyseFilterCombination(combination);
+      return configuration.enabled.every((key) =&gt;
+        filterCombinationPasses(key, metrics, configuration)
+      );
+    }
+
+    function readZoneFilterConfiguration(modeSelect, zoneLabel) {
+      if (modeSelect?.value !== &#x27;active&#x27;) return null;
+      const configuration = readFilterConfiguration();
+      if (configuration.enabled.length === 0) {
+        throw new Error(
+          `${zoneLabel}: has elegido aplicar filtros, pero todavía no hay ninguno activado en la zona «Filtros».`
+        );
+      }
+      return configuration;
+    }
+
+    function refreshFilterCardStates() {
+      filterGrid.querySelectorAll(&#x27;[data-filter-card]&#x27;).forEach((card) =&gt; {
+        const enabled = card.querySelector(&#x27;[data-filter-enabled]&#x27;)?.checked;
+        card.classList.toggle(&#x27;is-active&#x27;, Boolean(enabled));
+      });
+    }
+
+    function renderFilteredCombinations() {
+      const pageTotal = Math.max(1, Math.ceil(filteredCombinations.length / FILTER_PAGE_SIZE));
+      filterPageIndex = Math.min(Math.max(0, filterPageIndex), pageTotal - 1);
+      const start = filterPageIndex * FILTER_PAGE_SIZE;
+      const pageCombinations = filteredCombinations.slice(start, start + FILTER_PAGE_SIZE);
+      filterResultList.replaceChildren();
+      pageCombinations.forEach((combination, pageIndex) =&gt; {
+        const item = document.createElement(&#x27;li&#x27;);
+        item.className = &#x27;filter-result-item&#x27;;
+        const index = document.createElement(&#x27;span&#x27;);
+        index.className = &#x27;filter-result-index&#x27;;
+        index.textContent = String(start + pageIndex + 1).padStart(2, &#x27;0&#x27;);
+        const numbers = document.createElement(&#x27;span&#x27;);
+        numbers.className = &#x27;filter-result-numbers&#x27;;
+        numbers.textContent = combination.map((number) =&gt; String(number).padStart(2, &#x27;0&#x27;)).join(&#x27; · &#x27;);
+        item.append(index, numbers);
+        filterResultList.appendChild(item);
+      });
+      filterOutput.hidden = false;
+      filterOutputCount.textContent = `${filteredCombinations.length.toLocaleString(&#x27;es-ES&#x27;)} ${filteredCombinations.length === 1 ? &#x27;combinación&#x27; : &#x27;combinaciones&#x27;}`;
+      filterResultCount.textContent = `${filteredCombinations.length.toLocaleString(&#x27;es-ES&#x27;)} resultantes`;
+      filterPagination.hidden = filteredCombinations.length &lt;= FILTER_PAGE_SIZE;
+      filterPage.textContent = `${filterPageIndex + 1} de ${pageTotal}`;
+      filterPreviousButton.disabled = filterPageIndex === 0;
+      filterNextButton.disabled = filterPageIndex &gt;= pageTotal - 1;
+      const hasResults = filteredCombinations.length &gt; 0;
+      filterCopyButton.disabled = !hasResults;
+      filterQrButton.disabled = !hasResults;
+      filterScrutinyButton.disabled = !hasResults;
+    }
+
+    async function applyCombinationFilters() {
+      if (filterBusy) return;
+      const source = filterSourceDetails();
+      const base = source.combinations;
+      if (base.length === 0) {
+        updateFilterSourceSummary();
+        setFilterMessage(&#x27;La procedencia seleccionada no contiene combinaciones para filtrar.&#x27;, true);
+        return;
+      }
+      const isMobile = window.matchMedia(&#x27;(max-width: 760px)&#x27;).matches;
+      const safeLimit = isMobile ? FILTER_MOBILE_COMBINATION_LIMIT : FILTER_DESKTOP_COMBINATION_LIMIT;
+      if (base.length &gt; safeLimit) {
+        setFilterMessage(
+          `La procedencia contiene ${base.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones y supera el límite seguro de ${safeLimit.toLocaleString(&#x27;es-ES&#x27;)} para este dispositivo. Reduce primero el desarrollo o utiliza una lista más pequeña.`,
+          true
+        );
+        return;
+      }
+
+      let configuration;
+      try {
+        configuration = readFilterConfiguration();
+      } catch (error) {
+        setFilterMessage(error.message || &#x27;Revisa la configuración de los filtros.&#x27;, true);
+        return;
+      }
+
+      filterBusy = true;
+      filterCancelRequested = false;
+      filterApplyButton.disabled = true;
+      filterCancelButton.hidden = false;
+      filterCancelButton.disabled = false;
+      filterResetButton.disabled = true;
+      filterProfileSaveButton.disabled = true;
+      filterProfileLoadButton.disabled = true;
+      filterProfileDeleteButton.disabled = true;
+      const nextCombinations = [];
+      const eliminated = Object.fromEntries(configuration.enabled.map((key) =&gt; [key, 0]));
+      root.querySelectorAll(&#x27;[data-filter-eliminated]&#x27;).forEach((label) =&gt; {
+        label.textContent = &#x27;0 eliminadas&#x27;;
+      });
+      setFilterMessage(`Analizando ${base.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones…`);
+
+      const chunkSize = isMobile ? 750 : 2500;
+      for (let index = 0; index &lt; base.length; index += 1) {
+        const combination = base[index];
+        const metrics = analyseFilterCombination(combination);
+        let accepted = true;
+        for (const key of configuration.enabled) {
+          if (!filterCombinationPasses(key, metrics, configuration)) {
+            eliminated[key] += 1;
+            accepted = false;
+            break;
+          }
+        }
+        if (accepted) nextCombinations.push([...metrics.numbers]);
+
+        if ((index + 1) % chunkSize === 0) {
+          const percentage = Math.round((index + 1) / base.length * 100);
+          setFilterMessage(`Filtrando combinaciones… ${percentage} %`);
+          await wait(0);
+          if (filterCancelRequested) break;
+        }
+      }
+
+      filterBusy = false;
+      filterCancelButton.hidden = true;
+      filterCancelButton.disabled = true;
+      filterResetButton.disabled = false;
+      filterApplyButton.disabled = false;
+      filterProfileSaveButton.disabled = false;
+      renderFilterProfiles();
+      if (filterCancelRequested) {
+        setFilterMessage(&#x27;Filtrado cancelado. Se conserva el resultado anterior.&#x27;);
+        return;
+      }
+
+      filteredCombinations = nextCombinations;
+      filteredSourceDetails = {
+        key: &#x27;filtered&#x27;,
+        label: `Filtros · ${source.label}`,
+        description: `Combinaciones filtradas a partir de ${source.label}.`
+      };
+      filterPageIndex = 0;
+      configuration.enabled.forEach((key) =&gt; {
+        const label = root.querySelector(`[data-filter-eliminated=&quot;${key}&quot;]`);
+        const total = eliminated[key] ?? 0;
+        label.textContent = `${total.toLocaleString(&#x27;es-ES&#x27;)} ${total === 1 ? &#x27;eliminada&#x27; : &#x27;eliminadas&#x27;}`;
+      });
+      renderFilteredCombinations();
+      const removed = base.length - filteredCombinations.length;
+      filterOutputSummary.textContent = `Procedencia: ${source.label}. Se han eliminado ${removed.toLocaleString(&#x27;es-ES&#x27;)} de ${base.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones.`;
+      setFilterMessage(
+        configuration.enabled.length === 0
+          ? &#x27;No había filtros activados: se ha conservado la lista completa.&#x27;
+          : `${filteredCombinations.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones cumplen todos los filtros activados.`
+      );
+    }
+
+    function cancelCombinationFilters() {
+      if (!filterBusy) return;
+      filterCancelRequested = true;
+      filterCancelButton.disabled = true;
+      setFilterMessage(&#x27;Cancelación solicitada. El proceso se detendrá al terminar el bloque actual.&#x27;);
+    }
+
+    function resetCombinationFilters() {
+      if (filterBusy) return;
+      filterGrid.querySelectorAll(&#x27;input&#x27;).forEach((input) =&gt; {
+        if (input.type === &#x27;checkbox&#x27;) input.checked = false;
+        else input.value = input.defaultValue;
+      });
+      refreshFilterCardStates();
+      clearFilteredResult(&#x27;Filtros restablecidos. La procedencia seleccionada se mantiene sin cambios.&#x27;);
+      updateFilterSourceSummary(false);
+    }
+
+    async function copyFilteredCombinations() {
+      if (filteredCombinations.length === 0) {
+        setFilterMessage(&#x27;Aplica primero los filtros y conserva al menos una combinación.&#x27;, true);
+        return;
+      }
+      const result = await copyTextToClipboard(combinationsToClipboardText(filteredCombinations));
+      if (result.copied) {
+        setFilterMessage(`${filteredCombinations.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones filtradas copiadas, una por línea.`);
+      } else if (result.manual) {
+        setFilterMessage(&#x27;El navegador ha mostrado las combinaciones para copiarlas manualmente.&#x27;);
+      } else {
+        setFilterMessage(&#x27;No se han podido copiar las combinaciones filtradas.&#x27;, true);
+      }
+    }
+
+    function generateFilteredQr() {
+      if (filteredCombinations.length === 0) {
+        setFilterMessage(&#x27;Aplica primero los filtros y conserva al menos una combinación.&#x27;, true);
+        return;
+      }
+      prepareQrGeneration(filteredCombinations, &#x27;filtered&#x27;);
+    }
+
+    function sendFilteredToScrutinizer() {
+      if (filteredCombinations.length === 0) {
+        setFilterMessage(&#x27;Aplica primero los filtros y conserva al menos una combinación.&#x27;, true);
+        return;
+      }
+      scrutinySourceSelect.value = &#x27;filtered&#x27;;
+      scrutinyOutput.hidden = true;
+      setScrutinyMessage(`${filteredCombinations.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones filtradas preparadas para el escrutinio.`);
+      const scrutinySection = root.querySelector(&#x27;#lottery-scrutiny-section&#x27;);
+      const targetTop = scrutinySection.getBoundingClientRect().top + window.scrollY - 12;
+      window.scrollTo({ top: Math.max(0, targetTop), behavior: reducedMotion ? &#x27;auto&#x27; : &#x27;smooth&#x27; });
+    }
 
     function makeTicketId() {
       return window.crypto?.randomUUID?.() ?? `ticket-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
@@ -4325,6 +6200,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         empty.className = &#x27;ticket-list-empty&#x27;;
         empty.textContent = &#x27;Todavía no hay boletos completos guardados en este navegador.&#x27;;
         ticketList.appendChild(empty);
+        refreshFilterSourceButtons();
         return;
       }
 
@@ -4368,6 +6244,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         actions.append(
           createTicketAction(&#x27;Ver QR&#x27;, &#x27;open&#x27;, ticket.id, &#x27;btn-primary&#x27;),
           createTicketAction(&#x27;Escrutar&#x27;, &#x27;scrutinize&#x27;, ticket.id),
+          createTicketAction(&#x27;Filtrar&#x27;, &#x27;filter&#x27;, ticket.id),
           createTicketAction(&#x27;Copiar apuestas&#x27;, &#x27;copy-bets&#x27;, ticket.id),
           createTicketAction(&#x27;Copiar boleto&#x27;, &#x27;copy&#x27;, ticket.id),
           createTicketAction(&#x27;TXT&#x27;, &#x27;download&#x27;, ticket.id),
@@ -4376,6 +6253,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         card.append(heading, meta, source, actions);
         ticketList.appendChild(card);
       });
+      refreshFilterSourceButtons();
     }
 
     function rebuildQrPagesFromTicket(ticket) {
@@ -4578,6 +6456,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         openSavedTicket(ticket);
       } else if (action === &#x27;scrutinize&#x27;) {
         loadTicketInScrutinizer(ticket);
+      } else if (action === &#x27;filter&#x27;) {
+        openFiltersForSource(&#x27;ticket&#x27;, ticket);
       } else if (action === &#x27;copy-bets&#x27;) {
         await copyTicketCombinations(ticket, &#x27;import&#x27;);
       } else if (action === &#x27;copy&#x27;) {
@@ -4612,6 +6492,13 @@ html&gt;body{padding:0}&lt;/style&gt;
         if (loadedTicketForScrutiny?.id === ticket.id) {
           loadedTicketForScrutiny = null;
           if (scrutinySourceSelect.value === &#x27;ticket&#x27;) scrutinySourceSelect.value = &#x27;current&#x27;;
+        }
+        if (loadedTicketForFilters?.id === ticket.id) {
+          loadedTicketForFilters = null;
+          if (filterSourceSelect.value === &#x27;ticket&#x27;) {
+            filterSourceSelect.value = &#x27;current&#x27;;
+            updateFilterSourceSummary();
+          }
         }
         renderSavedTickets();
         setTicketImportMessage(`Boleto «${ticket.name}» eliminado de este navegador.`);
@@ -4881,6 +6768,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       viewRuleCombinationsButton.disabled = savedOrigin !== &#x27;rules&#x27; || savedCombinations.length === 0;
       refreshSaveButton();
       updateQrGuidance();
+      refreshFilterSourceButtons();
     }
 
     function saveCurrentCombination() {
@@ -4891,6 +6779,26 @@ html&gt;body{padding:0}&lt;/style&gt;
       }
 
       const combination = [...drawn].sort((a, b) =&gt; a - b);
+      let filterConfiguration;
+      try {
+        filterConfiguration = readZoneFilterConfiguration(
+          drawFilterModeSelect,
+          &#x27;Combinación del bombo&#x27;
+        );
+      } catch (error) {
+        status.textContent = error.message;
+        return;
+      }
+      if (
+        filterConfiguration
+        &amp;&amp; !combinationPassesActiveFilters(combination, filterConfiguration)
+      ) {
+        status.textContent =
+          &#x27;La combinación extraída no cumple todos los filtros activos y no se ha guardado. Puedes iniciar otro sorteo o cambiar los filtros.&#x27;;
+        summary.textContent =
+          &#x27;La combinación se mantiene visible, pero no se añadió a la lista porque no supera las condiciones seleccionadas.&#x27;;
+        return;
+      }
       const key = combinationKey(combination);
       if (savedCombinations.some((saved) =&gt; combinationKey(saved) === key)) {
         status.textContent = &#x27;Esta combinación ya está guardada.&#x27;;
@@ -4905,8 +6813,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       renderSavedCombinations();
       const remainingSlots = 8 - savedCombinations.length;
       status.textContent = remainingSlots &gt; 0
-        ? `Combinación guardada · ${combination.join(&#x27;, &#x27;)} · pulsa «Nuevo sorteo» para continuar.`
-        : `Combinación guardada · ${combination.join(&#x27;, &#x27;)} · lista completa.`;
+        ? `Combinación guardada${filterConfiguration ? &#x27; con filtros&#x27; : &#x27;&#x27;} · ${combination.join(&#x27;, &#x27;)} · pulsa «Nuevo sorteo» para continuar.`
+        : `Combinación guardada${filterConfiguration ? &#x27; con filtros&#x27; : &#x27;&#x27;} · ${combination.join(&#x27;, &#x27;)} · lista completa.`;
       summary.textContent = remainingSlots &gt; 0
         ? `Combinación ${savedCombinations.length} guardada. Quedan ${remainingSlots} combinaciones para completar el boleto; el botón Nuevo sorteo está resaltado.`
         : &#x27;Combinación 8 guardada. La lista está completa.&#x27;;
@@ -4992,6 +6900,14 @@ html&gt;body{padding:0}&lt;/style&gt;
         };
       }
 
+      if (source === &#x27;filtered&#x27;) {
+        return filteredSourceDetails ?? {
+          key: &#x27;filtered&#x27;,
+          label: &#x27;Resultado de la zona de filtros&#x27;,
+          description: &#x27;Combinaciones que cumplen todos los filtros activos.&#x27;
+        };
+      }
+
       if (source === &#x27;txt&#x27;) {
         if (importedSource === &#x27;clipboard&#x27;) {
           return {
@@ -5063,6 +6979,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         txtMessage.classList.toggle(&#x27;is-error&#x27;, isError);
       } else if (source === &#x27;development&#x27;) {
         setDevelopmentMessage(message, isError);
+      } else if (source === &#x27;filtered&#x27;) {
+        setFilterMessage(message, isError);
       } else {
         setQrMessage(message, isError);
       }
@@ -5161,6 +7079,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           ? &#x27;Carga primero un archivo TXT o un texto con combinaciones válidas.&#x27;
           : source === &#x27;development&#x27;
             ? &#x27;Genera primero una reducción o un desarrollo completo.&#x27;
+            : source === &#x27;filtered&#x27;
+              ? &#x27;Aplica primero los filtros y conserva al menos una combinación.&#x27;
             : &#x27;Guarda al menos una combinación antes de preparar el QR.&#x27;;
         setQrPreparationFeedback(source, message, true);
         return;
@@ -5664,6 +7584,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     function invalidateRuleGeneratedCombinations() {
       ruleGeneratedCombinations = [];
       copyRulesButton.disabled = true;
+      refreshFilterSourceButtons();
     }
 
     function renderNumberRules() {
@@ -5900,9 +7821,9 @@ html&gt;body{padding:0}&lt;/style&gt;
       return Math.round(count);
     }
 
-    function createUniqueRandomFillings(pool, needed, count) {
+    function createUniqueRandomFillings(pool, needed, count, acceptFilling = () =&gt; true) {
       if (count === 0) return [];
-      if (needed === 0) return count === 1 ? [[]] : null;
+      if (needed === 0) return count === 1 &amp;&amp; acceptFilling([]) ? [[]] : null;
       if (limitedCombinationCount(pool.length, needed, count) &lt; count) return null;
 
       const fillings = [];
@@ -5914,13 +7835,19 @@ html&gt;body{padding:0}&lt;/style&gt;
           .sort((first, second) =&gt; first - second);
         const key = filling.join(&#x27;,&#x27;);
         if (used.has(key)) continue;
+        if (!acceptFilling(filling)) continue;
         used.add(key);
         fillings.push(filling);
       }
       return fillings.length === count ? fillings : null;
     }
 
-    function createCombinationsFromSchedule(fixedNumbers, schedule, reservedNumbers) {
+    function createCombinationsFromSchedule(
+      fixedNumbers,
+      schedule,
+      reservedNumbers,
+      combinationPredicate = null
+    ) {
       const reservedSet = new Set(reservedNumbers);
       const pool = Array.from({ length: 49 }, (_, index) =&gt; index + 1)
         .filter((number) =&gt; !reservedSet.has(number));
@@ -5944,7 +7871,17 @@ html&gt;body{padding:0}&lt;/style&gt;
           };
         }
 
-        const fillings = createUniqueRandomFillings(pool, needed, group.rowIndexes.length);
+        const fillings = createUniqueRandomFillings(
+          pool,
+          needed,
+          group.rowIndexes.length,
+          (filling) =&gt; {
+            if (!combinationPredicate) return true;
+            const combination = [...group.required, ...filling]
+              .sort((first, second) =&gt; first - second);
+            return combinationPredicate(combination);
+          }
+        );
         if (!fillings) {
           return {
             combinations: null,
@@ -5978,6 +7915,19 @@ html&gt;body{padding:0}&lt;/style&gt;
       const semiRules = numberRules.filter((rule) =&gt; rule.type === &#x27;semi&#x27;);
       const fixedNumbers = fixedRules.map((rule) =&gt; rule.number);
       const reservedNumbers = numberRules.map((rule) =&gt; rule.number);
+      let filterConfiguration;
+      try {
+        filterConfiguration = readZoneFilterConfiguration(
+          rulesFilterModeSelect,
+          &#x27;Generador con fijos y semifijos&#x27;
+        );
+      } catch (error) {
+        setRuleMessage(error.message, true);
+        return;
+      }
+      const combinationPredicate = filterConfiguration
+        ? (combination) =&gt; combinationPassesActiveFilters(combination, filterConfiguration)
+        : null;
       const automaticSearches = total &lt;= 30 ? 6 : 3;
       let schedule = null;
       let creation = null;
@@ -5986,7 +7936,12 @@ html&gt;body{padding:0}&lt;/style&gt;
         const candidateSchedule = createSemiSchedule(fixedRules, semiRules, total);
         if (!candidateSchedule) continue;
         schedule = candidateSchedule;
-        creation = createCombinationsFromSchedule(fixedNumbers, candidateSchedule, reservedNumbers);
+        creation = createCombinationsFromSchedule(
+          fixedNumbers,
+          candidateSchedule,
+          reservedNumbers,
+          combinationPredicate
+        );
         if (creation.combinations) break;
       }
 
@@ -5997,7 +7952,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
       if (!creation.combinations) {
         setRuleMessage(
-          `${creation.message} Se han probado automáticamente varios repartos. Pulsa de nuevo «${generateTicketButton.textContent}» para iniciar otra búsqueda o reduce algunas apariciones para dejar posiciones aleatorias.`,
+          `${creation.message}${filterConfiguration ? &#x27; Los filtros activos pueden ser incompatibles con algunas reglas.&#x27; : &#x27;&#x27;} Se han probado automáticamente varios repartos. Pulsa de nuevo «${generateTicketButton.textContent}» para iniciar otra búsqueda o modifica los criterios.`,
           true
         );
         return;
@@ -6028,7 +7983,9 @@ html&gt;body{padding:0}&lt;/style&gt;
       refreshResults();
       renderSavedCombinations();
       generateTicketButton.disabled = !assessRuleConfiguration().valid;
-      setRuleMessage(`Generadas ${combinationCountLabel(total)} diferentes con el reparto solicitado.`);
+      setRuleMessage(
+        `Generadas ${combinationCountLabel(total)} diferentes con el reparto solicitado${filterConfiguration ? &#x27; y todos los filtros activos&#x27; : &#x27;&#x27;}.`
+      );
       status.textContent = `Primera combinación del boleto · ${generated[0].join(&#x27;, &#x27;)}`;
       summary.textContent = `Se han generado y guardado ${combinationCountLabel(total)} con los números fijos y semifijos seleccionados.`;
     }
@@ -6109,6 +8066,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       importedCombinations = [];
       importedSource = null;
       generateTxtQrButton.disabled = true;
+      refreshFilterSourceButtons();
     }
 
     function acceptImportedText(text, source) {
@@ -6139,13 +8097,47 @@ html&gt;body{padding:0}&lt;/style&gt;
         return false;
       }
 
-      importedCombinations = result.combinations;
+      let acceptedCombinations = result.combinations;
+      let filterConfiguration;
+      try {
+        filterConfiguration = readZoneFilterConfiguration(
+          txtFilterModeSelect,
+          &#x27;Carga desde TXT o portapapeles&#x27;
+        );
+      } catch (error) {
+        setTxtMessage(error.message, true);
+        updateImportedControls();
+        return false;
+      }
+      if (filterConfiguration) {
+        acceptedCombinations = result.combinations.filter((combination) =&gt;
+          combinationPassesActiveFilters(combination, filterConfiguration)
+        );
+        if (acceptedCombinations.length === 0) {
+          setTxtMessage(
+            `Las ${result.combinations.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones son válidas, pero ninguna cumple todos los filtros activos.`,
+            true
+          );
+          updateImportedControls();
+          return false;
+        }
+      }
+
+      importedCombinations = acceptedCombinations;
       importedSource = source;
       generateTxtQrButton.disabled = false;
       updateTxtGuidance();
       updateImportedControls();
+      refreshFilterSourceButtons();
       const origin = source === &#x27;clipboard&#x27; ? &#x27;Texto pegado&#x27; : &#x27;Archivo cargado&#x27;;
-      summary.textContent = `${origin} con ${importedCombinations.length} combinaciones válidas.`;
+      if (filterConfiguration) {
+        setTxtMessage(
+          `${importedCombinations.length.toLocaleString(&#x27;es-ES&#x27;)} de ${result.combinations.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones cumplen todos los filtros activos.`
+        );
+      }
+      summary.textContent = filterConfiguration
+        ? `${origin}: ${importedCombinations.length} de ${result.combinations.length} combinaciones cumplen todos los filtros activos.`
+        : `${origin} con ${importedCombinations.length} combinaciones válidas.`;
       return true;
     }
 
@@ -6160,6 +8152,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       pastedCombinationsInput.value = &#x27;&#x27;;
       resetImportedCombinations();
       hideQr();
+      refreshFilterSourceButtons();
       updateImportedControls();
 
       if (file.size &gt; 1024 * 1024) {
@@ -6385,6 +8378,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       createDevelopmentViewOptions(getDevelopmentMode());
       setDevelopmentMessage(message);
       hideQr();
+      refreshFilterSourceButtons();
     }
 
     function refreshDevelopmentControls() {
@@ -7233,7 +9227,12 @@ html&gt;body{padding:0}&lt;/style&gt;
       );
 
       try {
-        const winningEntries = createSixNumberEntries(pending.numbers, pending.fixedNumbers);
+        let winningEntries = createSixNumberEntries(pending.numbers, pending.fixedNumbers);
+        if (pending.filterConfiguration) {
+          winningEntries = winningEntries.filter((entry) =&gt;
+            combinationPassesActiveFilters(entry.combination, pending.filterConfiguration)
+          );
+        }
         const ticketEntries = pending.combinations.map((combination) =&gt;
           createDevelopmentEntryFromCombination(pending.numbers, combination)
         );
@@ -7328,6 +9327,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       developmentNextButton.disabled = developmentPageIndex === pageTotal - 1;
       developmentCopyButton.disabled = combinations.length === 0;
       developmentQrButton.disabled = combinations.length === 0;
+      refreshFilterSourceButtons();
     }
 
     async function generateDevelopmentReduction() {
@@ -7358,6 +9358,17 @@ html&gt;body{padding:0}&lt;/style&gt;
         );
         return;
       }
+      let filterConfiguration;
+      try {
+        filterConfiguration = readZoneFilterConfiguration(
+          developmentFilterModeSelect,
+          &#x27;Desarrollos y reducciones&#x27;
+        );
+      } catch (error) {
+        setDevelopmentMessage(error.message, true);
+        return;
+      }
+      const filtersApplied = Boolean(filterConfiguration);
 
       developmentBusy = true;
       developmentStopRequested = false;
@@ -7374,12 +9385,23 @@ html&gt;body{padding:0}&lt;/style&gt;
       );
       setDevelopmentMessage(
         fixedNumbers.length &gt; 0
-          ? `Preparando ${conditionedUniverseTotal.toLocaleString(&#x27;es-ES&#x27;)} casos condicionados y ${generalUniverseTotal.toLocaleString(&#x27;es-ES&#x27;)} casos generales…`
-          : `Preparando ${generalUniverseTotal.toLocaleString(&#x27;es-ES&#x27;)} combinaciones posibles…`
+          ? `Preparando ${conditionedUniverseTotal.toLocaleString(&#x27;es-ES&#x27;)} casos condicionados y ${generalUniverseTotal.toLocaleString(&#x27;es-ES&#x27;)} casos generales${filtersApplied ? &#x27; para aplicar los filtros activos&#x27; : &#x27;&#x27;}…`
+          : `Preparando ${generalUniverseTotal.toLocaleString(&#x27;es-ES&#x27;)} combinaciones posibles${filtersApplied ? &#x27; para aplicar los filtros activos&#x27; : &#x27;&#x27;}…`
       );
 
       try {
-        const conditionedEntries = createSixNumberEntries(numbers, fixedNumbers);
+        let conditionedEntries = createSixNumberEntries(numbers, fixedNumbers);
+        const unfilteredConditionedTotal = conditionedEntries.length;
+        if (filterConfiguration) {
+          conditionedEntries = conditionedEntries.filter((entry) =&gt;
+            combinationPassesActiveFilters(entry.combination, filterConfiguration)
+          );
+          if (conditionedEntries.length === 0) {
+            throw new Error(
+              &#x27;ninguna combinación del sistema elegido cumple todos los filtros activos&#x27;
+            );
+          }
+        }
         let allEntries = fixedNumbers.length === 0 ? conditionedEntries : null;
         const candidateEntries = conditionedEntries;
         await wait(0);
@@ -7394,17 +9416,17 @@ html&gt;body{padding:0}&lt;/style&gt;
           developmentPageIndex = 0;
           developmentResultTitle.textContent = &#x27;Desarrollo completo&#x27;;
           developmentNotation.textContent = fixedNumbers.length &gt; 0
-            ? `C(${numbers.length - fixedNumbers.length},${6 - fixedNumbers.length})=${developmentFullCombinations.length.toLocaleString(&#x27;es-ES&#x27;)} · ${fixedNumbers.length} fijos: ${fixedNumbers.map((number) =&gt; String(number).padStart(2, &#x27;0&#x27;)).join(&#x27;, &#x27;)}`
-            : `C(${numbers.length},6)=${developmentFullCombinations.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones`;
+            ? `C(${numbers.length - fixedNumbers.length},${6 - fixedNumbers.length})=${developmentFullCombinations.length.toLocaleString(&#x27;es-ES&#x27;)} · ${fixedNumbers.length} fijos: ${fixedNumbers.map((number) =&gt; String(number).padStart(2, &#x27;0&#x27;)).join(&#x27;, &#x27;)}${filtersApplied ? &#x27; · filtros activos&#x27; : &#x27;&#x27;}`
+            : `C(${numbers.length},6)=${developmentFullCombinations.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones${filtersApplied ? &#x27; · filtros activos&#x27; : &#x27;&#x27;}`;
           developmentVerification.textContent = fixedNumbers.length &gt; 0
-            ? &#x27;Todas las combinaciones contienen los fijos&#x27;
-            : &#x27;Todas las combinaciones sin repetir&#x27;;
+            ? `Todas las combinaciones contienen los fijos${filtersApplied ? &#x27; y cumplen los filtros activos&#x27; : &#x27;&#x27;}`
+            : `Todas las combinaciones sin repetir${filtersApplied ? &#x27; que cumplen los filtros activos&#x27; : &#x27;&#x27;}`;
           developmentOutput.hidden = false;
           renderDevelopmentResults();
           setDevelopmentMessage(
-            `Desarrollo completo generado con ${developmentFullCombinations.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones. Se muestran por páginas de ${DEVELOPMENT_PAGE_SIZE}.`
+            `Desarrollo completo generado con ${developmentFullCombinations.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones${filtersApplied ? ` de ${unfilteredConditionedTotal.toLocaleString(&#x27;es-ES&#x27;)} posibles tras exigir los filtros activos` : &#x27;&#x27;}. Se muestran por páginas de ${DEVELOPMENT_PAGE_SIZE}.`
           );
-          summary.textContent = `Desarrollo completo de ${numbers.length} números generado con ${developmentFullCombinations.length} combinaciones${fixedNumbers.length &gt; 0 ? ` y ${fixedNumbers.length} fijos` : &#x27;&#x27;}.`;
+          summary.textContent = `Desarrollo completo de ${numbers.length} números generado con ${developmentFullCombinations.length} combinaciones${fixedNumbers.length &gt; 0 ? ` y ${fixedNumbers.length} fijos` : &#x27;&#x27;}${filtersApplied ? &#x27;, condicionado por los filtros activos&#x27; : &#x27;&#x27;}.`;
           return;
         }
 
@@ -7524,6 +9546,11 @@ html&gt;body{padding:0}&lt;/style&gt;
             DEVELOPMENT_BREAKDOWN_COMPARISON_LIMIT
           ) {
             allEntries = createSixNumberEntries(numbers);
+            if (filterConfiguration) {
+              allEntries = allEntries.filter((entry) =&gt;
+                combinationPassesActiveFilters(entry.combination, filterConfiguration)
+              );
+            }
             generalBreakdown = await calculateDevelopmentPrizeBreakdown(
               allEntries,
               selectedTicketEntries
@@ -7541,7 +9568,8 @@ html&gt;body{padding:0}&lt;/style&gt;
               combinations: selectedTicketEntries.map((entry) =&gt; entry.combination.slice()),
               caseTotal: conditionedEntries.length,
               ticketTotal: selectedTicketEntries.length,
-              comparisonTotal: conditionedComparisonTotal
+              comparisonTotal: conditionedComparisonTotal,
+              filterConfiguration
             }
           : null;
         developmentGeneratedFixedNumbers = fixedNumbers.slice();
@@ -7567,9 +9595,9 @@ html&gt;body{padding:0}&lt;/style&gt;
         const coverageNotation = percentageMode
           ? ` · objetivo ${formatDevelopmentPercentage(requestedPercentage)} · real ${formatDevelopmentPercentage(verification.coveragePercentage)}`
           : &#x27; · cobertura 100 %&#x27;;
-        developmentNotation.textContent = `C(${numbers.length},6,${guarantee},6,1)=${developmentReducedCombinations.length}${fixedNotation}${coverageNotation} · método ${methodLabel}`;
+        developmentNotation.textContent = `C(${numbers.length},6,${guarantee},6,1)=${developmentReducedCombinations.length}${fixedNotation}${coverageNotation} · método ${methodLabel}${filtersApplied ? &#x27; · filtros activos&#x27; : &#x27;&#x27;}`;
         developmentVerification.textContent =
-          `${verification.coveredTotal.toLocaleString(&#x27;es-ES&#x27;)} de ${conditionedEntries.length.toLocaleString(&#x27;es-ES&#x27;)} casos ${fixedNumbers.length &gt; 0 ? &#x27;condicionados &#x27; : &#x27;&#x27;}cubiertos`;
+          `${verification.coveredTotal.toLocaleString(&#x27;es-ES&#x27;)} de ${conditionedEntries.length.toLocaleString(&#x27;es-ES&#x27;)} casos ${fixedNumbers.length &gt; 0 ? &#x27;condicionados &#x27; : &#x27;&#x27;}cubiertos${filtersApplied ? &#x27; · garantía condicionada a los filtros activos&#x27; : &#x27;&#x27;}`;
         developmentOutput.hidden = false;
         renderDevelopmentResults();
         if (developmentPendingBreakdown) renderPendingDevelopmentBreakdown();
@@ -7582,10 +9610,10 @@ html&gt;body{padding:0}&lt;/style&gt;
           : &#x27;&#x27;;
         setDevelopmentMessage(
           fixedNumbers.length &gt; 0
-            ? `Reducción condicionada comprobada: cobertura real ${formatDevelopmentPercentage(verification.coveragePercentage)} para ${guarantee} aciertos si los ${fixedNumbers.length} fijos están entre los 6 ganadores.${searchText}${breakdownText} El resultado es el mejor encontrado, no una prueba de mínimo absoluto.`
-            : `Reducción comprobada con cobertura real ${formatDevelopmentPercentage(verification.coveragePercentage)} para ${guarantee} aciertos si los 6 ganadores están entre los ${numbers.length} elegidos.${searchText}${breakdownText} El resultado es el mejor encontrado, no una prueba de mínimo absoluto.`
+            ? `Reducción condicionada comprobada: cobertura real ${formatDevelopmentPercentage(verification.coveragePercentage)} para ${guarantee} aciertos si los ${fixedNumbers.length} fijos están entre los 6 ganadores${filtersApplied ? &#x27; y el caso ganador cumple los filtros activos&#x27; : &#x27;&#x27;}.${searchText}${breakdownText} El resultado es el mejor encontrado, no una prueba de mínimo absoluto.`
+            : `Reducción comprobada con cobertura real ${formatDevelopmentPercentage(verification.coveragePercentage)} para ${guarantee} aciertos si los 6 ganadores están entre los ${numbers.length} elegidos${filtersApplied ? &#x27; y cumplen los filtros activos&#x27; : &#x27;&#x27;}.${searchText}${breakdownText} El resultado es el mejor encontrado, no una prueba de mínimo absoluto.`
         );
-        summary.textContent = `Reducción C(${numbers.length},6,${guarantee},6,1) comprobada con ${developmentReducedCombinations.length} combinaciones y ${formatDevelopmentPercentage(verification.coveragePercentage)} de cobertura${fixedNumbers.length &gt; 0 ? &#x27; condicionada&#x27; : &#x27;&#x27;}.`;
+        summary.textContent = `Reducción C(${numbers.length},6,${guarantee},6,1) comprobada con ${developmentReducedCombinations.length} combinaciones y ${formatDevelopmentPercentage(verification.coveragePercentage)} de cobertura${fixedNumbers.length &gt; 0 || filtersApplied ? &#x27; condicionada&#x27; : &#x27;&#x27;}${filtersApplied ? &#x27; a los filtros activos&#x27; : &#x27;&#x27;}.`;
       } catch (error) {
         developmentReducedCombinations = [];
         developmentFullCombinations = [];
@@ -7665,6 +9693,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           return loadedTicketForScrutiny
             ? loadedTicketForScrutiny.combinations.map((combination) =&gt; [...combination])
             : [];
+        case &#x27;filtered&#x27;:
+          return filteredCombinations.map((combination) =&gt; [...combination]);
         default:
           return [];
       }
@@ -7688,6 +9718,10 @@ html&gt;body{padding:0}&lt;/style&gt;
           return loadedTicketForScrutiny
             ? `combinaciones del boleto completo «${loadedTicketForScrutiny.name}»`
             : &#x27;combinaciones de un boleto completo guardado&#x27;;
+        case &#x27;filtered&#x27;:
+          return filteredSourceDetails?.label
+            ? `resultado filtrado de ${filteredSourceDetails.label.replace(/^Filtros · /, &#x27;&#x27;)}`
+            : &#x27;resultado de la zona de filtros&#x27;;
         default:
           return &#x27;combinaciones&#x27;;
       }
@@ -7713,6 +9747,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           return loadedTicketForScrutiny
             ? `Mis boletos · ${loadedTicketForScrutiny.name}`
             : &#x27;Mis boletos · ninguno cargado&#x27;;
+        case &#x27;filtered&#x27;:
+          return filteredSourceDetails?.label ?? &#x27;Resultado de la zona de filtros&#x27;;
         default:
           return &#x27;Combinaciones seleccionadas&#x27;;
       }
@@ -8081,6 +10117,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       drawButton.disabled = busy || drawn.length &gt;= 6;
       resetButton.disabled = busy;
       refreshSaveButton();
+      refreshFilterSourceButtons();
     }
 
     async function drawBall() {
@@ -8183,6 +10220,46 @@ html&gt;body{padding:0}&lt;/style&gt;
     pastedCombinationsInput.addEventListener(&#x27;input&#x27;, handlePastedCombinationsInput);
     pastedCombinationsInput.addEventListener(&#x27;paste&#x27;, handleManualCombinationPaste);
     clearTxtButton.addEventListener(&#x27;click&#x27;, clearTxtFile);
+    root.querySelectorAll(&#x27;.lottery-filter-source-button&#x27;).forEach((button) =&gt; {
+      button.addEventListener(&#x27;click&#x27;, () =&gt; openFiltersForSource(button.dataset.filterSource));
+    });
+    filterProfileSaveButton.addEventListener(&#x27;click&#x27;, saveCurrentFilterProfile);
+    filterProfileLoadButton.addEventListener(&#x27;click&#x27;, loadSelectedFilterProfile);
+    filterProfileDeleteButton.addEventListener(&#x27;click&#x27;, deleteSelectedFilterProfile);
+    filterProfileSelect.addEventListener(&#x27;change&#x27;, handleFilterProfileSelection);
+    filterProfileNameInput.addEventListener(&#x27;keydown&#x27;, (event) =&gt; {
+      if (event.key !== &#x27;Enter&#x27;) return;
+      event.preventDefault();
+      saveCurrentFilterProfile();
+    });
+    filterSourceSelect.addEventListener(&#x27;change&#x27;, () =&gt; updateFilterSourceSummary());
+    filterGrid.addEventListener(&#x27;change&#x27;, () =&gt; {
+      refreshFilterCardStates();
+      clearFilteredResult(&#x27;Configuración modificada. Pulsa «Aplicar filtros» para obtener un nuevo resultado.&#x27;);
+    });
+    filterApplyButton.addEventListener(&#x27;click&#x27;, applyCombinationFilters);
+    filterCancelButton.addEventListener(&#x27;click&#x27;, cancelCombinationFilters);
+    filterResetButton.addEventListener(&#x27;click&#x27;, resetCombinationFilters);
+    filterPreviousButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+      filterPageIndex = Math.max(0, filterPageIndex - 1);
+      renderFilteredCombinations();
+    });
+    filterNextButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+      const pageTotal = Math.max(1, Math.ceil(filteredCombinations.length / FILTER_PAGE_SIZE));
+      filterPageIndex = Math.min(pageTotal - 1, filterPageIndex + 1);
+      renderFilteredCombinations();
+    });
+    filterCopyButton.addEventListener(&#x27;click&#x27;, copyFilteredCombinations);
+    filterQrButton.addEventListener(&#x27;click&#x27;, generateFilteredQr);
+    filterScrutinyButton.addEventListener(&#x27;click&#x27;, sendFilteredToScrutinizer);
+    developmentFilterModeSelect.addEventListener(&#x27;change&#x27;, () =&gt; {
+      invalidateDevelopmentResults(
+        developmentFilterModeSelect.value === &#x27;active&#x27;
+          ? &#x27;El próximo cálculo exigirá los filtros activos; la garantía será condicionada a ellos.&#x27;
+          : &#x27;El próximo cálculo no aplicará los filtros de la zona central.&#x27;
+      );
+      refreshDevelopmentControls();
+    });
     developmentNumberGrid.addEventListener(&#x27;click&#x27;, (event) =&gt; {
       const button = event.target.closest(&#x27;[data-development-number]&#x27;);
       if (!button) return;
@@ -8298,6 +10375,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         } else {
           setScrutinyMessage(&#x27;Abre «Mis boletos» y pulsa «Escrutar» en el boleto que quieras comprobar.&#x27;, true);
         }
+      } else if (scrutinySourceSelect.value === &#x27;filtered&#x27; &amp;&amp; filteredCombinations.length === 0) {
+        setScrutinyMessage(&#x27;Aplica primero los filtros y envía el resultado al escrutador.&#x27;, true);
       }
     });
     scrutinyPasteButton.addEventListener(&#x27;click&#x27;, pasteScrutinyWinningCombination);
@@ -8322,6 +10401,11 @@ html&gt;body{padding:0}&lt;/style&gt;
       if (!button) return;
       removeNumberRule(Number(button.dataset.removeRule));
     });
+    buildFilterControls();
+    loadFilterProfilesFromBrowser();
+    renderFilterProfiles();
+    refreshFilterCardStates();
+    updateFilterSourceSummary(false);
     createDevelopmentNumberButtons();
     createDevelopmentViewOptions(&#x27;reduced&#x27;);
     refreshDevelopmentControls();
