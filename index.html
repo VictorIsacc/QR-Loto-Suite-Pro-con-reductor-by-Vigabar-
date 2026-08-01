@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://static.cloudflareinsights.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src 'self' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data: https://cloudflareinsights.com; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://static.cloudflareinsights.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src 'self' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src 'self' blob:; connect-src 'self' blob: data: https://cloudflareinsights.com; manifest-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <script>
 (() => {
   if (!/^https?:$/.test(window.location.protocol)) return;
@@ -39,14 +39,25 @@
   }
 })();
 </script>
-<title>QR Loto Suite by Vigabar®</title>
-<link rel="icon" type="image/webp" href="logo-loto-suite-cabecera-v2.webp">
+<title>QR Loto Suite V20 by Vigabar®</title>
+<meta name="theme-color" content="#061127">
+<meta name="application-name" content="QR Loto Suite">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="QR Loto Suite">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icono-qr-loto-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icono-qr-loto-512.png">
+<link rel="apple-touch-icon" sizes="192x192" href="icono-qr-loto-192.png">
+<link rel="mask-icon" href="icono-qr-loto-maskable-512.png" color="#061127">
 <style>
 :root{color-scheme:light dark;background:light-dark(rgb(255 255 255),rgb(24 24 24))}
 html,body{margin:0;min-height:100%}
 body{box-sizing:border-box;height:100vh;height:100dvh;padding:clamp(.25rem,1vw,1rem);display:grid;grid-template-rows:auto auto minmax(0,1fr);gap:clamp(.3rem,.7vw,.7rem);overflow:hidden;background:inherit}
 .loto-suite-header{box-sizing:border-box;width:100%;max-width:1800px;height:clamp(96px,9vw,144px);margin:0 auto;position:relative;overflow:hidden;border:1px solid rgb(77 190 255 / 28%);border-radius:clamp(14px,1.4vw,22px);background:#061127 url("cabecera-circuitos-loto-suite.webp") center/cover no-repeat;box-shadow:0 8px 28px rgb(0 15 42 / 32%)}
 .loto-suite-header::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgb(1 10 28 / 8%),rgb(5 16 42 / 34%) 34%,rgb(5 15 38 / 32%) 66%,rgb(14 4 31 / 10%));pointer-events:none}
+.loto-suite-version{position:absolute;z-index:3;top:clamp(.55rem,1vw,.9rem);right:clamp(.65rem,1.2vw,1.15rem);display:inline-flex;align-items:center;justify-content:center;min-height:30px;padding:.28rem .72rem;border:1px solid rgb(92 210 255 / 55%);border-radius:999px;color:#dff8ff;background:rgb(3 18 43 / 78%);box-shadow:0 0 16px rgb(46 221 244 / 22%),inset 0 0 0 1px rgb(218 113 255 / 12%);font:800 clamp(.68rem,.88vw,.84rem)/1 "Segoe UI",Arial,sans-serif;letter-spacing:.055em;text-transform:uppercase;white-space:nowrap;backdrop-filter:blur(6px)}
 .loto-suite-brand{position:relative;z-index:1;height:100%;display:flex;align-items:center;justify-content:center;gap:clamp(.7rem,1.7vw,1.45rem);padding:clamp(.45rem,.8vw,.8rem) clamp(.75rem,2.5vw,2.5rem)}
 .loto-suite-logo{width:clamp(68px,7vw,108px);height:clamp(68px,7vw,108px);flex:0 0 auto;border-radius:22%;object-fit:cover;box-shadow:0 0 0 1px rgb(116 209 255 / 62%),0 0 22px rgb(34 181 255 / 42%),0 0 34px rgb(224 79 255 / 18%)}
 .loto-suite-copy{display:grid;min-width:0;line-height:1}
@@ -59,13 +70,14 @@ body{box-sizing:border-box;height:100vh;height:100dvh;padding:clamp(.25rem,1vw,1
 .loto-suite-new strong{flex:0 0 auto;padding:.2rem .48rem;border-radius:999px;color:#111827;background:#fbbf24;font-size:.68em;font-weight:900;letter-spacing:.07em}
 @keyframes loto-suite-new-pulse{from{border-color:light-dark(rgb(217 119 6 / 42%),rgb(251 191 36 / 45%));box-shadow:0 0 0 rgb(245 158 11 / 0%);opacity:.84}to{border-color:#fbbf24;box-shadow:0 0 15px rgb(245 158 11 / 24%);opacity:1}}
 iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin:0 auto;border:0}
-@media(max-width:600px){body{padding:.25rem;gap:.25rem}.loto-suite-header{height:88px;border-radius:14px}.loto-suite-brand{gap:.55rem;padding:.35rem .55rem}.loto-suite-logo{width:64px;height:64px;border-radius:18%}.loto-suite-title{font-size:clamp(1.12rem,6.2vw,1.72rem);letter-spacing:.01em}.loto-suite-by{justify-self:end;margin:.25rem .15rem 0 0;font-size:.72rem}.loto-suite-new{padding:.42rem .55rem;gap:.45rem;border-radius:10px;font-size:.72rem}}
+@media(max-width:600px){body{padding:.25rem;gap:.25rem}.loto-suite-version{top:.38rem;right:.42rem;min-height:24px;padding:.2rem .5rem;font-size:.61rem;letter-spacing:.035em}.loto-suite-header{height:88px;border-radius:14px}.loto-suite-brand{gap:.55rem;padding:.35rem .55rem}.loto-suite-logo{width:64px;height:64px;border-radius:18%}.loto-suite-title{font-size:clamp(1.12rem,6.2vw,1.72rem);letter-spacing:.01em}.loto-suite-by{justify-self:end;margin:.25rem .15rem 0 0;font-size:.72rem}.loto-suite-new{padding:.42rem .55rem;gap:.45rem;border-radius:10px;font-size:.72rem}}
 @media(max-width:370px){.loto-suite-logo{width:56px;height:56px}.loto-suite-title{font-size:1.05rem}.loto-suite-by{font-size:.67rem}}
 @media(prefers-reduced-motion:reduce){.loto-suite-new{animation:none}}
 </style>
 </head>
 <body>
-<header class="loto-suite-header" aria-label="QR Loto Suite by Vigabar">
+<header class="loto-suite-header" aria-label="QR Loto Suite V20 by Vigabar">
+  <span class="loto-suite-version" aria-label="Versión 20">Versión V20</span>
   <div class="loto-suite-brand">
     <img class="loto-suite-logo" src="logo-loto-suite-cabecera-v2.webp" alt="Emblema de QR Loto Suite">
     <div class="loto-suite-copy">
@@ -12118,5 +12130,15 @@ html&gt;body{padding:0}&lt;/style&gt;
 <!-- Cloudflare Web Analytics -->
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"33d85690239b48889c49ede73f7602ba"}'></script>
 <!-- End Cloudflare Web Analytics -->
+
+<script>
+(() => {
+  if (!("serviceWorker" in navigator) || !/^https?:$/.test(window.location.protocol)) return;
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js", { scope: "./" })
+      .catch((error) => console.warn("No se pudo registrar el service worker:", error));
+  }, { once: true });
+})();
+</script>
 </body>
 </html>
