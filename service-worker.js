@@ -1,4 +1,4 @@
-const CACHE_NAME = "qr-loto-suite-v22-core-v1";
+const CACHE_NAME = "qr-loto-suite-v23-core-v1";
 const CORE_FILES = [
   "./",
   "./index.html",
