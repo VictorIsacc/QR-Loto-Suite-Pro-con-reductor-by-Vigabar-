@@ -39,7 +39,7 @@
   }
 })();
 </script>
-<title>QR Loto Suite V20 by Vigabar®</title>
+<title>QR Loto Suite V21 by Vigabar®</title>
 <meta name="theme-color" content="#061127">
 <meta name="application-name" content="QR Loto Suite">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -58,6 +58,9 @@ body{box-sizing:border-box;height:100vh;height:100dvh;padding:clamp(.25rem,1vw,1
 .loto-suite-header{box-sizing:border-box;width:100%;max-width:1800px;height:clamp(96px,9vw,144px);margin:0 auto;position:relative;overflow:hidden;border:1px solid rgb(77 190 255 / 28%);border-radius:clamp(14px,1.4vw,22px);background:#061127 url("cabecera-circuitos-loto-suite.webp") center/cover no-repeat;box-shadow:0 8px 28px rgb(0 15 42 / 32%)}
 .loto-suite-header::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgb(1 10 28 / 8%),rgb(5 16 42 / 34%) 34%,rgb(5 15 38 / 32%) 66%,rgb(14 4 31 / 10%));pointer-events:none}
 .loto-suite-version{position:absolute;z-index:3;top:clamp(.55rem,1vw,.9rem);right:clamp(.65rem,1.2vw,1.15rem);display:inline-flex;align-items:center;justify-content:center;min-height:30px;padding:.28rem .72rem;border:1px solid rgb(92 210 255 / 55%);border-radius:999px;color:#dff8ff;background:rgb(3 18 43 / 78%);box-shadow:0 0 16px rgb(46 221 244 / 22%),inset 0 0 0 1px rgb(218 113 255 / 12%);font:800 clamp(.68rem,.88vw,.84rem)/1 "Segoe UI",Arial,sans-serif;letter-spacing:.055em;text-transform:uppercase;white-space:nowrap;backdrop-filter:blur(6px)}
+.loto-suite-install{position:absolute;z-index:4;top:clamp(.55rem,1vw,.9rem);left:clamp(.65rem,1.2vw,1.15rem);min-height:32px;padding:.32rem .78rem;border:1px solid rgb(74 222 128 / 68%);border-radius:999px;color:#052e16;background:linear-gradient(145deg,#86efac,#22c55e);box-shadow:0 0 18px rgb(34 197 94 / 30%);font:850 clamp(.68rem,.88vw,.84rem)/1 "Segoe UI",Arial,sans-serif;cursor:pointer;touch-action:manipulation}
+.loto-suite-install:hover,.loto-suite-install:focus-visible{filter:brightness(1.08);outline:2px solid #a7f3d0;outline-offset:2px}
+.loto-suite-install[hidden]{display:none}
 .loto-suite-brand{position:relative;z-index:1;height:100%;display:flex;align-items:center;justify-content:center;gap:clamp(.7rem,1.7vw,1.45rem);padding:clamp(.45rem,.8vw,.8rem) clamp(.75rem,2.5vw,2.5rem)}
 .loto-suite-logo{width:clamp(68px,7vw,108px);height:clamp(68px,7vw,108px);flex:0 0 auto;border-radius:22%;object-fit:cover;box-shadow:0 0 0 1px rgb(116 209 255 / 62%),0 0 22px rgb(34 181 255 / 42%),0 0 34px rgb(224 79 255 / 18%)}
 .loto-suite-copy{display:grid;min-width:0;line-height:1}
@@ -70,14 +73,15 @@ body{box-sizing:border-box;height:100vh;height:100dvh;padding:clamp(.25rem,1vw,1
 .loto-suite-new strong{flex:0 0 auto;padding:.2rem .48rem;border-radius:999px;color:#111827;background:#fbbf24;font-size:.68em;font-weight:900;letter-spacing:.07em}
 @keyframes loto-suite-new-pulse{from{border-color:light-dark(rgb(217 119 6 / 42%),rgb(251 191 36 / 45%));box-shadow:0 0 0 rgb(245 158 11 / 0%);opacity:.84}to{border-color:#fbbf24;box-shadow:0 0 15px rgb(245 158 11 / 24%);opacity:1}}
 iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin:0 auto;border:0}
-@media(max-width:600px){body{padding:.25rem;gap:.25rem}.loto-suite-version{top:.38rem;right:.42rem;min-height:24px;padding:.2rem .5rem;font-size:.61rem;letter-spacing:.035em}.loto-suite-header{height:88px;border-radius:14px}.loto-suite-brand{gap:.55rem;padding:.35rem .55rem}.loto-suite-logo{width:64px;height:64px;border-radius:18%}.loto-suite-title{font-size:clamp(1.12rem,6.2vw,1.72rem);letter-spacing:.01em}.loto-suite-by{justify-self:end;margin:.25rem .15rem 0 0;font-size:.72rem}.loto-suite-new{padding:.42rem .55rem;gap:.45rem;border-radius:10px;font-size:.72rem}}
+@media(max-width:600px){body{padding:.25rem;gap:.25rem}.loto-suite-version{top:.38rem;right:.42rem;min-height:24px;padding:.2rem .5rem;font-size:.61rem;letter-spacing:.035em}.loto-suite-install{top:.38rem;left:.42rem;min-height:26px;padding:.22rem .52rem;font-size:.61rem}.loto-suite-header{height:88px;border-radius:14px}.loto-suite-brand{gap:.55rem;padding:.35rem .55rem}.loto-suite-logo{width:64px;height:64px;border-radius:18%}.loto-suite-title{font-size:clamp(1.12rem,6.2vw,1.72rem);letter-spacing:.01em}.loto-suite-by{justify-self:end;margin:.25rem .15rem 0 0;font-size:.72rem}.loto-suite-new{padding:.42rem .55rem;gap:.45rem;border-radius:10px;font-size:.72rem}}
 @media(max-width:370px){.loto-suite-logo{width:56px;height:56px}.loto-suite-title{font-size:1.05rem}.loto-suite-by{font-size:.67rem}}
 @media(prefers-reduced-motion:reduce){.loto-suite-new{animation:none}}
 </style>
 </head>
 <body>
-<header class="loto-suite-header" aria-label="QR Loto Suite V20 by Vigabar">
-  <span class="loto-suite-version" aria-label="Versión 20">Versión V20</span>
+<header class="loto-suite-header" aria-label="QR Loto Suite V21 by Vigabar">
+  <button class="loto-suite-install" id="loto-suite-install" type="button" hidden>Instalar app</button>
+  <span class="loto-suite-version" aria-label="Versión 21">V21</span>
   <div class="loto-suite-brand">
     <img class="loto-suite-logo" src="logo-loto-suite-cabecera-v2.webp" alt="Emblema de QR Loto Suite">
     <div class="loto-suite-copy">
@@ -90,7 +94,7 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
   <strong>NUEVO</strong>
   Filtros de combinaciones
   <strong>NUEVO</strong>
-  Suma digital posicional con equivalencias naturales de 1, 7, 28, 84 o 210.
+  Firmas posicionales por raíz digital o por terminaciones, con acceso a filtros y reductor.
 </div>
 <script>
 window.setTimeout(() => {
@@ -98,6 +102,41 @@ window.setTimeout(() => {
   if (!notice) return;
   notice.classList.add('is-hidden');
 }, 15000);
+</script>
+<script>
+(() => {
+  const installButton = document.querySelector('#loto-suite-install');
+  if (!installButton) return;
+  const standalone = window.matchMedia('(display-mode: standalone)').matches
+    || window.navigator.standalone === true;
+  if (standalone) return;
+
+  let installPrompt = null;
+  installButton.hidden = false;
+  window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    installPrompt = event;
+    installButton.hidden = false;
+  });
+  window.addEventListener('appinstalled', () => {
+    installPrompt = null;
+    installButton.hidden = true;
+  });
+  installButton.addEventListener('click', async () => {
+    if (installPrompt) {
+      installPrompt.prompt();
+      await installPrompt.userChoice;
+      installPrompt = null;
+      return;
+    }
+    const isiPhoneOrIPad = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    window.alert(
+      isiPhoneOrIPad
+        ? 'En Safari pulsa Compartir y después «Añadir a pantalla de inicio».'
+        : 'Abre el menú del navegador y elige «Instalar aplicación» o «Añadir a pantalla de inicio». Si la opción aún no aparece, recarga la página una vez.'
+    );
+  });
+})();
 </script>
 <iframe sandbox="allow-scripts allow-same-origin allow-downloads allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer" title="QR Loto Suite by Vigabar®" srcdoc="&lt;!doctype html&gt;
 &lt;html lang=&quot;es&quot;&gt;
@@ -920,7 +959,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;div class=&quot;lottery-quick-links&quot;&gt;
       &lt;a class=&quot;lottery-quick-link is-help&quot; id=&quot;lottery-instructions&quot; href=&quot;instrucciones-simulador-loteria.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Instrucciones&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link is-new&quot; href=&quot;#lottery-filters-section&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;NUEVO&lt;/span&gt; Filtros&lt;/a&gt;
-      &lt;a class=&quot;lottery-quick-link is-new&quot; href=&quot;#lottery-digital-section&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;NUEVO&lt;/span&gt; Suma digital posicional&lt;/a&gt;
+      &lt;a class=&quot;lottery-quick-link is-new&quot; href=&quot;#lottery-digital-section&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;NUEVO&lt;/span&gt; Firmas posicionales&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-sorteo-section&quot;&gt;Sorteo&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-rules-section&quot;&gt;Fijos y semifijos&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-txt-section&quot;&gt;TXT y portapapeles&lt;/a&gt;
@@ -1372,22 +1411,30 @@ html&gt;body{padding:0}&lt;/style&gt;
   &lt;section class=&quot;digital-area card lottery-jump-target&quot; id=&quot;lottery-digital-section&quot; aria-labelledby=&quot;lottery-digital-label&quot; tabindex=&quot;-1&quot;&gt;
     &lt;div class=&quot;lottery-section-label digital-heading&quot;&gt;
       &lt;div&gt;
-        &lt;h2 id=&quot;lottery-digital-label&quot;&gt;Desarrollo por suma digital posicional&lt;/h2&gt;
-        &lt;p class=&quot;text-muted&quot;&gt;Genera todas las combinaciones de números naturales equivalentes a los valores digitales seleccionados en P1–P6 y SDCD, siempre ordenadas de menor a mayor y sin números repetidos.&lt;/p&gt;
+        &lt;h2 id=&quot;lottery-digital-label&quot;&gt;Desarrollo por firma posicional&lt;/h2&gt;
+        &lt;p class=&quot;text-muted&quot; id=&quot;lottery-digital-heading-description&quot;&gt;Genera combinaciones naturales equivalentes a la firma de raíz digital seleccionada en P1–P6 y SDCD.&lt;/p&gt;
       &lt;/div&gt;
       &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-digital-total-badge&quot;&gt;Sin calcular&lt;/span&gt;
     &lt;/div&gt;
 
+    &lt;label class=&quot;form-label digital-signature-type&quot; for=&quot;lottery-digital-signature-type&quot;&gt;
+      Tipo de firma
+      &lt;select class=&quot;form-select&quot; id=&quot;lottery-digital-signature-type&quot;&gt;
+        &lt;option value=&quot;digital&quot; selected&gt;Raíz digital por posición&lt;/option&gt;
+        &lt;option value=&quot;termination&quot;&gt;Terminación por posición&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/label&gt;
+
     &lt;div class=&quot;digital-explanation&quot;&gt;
       &lt;strong&gt;Cómo se calcula&lt;/strong&gt;
-      &lt;p&gt;La raíz digital de cada número ocupa su posición natural P1–P6. La SDCD es la raíz digital de la suma de los seis valores digitales. Con los nueve valores activos en todas las columnas se representan las 13.983.816 combinaciones del 6/49.&lt;/p&gt;
+      &lt;p id=&quot;lottery-digital-explanation-text&quot;&gt;La raíz digital de cada número ocupa su posición natural P1–P6. La SDCD es la raíz digital de la suma de los seis valores digitales. Con los nueve valores activos en todas las columnas se representan las 13.983.816 combinaciones del 6/49.&lt;/p&gt;
     &lt;/div&gt;
 
-    &lt;div class=&quot;digital-panel-scroll&quot; tabindex=&quot;0&quot; aria-label=&quot;Panel desplazable de valores de suma digital&quot;&gt;
+    &lt;div class=&quot;digital-panel-scroll&quot; id=&quot;lottery-digital-panel-scroll&quot; tabindex=&quot;0&quot; aria-label=&quot;Panel desplazable de valores de raíz digital&quot;&gt;
       &lt;div class=&quot;digital-panel&quot; id=&quot;lottery-digital-panel&quot; aria-label=&quot;Selección de raíces digitales por posición y SDCD&quot;&gt;&lt;/div&gt;
     &lt;/div&gt;
 
-    &lt;div class=&quot;digital-equivalence-panel&quot; aria-labelledby=&quot;lottery-digital-equivalence-label&quot;&gt;
+    &lt;div class=&quot;digital-equivalence-panel&quot; id=&quot;lottery-digital-equivalence-panel&quot; aria-labelledby=&quot;lottery-digital-equivalence-label&quot;&gt;
       &lt;div&gt;
         &lt;h3 id=&quot;lottery-digital-equivalence-label&quot;&gt;Cantidad de equivalencias naturales admitida&lt;/h3&gt;
         &lt;p class=&quot;text-muted&quot;&gt;Activa las cantidades permitidas. Solo se desarrollarán las combinaciones digitales que tengan exactamente 1, 7, 28, 84 o 210 combinaciones naturales equivalentes.&lt;/p&gt;
@@ -1403,8 +1450,8 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     &lt;div class=&quot;digital-selection-summary&quot; id=&quot;lottery-digital-selection-summary&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
 
-    &lt;div class=&quot;digital-analysis&quot; aria-label=&quot;Resumen del desarrollo digital&quot;&gt;
-      &lt;div&gt;&lt;span&gt;Combinaciones digitales&lt;/span&gt;&lt;strong id=&quot;lottery-digital-pattern-total&quot;&gt;Pendiente&lt;/strong&gt;&lt;/div&gt;
+    &lt;div class=&quot;digital-analysis&quot; aria-label=&quot;Resumen del desarrollo por firma posicional&quot;&gt;
+      &lt;div&gt;&lt;span id=&quot;lottery-digital-pattern-label&quot;&gt;Combinaciones digitales&lt;/span&gt;&lt;strong id=&quot;lottery-digital-pattern-total&quot;&gt;Pendiente&lt;/strong&gt;&lt;/div&gt;
       &lt;div&gt;&lt;span&gt;Combinaciones naturales&lt;/span&gt;&lt;strong id=&quot;lottery-digital-natural-total&quot;&gt;Pendiente&lt;/strong&gt;&lt;/div&gt;
       &lt;div&gt;&lt;span&gt;Límite seguro del dispositivo&lt;/span&gt;&lt;strong id=&quot;lottery-digital-safe-limit&quot;&gt;Pendiente&lt;/strong&gt;&lt;/div&gt;
     &lt;/div&gt;
@@ -1417,12 +1464,12 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-digital-cancel&quot; type=&quot;button&quot; hidden disabled&gt;Cancelar cálculo&lt;/button&gt;
     &lt;/div&gt;
 
-    &lt;p class=&quot;digital-message text-muted&quot; id=&quot;lottery-digital-message&quot; aria-live=&quot;polite&quot;&gt;La selección comienza desactivada. Activa al menos un valor en P1–P6 y SDCD, y una equivalencia; después el programa calculará el total exacto.&lt;/p&gt;
+    &lt;p class=&quot;digital-message text-muted&quot; id=&quot;lottery-digital-message&quot; aria-live=&quot;polite&quot;&gt;Todos los valores comienzan apagados, pero puedes pulsarlos directamente. Activa al menos uno en cada posición y completa las opciones propias de la firma elegida.&lt;/p&gt;
 
     &lt;div class=&quot;digital-output&quot; id=&quot;lottery-digital-output&quot; hidden&gt;
       &lt;div class=&quot;lottery-section-label digital-result-heading&quot;&gt;
         &lt;div&gt;
-          &lt;h3&gt;Desarrollo natural equivalente&lt;/h3&gt;
+          &lt;h3&gt;Desarrollo por firma posicional&lt;/h3&gt;
           &lt;p class=&quot;text-muted&quot; id=&quot;lottery-digital-result-description&quot;&gt;&lt;/p&gt;
         &lt;/div&gt;
         &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-digital-result-count&quot;&gt;0 combinaciones&lt;/span&gt;
@@ -1437,15 +1484,15 @@ html&gt;body{padding:0}&lt;/style&gt;
 
       &lt;div class=&quot;viz-controls digital-result-actions&quot;&gt;
         &lt;button class=&quot;btn&quot; id=&quot;lottery-digital-copy&quot; type=&quot;button&quot;&gt;Copiar desarrollo&lt;/button&gt;
-        &lt;button class=&quot;btn lottery-filter-source-button&quot; id=&quot;lottery-filter-digital&quot; type=&quot;button&quot; data-filter-source=&quot;digital&quot;&gt;Pasar desarrollo a filtros&lt;/button&gt;
-        &lt;button class=&quot;btn&quot; id=&quot;lottery-digital-reducer&quot; type=&quot;button&quot; disabled&gt;Pasar desarrollo al reductor&lt;/button&gt;
+        &lt;button class=&quot;btn lottery-filter-source-button&quot; id=&quot;lottery-filter-digital&quot; type=&quot;button&quot; data-filter-source=&quot;digital&quot;&gt;Pasar a filtros&lt;/button&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-digital-reducer&quot; type=&quot;button&quot; disabled&gt;Pasar al reductor&lt;/button&gt;
         &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-digital-qr&quot; type=&quot;button&quot;&gt;Preparar QR del desarrollo&lt;/button&gt;
         &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-digital-clear-result&quot; type=&quot;button&quot;&gt;Limpiar resultado&lt;/button&gt;
       &lt;/div&gt;
     &lt;/div&gt;
 
     &lt;div class=&quot;lottery-back-row&quot;&gt;
-      &lt;a class=&quot;lottery-back-top&quot; href=&quot;#lottery-app-top&quot; aria-label=&quot;Volver al inicio desde Desarrollo por suma digital posicional&quot;&gt;↑ Volver al inicio&lt;/a&gt;
+      &lt;a class=&quot;lottery-back-top&quot; href=&quot;#lottery-app-top&quot; aria-label=&quot;Volver al inicio desde Desarrollo por firma posicional&quot;&gt;↑ Volver al inicio&lt;/a&gt;
     &lt;/div&gt;
   &lt;/section&gt;
 
@@ -1467,7 +1514,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;option value=&quot;imported&quot;&gt;Archivo TXT o texto pegado&lt;/option&gt;
           &lt;option value=&quot;reduced&quot;&gt;Reducción matemática generada&lt;/option&gt;
           &lt;option value=&quot;development&quot;&gt;Desarrollo completo generado&lt;/option&gt;
-          &lt;option value=&quot;digital&quot;&gt;Desarrollo por suma digital posicional&lt;/option&gt;
+          &lt;option value=&quot;digital&quot;&gt;Desarrollo por firma posicional&lt;/option&gt;
           &lt;option value=&quot;ticket&quot;&gt;Boleto completo de «Mis boletos»&lt;/option&gt;
         &lt;/select&gt;
       &lt;/label&gt;
@@ -1849,7 +1896,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;option value=&quot;imported&quot;&gt;Archivo o texto pegado&lt;/option&gt;
           &lt;option value=&quot;reduced&quot;&gt;Reducción matemática generada&lt;/option&gt;
           &lt;option value=&quot;development&quot;&gt;Desarrollo completo generado&lt;/option&gt;
-          &lt;option value=&quot;digital&quot;&gt;Desarrollo por suma digital posicional&lt;/option&gt;
+          &lt;option value=&quot;digital&quot;&gt;Desarrollo por firma posicional&lt;/option&gt;
           &lt;option value=&quot;filtered&quot;&gt;Resultado de la zona de filtros&lt;/option&gt;
           &lt;option value=&quot;ticket&quot;&gt;Boleto completo de «Mis boletos»&lt;/option&gt;
         &lt;/select&gt;
@@ -3076,6 +3123,10 @@ html&gt;body{padding:0}&lt;/style&gt;
     background: color-mix(in srgb, #06b6d4 8%, var(--muted));
   }
 
+  #lottery-simulator-649 .digital-signature-type {
+    width: min(100%, 26rem);
+  }
+
   #lottery-simulator-649 .digital-panel-scroll {
     max-width: 100%;
     overflow-x: auto;
@@ -3094,6 +3145,11 @@ html&gt;body{padding:0}&lt;/style&gt;
     gap: 0.28rem;
     min-width: 25rem;
     padding: 0.35rem;
+  }
+
+  #lottery-simulator-649 .digital-panel[data-signature-type=&quot;termination&quot;] {
+    grid-template-columns: minmax(4.2rem, 0.85fr) repeat(6, minmax(2.7rem, 1fr));
+    min-width: 22rem;
   }
 
   #lottery-simulator-649 .digital-grid-cell {
@@ -3167,10 +3223,16 @@ html&gt;body{padding:0}&lt;/style&gt;
   }
 
   #lottery-simulator-649 .digital-column-all {
+    color: var(--muted-foreground);
+    border-color: color-mix(in srgb, #86efac 34%, var(--border));
+    background: var(--muted);
+    font-weight: 900;
+  }
+
+  #lottery-simulator-649 .digital-column-all[aria-pressed=&quot;true&quot;] {
     color: #052e16;
     border-color: #86efac;
     background: linear-gradient(145deg, #4ade80, #22c55e);
-    font-weight: 900;
   }
 
   #lottery-simulator-649 .digital-equivalence-panel {
@@ -3182,6 +3244,10 @@ html&gt;body{padding:0}&lt;/style&gt;
     border: 1px solid color-mix(in srgb, #f59e0b 38%, var(--border));
     border-radius: 0.8rem;
     background: color-mix(in srgb, #f59e0b 7%, var(--card));
+  }
+
+  #lottery-simulator-649 .digital-equivalence-panel[hidden] {
+    display: none;
   }
 
   #lottery-simulator-649 .digital-equivalence-panel &gt; div:first-child {
@@ -5267,10 +5333,16 @@ html&gt;body{padding:0}&lt;/style&gt;
     const developmentQrButton = root.querySelector(&#x27;#lottery-development-qr&#x27;);
     const developmentClearOutputButton = root.querySelector(&#x27;#lottery-development-clear-output&#x27;);
     const digitalSection = root.querySelector(&#x27;#lottery-digital-section&#x27;);
+    const digitalHeadingDescription = root.querySelector(&#x27;#lottery-digital-heading-description&#x27;);
+    const digitalSignatureTypeSelect = root.querySelector(&#x27;#lottery-digital-signature-type&#x27;);
+    const digitalExplanationText = root.querySelector(&#x27;#lottery-digital-explanation-text&#x27;);
     const digitalTotalBadge = root.querySelector(&#x27;#lottery-digital-total-badge&#x27;);
+    const digitalPanelScroll = root.querySelector(&#x27;#lottery-digital-panel-scroll&#x27;);
     const digitalPanel = root.querySelector(&#x27;#lottery-digital-panel&#x27;);
+    const digitalEquivalencePanel = root.querySelector(&#x27;#lottery-digital-equivalence-panel&#x27;);
     const digitalEquivalenceOptions = root.querySelector(&#x27;#lottery-digital-equivalence-options&#x27;);
     const digitalSelectionSummary = root.querySelector(&#x27;#lottery-digital-selection-summary&#x27;);
+    const digitalPatternLabel = root.querySelector(&#x27;#lottery-digital-pattern-label&#x27;);
     const digitalPatternTotal = root.querySelector(&#x27;#lottery-digital-pattern-total&#x27;);
     const digitalNaturalTotal = root.querySelector(&#x27;#lottery-digital-natural-total&#x27;);
     const digitalSafeLimit = root.querySelector(&#x27;#lottery-digital-safe-limit&#x27;);
@@ -5379,9 +5451,11 @@ html&gt;body{padding:0}&lt;/style&gt;
     let developmentBreakdownBusy = false;
     let developmentBreakdownCancelRequested = false;
     let digitalSelections = Array.from({ length: 7 }, () =&gt; new Set());
+    let terminationSelections = Array.from({ length: 6 }, () =&gt; new Set());
     let digitalEquivalenceSelections = new Set();
     let digitalGeneratedCombinations = [];
     let digitalGeneratedPatternCount = 0;
+    let digitalGeneratedSignatureMode = &#x27;digital&#x27;;
     let digitalPageIndex = 0;
     let digitalBusy = false;
     let digitalCancelRequested = false;
@@ -5433,6 +5507,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     const DIGITAL_MOBILE_COMBINATION_LIMIT = 100000;
     const DIGITAL_QR_WARNING_THRESHOLD = 8000;
     const DIGITAL_COLUMN_LABELS = [&#x27;P1&#x27;, &#x27;P2&#x27;, &#x27;P3&#x27;, &#x27;P4&#x27;, &#x27;P5&#x27;, &#x27;P6&#x27;, &#x27;SDCD&#x27;];
+    const TERMINATION_COLUMN_LABELS = [&#x27;P1&#x27;, &#x27;P2&#x27;, &#x27;P3&#x27;, &#x27;P4&#x27;, &#x27;P5&#x27;, &#x27;P6&#x27;];
     const DIGITAL_EQUIVALENCE_VALUES = [1, 7, 28, 84, 210];
     const euroFormatter = new Intl.NumberFormat(&#x27;es-ES&#x27;, {
       style: &#x27;currency&#x27;,
@@ -5472,8 +5547,67 @@ html&gt;body{padding:0}&lt;/style&gt;
       return element;
     }
 
+    function getSignatureMode() {
+      return digitalSignatureTypeSelect.value === &#x27;termination&#x27; ? &#x27;termination&#x27; : &#x27;digital&#x27;;
+    }
+
+    function signatureModeDetails(mode = getSignatureMode()) {
+      if (mode === &#x27;termination&#x27;) {
+        return {
+          mode,
+          labels: TERMINATION_COLUMN_LABELS,
+          values: Array.from({ length: 10 }, (_, index) =&gt; index),
+          selections: terminationSelections,
+          shortLabel: &#x27;Terminaciones&#x27;,
+          sourceLabel: &#x27;Firma de terminación por posición&#x27;
+        };
+      }
+      return {
+        mode: &#x27;digital&#x27;,
+        labels: DIGITAL_COLUMN_LABELS,
+        values: Array.from({ length: 9 }, (_, index) =&gt; index + 1),
+        selections: digitalSelections,
+        shortLabel: &#x27;DR9&#x27;,
+        sourceLabel: &#x27;Firma de raíz digital por posición&#x27;
+      };
+    }
+
+    function signatureSourceLabel(mode = digitalGeneratedSignatureMode) {
+      return signatureModeDetails(mode).sourceLabel;
+    }
+
+    function updateSignatureModePresentation() {
+      const details = signatureModeDetails();
+      const terminationMode = details.mode === &#x27;termination&#x27;;
+      digitalPanel.dataset.signatureType = details.mode;
+      digitalEquivalencePanel.hidden = terminationMode;
+      digitalHeadingDescription.textContent = terminationMode
+        ? &#x27;Genera todas las combinaciones naturales cuya terminación cumple los valores seleccionados en cada posición P1–P6.&#x27;
+        : &#x27;Genera todas las combinaciones naturales equivalentes a los valores de raíz digital seleccionados en P1–P6 y SDCD.&#x27;;
+      digitalExplanationText.textContent = terminationMode
+        ? &#x27;Cada número se coloca de menor a mayor y se comprueba su última cifra: P1 corresponde al número menor y P6 al mayor. En esta firma se utilizan los valores 0–9 y no existe columna SDCD.&#x27;
+        : &#x27;La raíz digital de cada número ocupa su posición natural P1–P6. La SDCD es la raíz digital de la suma de los seis valores digitales. Con los nueve valores activos en todas las columnas se representan las 13.983.816 combinaciones del 6/49.&#x27;;
+      digitalPanelScroll.setAttribute(
+        &#x27;aria-label&#x27;,
+        terminationMode
+          ? &#x27;Panel desplazable de terminaciones por posición&#x27;
+          : &#x27;Panel desplazable de valores de raíz digital&#x27;
+      );
+      digitalPanel.setAttribute(
+        &#x27;aria-label&#x27;,
+        terminationMode
+          ? &#x27;Selección de terminaciones por posición P1 a P6&#x27;
+          : &#x27;Selección de raíces digitales por posición y SDCD&#x27;
+      );
+      digitalPatternLabel.textContent = terminationMode
+        ? &#x27;Patrones seleccionados&#x27;
+        : &#x27;Combinaciones digitales&#x27;;
+    }
+
     function buildDigitalPanel() {
+      const details = signatureModeDetails();
       digitalPanel.replaceChildren();
+      updateSignatureModePresentation();
 
       const randomButton = createDigitalPanelCell(
         &#x27;button&#x27;,
@@ -5485,7 +5619,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       randomButton.title = &#x27;Activa al azar la cantidad indicada en cada columna&#x27;;
       digitalPanel.appendChild(randomButton);
 
-      DIGITAL_COLUMN_LABELS.forEach((label, column) =&gt; {
+      details.labels.forEach((label, column) =&gt; {
         const select = createDigitalPanelCell(
           &#x27;select&#x27;,
           null,
@@ -5494,7 +5628,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         );
         select.dataset.digitalRandomCount = String(column);
         select.setAttribute(&#x27;aria-label&#x27;, `Cantidad aleatoria de valores para ${label}`);
-        for (let count = 1; count &lt;= 9; count += 1) {
+        for (let count = 1; count &lt;= details.values.length; count += 1) {
           const option = document.createElement(&#x27;option&#x27;);
           option.value = String(count);
           option.textContent = String(count);
@@ -5507,7 +5641,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       digitalPanel.appendChild(
         createDigitalPanelCell(&#x27;span&#x27;, &#x27;Todos&#x27;, &#x27;digital-grid-cell digital-grid-label&#x27;)
       );
-      DIGITAL_COLUMN_LABELS.forEach((label, column) =&gt; {
+      details.labels.forEach((label, column) =&gt; {
         const button = createDigitalPanelCell(
           &#x27;button&#x27;,
           &#x27;✓&#x27;,
@@ -5516,25 +5650,26 @@ html&gt;body{padding:0}&lt;/style&gt;
         );
         button.type = &#x27;button&#x27;;
         button.dataset.digitalSelectColumn = String(column);
-        button.setAttribute(&#x27;aria-label&#x27;, `Activar los nueve valores de ${label}`);
-        button.title = `Activar 1–9 en ${label}`;
+        button.setAttribute(&#x27;aria-pressed&#x27;, &#x27;false&#x27;);
+        button.setAttribute(&#x27;aria-label&#x27;, `Activar o desactivar todos los valores de ${label}`);
+        button.title = `Primer toque: activar todos en ${label}. Segundo toque: desactivar.`;
         digitalPanel.appendChild(button);
       });
 
       digitalPanel.appendChild(
-        createDigitalPanelCell(&#x27;span&#x27;, &#x27;DR9&#x27;, &#x27;digital-grid-cell digital-grid-header&#x27;)
+        createDigitalPanelCell(&#x27;span&#x27;, details.shortLabel, &#x27;digital-grid-cell digital-grid-header&#x27;)
       );
-      DIGITAL_COLUMN_LABELS.forEach((label, column) =&gt; {
+      details.labels.forEach((label, column) =&gt; {
         digitalPanel.appendChild(
           createDigitalPanelCell(&#x27;span&#x27;, label, &#x27;digital-grid-cell digital-grid-header&#x27;, column)
         );
       });
 
-      for (let value = 1; value &lt;= 9; value += 1) {
+      details.values.forEach((value) =&gt; {
         digitalPanel.appendChild(
           createDigitalPanelCell(&#x27;span&#x27;, `Nº ${value}`, &#x27;digital-grid-cell digital-grid-label&#x27;)
         );
-        DIGITAL_COLUMN_LABELS.forEach((label, column) =&gt; {
+        details.labels.forEach((label, column) =&gt; {
           const button = createDigitalPanelCell(
             &#x27;button&#x27;,
             String(value),
@@ -5543,21 +5678,34 @@ html&gt;body{padding:0}&lt;/style&gt;
           );
           button.type = &#x27;button&#x27;;
           button.dataset.digitalValue = String(value);
-          button.setAttribute(&#x27;aria-label&#x27;, `${label}, valor digital ${value}`);
+          button.setAttribute(
+            &#x27;aria-label&#x27;,
+            details.mode === &#x27;termination&#x27;
+              ? `${label}, terminación ${value}`
+              : `${label}, valor digital ${value}`
+          );
           digitalPanel.appendChild(button);
         });
-      }
+      });
       renderDigitalPanel();
     }
 
     function renderDigitalPanel() {
+      const details = signatureModeDetails();
       digitalPanel.querySelectorAll(&#x27;[data-digital-value]&#x27;).forEach((button) =&gt; {
         const column = Number(button.dataset.digitalColumn);
         const value = Number(button.dataset.digitalValue);
         button.setAttribute(
           &#x27;aria-pressed&#x27;,
-          digitalSelections[column]?.has(value) ? &#x27;true&#x27; : &#x27;false&#x27;
+          details.selections[column]?.has(value) ? &#x27;true&#x27; : &#x27;false&#x27;
         );
+      });
+      digitalPanel.querySelectorAll(&#x27;[data-digital-select-column]&#x27;).forEach((button) =&gt; {
+        const column = Number(button.dataset.digitalSelectColumn);
+        const allSelected = details.values.every((value) =&gt;
+          details.selections[column]?.has(value)
+        );
+        button.setAttribute(&#x27;aria-pressed&#x27;, String(allSelected));
       });
       digitalEquivalenceOptions.querySelectorAll(&#x27;[data-digital-equivalence]&#x27;).forEach((button) =&gt; {
         button.setAttribute(
@@ -5572,30 +5720,41 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
 
     function renderDigitalSelectionSummary() {
+      const details = signatureModeDetails();
       digitalSelectionSummary.replaceChildren();
-      DIGITAL_COLUMN_LABELS.forEach((label, column) =&gt; {
+      details.labels.forEach((label, column) =&gt; {
         const chip = document.createElement(&#x27;span&#x27;);
         chip.className = &#x27;digital-selection-chip&#x27;;
         const name = document.createElement(&#x27;strong&#x27;);
         name.textContent = label;
-        chip.append(name, document.createTextNode(`${digitalSelections[column].size} de 9`));
+        chip.append(
+          name,
+          document.createTextNode(
+            `${details.selections[column].size} de ${details.values.length}`
+          )
+        );
         digitalSelectionSummary.appendChild(chip);
       });
-      const equivalences = document.createElement(&#x27;span&#x27;);
-      equivalences.className = &#x27;digital-selection-chip&#x27;;
-      const name = document.createElement(&#x27;strong&#x27;);
-      name.textContent = &#x27;Equivalencias&#x27;;
-      const selected = DIGITAL_EQUIVALENCE_VALUES
-        .filter((value) =&gt; digitalEquivalenceSelections.has(value))
-        .join(&#x27; · &#x27;);
-      equivalences.append(name, document.createTextNode(selected || &#x27;ninguna&#x27;));
-      digitalSelectionSummary.appendChild(equivalences);
+      if (details.mode === &#x27;digital&#x27;) {
+        const equivalences = document.createElement(&#x27;span&#x27;);
+        equivalences.className = &#x27;digital-selection-chip&#x27;;
+        const name = document.createElement(&#x27;strong&#x27;);
+        name.textContent = &#x27;Equivalencias&#x27;;
+        const selected = DIGITAL_EQUIVALENCE_VALUES
+          .filter((value) =&gt; digitalEquivalenceSelections.has(value))
+          .join(&#x27; · &#x27;);
+        equivalences.append(name, document.createTextNode(selected || &#x27;ninguna&#x27;));
+        digitalSelectionSummary.appendChild(equivalences);
+      }
     }
 
     function refreshDigitalControls() {
-      const hasEveryColumn = digitalSelections.every((selection) =&gt; selection.size &gt; 0);
-      const hasEquivalences = digitalEquivalenceSelections.size &gt; 0;
-      digitalGenerateButton.disabled = digitalBusy || !hasEveryColumn || !hasEquivalences;
+      const details = signatureModeDetails();
+      const hasEveryColumn = details.selections.every((selection) =&gt; selection.size &gt; 0);
+      const hasModeOptions = details.mode === &#x27;termination&#x27;
+        || digitalEquivalenceSelections.size &gt; 0;
+      digitalSignatureTypeSelect.disabled = digitalBusy;
+      digitalGenerateButton.disabled = digitalBusy || !hasEveryColumn || !hasModeOptions;
       digitalSelectAllButton.disabled = digitalBusy;
       digitalClearSelectionButton.disabled = digitalBusy;
       digitalCancelButton.hidden = !digitalBusy;
@@ -5616,6 +5775,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     function clearDigitalGeneratedResult(message = &#x27;&#x27;) {
       digitalGeneratedCombinations = [];
       digitalGeneratedPatternCount = 0;
+      digitalGeneratedSignatureMode = getSignatureMode();
       digitalPageIndex = 0;
       digitalLastAnalysis = null;
       digitalOutput.hidden = true;
@@ -5640,23 +5800,27 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     function setAllDigitalValues(active) {
       if (digitalBusy) return;
-      digitalSelections = Array.from(
-        { length: 7 },
-        () =&gt; new Set(active ? Array.from({ length: 9 }, (_, index) =&gt; index + 1) : [])
-      );
-      digitalEquivalenceSelections = new Set(active ? DIGITAL_EQUIVALENCE_VALUES : []);
+      const details = signatureModeDetails();
+      const selections = details.labels.map(() =&gt; new Set(active ? details.values : []));
+      if (details.mode === &#x27;termination&#x27;) {
+        terminationSelections = selections;
+      } else {
+        digitalSelections = selections;
+        digitalEquivalenceSelections = new Set(active ? DIGITAL_EQUIVALENCE_VALUES : []);
+      }
       invalidateDigitalDevelopment(
         active
-          ? &#x27;Se han activado los nueve valores en P1–P6 y SDCD, además de las cinco equivalencias.&#x27;
-          : &#x27;Se ha desactivado toda la selección. Activa al menos un valor en cada columna y una equivalencia.&#x27;
+          ? `${details.sourceLabel}: se han activado todos los valores${details.mode === &#x27;digital&#x27; ? &#x27; y equivalencias&#x27; : &#x27;&#x27;}.`
+          : `${details.sourceLabel}: selección desactivada. Puedes marcar directamente cualquier valor.`
       );
     }
 
     function randomizeDigitalSelections() {
       if (digitalBusy) return;
-      digitalSelections = DIGITAL_COLUMN_LABELS.map((label, column) =&gt; {
+      const details = signatureModeDetails();
+      const selections = details.labels.map((label, column) =&gt; {
         const requested = Math.min(
-          9,
+          details.values.length,
           Math.max(
             1,
             Math.trunc(
@@ -5666,15 +5830,29 @@ html&gt;body{padding:0}&lt;/style&gt;
             ) || 1
           )
         );
-        const shuffled = Array.from({ length: 9 }, (_, index) =&gt; index + 1);
+        const shuffled = details.values.slice();
         for (let index = shuffled.length - 1; index &gt; 0; index -= 1) {
           const other = Math.floor(Math.random() * (index + 1));
           [shuffled[index], shuffled[other]] = [shuffled[other], shuffled[index]];
         }
         return new Set(shuffled.slice(0, requested));
       });
+      if (details.mode === &#x27;termination&#x27;) terminationSelections = selections;
+      else digitalSelections = selections;
       invalidateDigitalDevelopment(
-        &#x27;Selección aleatoria realizada con la cantidad indicada en cada columna.&#x27;
+        `${details.sourceLabel}: selección aleatoria realizada con la cantidad indicada en cada columna.`
+      );
+    }
+
+    function changeSignatureMode() {
+      if (digitalBusy) return;
+      clearDigitalGeneratedResult();
+      buildDigitalPanel();
+      const details = signatureModeDetails();
+      setDigitalMessage(
+        details.mode === &#x27;termination&#x27;
+          ? &#x27;Firma de terminación preparada. Los valores 0–9 están apagados y se pueden marcar directamente; no se utiliza SDCD.&#x27;
+          : &#x27;Firma de raíz digital preparada. Los valores 1–9 están apagados y se pueden marcar directamente; activa también una equivalencia.&#x27;
       );
     }
 
@@ -5720,6 +5898,152 @@ html&gt;body{padding:0}&lt;/style&gt;
 
       visit(0, 0);
       return combinations;
+    }
+
+    function createTerminationCounter(selections) {
+      const memo = new Map();
+      const count = (start, position) =&gt; {
+        if (position === 6) return 1;
+        const key = `${start}:${position}`;
+        if (memo.has(key)) return memo.get(key);
+        const remainingAfter = 5 - position;
+        const maximum = 49 - remainingAfter;
+        let total = 0;
+        for (let number = start; number &lt;= maximum; number += 1) {
+          if (!selections[position].has(number % 10)) continue;
+          total += count(number + 1, position + 1);
+        }
+        memo.set(key, total);
+        return total;
+      };
+      return { count, total: count(1, 0) };
+    }
+
+    function* iterateTerminationCombinations(selections, start = 1, position = 0, current = []) {
+      if (position === 6) {
+        yield current.slice();
+        return;
+      }
+      const remainingAfter = 5 - position;
+      const maximum = 49 - remainingAfter;
+      for (let number = start; number &lt;= maximum; number += 1) {
+        if (!selections[position].has(number % 10)) continue;
+        current.push(number);
+        yield* iterateTerminationCombinations(
+          selections,
+          number + 1,
+          position + 1,
+          current
+        );
+        current.pop();
+      }
+    }
+
+    async function generateTerminationDevelopment() {
+      const details = signatureModeDetails(&#x27;termination&#x27;);
+      if (details.selections.some((selection) =&gt; selection.size === 0)) {
+        setDigitalMessage(
+          &#x27;Activa directamente al menos una terminación en cada posición P1–P6.&#x27;,
+          &#x27;error&#x27;
+        );
+        return;
+      }
+
+      digitalBusy = true;
+      digitalCancelRequested = false;
+      digitalGeneratedCombinations = [];
+      digitalGeneratedPatternCount = 0;
+      digitalGeneratedSignatureMode = &#x27;termination&#x27;;
+      digitalOutput.hidden = true;
+      resetDigitalQrWarning();
+      refreshDigitalControls();
+      const safeLimit = digitalDeviceLimit();
+      digitalSafeLimit.textContent = safeLimit.toLocaleString(&#x27;es-ES&#x27;);
+      setDigitalMessage(&#x27;Calculando el desarrollo exacto de la firma de terminación…&#x27;);
+
+      try {
+        await wait(0);
+        const counter = createTerminationCounter(details.selections);
+        const patternCount = details.selections.reduce(
+          (total, selection) =&gt; total * selection.size,
+          1
+        );
+        const analysis = {
+          mode: &#x27;termination&#x27;,
+          patternCount,
+          naturalTotal: counter.total,
+          withinLimit: counter.total &lt;= safeLimit
+        };
+        digitalLastAnalysis = analysis;
+        digitalPatternTotal.textContent = patternCount.toLocaleString(&#x27;es-ES&#x27;);
+        digitalNaturalTotal.textContent = counter.total.toLocaleString(&#x27;es-ES&#x27;);
+        digitalSafeLimit.textContent = safeLimit.toLocaleString(&#x27;es-ES&#x27;);
+        digitalTotalBadge.textContent = `${counter.total.toLocaleString(&#x27;es-ES&#x27;)} naturales`;
+        digitalEquivalenceBreakdown.replaceChildren();
+
+        if (counter.total === 0) {
+          setDigitalMessage(
+            &#x27;No existe ninguna combinación natural ordenada que cumpla simultáneamente las terminaciones seleccionadas en P1–P6.&#x27;,
+            &#x27;error&#x27;
+          );
+          return;
+        }
+        if (!analysis.withinLimit) {
+          setDigitalMessage(
+            `La firma de terminación produce ${counter.total.toLocaleString(&#x27;es-ES&#x27;)} combinaciones y supera el límite seguro de ${safeLimit.toLocaleString(&#x27;es-ES&#x27;)} para este dispositivo. Desactiva terminaciones en alguna posición antes de generar.`,
+            &#x27;warning&#x27;
+          );
+          return;
+        }
+
+        const generated = [];
+        for (const combination of iterateTerminationCombinations(details.selections)) {
+          generated.push(combination);
+          if (generated.length % 1500 === 0) {
+            const percentage = Math.round(generated.length / counter.total * 100);
+            setDigitalMessage(`Generando combinaciones por terminación… ${percentage} %`);
+            await wait(0);
+            if (digitalCancelRequested) break;
+          }
+        }
+
+        if (digitalCancelRequested) {
+          setDigitalMessage(
+            &#x27;Generación cancelada. No se ha guardado un resultado parcial.&#x27;,
+            &#x27;warning&#x27;
+          );
+          return;
+        }
+        if (generated.length !== counter.total) {
+          throw new Error(
+            `el recuento previsto era ${counter.total.toLocaleString(&#x27;es-ES&#x27;)} y se han construido ${generated.length.toLocaleString(&#x27;es-ES&#x27;)}`
+          );
+        }
+
+        digitalGeneratedCombinations = generated;
+        digitalGeneratedPatternCount = patternCount;
+        digitalPageIndex = 0;
+        digitalResultDescription.textContent =
+          `${generated.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones naturales cumplen la firma de terminación configurada en P1–P6.`;
+        renderDigitalResults();
+        refreshFilterSourceButtons();
+        setDigitalMessage(
+          `Desarrollo completado: ${generated.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones por firma de terminación. Puedes copiarlas, filtrarlas, reducirlas o preparar sus QR.`
+        );
+      } catch (error) {
+        digitalGeneratedCombinations = [];
+        digitalGeneratedPatternCount = 0;
+        digitalOutput.hidden = true;
+        refreshFilterSourceButtons();
+        setDigitalMessage(
+          `No se ha podido completar el desarrollo por terminación: ${error.message || &#x27;error desconocido&#x27;}.`,
+          &#x27;error&#x27;
+        );
+      } finally {
+        digitalBusy = false;
+        digitalCancelRequested = false;
+        refreshDigitalControls();
+      }
     }
 
     async function analyseDigitalPatterns(safeLimit) {
@@ -5826,13 +6150,17 @@ html&gt;body{padding:0}&lt;/style&gt;
           numbers.textContent = combination
             .map((number) =&gt; String(number).padStart(2, &#x27;0&#x27;))
             .join(&#x27; · &#x27;);
-          const roots = combination.map(digitalRoot);
           const detail = document.createElement(&#x27;span&#x27;);
           detail.className = &#x27;digital-result-roots&#x27;;
-          const equivalenceTotal = countDigitalPatternEquivalents(roots);
-          detail.textContent = `DR ${roots.join(&#x27;-&#x27;)} · SDCD ${digitalRoot(
-            roots.reduce((sum, value) =&gt; sum + value, 0)
-          )} · ${equivalenceTotal} ${equivalenceTotal === 1 ? &#x27;equivalencia&#x27; : &#x27;equivalencias&#x27;}`;
+          if (digitalGeneratedSignatureMode === &#x27;termination&#x27;) {
+            detail.textContent = `Terminaciones ${combination.map((number) =&gt; number % 10).join(&#x27;-&#x27;)}`;
+          } else {
+            const roots = combination.map(digitalRoot);
+            const equivalenceTotal = countDigitalPatternEquivalents(roots);
+            detail.textContent = `DR ${roots.join(&#x27;-&#x27;)} · SDCD ${digitalRoot(
+              roots.reduce((sum, value) =&gt; sum + value, 0)
+            )} · ${equivalenceTotal} ${equivalenceTotal === 1 ? &#x27;equivalencia&#x27; : &#x27;equivalencias&#x27;}`;
+          }
           item.append(index, numbers, detail);
           digitalResultList.appendChild(item);
         });
@@ -5853,6 +6181,10 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     async function generateDigitalDevelopment() {
       if (digitalBusy) return;
+      if (getSignatureMode() === &#x27;termination&#x27;) {
+        await generateTerminationDevelopment();
+        return;
+      }
       if (digitalSelections.some((selection) =&gt; selection.size === 0)) {
         setDigitalMessage(
           &#x27;Activa al menos un valor en cada una de las columnas P1–P6 y SDCD.&#x27;,
@@ -5869,6 +6201,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       digitalCancelRequested = false;
       digitalGeneratedCombinations = [];
       digitalGeneratedPatternCount = 0;
+      digitalGeneratedSignatureMode = &#x27;digital&#x27;;
       digitalOutput.hidden = true;
       resetDigitalQrWarning();
       refreshDigitalControls();
@@ -5969,7 +6302,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     async function copyDigitalDevelopment() {
       if (digitalGeneratedCombinations.length === 0) {
-        setDigitalMessage(&#x27;Genera primero un desarrollo natural equivalente.&#x27;, &#x27;error&#x27;);
+        setDigitalMessage(&#x27;Genera primero un desarrollo por firma posicional.&#x27;, &#x27;error&#x27;);
         return;
       }
       const result = await copyTextToClipboard(
@@ -5989,7 +6322,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     function generateDigitalQr() {
       const total = digitalGeneratedCombinations.length;
       if (total === 0) {
-        setDigitalMessage(&#x27;Genera primero un desarrollo natural equivalente.&#x27;, &#x27;error&#x27;);
+        setDigitalMessage(&#x27;Genera primero un desarrollo por firma posicional.&#x27;, &#x27;error&#x27;);
         return;
       }
       if (total &gt; DIGITAL_QR_WARNING_THRESHOLD &amp;&amp; !digitalQrWarningArmed) {
@@ -6564,12 +6897,15 @@ html&gt;body{padding:0}&lt;/style&gt;
         };
       }
       if (source === &#x27;digital&#x27;) {
+        const label = signatureSourceLabel();
         return {
           key: &#x27;digital&#x27;,
-          label: &#x27;Desarrollo por suma digital posicional&#x27;,
+          label,
           description: digitalGeneratedCombinations.length
-            ? &#x27;Combinaciones naturales equivalentes generadas mediante P1–P6, SDCD y las clases de equivalencia seleccionadas.&#x27;
-            : &#x27;Todavía no se ha generado un desarrollo por suma digital posicional.&#x27;,
+            ? digitalGeneratedSignatureMode === &#x27;termination&#x27;
+              ? &#x27;Combinaciones naturales generadas con las terminaciones seleccionadas en P1–P6.&#x27;
+              : &#x27;Combinaciones naturales equivalentes generadas mediante P1–P6, SDCD y las clases de equivalencia seleccionadas.&#x27;
+            : `Todavía no se ha generado un desarrollo de ${label.toLocaleLowerCase(&#x27;es-ES&#x27;)}.`,
           combinations: digitalGeneratedCombinations
         };
       }
@@ -8051,8 +8387,10 @@ html&gt;body{padding:0}&lt;/style&gt;
       if (source === &#x27;digital&#x27;) {
         return {
           key: &#x27;digital&#x27;,
-          label: &#x27;Desarrollo por suma digital posicional&#x27;,
-          description: &#x27;Combinaciones naturales equivalentes procedentes de la selección P1–P6, SDCD y equivalencias.&#x27;
+          label: signatureSourceLabel(),
+          description: digitalGeneratedSignatureMode === &#x27;termination&#x27;
+            ? &#x27;Combinaciones naturales procedentes de la firma de terminaciones seleccionada en P1–P6.&#x27;
+            : &#x27;Combinaciones naturales equivalentes procedentes de la selección P1–P6, SDCD y equivalencias.&#x27;
         };
       }
 
@@ -8200,7 +8538,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           : source === &#x27;development&#x27;
             ? &#x27;Genera primero una reducción o un desarrollo completo.&#x27;
             : source === &#x27;digital&#x27;
-              ? &#x27;Genera primero un desarrollo por suma digital posicional.&#x27;
+              ? &#x27;Genera primero un desarrollo por firma posicional.&#x27;
             : source === &#x27;filtered&#x27;
               ? &#x27;Aplica primero los filtros y conserva al menos una combinación.&#x27;
             : &#x27;Guarda al menos una combinación antes de preparar el QR.&#x27;;
@@ -11045,7 +11383,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         case &#x27;development&#x27;:
           return &#x27;combinaciones del desarrollo completo&#x27;;
         case &#x27;digital&#x27;:
-          return &#x27;combinaciones del desarrollo por suma digital posicional&#x27;;
+          return `combinaciones de ${signatureSourceLabel().toLocaleLowerCase(&#x27;es-ES&#x27;)}`;
         case &#x27;ticket&#x27;:
           return loadedTicketForScrutiny
             ? `combinaciones del boleto completo «${loadedTicketForScrutiny.name}»`
@@ -11076,7 +11414,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         case &#x27;development&#x27;:
           return &#x27;Desarrollo completo&#x27;;
         case &#x27;digital&#x27;:
-          return &#x27;Desarrollo por suma digital posicional&#x27;;
+          return signatureSourceLabel();
         case &#x27;ticket&#x27;:
           return loadedTicketForScrutiny
             ? `Mis boletos · ${loadedTicketForScrutiny.name}`
@@ -11599,27 +11937,32 @@ html&gt;body{padding:0}&lt;/style&gt;
 
       const selectColumnButton = event.target.closest(&#x27;[data-digital-select-column]&#x27;);
       if (selectColumnButton) {
+        const details = signatureModeDetails();
         const column = Number(selectColumnButton.dataset.digitalSelectColumn);
-        digitalSelections[column] = new Set(
-          Array.from({ length: 9 }, (_, index) =&gt; index + 1)
+        const allSelected = details.values.every((value) =&gt;
+          details.selections[column].has(value)
         );
+        details.selections[column] = new Set(allSelected ? [] : details.values);
         invalidateDigitalDevelopment(
-          `Se han activado los nueve valores de ${DIGITAL_COLUMN_LABELS[column]}.`
+          allSelected
+            ? `Se han desactivado todos los valores de ${details.labels[column]}.`
+            : `Se han activado todos los valores de ${details.labels[column]}.`
         );
         return;
       }
 
       const valueButton = event.target.closest(&#x27;[data-digital-value]&#x27;);
       if (!valueButton) return;
+      const details = signatureModeDetails();
       const column = Number(valueButton.dataset.digitalColumn);
       const value = Number(valueButton.dataset.digitalValue);
-      if (digitalSelections[column].has(value)) {
-        digitalSelections[column].delete(value);
+      if (details.selections[column].has(value)) {
+        details.selections[column].delete(value);
       } else {
-        digitalSelections[column].add(value);
+        details.selections[column].add(value);
       }
       invalidateDigitalDevelopment(
-        `${DIGITAL_COLUMN_LABELS[column]} actualizado: ${digitalSelections[column].size} de 9 valores activos.`
+        `${details.labels[column]} actualizado directamente: ${details.selections[column].size} de ${details.values.length} valores activos.`
       );
     });
     digitalEquivalenceOptions.addEventListener(&#x27;click&#x27;, (event) =&gt; {
@@ -11639,6 +11982,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     });
     digitalSelectAllButton.addEventListener(&#x27;click&#x27;, () =&gt; setAllDigitalValues(true));
     digitalClearSelectionButton.addEventListener(&#x27;click&#x27;, () =&gt; setAllDigitalValues(false));
+    digitalSignatureTypeSelect.addEventListener(&#x27;change&#x27;, changeSignatureMode);
     digitalGenerateButton.addEventListener(&#x27;click&#x27;, generateDigitalDevelopment);
     digitalCancelButton.addEventListener(&#x27;click&#x27;, cancelDigitalDevelopment);
     digitalPreviousButton.addEventListener(&#x27;click&#x27;, () =&gt; {
@@ -11660,7 +12004,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         digitalGeneratedCombinations,
         {
           key: &#x27;digital&#x27;,
-          label: &#x27;Desarrollo por suma digital posicional&#x27;
+          label: signatureSourceLabel()
         },
         (message, isError = false) =&gt;
           setDigitalMessage(message, isError ? &#x27;error&#x27; : &#x27;&#x27;)
@@ -11668,7 +12012,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     });
     digitalClearResultButton.addEventListener(&#x27;click&#x27;, () =&gt; {
       clearDigitalGeneratedResult(
-        &#x27;Se ha eliminado el desarrollo generado; la selección digital se conserva.&#x27;
+        &#x27;Se ha eliminado el desarrollo generado; la selección de la firma actual se conserva.&#x27;
       );
     });
     root.querySelectorAll(&#x27;.lottery-filter-source-button&#x27;).forEach((button) =&gt; {
@@ -12135,7 +12479,11 @@ html&gt;body{padding:0}&lt;/style&gt;
 (() => {
   if (!("serviceWorker" in navigator) || !/^https?:$/.test(window.location.protocol)) return;
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./service-worker.js", { scope: "./" })
+    navigator.serviceWorker.register("./service-worker.js", {
+      scope: "./",
+      updateViaCache: "none"
+    })
+      .then((registration) => registration.update())
       .catch((error) => console.warn("No se pudo registrar el service worker:", error));
   }, { once: true });
 })();
