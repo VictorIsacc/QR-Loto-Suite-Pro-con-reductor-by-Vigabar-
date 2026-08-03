@@ -39,12 +39,12 @@
   }
 })();
 </script>
-<title>QR Loto Suite V22 by Vigabar®</title>
+<title>QR Loto Suite V23 by Vigabar®</title>
 <meta name="theme-color" content="#061127">
-<meta name="application-name" content="QR Loto Suite">
+<meta name="application-name" content="QR Loto Suite V23">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="QR Loto Suite">
+<meta name="apple-mobile-web-app-title" content="QR Loto Suite V23">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icono-qr-loto-192.png">
@@ -79,9 +79,9 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
 </style>
 </head>
 <body>
-<header class="loto-suite-header" aria-label="QR Loto Suite V22 by Vigabar">
+<header class="loto-suite-header" aria-label="QR Loto Suite V23 by Vigabar">
   <button class="loto-suite-install" id="loto-suite-install" type="button" hidden>Instalar app</button>
-  <span class="loto-suite-version" aria-label="Versión 22">V22</span>
+  <span class="loto-suite-version" aria-label="Versión 23">V23</span>
   <div class="loto-suite-brand">
     <img class="loto-suite-logo" src="logo-loto-suite-cabecera-v2.webp" alt="Emblema de QR Loto Suite">
     <div class="loto-suite-copy">
@@ -91,8 +91,8 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
   </div>
 </header>
 <div class="loto-suite-new" role="status">
-  <strong>NUEVO · V22</strong>
-  Combinación de firmas digitales y de terminación, con equivalencias, filtros, reductor y QR.
+  <strong>NUEVO · V23</strong>
+  Modo voluntario de alta carga y respaldo exportable de las configuraciones de filtros.
 </div>
 <script>
 window.setTimeout(() => {
@@ -967,6 +967,17 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;/div&gt;
   &lt;/nav&gt;
 
+  &lt;section class=&quot;lottery-high-load&quot; aria-labelledby=&quot;lottery-high-load-label&quot;&gt;
+    &lt;label class=&quot;lottery-high-load-choice&quot; for=&quot;lottery-high-load-override&quot;&gt;
+      &lt;input id=&quot;lottery-high-load-override&quot; type=&quot;checkbox&quot; aria-describedby=&quot;lottery-high-load-description lottery-high-load-status&quot;&gt;
+      &lt;span&gt;
+        &lt;strong id=&quot;lottery-high-load-label&quot;&gt;Permitir operaciones de alta carga bajo mi responsabilidad&lt;/strong&gt;
+        &lt;small id=&quot;lottery-high-load-description&quot;&gt;Autoriza desarrollos, filtros y reducciones que superen el límite preventivo del dispositivo. Puede provocar lentitud, calentamiento, falta de memoria, bloqueo o cierre del navegador.&lt;/small&gt;
+      &lt;/span&gt;
+    &lt;/label&gt;
+    &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-high-load-status&quot;&gt;Protección activa&lt;/span&gt;
+  &lt;/section&gt;
+
   &lt;div class=&quot;lottery-workspace&quot;&gt;
     &lt;main class=&quot;lottery-main lottery-jump-target&quot; id=&quot;lottery-sorteo-section&quot;&gt;
       &lt;div class=&quot;lottery-layout&quot;&gt;
@@ -1556,8 +1567,11 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-filter-profile-save&quot; type=&quot;button&quot;&gt;Guardar configuración&lt;/button&gt;
         &lt;button class=&quot;btn&quot; id=&quot;lottery-filter-profile-load&quot; type=&quot;button&quot; disabled&gt;Cargar&lt;/button&gt;
         &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-filter-profile-delete&quot; type=&quot;button&quot; disabled&gt;Eliminar&lt;/button&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-filter-profile-export&quot; type=&quot;button&quot; disabled&gt;Descargar respaldo&lt;/button&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-filter-profile-import&quot; type=&quot;button&quot;&gt;Importar respaldo&lt;/button&gt;
+        &lt;input id=&quot;lottery-filter-profile-file&quot; type=&quot;file&quot; accept=&quot;.json,.txt,application/json,text/plain&quot; hidden&gt;
       &lt;/div&gt;
-      &lt;p class=&quot;filter-profile-message text-muted&quot; id=&quot;lottery-filter-profile-message&quot; aria-live=&quot;polite&quot;&gt;Las configuraciones se conservan localmente en este navegador.&lt;/p&gt;
+      &lt;p class=&quot;filter-profile-message text-muted&quot; id=&quot;lottery-filter-profile-message&quot; aria-live=&quot;polite&quot;&gt;Las configuraciones se conservan localmente; descarga un respaldo para recuperarlas si se borran los datos del navegador.&lt;/p&gt;
     &lt;/div&gt;
 
     &lt;div class=&quot;filter-grid&quot; id=&quot;lottery-filter-grid&quot;&gt;
@@ -3129,6 +3143,50 @@ html&gt;body{padding:0}&lt;/style&gt;
     border-left: 0.28rem solid #06b6d4;
     border-radius: 0.65rem;
     background: color-mix(in srgb, #06b6d4 8%, var(--muted));
+  }
+
+  #lottery-simulator-649 .lottery-high-load {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.8rem;
+    align-items: center;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid color-mix(in srgb, #f97316 42%, var(--border));
+    border-radius: 0.85rem;
+    background: color-mix(in srgb, #f97316 7%, var(--card));
+  }
+
+  #lottery-simulator-649 .lottery-high-load-choice {
+    display: flex;
+    gap: 0.7rem;
+    align-items: flex-start;
+    cursor: pointer;
+  }
+
+  #lottery-simulator-649 .lottery-high-load-choice input {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-top: 0.15rem;
+    flex: 0 0 auto;
+    accent-color: #f97316;
+  }
+
+  #lottery-simulator-649 .lottery-high-load-choice span {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  #lottery-simulator-649 .lottery-high-load-choice small {
+    color: var(--muted-foreground);
+    line-height: 1.45;
+  }
+
+  #lottery-simulator-649 .lottery-high-load.is-enabled {
+    border-color: #fb923c;
+    background: color-mix(in srgb, #f97316 13%, var(--card));
+    box-shadow: 0 0 0 1px color-mix(in srgb, #f97316 24%, transparent);
   }
 
   #lottery-simulator-649 .digital-signature-type {
@@ -4771,6 +4829,11 @@ html&gt;body{padding:0}&lt;/style&gt;
       align-items: stretch;
     }
 
+    #lottery-simulator-649 .lottery-high-load {
+      grid-template-columns: 1fr;
+      align-items: stretch;
+    }
+
     #lottery-simulator-649 .digital-equivalence-options {
       justify-content: flex-start;
     }
@@ -5174,6 +5237,9 @@ html&gt;body{padding:0}&lt;/style&gt;
 &lt;script&gt;
   (() =&gt; {
     const root = document.getElementById(&#x27;lottery-simulator-649&#x27;);
+    const highLoadPanel = root.querySelector(&#x27;.lottery-high-load&#x27;);
+    const highLoadOverrideInput = root.querySelector(&#x27;#lottery-high-load-override&#x27;);
+    const highLoadStatus = root.querySelector(&#x27;#lottery-high-load-status&#x27;);
     const quickNavLinks = Array.from(root.querySelectorAll(&#x27;.lottery-quick-link[href^=&quot;#&quot;]&#x27;));
     const sectionScrollLinks = Array.from(root.querySelectorAll(&#x27;.lottery-quick-link[href^=&quot;#&quot;], .lottery-back-top[href^=&quot;#&quot;], .lottery-mobile-saved-link[href^=&quot;#&quot;]&#x27;));
     sectionScrollLinks.forEach((link) =&gt; {
@@ -5404,6 +5470,9 @@ html&gt;body{padding:0}&lt;/style&gt;
     const filterProfileSaveButton = root.querySelector(&#x27;#lottery-filter-profile-save&#x27;);
     const filterProfileLoadButton = root.querySelector(&#x27;#lottery-filter-profile-load&#x27;);
     const filterProfileDeleteButton = root.querySelector(&#x27;#lottery-filter-profile-delete&#x27;);
+    const filterProfileExportButton = root.querySelector(&#x27;#lottery-filter-profile-export&#x27;);
+    const filterProfileImportButton = root.querySelector(&#x27;#lottery-filter-profile-import&#x27;);
+    const filterProfileFileInput = root.querySelector(&#x27;#lottery-filter-profile-file&#x27;);
     const filterProfileMessage = root.querySelector(&#x27;#lottery-filter-profile-message&#x27;);
     const filterGrid = root.querySelector(&#x27;#lottery-filter-grid&#x27;);
     const filterMessage = root.querySelector(&#x27;#lottery-filter-message&#x27;);
@@ -5506,6 +5575,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     let savedPageIndex = 0;
     let savedCurrent = false;
     let busy = false;
+    let highLoadOverrideEnabled = false;
     const SAVED_PAGE_SIZE = 8;
     const TICKET_SCHEMA = &#x27;qr-loto-suite-ticket&#x27;;
     const TICKET_VERSION = 1;
@@ -5514,10 +5584,14 @@ html&gt;body{padding:0}&lt;/style&gt;
     const TICKET_STORAGE_LIMIT = 30;
     const FILTER_PROFILE_STORAGE_KEY = &#x27;qr-loto-suite.filter-profiles.v1&#x27;;
     const FILTER_PROFILE_STORAGE_LIMIT = 50;
+    const FILTER_PROFILE_EXPORT_SCHEMA = &#x27;qr-loto-suite-filter-profiles&#x27;;
+    const FILTER_PROFILE_EXPORT_VERSION = 1;
+    const FILTER_PROFILE_IMPORT_MAX_BYTES = 2000000;
     const DEVELOPMENT_PAGE_SIZE = 8;
     const FILTER_PAGE_SIZE = 20;
     const FILTER_DESKTOP_COMBINATION_LIMIT = 1000000;
     const FILTER_MOBILE_COMBINATION_LIMIT = 200000;
+    const LOTTERY_ABSOLUTE_COMBINATION_LIMIT = 13983816;
     const DEVELOPMENT_MIN_NUMBERS = 7;
     const DEVELOPMENT_MAX_NUMBERS = 49;
     const DEVELOPMENT_DENSE_CASE_LIMIT = 5005;
@@ -5561,10 +5635,34 @@ html&gt;body{padding:0}&lt;/style&gt;
       digitalMessage.classList.toggle(&#x27;is-warning&#x27;, tone === &#x27;warning&#x27;);
     }
 
+    function effectiveCombinationLimit(preventiveLimit) {
+      return highLoadOverrideEnabled
+        ? LOTTERY_ABSOLUTE_COMBINATION_LIMIT
+        : preventiveLimit;
+    }
+
+    function formatOperationLimit(limit) {
+      return highLoadOverrideEnabled
+        ? `${limit.toLocaleString(&#x27;es-ES&#x27;)} · autorizado`
+        : limit.toLocaleString(&#x27;es-ES&#x27;);
+    }
+
+    function updateHighLoadOverride() {
+      highLoadOverrideEnabled = Boolean(highLoadOverrideInput.checked);
+      highLoadPanel.classList.toggle(&#x27;is-enabled&#x27;, highLoadOverrideEnabled);
+      highLoadStatus.textContent = highLoadOverrideEnabled
+        ? &#x27;Alta carga autorizada&#x27;
+        : &#x27;Protección activa&#x27;;
+      digitalSafeLimit.textContent = formatOperationLimit(digitalDeviceLimit());
+      refreshDevelopmentControls();
+      refreshDigitalControls();
+    }
+
     function digitalDeviceLimit() {
-      return window.matchMedia(&#x27;(max-width: 760px)&#x27;).matches
+      const preventiveLimit = window.matchMedia(&#x27;(max-width: 760px)&#x27;).matches
         ? DIGITAL_MOBILE_COMBINATION_LIMIT
         : DIGITAL_DESKTOP_COMBINATION_LIMIT;
+      return effectiveCombinationLimit(preventiveLimit);
     }
 
     function createDigitalPanelCell(tagName, text, className, column = null) {
@@ -5611,10 +5709,14 @@ html&gt;body{padding:0}&lt;/style&gt;
         : digitalEquivalenceSelections;
     }
 
+    function effectiveEquivalenceSelectionsForMode(mode = getSignatureMode()) {
+      const selected = equivalenceSelectionsForMode(mode);
+      return selected.size &gt; 0 ? selected : new Set(DIGITAL_EQUIVALENCE_VALUES);
+    }
+
     function hasCompleteSignatureConfiguration(mode) {
       const details = signatureModeDetails(mode);
-      return details.selections.every((selection) =&gt; selection.size &gt; 0)
-        &amp;&amp; equivalenceSelectionsForMode(mode).size &gt; 0;
+      return details.selections.every((selection) =&gt; selection.size &gt; 0);
     }
 
     function updateSignatureModePresentation() {
@@ -5788,16 +5890,15 @@ html&gt;body{padding:0}&lt;/style&gt;
       const selected = DIGITAL_EQUIVALENCE_VALUES
         .filter((value) =&gt; activeEquivalences.has(value))
         .join(&#x27; · &#x27;);
-      equivalences.append(name, document.createTextNode(selected || &#x27;ninguna&#x27;));
+      equivalences.append(name, document.createTextNode(selected || &#x27;todas · sin filtro&#x27;));
       digitalSelectionSummary.appendChild(equivalences);
     }
 
     function refreshDigitalControls() {
       const details = signatureModeDetails();
       const hasEveryColumn = details.selections.every((selection) =&gt; selection.size &gt; 0);
-      const hasModeOptions = equivalenceSelectionsForMode(details.mode).size &gt; 0;
       digitalSignatureTypeSelect.disabled = digitalBusy;
-      digitalGenerateButton.disabled = digitalBusy || !hasEveryColumn || !hasModeOptions;
+      digitalGenerateButton.disabled = digitalBusy || !hasEveryColumn;
       digitalSelectAllButton.disabled = digitalBusy;
       digitalClearSelectionButton.disabled = digitalBusy;
       digitalCombineButton.disabled = digitalBusy
@@ -5829,7 +5930,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       digitalPagination.hidden = true;
       digitalPatternTotal.textContent = &#x27;Pendiente&#x27;;
       digitalNaturalTotal.textContent = &#x27;Pendiente&#x27;;
-      digitalSafeLimit.textContent = digitalDeviceLimit().toLocaleString(&#x27;es-ES&#x27;);
+      digitalSafeLimit.textContent = formatOperationLimit(digitalDeviceLimit());
       digitalEquivalenceBreakdown.replaceChildren();
       digitalTotalBadge.textContent = &#x27;Sin calcular&#x27;;
       digitalReducerButton.disabled = true;
@@ -6002,6 +6103,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
 
     async function analyseTerminationPatterns(safeLimit) {
+      const activeEquivalences = effectiveEquivalenceSelectionsForMode(&#x27;termination&#x27;);
       const allowedPositions = terminationSelections.map((selection) =&gt;
         [...selection].sort((first, second) =&gt; first - second)
       );
@@ -6012,7 +6114,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           {
             patterns: 0,
             natural: 0,
-            active: terminationEquivalenceSelections.has(value)
+            active: activeEquivalences.has(value)
           }
         ])
       );
@@ -6028,7 +6130,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           const stats = classStats[equivalenceCount];
           stats.patterns += 1;
           stats.natural += equivalenceCount;
-          if (!terminationEquivalenceSelections.has(equivalenceCount)) return;
+          if (!activeEquivalences.has(equivalenceCount)) return;
           patternCount += 1;
           naturalTotal += equivalenceCount;
           if (keepPatterns) {
@@ -6075,14 +6177,6 @@ html&gt;body{padding:0}&lt;/style&gt;
         );
         return;
       }
-      if (terminationEquivalenceSelections.size === 0) {
-        setDigitalMessage(
-          &#x27;Activa al menos una cantidad equivalente para la firma de terminación.&#x27;,
-          &#x27;error&#x27;
-        );
-        return;
-      }
-
       digitalBusy = true;
       digitalCancelRequested = false;
       digitalGeneratedCombinations = [];
@@ -6092,7 +6186,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       resetDigitalQrWarning();
       refreshDigitalControls();
       const safeLimit = digitalDeviceLimit();
-      digitalSafeLimit.textContent = safeLimit.toLocaleString(&#x27;es-ES&#x27;);
+      digitalSafeLimit.textContent = formatOperationLimit(safeLimit);
       setDigitalMessage(&#x27;Calculando el desarrollo exacto de la firma de terminación…&#x27;);
 
       try {
@@ -6170,6 +6264,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
 
     async function analyseDigitalPatterns(safeLimit) {
+      const activeEquivalences = effectiveEquivalenceSelectionsForMode(&#x27;digital&#x27;);
       const allowedPositions = digitalSelections
         .slice(0, 6)
         .map((selection) =&gt; [...selection].sort((first, second) =&gt; first - second));
@@ -6178,7 +6273,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       const classStats = Object.fromEntries(
         DIGITAL_EQUIVALENCE_VALUES.map((value) =&gt; [
           value,
-          { patterns: 0, natural: 0, active: digitalEquivalenceSelections.has(value) }
+          { patterns: 0, natural: 0, active: activeEquivalences.has(value) }
         ])
       );
       const patterns = [];
@@ -6194,7 +6289,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           const stats = classStats[equivalenceCount];
           stats.patterns += 1;
           stats.natural += equivalenceCount;
-          if (!digitalEquivalenceSelections.has(equivalenceCount)) return;
+          if (!activeEquivalences.has(equivalenceCount)) return;
           patternCount += 1;
           naturalTotal += equivalenceCount;
           if (keepPatterns) {
@@ -6237,7 +6332,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     function renderDigitalAnalysis(analysis, safeLimit) {
       digitalPatternTotal.textContent = analysis.patternCount.toLocaleString(&#x27;es-ES&#x27;);
       digitalNaturalTotal.textContent = analysis.naturalTotal.toLocaleString(&#x27;es-ES&#x27;);
-      digitalSafeLimit.textContent = safeLimit.toLocaleString(&#x27;es-ES&#x27;);
+      digitalSafeLimit.textContent = formatOperationLimit(safeLimit);
       digitalTotalBadge.textContent = `${analysis.naturalTotal.toLocaleString(&#x27;es-ES&#x27;)} naturales`;
       digitalEquivalenceBreakdown.replaceChildren();
       DIGITAL_EQUIVALENCE_VALUES.forEach((value) =&gt; {
@@ -6258,12 +6353,12 @@ html&gt;body{padding:0}&lt;/style&gt;
       digitalPatternLabel.textContent = &#x27;Patrones digitales examinados&#x27;;
       digitalPatternTotal.textContent = analysis.patternCount.toLocaleString(&#x27;es-ES&#x27;);
       digitalNaturalTotal.textContent = analysis.naturalTotal.toLocaleString(&#x27;es-ES&#x27;);
-      digitalSafeLimit.textContent = safeLimit.toLocaleString(&#x27;es-ES&#x27;);
+      digitalSafeLimit.textContent = formatOperationLimit(safeLimit);
       digitalTotalBadge.textContent = `${analysis.naturalTotal.toLocaleString(&#x27;es-ES&#x27;)} combinadas`;
       digitalEquivalenceBreakdown.replaceChildren();
       [
-        [&#x27;Digital&#x27;, [...digitalEquivalenceSelections].sort((a, b) =&gt; a - b).join(&#x27; · &#x27;)],
-        [&#x27;Terminación&#x27;, [...terminationEquivalenceSelections].sort((a, b) =&gt; a - b).join(&#x27; · &#x27;)],
+        [&#x27;Digital&#x27;, [...effectiveEquivalenceSelectionsForMode(&#x27;digital&#x27;)].sort((a, b) =&gt; a - b).join(&#x27; · &#x27;)],
+        [&#x27;Terminación&#x27;, [...effectiveEquivalenceSelectionsForMode(&#x27;termination&#x27;)].sort((a, b) =&gt; a - b).join(&#x27; · &#x27;)],
         [&#x27;Candidatas revisadas&#x27;, analysis.candidateTotal.toLocaleString(&#x27;es-ES&#x27;)]
       ].forEach(([label, value]) =&gt; {
         const chip = document.createElement(&#x27;span&#x27;);
@@ -6346,11 +6441,6 @@ html&gt;body{padding:0}&lt;/style&gt;
         );
         return;
       }
-      if (digitalEquivalenceSelections.size === 0) {
-        setDigitalMessage(&#x27;Activa al menos una cantidad de equivalencias naturales.&#x27;, &#x27;error&#x27;);
-        return;
-      }
-
       digitalBusy = true;
       digitalCancelRequested = false;
       digitalGeneratedCombinations = [];
@@ -6360,7 +6450,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       resetDigitalQrWarning();
       refreshDigitalControls();
       const safeLimit = digitalDeviceLimit();
-      digitalSafeLimit.textContent = safeLimit.toLocaleString(&#x27;es-ES&#x27;);
+      digitalSafeLimit.textContent = formatOperationLimit(safeLimit);
 
       try {
         const analysis = await analyseDigitalPatterns(safeLimit);
@@ -6449,6 +6539,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
 
     function combinationMatchesTerminationConfiguration(combination, equivalenceCache) {
+      const activeEquivalences = effectiveEquivalenceSelectionsForMode(&#x27;termination&#x27;);
       const pattern = combination.map((number) =&gt; number % 10);
       for (let position = 0; position &lt; 6; position += 1) {
         if (!terminationSelections[position].has(pattern[position])) return false;
@@ -6459,7 +6550,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         equivalenceCount = countTerminationPatternEquivalents(pattern);
         equivalenceCache.set(key, equivalenceCount);
       }
-      return terminationEquivalenceSelections.has(equivalenceCount);
+      return activeEquivalences.has(equivalenceCount);
     }
 
     async function generateCombinedSignatureDevelopment() {
@@ -6488,10 +6579,11 @@ html&gt;body{padding:0}&lt;/style&gt;
       resetDigitalQrWarning();
       refreshDigitalControls();
       const safeLimit = digitalDeviceLimit();
-      digitalSafeLimit.textContent = safeLimit.toLocaleString(&#x27;es-ES&#x27;);
+      digitalSafeLimit.textContent = formatOperationLimit(safeLimit);
       setDigitalMessage(&#x27;Combinando las firmas digital y de terminación…&#x27;);
 
       try {
+        const activeDigitalEquivalences = effectiveEquivalenceSelectionsForMode(&#x27;digital&#x27;);
         const allowedDigitalPositions = digitalSelections
           .slice(0, 6)
           .map((selection) =&gt; [...selection].sort((a, b) =&gt; a - b));
@@ -6508,7 +6600,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           if (position === 6) {
             if (!allowedSdcd.has(digitalRoot(digitalSum))) return;
             const digitalEquivalence = countDigitalPatternEquivalents(digitalPattern);
-            if (!digitalEquivalenceSelections.has(digitalEquivalence)) return;
+            if (!activeDigitalEquivalences.has(digitalEquivalence)) return;
             patternCount += 1;
             const candidates = expandDigitalPattern(digitalPattern);
             candidateTotal += candidates.length;
@@ -6972,6 +7064,113 @@ html&gt;body{padding:0}&lt;/style&gt;
       }
     }
 
+    function exportFilterProfileBackup() {
+      if (filterBusy) return;
+      if (savedFilterProfiles.length === 0) {
+        setFilterProfileMessage(&#x27;No hay configuraciones guardadas para incluir en el respaldo.&#x27;, true);
+        return;
+      }
+      try {
+        const backup = {
+          schema: FILTER_PROFILE_EXPORT_SCHEMA,
+          version: FILTER_PROFILE_EXPORT_VERSION,
+          exportedAt: new Date().toISOString(),
+          profiles: savedFilterProfiles.map((profile) =&gt; normaliseFilterProfile(profile))
+        };
+        const blob = new Blob([JSON.stringify(backup, null, 2)], {
+          type: &#x27;application/json;charset=utf-8&#x27;
+        });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement(&#x27;a&#x27;);
+        const date = new Date().toISOString().slice(0, 10);
+        link.href = url;
+        link.download = `QR-Loto-Suite-filtros-${date}.json`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() =&gt; URL.revokeObjectURL(url), 1000);
+        setFilterProfileMessage(
+          `Respaldo descargado con ${savedFilterProfiles.length} ${savedFilterProfiles.length === 1 ? &#x27;configuración&#x27; : &#x27;configuraciones&#x27;}.`
+        );
+      } catch (error) {
+        setFilterProfileMessage(&#x27;No se ha podido crear el respaldo de filtros.&#x27;, true);
+      }
+    }
+
+    async function importFilterProfileBackup(file) {
+      if (filterBusy || !file) return;
+      if (file.size &gt; FILTER_PROFILE_IMPORT_MAX_BYTES) {
+        setFilterProfileMessage(&#x27;El archivo de respaldo es demasiado grande.&#x27;, true);
+        return;
+      }
+      try {
+        const parsed = JSON.parse(await file.text());
+        let sourceProfiles;
+        if (Array.isArray(parsed)) {
+          sourceProfiles = parsed;
+        } else if (
+          parsed
+          &amp;&amp; parsed.schema === FILTER_PROFILE_EXPORT_SCHEMA
+          &amp;&amp; Number(parsed.version) === FILTER_PROFILE_EXPORT_VERSION
+          &amp;&amp; Array.isArray(parsed.profiles)
+        ) {
+          sourceProfiles = parsed.profiles;
+        } else {
+          throw new Error(&#x27;El archivo no pertenece a un respaldo compatible de QR Loto Suite.&#x27;);
+        }
+
+        const imported = sourceProfiles
+          .slice(0, FILTER_PROFILE_STORAGE_LIMIT)
+          .map((profile) =&gt; normaliseFilterProfile(profile));
+        if (imported.length === 0) {
+          throw new Error(&#x27;El respaldo no contiene configuraciones de filtros.&#x27;);
+        }
+
+        const previousProfiles = savedFilterProfiles.map((profile) =&gt; ({
+          ...profile,
+          controls: profile.controls.map((control) =&gt; ({ ...control }))
+        }));
+        const merged = [...savedFilterProfiles];
+        let added = 0;
+        let replaced = 0;
+        imported.forEach((profile) =&gt; {
+          const existingIndex = merged.findIndex(
+            (current) =&gt; current.name.toLocaleLowerCase(&#x27;es&#x27;) === profile.name.toLocaleLowerCase(&#x27;es&#x27;)
+          );
+          if (existingIndex &gt;= 0) {
+            merged[existingIndex] = {
+              ...profile,
+              id: merged[existingIndex].id,
+              createdAt: merged[existingIndex].createdAt,
+              updatedAt: new Date().toISOString()
+            };
+            replaced += 1;
+          } else if (merged.length &lt; FILTER_PROFILE_STORAGE_LIMIT) {
+            merged.push({
+              ...profile,
+              id: makeFilterProfileId(),
+              updatedAt: new Date().toISOString()
+            });
+            added += 1;
+          }
+        });
+        savedFilterProfiles = merged.slice(0, FILTER_PROFILE_STORAGE_LIMIT);
+        if (!saveFilterProfilesToBrowser()) {
+          savedFilterProfiles = previousProfiles;
+          renderFilterProfiles();
+          return;
+        }
+        filterProfilePendingDeleteId = null;
+        filterProfileDeleteButton.textContent = &#x27;Eliminar&#x27;;
+        renderFilterProfiles();
+        setFilterProfileMessage(
+          `Respaldo importado: ${added} ${added === 1 ? &#x27;configuración añadida&#x27; : &#x27;configuraciones añadidas&#x27;}${replaced ? ` y ${replaced} ${replaced === 1 ? &#x27;actualizada&#x27; : &#x27;actualizadas&#x27;}` : &#x27;&#x27;}.`
+        );
+      } catch (error) {
+        setFilterProfileMessage(error.message || &#x27;No se ha podido importar el respaldo.&#x27;, true);
+      }
+    }
+
     function renderFilterProfiles(selectedId = filterProfileSelect.value) {
       filterProfileSelect.replaceChildren();
       const placeholder = document.createElement(&#x27;option&#x27;);
@@ -6994,6 +7193,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       const hasSelection = Boolean(filterProfileSelect.value);
       filterProfileLoadButton.disabled = !hasSelection || filterBusy;
       filterProfileDeleteButton.disabled = !hasSelection || filterBusy;
+      filterProfileExportButton.disabled = savedFilterProfiles.length === 0 || filterBusy;
+      filterProfileImportButton.disabled = filterBusy;
     }
 
     function applyFilterControlSnapshot(controls) {
@@ -7621,7 +7822,10 @@ html&gt;body{padding:0}&lt;/style&gt;
         return;
       }
       const isMobile = window.matchMedia(&#x27;(max-width: 760px)&#x27;).matches;
-      const safeLimit = isMobile ? FILTER_MOBILE_COMBINATION_LIMIT : FILTER_DESKTOP_COMBINATION_LIMIT;
+      const preventiveLimit = isMobile
+        ? FILTER_MOBILE_COMBINATION_LIMIT
+        : FILTER_DESKTOP_COMBINATION_LIMIT;
+      const safeLimit = effectiveCombinationLimit(preventiveLimit);
       if (base.length &gt; safeLimit) {
         setFilterMessage(
           `La procedencia contiene ${base.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones y supera el límite seguro de ${safeLimit.toLocaleString(&#x27;es-ES&#x27;)} para este dispositivo. Reduce primero el desarrollo o utiliza una lista más pequeña.`,
@@ -7647,12 +7851,18 @@ html&gt;body{padding:0}&lt;/style&gt;
       filterProfileSaveButton.disabled = true;
       filterProfileLoadButton.disabled = true;
       filterProfileDeleteButton.disabled = true;
+      filterProfileExportButton.disabled = true;
+      filterProfileImportButton.disabled = true;
       const nextCombinations = [];
       const eliminated = Object.fromEntries(configuration.enabled.map((key) =&gt; [key, 0]));
       root.querySelectorAll(&#x27;[data-filter-eliminated]&#x27;).forEach((label) =&gt; {
         label.textContent = &#x27;0 eliminadas&#x27;;
       });
-      setFilterMessage(`Analizando ${base.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones…`);
+      setFilterMessage(
+        highLoadOverrideEnabled &amp;&amp; base.length &gt; preventiveLimit
+          ? `Analizando ${base.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones con la alta carga autorizada bajo tu responsabilidad…`
+          : `Analizando ${base.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones…`
+      );
 
       const chunkSize = isMobile ? 750 : 2500;
       for (let index = 0; index &lt; base.length; index += 1) {
@@ -10088,9 +10298,10 @@ html&gt;body{padding:0}&lt;/style&gt;
       const mobileLikeDevice =
         window.matchMedia(&#x27;(max-width: 760px)&#x27;).matches ||
         window.matchMedia(&#x27;(pointer: coarse)&#x27;).matches;
-      const limit = mobileLikeDevice
+      const preventiveLimit = mobileLikeDevice
         ? Math.min(technicalLimit, DEVELOPMENT_MOBILE_CASE_LIMIT)
         : technicalLimit;
+      const limit = effectiveCombinationLimit(preventiveLimit);
       const feasible = total &gt;= DEVELOPMENT_MIN_NUMBERS &amp;&amp;
         total &lt;= DEVELOPMENT_MAX_NUMBERS &amp;&amp;
         caseTotal &gt; 0 &amp;&amp;
@@ -10100,7 +10311,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         : caseTotal &lt;= 100000
           ? &#x27;moderada&#x27;
           : &#x27;alta&#x27;;
-      return { caseTotal, limit, feasible, workload };
+      const override = highLoadOverrideEnabled &amp;&amp; caseTotal &gt; preventiveLimit &amp;&amp; feasible;
+      return { caseTotal, limit, preventiveLimit, feasible, workload, override };
     }
 
     function getExternalDevelopmentFeasibility(source, guarantee) {
@@ -10112,9 +10324,10 @@ html&gt;body{padding:0}&lt;/style&gt;
       const mobileLikeDevice =
         window.matchMedia(&#x27;(max-width: 760px)&#x27;).matches ||
         window.matchMedia(&#x27;(pointer: coarse)&#x27;).matches;
-      const limit = mobileLikeDevice
+      const preventiveLimit = mobileLikeDevice
         ? Math.min(technicalLimit, DEVELOPMENT_MOBILE_CASE_LIMIT)
         : technicalLimit;
+      const limit = effectiveCombinationLimit(preventiveLimit);
       const feasible =
         caseTotal &gt;= 2 &amp;&amp;
         uniqueTotal &gt;= DEVELOPMENT_MIN_NUMBERS &amp;&amp;
@@ -10125,7 +10338,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         : caseTotal &lt;= 100000
           ? &#x27;moderada&#x27;
           : &#x27;alta&#x27;;
-      return { caseTotal, limit, feasible, workload };
+      const override = highLoadOverrideEnabled &amp;&amp; caseTotal &gt; preventiveLimit &amp;&amp; feasible;
+      return { caseTotal, limit, preventiveLimit, feasible, workload, override };
     }
 
     function renderDevelopmentExternalSource() {
@@ -10348,7 +10562,9 @@ html&gt;body{padding:0}&lt;/style&gt;
         const sourceText =
           `Se reducirán únicamente las ${feasibility.caseTotal.toLocaleString(&#x27;es-ES&#x27;)} combinaciones recibidas desde «${externalSource.label}»; no se creará un desarrollo nuevo con sus ${total} números distintos.`;
         developmentFullCount.textContent = feasibility.feasible
-          ? `${sourceText} Carga estimada ${feasibility.workload}.`
+          ? feasibility.override
+            ? `${sourceText} Supera el límite preventivo de ${feasibility.preventiveLimit.toLocaleString(&#x27;es-ES&#x27;)}, pero has autorizado la alta carga bajo tu responsabilidad.`
+            : `${sourceText} Carga estimada ${feasibility.workload}.`
           : `${sourceText} El universo supera el límite seguro de ${feasibility.limit.toLocaleString(&#x27;es-ES&#x27;)} combinaciones para esta garantía y dispositivo.`;
       } else if (total &lt; 7) {
         developmentFullCount.textContent = `Selecciona ${7 - total} ${7 - total === 1 ? &#x27;número más&#x27; : &#x27;números más&#x27;}.`;
@@ -10357,7 +10573,9 @@ html&gt;body{padding:0}&lt;/style&gt;
           ? `Se generarán ${fullTotal.toLocaleString(&#x27;es-ES&#x27;)} combinaciones que contienen los ${fixedTotal} fijos: C(${total - fixedTotal},${6 - fixedTotal}).`
           : `Se generarán ${fullTotal.toLocaleString(&#x27;es-ES&#x27;)} combinaciones: C(${total},6). Se mostrarán por páginas.`;
         developmentFullCount.textContent = feasibility.feasible
-          ? `${baseText} Carga estimada ${feasibility.workload}. En móviles una carga alta puede ralentizar o bloquear temporalmente el navegador.`
+          ? feasibility.override
+            ? `${baseText} Supera el límite preventivo de ${feasibility.preventiveLimit.toLocaleString(&#x27;es-ES&#x27;)}, pero has autorizado la alta carga bajo tu responsabilidad. El navegador podría ralentizarse, bloquearse o cerrarse.`
+            : `${baseText} Carga estimada ${feasibility.workload}. En móviles una carga alta puede ralentizar o bloquear temporalmente el navegador.`
           : `${baseText} Este desarrollo supera el límite seguro de ${feasibility.limit.toLocaleString(&#x27;es-ES&#x27;)} combinaciones para generarlo dentro del navegador; reduce números o añade fijos.`;
       } else {
         const coverageText = percentageMode
@@ -10367,7 +10585,9 @@ html&gt;body{padding:0}&lt;/style&gt;
           ? `Sistema condicionado: ${fullTotal.toLocaleString(&#x27;es-ES&#x27;)} casos con los ${fixedTotal} fijos acertados, ${coverageText}. Si el tamaño lo permite, el desglose general analizará también los ${generalTotal.toLocaleString(&#x27;es-ES&#x27;)} resultados.`
           : `La reducción se calculará sobre ${fullTotal.toLocaleString(&#x27;es-ES&#x27;)} casos, ${coverageText}.`;
         developmentFullCount.textContent = feasibility.feasible
-          ? `${baseText} Carga estimada ${feasibility.workload}. En móviles una carga alta puede reducir mucho el rendimiento e incluso provocar que el navegador fuerce el bloqueo o cierre de la página.`
+          ? feasibility.override
+            ? `${baseText} Supera el límite preventivo de ${feasibility.preventiveLimit.toLocaleString(&#x27;es-ES&#x27;)}, pero has autorizado la alta carga bajo tu responsabilidad. El navegador podría ralentizarse, bloquearse o cerrarse.`
+            : `${baseText} Carga estimada ${feasibility.workload}. En móviles una carga alta puede reducir mucho el rendimiento e incluso provocar que el navegador fuerce el bloqueo o cierre de la página.`
           : `${baseText} Con esta garantía se supera el límite seguro de ${feasibility.limit.toLocaleString(&#x27;es-ES&#x27;)} casos para un navegador. Añade fijos, selecciona menos números o elige una garantía inferior.`;
       }
 
@@ -12297,7 +12517,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       invalidateDigitalDevelopment(
         activeEquivalences.size
           ? `Equivalencias activas para ${signatureModeDetails().shortLabel}: ${DIGITAL_EQUIVALENCE_VALUES.filter((item) =&gt; activeEquivalences.has(item)).join(&#x27;, &#x27;)}.`
-          : &#x27;No hay equivalencias activas. Selecciona al menos una.&#x27;
+          : &#x27;No hay filtro de equivalencias: se admitirán todas las cantidades.&#x27;
       );
     });
     digitalSelectAllButton.addEventListener(&#x27;click&#x27;, () =&gt; setAllDigitalValues(true));
@@ -12336,12 +12556,20 @@ html&gt;body{padding:0}&lt;/style&gt;
         &#x27;Se ha eliminado el desarrollo generado; la selección de la firma actual se conserva.&#x27;
       );
     });
+    highLoadOverrideInput.addEventListener(&#x27;change&#x27;, updateHighLoadOverride);
     root.querySelectorAll(&#x27;.lottery-filter-source-button&#x27;).forEach((button) =&gt; {
       button.addEventListener(&#x27;click&#x27;, () =&gt; openFiltersForSource(button.dataset.filterSource));
     });
     filterProfileSaveButton.addEventListener(&#x27;click&#x27;, saveCurrentFilterProfile);
     filterProfileLoadButton.addEventListener(&#x27;click&#x27;, loadSelectedFilterProfile);
     filterProfileDeleteButton.addEventListener(&#x27;click&#x27;, deleteSelectedFilterProfile);
+    filterProfileExportButton.addEventListener(&#x27;click&#x27;, exportFilterProfileBackup);
+    filterProfileImportButton.addEventListener(&#x27;click&#x27;, () =&gt; filterProfileFileInput.click());
+    filterProfileFileInput.addEventListener(&#x27;change&#x27;, async () =&gt; {
+      const [file] = filterProfileFileInput.files ?? [];
+      await importFilterProfileBackup(file);
+      filterProfileFileInput.value = &#x27;&#x27;;
+    });
     filterProfileSelect.addEventListener(&#x27;change&#x27;, handleFilterProfileSelection);
     filterProfileNameInput.addEventListener(&#x27;keydown&#x27;, (event) =&gt; {
       if (event.key !== &#x27;Enter&#x27;) return;
@@ -12536,7 +12764,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     updateFilterSourceSummary(false);
     createDevelopmentNumberButtons();
     createDevelopmentViewOptions(&#x27;reduced&#x27;);
-    refreshDevelopmentControls();
+    updateHighLoadOverride();
     populateRuleNumbers();
     updateRuleQuantityControls();
     updateRuleTypeControl();
