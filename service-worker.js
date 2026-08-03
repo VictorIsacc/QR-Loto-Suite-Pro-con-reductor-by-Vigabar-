@@ -1,8 +1,11 @@
-const CACHE_NAME = "qr-loto-suite-v20-core-v1";
+const CACHE_NAME = "qr-loto-suite-v21-core-v1";
 const CORE_FILES = [
   "./",
   "./index.html",
+  "./instrucciones-simulador-loteria.html",
   "./manifest.webmanifest",
+  "./logo-loto-suite-cabecera-v2.webp",
+  "./cabecera-circuitos-loto-suite.webp",
   "./icono-qr-loto-192.png",
   "./icono-qr-loto-512.png",
   "./icono-qr-loto-maskable-512.png"
