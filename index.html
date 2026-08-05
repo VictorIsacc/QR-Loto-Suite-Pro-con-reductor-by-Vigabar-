@@ -39,12 +39,12 @@
   }
 })();
 </script>
-<title>QR Loto Suite V24 by Vigabar®</title>
+<title>QR Loto Suite V25 by Vigabar®</title>
 <meta name="theme-color" content="#061127">
-<meta name="application-name" content="QR Loto Suite V24">
+<meta name="application-name" content="QR Loto Suite V25">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="QR Loto Suite V24">
+<meta name="apple-mobile-web-app-title" content="QR Loto Suite V25">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icono-qr-loto-192.png">
@@ -88,9 +88,9 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
 </style>
 </head>
 <body>
-<header class="loto-suite-header" aria-label="QR Loto Suite V24 by Vigabar">
+<header class="loto-suite-header" aria-label="QR Loto Suite V25 by Vigabar">
   <button class="loto-suite-install" id="loto-suite-install" type="button" hidden>Instalar app</button>
-  <span class="loto-suite-version" aria-label="Versión 24">V24</span>
+  <span class="loto-suite-version" aria-label="Versión 25">V25</span>
   <div class="loto-suite-zoom" role="group" aria-label="Ajustar el zoom de la aplicación">
     <button id="loto-suite-zoom-out" type="button" aria-label="Reducir el tamaño">−</button>
     <label class="loto-suite-zoom-field" for="loto-suite-zoom-value" aria-label="Porcentaje de zoom">
@@ -108,8 +108,8 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
   </div>
 </header>
 <div class="loto-suite-new" role="status">
-  <strong>NUEVO · V24</strong>
-  Zoom libre y editable para ajustar el contenido en móvil, ordenador y aplicación instalada.
+  <strong>NUEVO · V25</strong>
+  Selección rápida por filas en las firmas digitales y de terminación: un valor puede activarse o desactivarse a la vez en P1–P6.
 </div>
 <script>
 window.setTimeout(() => {
@@ -3305,6 +3305,21 @@ html&gt;body{padding:0}&lt;/style&gt;
     font-weight: 850;
   }
 
+  #lottery-simulator-649 .digital-row-all {
+    color: #7dd3fc;
+    font-size: 0.75rem;
+    font-weight: 850;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+  }
+
+  #lottery-simulator-649 .digital-row-all[aria-pressed=&quot;true&quot;] {
+    color: #052e2b;
+    border-color: #5eead4;
+    background: linear-gradient(145deg, #99f6e4, #2dd4bf);
+    box-shadow: 0 0 0 1px color-mix(in srgb, #2dd4bf 45%, transparent);
+  }
+
   #lottery-simulator-649 .digital-column-all {
     color: var(--muted-foreground);
     border-color: color-mix(in srgb, #86efac 34%, var(--border));
@@ -5829,9 +5844,22 @@ html&gt;body{padding:0}&lt;/style&gt;
       });
 
       details.values.forEach((value) =&gt; {
-        digitalPanel.appendChild(
-          createDigitalPanelCell(&#x27;span&#x27;, `Nº ${value}`, &#x27;digital-grid-cell digital-grid-label&#x27;)
+        const rowButton = createDigitalPanelCell(
+          &#x27;button&#x27;,
+          `Nº ${value}`,
+          &#x27;digital-panel-button digital-row-all&#x27;
         );
+        rowButton.type = &#x27;button&#x27;;
+        rowButton.dataset.digitalSelectRow = String(value);
+        rowButton.setAttribute(&#x27;aria-pressed&#x27;, &#x27;false&#x27;);
+        rowButton.setAttribute(
+          &#x27;aria-label&#x27;,
+          details.mode === &#x27;termination&#x27;
+            ? `Activar o desactivar la terminación ${value} en P1 a P6`
+            : `Activar o desactivar el valor digital ${value} en P1 a P6`
+        );
+        rowButton.title = `Primer toque: activar ${value} en P1–P6. Segundo toque: desactivar.`;
+        digitalPanel.appendChild(rowButton);
         details.labels.forEach((label, column) =&gt; {
           const button = createDigitalPanelCell(
             &#x27;button&#x27;,
@@ -5870,6 +5898,13 @@ html&gt;body{padding:0}&lt;/style&gt;
           details.selections[column]?.has(value)
         );
         button.setAttribute(&#x27;aria-pressed&#x27;, String(allSelected));
+      });
+      digitalPanel.querySelectorAll(&#x27;[data-digital-select-row]&#x27;).forEach((button) =&gt; {
+        const value = Number(button.dataset.digitalSelectRow);
+        const selectedInEveryPosition = details.selections
+          .slice(0, 6)
+          .every((selection) =&gt; selection.has(value));
+        button.setAttribute(&#x27;aria-pressed&#x27;, String(selectedInEveryPosition));
       });
       digitalEquivalenceOptions.querySelectorAll(&#x27;[data-digital-equivalence]&#x27;).forEach((button) =&gt; {
         button.setAttribute(
@@ -12503,6 +12538,26 @@ html&gt;body{padding:0}&lt;/style&gt;
           allSelected
             ? `Se han desactivado todos los valores de ${details.labels[column]}.`
             : `Se han activado todos los valores de ${details.labels[column]}.`
+        );
+        return;
+      }
+
+      const selectRowButton = event.target.closest(&#x27;[data-digital-select-row]&#x27;);
+      if (selectRowButton) {
+        const details = signatureModeDetails();
+        const value = Number(selectRowButton.dataset.digitalSelectRow);
+        const positionSelections = details.selections.slice(0, 6);
+        const selectedInEveryPosition = positionSelections.every((selection) =&gt;
+          selection.has(value)
+        );
+        positionSelections.forEach((selection) =&gt; {
+          if (selectedInEveryPosition) selection.delete(value);
+          else selection.add(value);
+        });
+        invalidateDigitalDevelopment(
+          selectedInEveryPosition
+            ? `${details.shortLabel} ${value} desactivado en P1–P6.`
+            : `${details.shortLabel} ${value} activado en P1–P6.`
         );
         return;
       }
