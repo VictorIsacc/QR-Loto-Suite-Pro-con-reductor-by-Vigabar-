@@ -197,6 +197,27 @@
       font-size: clamp(1rem, 2vw, 1.14rem);
     }
 
+    .app-introduction {
+      margin-top: 1rem;
+      padding: clamp(1rem, 2.5vw, 1.4rem);
+      border: 1px solid color-mix(in srgb, var(--blue) 34%, var(--line));
+      border-radius: 1.15rem;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--blue) 9%, var(--surface)), var(--surface));
+      box-shadow: var(--shadow);
+    }
+
+    .app-introduction h2 {
+      margin: 0 0 0.45rem;
+      color: var(--blue);
+      font-size: clamp(1.12rem, 2vw, 1.38rem);
+    }
+
+    .app-introduction p {
+      max-width: 1200px;
+      margin: 0;
+      color: var(--muted);
+    }
+
     .jump-nav {
       display: flex;
       flex-wrap: wrap;
@@ -731,8 +752,13 @@
     <header class="hero">
       <p class="eyebrow">Guía rápida e ilustrada</p>
       <h1>QR Loto Suite</h1>
-      <p>Consulta cómo instalar la aplicación, realizar sorteos, guardar combinaciones, configurar filtros, trabajar con fijos y semifijos, crear desarrollos, reducciones y firmas posicionales, generar códigos QR, conservar boletos completos y usar el escrutador.</p>
+      <p>Consulta cómo instalar la aplicación, realizar sorteos, guardar combinaciones, configurar filtros, trabajar con fijos y semifijos, crear desarrollos, reducciones y firmas digitales, de terminación o de distancias, generar códigos QR, conservar boletos completos y usar el escrutador.</p>
     </header>
+
+    <section class="app-introduction" aria-labelledby="virtudes-aplicacion">
+      <h2 id="virtudes-aplicacion">Una aplicación versátil para trabajar combinaciones 6/49</h2>
+      <p>QR Loto Suite reúne distintas formas de crear combinaciones: sorteo mediante bombo, fijos y semifijos, importación desde TXT o portapapeles, desarrollos completos, reducciones y firmas digitales, de terminación o de distancias. Cada método puede utilizarse de forma independiente o combinarse con otros criterios; después, los resultados pueden filtrarse, reducirse, copiarse, convertirlos en códigos QR o llevarse al escrutador conservando siempre su procedencia.</p>
+    </section>
 
     <nav class="jump-nav" aria-label="Índice de instrucciones">
       <a class="jump-link" href="#sorteo">Sorteo</a>
@@ -740,14 +766,14 @@
       <a class="jump-link" href="#reglas">Fijos y semifijos</a>
       <a class="jump-link" href="#filtros">Filtros</a>
       <a class="jump-link" href="#reducciones">Desarrollos y reducciones</a>
-      <a class="jump-link" href="#suma-digital">Firmas posicionales</a>
+      <a class="jump-link" href="#suma-digital">Firmas y distancias</a>
       <a class="jump-link" href="#portapapeles">TXT y portapapeles</a>
       <a class="jump-link" href="#boletos">Mis boletos</a>
       <a class="jump-link" href="#escrutador">Escrutador</a>
       <a class="jump-link" href="#movil">Uso móvil</a>
     </nav>
 
-    <p class="final-note">En la aplicación, la barra <strong>«Acceso rápido»</strong> permite ir directamente a las zonas principales y abrir estas instrucciones. La cabecera V26 incorpora un control de zoom propio que funciona tanto en móvil como en ordenador, incluso cuando la aplicación está instalada. Justo después aparece la autorización <strong>«Permitir operaciones de alta carga bajo mi responsabilidad»</strong>, que mantiene la protección activa por defecto y solo permite superar sus límites preventivos durante la sesión actual. El aviso de novedades situado bajo la cabecera se recoge automáticamente después de 15 segundos para despejar la pantalla. Al final de cada zona encontrarás <strong>«↑ Volver al inicio»</strong>.</p>
+    <p class="final-note">En la aplicación, la barra <strong>«Acceso rápido»</strong> permite ir directamente a las zonas principales y abrir estas instrucciones. La cabecera V27 incorpora un control de zoom propio que funciona tanto en móvil como en ordenador, incluso cuando la aplicación está instalada. Justo después aparece la autorización <strong>«Permitir operaciones de alta carga bajo mi responsabilidad»</strong>, que mantiene la protección activa por defecto y solo permite superar sus límites preventivos durante la sesión actual. El aviso de novedades situado bajo la cabecera se recoge automáticamente después de 15 segundos para despejar la pantalla. Al final de cada zona encontrarás <strong>«↑ Volver al inicio»</strong>.</p>
 
     <section class="guide-card" id="sorteo">
       <div class="illustration" aria-label="Ilustración del bombo extrayendo seis bolas y ordenándolas">
@@ -813,7 +839,7 @@
           <li>En La Primitiva también debes comprobar el reintegro y activar o desactivar Joker. Su logotipo rojo aparecerá junto al de La Primitiva únicamente cuando el QR incluya Joker.</li>
           <li>En <strong>«Coste del boleto o QR»</strong> puedes mostrar u ocultar el cálculo estimado. La configuración central anticipa el coste total antes de confirmar.</li>
           <li>Pulsa <strong>«Confirmar y generar QR»</strong>. Solo entonces se crean los códigos y la aplicación se desplaza automáticamente hasta el primero; utiliza «Anterior» y «Siguiente» cuando haya más de uno.</li>
-          <li>En el panel de los QR se muestra la <strong>procedencia de las combinaciones</strong>: bombo, fijos y semifijos, archivo TXT, portapapeles, desarrollo completo, reducción, firma posicional o resultado de la zona de filtros.</li>
+          <li>En el panel de los QR se muestra la <strong>procedencia de las combinaciones</strong>: bombo, fijos y semifijos, archivo TXT, portapapeles, desarrollo completo, reducción, firma posicional, firma de distancias o resultado de la zona de filtros.</li>
           <li>En <strong>«Conservar este boleto completo»</strong> puedes ponerle un nombre, guardarlo en «Mis boletos», copiarlo o descargar una copia TXT.</li>
           <li>El boleto completo conserva las apuestas, todos sus QR, modalidad, periodo, reintegro, Joker y procedencia; no es lo mismo que copiar únicamente las combinaciones.</li>
         </ol>
@@ -890,7 +916,7 @@
           <li>Para recuperar una plantilla, selecciónala y pulsa <strong>«Cargar»</strong>. Sus valores y filtros activos volverán al panel; después podrás aplicarlos a cualquier procedencia. «Eliminar» requiere una segunda pulsación de confirmación.</li>
           <li>Pulsa <strong>«Descargar respaldo»</strong> para exportar todas las configuraciones a un archivo. Con <strong>«Importar respaldo»</strong> podrás recuperarlas si se borran los datos del navegador o trasladarlas a otro dispositivo; las configuraciones con el mismo nombre se actualizarán y las demás se añadirán.</li>
           <li>En el bombo, fijos/semifijos, TXT/portapapeles y desarrollos/reducciones utiliza su selector para trabajar <strong>con los filtros activos o sin ellos</strong>.</li>
-          <li>También puedes filtrar después una lista ya creada mediante los botones «Filtrar» de cada zona, incluidos los desarrollos por raíz digital o por terminaciones posicionales. La cabecera de filtros muestra siempre la <strong>procedencia seleccionada</strong> y la cantidad de combinaciones disponibles.</li>
+          <li>También puedes filtrar después una lista ya creada mediante los botones «Filtrar» de cada zona, incluidos los desarrollos por raíz digital, terminaciones posicionales o firma de distancias. La cabecera de filtros muestra siempre la <strong>procedencia seleccionada</strong> y la cantidad de combinaciones disponibles.</li>
           <li>Pulsa <strong>«Aplicar filtros»</strong>. Se mostrará cuántas combinaciones elimina cada criterio y una lista paginada de las que cumplen todos.</li>
           <li>El resultado filtrado puede copiarse, enviarse a la configuración QR, llevarse al escrutador o <strong>pasarse directamente al reductor</strong>; su procedencia seguirá identificada.</li>
         </ol>
@@ -933,7 +959,7 @@
           <li>Cuando hay fijos puedes alternar entre el <strong>desglose condicionado</strong>, que supone acertados todos los fijos, y el <strong>desglose general</strong> sobre todos los posibles resultados, siempre que el tamaño permita calcular ambos con seguridad.</li>
           <li>Si hay filtros activos, la notación, la verificación y los mensajes indican que la garantía y el desglose están condicionados por esos filtros.</li>
           <li>Después puedes copiar el resultado, generar sus QR o seleccionarlo como origen en el escrutador.</li>
-          <li>También puedes abrir el reductor desde <strong>combinaciones guardadas</strong>, <strong>fijos y semifijos</strong>, <strong>TXT o portapapeles</strong>, <strong>Filtros</strong> y <strong>Firmas posicionales</strong>. El recuadro «Universo recibido» identifica la procedencia y la cantidad exacta de combinaciones.</li>
+          <li>También puedes abrir el reductor desde <strong>combinaciones guardadas</strong>, <strong>fijos y semifijos</strong>, <strong>TXT o portapapeles</strong>, <strong>Filtros</strong>, <strong>Firmas posicionales</strong> y <strong>Firma de distancias</strong>. El recuadro «Universo recibido» identifica la procedencia y la cantidad exacta de combinaciones.</li>
           <li>Cuando el reductor recibe una lista, trabaja únicamente sobre esas combinaciones y conserva sus condiciones de origen; <strong>no crea un desarrollo completo nuevo</strong> a partir de todos sus números distintos. La garantía mostrada queda condicionada a que el resultado ganador pertenezca a ese universo recibido.</li>
           <li>Pulsa <strong>«Limpiar generador»</strong> para borrar a la vez el universo recibido, los números seleccionados y cualquier reducción o desarrollo generado. Después podrás volver a usar la selección manual.</li>
         </ol>
@@ -974,7 +1000,7 @@
       </div>
       <div class="copy">
         <span class="step-number">6</span>
-        <h2>Desarrollar combinaciones por firma posicional</h2>
+        <h2>Desarrollar combinaciones por firmas posicionales y distancias</h2>
         <ol class="steps">
           <li>Elige el tipo de firma: <strong>«Raíz digital por posición»</strong> o <strong>«Terminación por posición»</strong>. P1 siempre representa el número natural menor y P6 el mayor.</li>
           <li>Todos los valores comienzan <strong>desactivados</strong>, pero puedes pulsar directamente cualquiera de ellos para seleccionarlo; no es necesario usar antes «Activar todo».</li>
@@ -984,12 +1010,17 @@
           <li>En <strong>«Cantidad de equivalencias naturales admitida»</strong> puedes filtrar por 1, 7, 28, 84 o 210. Si no marcas ninguna cantidad, se admitirán todas; por tanto, este filtro no impide calcular una firma configurada manualmente.</li>
           <li>En modo <strong>terminación</strong>, las columnas P1–P6 ofrecen los valores 0–9 y no se utiliza SDCD. Las firmas de terminación también pueden representar exactamente 1, 7, 28, 84 o 210 combinaciones naturales, por lo que puedes filtrarlas mediante las mismas cantidades.</li>
           <li>Pulsa <strong>«Calcular y generar desarrollo»</strong>. La aplicación cuenta primero el total exacto y, por defecto, solo genera la lista si cabe dentro del límite preventivo del dispositivo. Para un cálculo mayor debes autorizar previamente la alta carga bajo tu responsabilidad.</li>
-          <li>Para cruzar los dos sistemas, configura primero una firma, cambia el selector y configura la otra. Pulsa <strong>«Combinar ambas firmas»</strong> para conservar exclusivamente las apuestas que cumplan simultáneamente la raíz digital, la SDCD, las terminaciones y las equivalencias de ambos modos.</li>
+          <li>Para cruzar los dos sistemas posicionales, configura primero una firma, cambia el selector y configura la otra. Pulsa <strong>«Combinar digital + terminación»</strong> para conservar exclusivamente las apuestas que cumplan simultáneamente la raíz digital, la SDCD, las terminaciones y las equivalencias de ambos modos.</li>
+          <li>La columna izquierda turquesa de los paneles posicionales actúa sobre todas las posiciones P1–P6; los valores activados dentro de cada posición aparecen en amarillo.</li>
+          <li>En <strong>«Desarrollo por firma de distancias»</strong> selecciona los valores admitidos para D1–2, D2–3, D3–4, D4–5 y D5–6. Cada distancia es la diferencia entre dos números naturales contiguos después de ordenar la combinación.</li>
+          <li>La firma de distancias debe sumar entre 5 y 48. Una firma exacta representa <strong>49 menos la suma de sus cinco distancias</strong> combinaciones naturales; el desglose presenta las firmas y equivalencias agrupadas por suma.</li>
+          <li>Puedes limitar las sumas admitidas o dejar todas sin marcar para aceptar cualquier suma compatible. La columna izquierda turquesa activa un mismo valor en las cinco parejas y los valores activados de cada pareja aparecen en amarillo.</li>
+          <li>En el selector de combinación elige entre solo distancias, distancias + firma digital, distancias + terminaciones o las tres firmas. También puedes iniciar estos cruces desde los botones específicos de la zona posicional.</li>
           <li>El resultado combinado muestra en cada apuesta tanto su firma digital como sus terminaciones y mantiene identificada la procedencia.</li>
           <li>En raíz digital y terminaciones, el desglose indica cuántas firmas y combinaciones naturales aporta cada clase de equivalencia.</li>
-          <li>Cuando termine, puedes recorrer el resultado por páginas, copiarlo, <strong>pasarlo directamente a Filtros</strong>, <strong>enviarlo al reductor</strong> o llevarlo a <strong>Configurar y generar QR</strong>. En todos los destinos queda identificada su procedencia.</li>
+          <li>Cuando termine cualquiera de los desarrollos, puedes recorrer el resultado por páginas, copiarlo, <strong>pasarlo directamente a Filtros</strong>, <strong>enviarlo al reductor</strong> o llevarlo a <strong>Configurar y generar QR</strong>. En todos los destinos queda identificada su procedencia y también puede seleccionarse en el escrutador.</li>
         </ol>
-        <div class="tip"><strong>Comprobación completa:</strong> con todos los valores y las cinco equivalencias activadas en cualquiera de las dos firmas se representan las 13.983.816 combinaciones distintas del 6/49. Al combinarlas, la aplicación examina la intersección sin conservar resultados parciales. Para superar el límite preventivo debes autorizar la alta carga; especialmente en móvil, una operación de este tamaño puede agotar la memoria y cerrar el navegador. El panel puede desplazarse horizontalmente.</div>
+        <div class="tip"><strong>Comprobación completa:</strong> con todos los valores y las cinco equivalencias activadas en cualquiera de las dos firmas posicionales se representan las 13.983.816 combinaciones distintas del 6/49. Activar todas las distancias y todas sus sumas conduce igualmente al universo completo. Al combinar firmas, la aplicación examina la intersección sin conservar resultados parciales. Para superar el límite preventivo debes autorizar la alta carga; especialmente en móvil, una operación de este tamaño puede agotar la memoria y cerrar el navegador. Los paneles pueden desplazarse horizontalmente.</div>
       </div>
     </section>
 
@@ -1075,9 +1106,9 @@
         <ol class="steps">
           <li>Consulta en LAE los seis números oficiales, el complementario y, para La Primitiva, el reintegro.</li>
           <li>Si solo quieres estudiar el resultado, introduce los seis números y pulsa <strong>«Analizar combinación»</strong>. No hace falta seleccionar una procedencia, introducir el complementario ni cargar apuestas.</li>
-          <li>El análisis independiente muestra la suma y media naturales, firma DR9, suma de valores DR9, SDCD, firma de terminaciones, pares/impares, bajos/altos, amplitud, distancias, consecutivos y distribución por decenas.</li>
-          <li>También calcula por separado las <strong>equivalencias naturales de la firma DR9</strong> y las <strong>equivalencias naturales de la firma de terminación</strong>: es la cantidad de combinaciones distintas del 6/49 que comparten exactamente cada firma.</li>
-          <li>Selecciona la modalidad y el origen: aleatorias, fijos/semifijos, importadas, reducción, desarrollo completo, firma posicional, <strong>resultado filtrado</strong> o un boleto cargado desde «Mis boletos».</li>
+          <li>El análisis independiente muestra la suma natural, firma DR9, suma de valores DR9, SDCD, firma de terminaciones, pares/impares, bajos/altos, amplitud, distancias, consecutivos y distribución por decenas.</li>
+          <li>También calcula por separado las <strong>equivalencias naturales de las firmas DR9, de terminación y de distancias</strong>: es la cantidad de combinaciones distintas del 6/49 que comparten exactamente cada firma.</li>
+          <li>Selecciona la modalidad y el origen: aleatorias, fijos/semifijos, importadas, reducción, desarrollo completo, firma posicional, firma de distancias, <strong>resultado filtrado</strong> o un boleto cargado desde «Mis boletos».</li>
           <li>Introduce los datos oficiales y pulsa <strong>«Escrutar combinaciones»</strong>.</li>
           <li>Al finalizar se muestran claramente la <strong>modalidad escrutada</strong> y la <strong>procedencia de las combinaciones</strong> utilizadas.</li>
           <li>El resumen separa 5 aciertos de 5 + complementario y 6 de 6 + reintegro.</li>
