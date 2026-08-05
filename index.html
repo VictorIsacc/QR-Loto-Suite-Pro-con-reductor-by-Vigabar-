@@ -39,12 +39,12 @@
   }
 })();
 </script>
-<title>QR Loto Suite V25 by Vigabar®</title>
+<title>QR Loto Suite V26 by Vigabar®</title>
 <meta name="theme-color" content="#061127">
-<meta name="application-name" content="QR Loto Suite V25">
+<meta name="application-name" content="QR Loto Suite V26">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="QR Loto Suite V25">
+<meta name="apple-mobile-web-app-title" content="QR Loto Suite V26">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icono-qr-loto-192.png">
@@ -88,9 +88,9 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
 </style>
 </head>
 <body>
-<header class="loto-suite-header" aria-label="QR Loto Suite V25 by Vigabar">
+<header class="loto-suite-header" aria-label="QR Loto Suite V26 by Vigabar">
   <button class="loto-suite-install" id="loto-suite-install" type="button" hidden>Instalar app</button>
-  <span class="loto-suite-version" aria-label="Versión 25">V25</span>
+  <span class="loto-suite-version" aria-label="Versión 26">V26</span>
   <div class="loto-suite-zoom" role="group" aria-label="Ajustar el zoom de la aplicación">
     <button id="loto-suite-zoom-out" type="button" aria-label="Reducir el tamaño">−</button>
     <label class="loto-suite-zoom-field" for="loto-suite-zoom-value" aria-label="Porcentaje de zoom">
@@ -108,8 +108,8 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
   </div>
 </header>
 <div class="loto-suite-new" role="status">
-  <strong>NUEVO · V25</strong>
-  Selección rápida por filas en las firmas digitales y de terminación: un valor puede activarse o desactivarse a la vez en P1–P6.
+  <strong>NUEVO · V26</strong>
+  Análisis independiente de la combinación ganadora: firmas, sumas, paridad, rangos, distancias, consecutivos y decenas.
 </div>
 <script>
 window.setTimeout(() => {
@@ -1959,11 +1959,24 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     &lt;div class=&quot;viz-controls scrutiny-actions&quot;&gt;
       &lt;button class=&quot;btn&quot; id=&quot;lottery-scrutiny-paste&quot; type=&quot;button&quot;&gt;Pegar combinación ganadora&lt;/button&gt;
+      &lt;button class=&quot;btn&quot; id=&quot;lottery-scrutiny-analyse&quot; type=&quot;button&quot;&gt;Analizar combinación&lt;/button&gt;
       &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-scrutiny-check&quot; type=&quot;button&quot;&gt;Escrutar combinaciones&lt;/button&gt;
       &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-scrutiny-clear&quot; type=&quot;button&quot;&gt;Limpiar&lt;/button&gt;
     &lt;/div&gt;
 
     &lt;p class=&quot;scrutiny-message text-muted&quot; id=&quot;lottery-scrutiny-message&quot;&gt;Introduce los datos oficiales de LAE. El escrutinio se realiza en este dispositivo.&lt;/p&gt;
+
+    &lt;div class=&quot;scrutiny-analysis&quot; id=&quot;lottery-scrutiny-analysis&quot; hidden aria-live=&quot;polite&quot;&gt;
+      &lt;div class=&quot;scrutiny-analysis-heading&quot;&gt;
+        &lt;div&gt;
+          &lt;h3&gt;Análisis de la combinación ganadora&lt;/h3&gt;
+          &lt;p class=&quot;text-muted&quot;&gt;Este análisis es independiente del escrutinio de apuestas.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-scrutiny-analysis-combination&quot;&gt;&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;scrutiny-analysis-grid&quot; id=&quot;lottery-scrutiny-analysis-grid&quot;&gt;&lt;/div&gt;
+      &lt;p class=&quot;scrutiny-analysis-note text-muted&quot; id=&quot;lottery-scrutiny-analysis-note&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
 
     &lt;div class=&quot;scrutiny-output&quot; id=&quot;lottery-scrutiny-output&quot; hidden&gt;
       &lt;div class=&quot;scrutiny-context&quot; aria-label=&quot;Modalidad y procedencia del escrutinio realizado&quot; aria-live=&quot;polite&quot;&gt;
@@ -3827,6 +3840,67 @@ html&gt;body{padding:0}&lt;/style&gt;
     display: none;
   }
 
+  #lottery-simulator-649 .scrutiny-analysis {
+    display: grid;
+    gap: 0.75rem;
+    padding: clamp(0.75rem, 1.3vw, 1rem);
+    border: 1px solid color-mix(in srgb, #22d3ee 42%, var(--border));
+    border-radius: 0.9rem;
+    background:
+      linear-gradient(135deg, color-mix(in srgb, #06b6d4 10%, transparent), transparent 52%),
+      var(--card);
+  }
+
+  #lottery-simulator-649 .scrutiny-analysis[hidden] {
+    display: none;
+  }
+
+  #lottery-simulator-649 .scrutiny-analysis-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.6rem 1rem;
+  }
+
+  #lottery-simulator-649 .scrutiny-analysis-heading h3,
+  #lottery-simulator-649 .scrutiny-analysis-heading p,
+  #lottery-simulator-649 .scrutiny-analysis-note {
+    margin: 0;
+  }
+
+  #lottery-simulator-649 .scrutiny-analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 10.5rem), 1fr));
+    gap: 0.55rem;
+  }
+
+  #lottery-simulator-649 .scrutiny-analysis-item {
+    display: grid;
+    align-content: start;
+    gap: 0.24rem;
+    min-width: 0;
+    padding: 0.68rem 0.72rem;
+    border: 1px solid color-mix(in srgb, #38bdf8 27%, var(--border));
+    border-radius: 0.7rem;
+    background: color-mix(in srgb, #082f49 16%, var(--card));
+  }
+
+  #lottery-simulator-649 .scrutiny-analysis-item span {
+    color: var(--muted-foreground);
+    font-size: 0.72rem;
+    font-weight: 750;
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+  }
+
+  #lottery-simulator-649 .scrutiny-analysis-item strong {
+    overflow-wrap: anywhere;
+    color: color-mix(in srgb, #67e8f9 80%, var(--foreground));
+    font-size: clamp(0.92rem, 1.2vw, 1.08rem);
+    font-variant-numeric: tabular-nums;
+  }
+
   #lottery-simulator-649 .scrutiny-context {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
@@ -5535,9 +5609,14 @@ html&gt;body{padding:0}&lt;/style&gt;
     const scrutinyComplementInput = root.querySelector(&#x27;#lottery-scrutiny-complement&#x27;);
     const scrutinyRefundInput = root.querySelector(&#x27;#lottery-scrutiny-refund&#x27;);
     const scrutinyPasteButton = root.querySelector(&#x27;#lottery-scrutiny-paste&#x27;);
+    const scrutinyAnalyseButton = root.querySelector(&#x27;#lottery-scrutiny-analyse&#x27;);
     const scrutinyCheckButton = root.querySelector(&#x27;#lottery-scrutiny-check&#x27;);
     const scrutinyClearButton = root.querySelector(&#x27;#lottery-scrutiny-clear&#x27;);
     const scrutinyMessage = root.querySelector(&#x27;#lottery-scrutiny-message&#x27;);
+    const scrutinyAnalysis = root.querySelector(&#x27;#lottery-scrutiny-analysis&#x27;);
+    const scrutinyAnalysisCombination = root.querySelector(&#x27;#lottery-scrutiny-analysis-combination&#x27;);
+    const scrutinyAnalysisGrid = root.querySelector(&#x27;#lottery-scrutiny-analysis-grid&#x27;);
+    const scrutinyAnalysisNote = root.querySelector(&#x27;#lottery-scrutiny-analysis-note&#x27;);
     const scrutinyOutput = root.querySelector(&#x27;#lottery-scrutiny-output&#x27;);
     const scrutinyContextGameItem = root.querySelector(&#x27;#lottery-scrutiny-context-game-item&#x27;);
     const scrutinyContextGame = root.querySelector(&#x27;#lottery-scrutiny-context-game&#x27;);
@@ -11932,6 +12011,92 @@ html&gt;body{padding:0}&lt;/style&gt;
       return values.sort((first, second) =&gt; first - second);
     }
 
+    function consecutiveRuns(numbers) {
+      const runs = [];
+      let current = [numbers[0]];
+      for (let index = 1; index &lt; numbers.length; index += 1) {
+        if (numbers[index] === numbers[index - 1] + 1) {
+          current.push(numbers[index]);
+        } else {
+          if (current.length &gt; 1) runs.push(current);
+          current = [numbers[index]];
+        }
+      }
+      if (current.length &gt; 1) runs.push(current);
+      return runs;
+    }
+
+    function createScrutinyAnalysisItem(label, value) {
+      const item = document.createElement(&#x27;div&#x27;);
+      item.className = &#x27;scrutiny-analysis-item&#x27;;
+      const name = document.createElement(&#x27;span&#x27;);
+      name.textContent = label;
+      const result = document.createElement(&#x27;strong&#x27;);
+      result.textContent = value;
+      item.append(name, result);
+      return item;
+    }
+
+    function analyseScrutinyWinningCombination() {
+      const winning = parseScrutinyWinningCombination();
+      if (!winning) {
+        scrutinyAnalysis.hidden = true;
+        setScrutinyMessage(&#x27;Introduce exactamente seis números distintos comprendidos entre 1 y 49 para analizar la combinación.&#x27;, true);
+        scrutinyWinningInput.focus();
+        return;
+      }
+
+      const roots = winning.map(digitalRoot);
+      const endings = winning.map((number) =&gt; number % 10);
+      const digitalEquivalents = countDigitalPatternEquivalents(roots);
+      const terminationEquivalents = countTerminationPatternEquivalents(endings);
+      const naturalSum = winning.reduce((total, number) =&gt; total + number, 0);
+      const digitalSum = roots.reduce((total, value) =&gt; total + value, 0);
+      const evenCount = winning.filter((number) =&gt; number % 2 === 0).length;
+      const lowCount = winning.filter((number) =&gt; number &lt;= 24).length;
+      const gaps = winning.slice(1).map((number, index) =&gt; number - winning[index]);
+      const runs = consecutiveRuns(winning);
+      const consecutivePairs = runs.reduce((total, run) =&gt; total + run.length - 1, 0);
+      const decadeRanges = [
+        [1, 9],
+        [10, 19],
+        [20, 29],
+        [30, 39],
+        [40, 49]
+      ];
+      const decadeSummary = decadeRanges
+        .map(([minimum, maximum]) =&gt; {
+          const count = winning.filter((number) =&gt; number &gt;= minimum &amp;&amp; number &lt;= maximum).length;
+          return `${String(minimum).padStart(2, &#x27;0&#x27;)}–${maximum}: ${count}`;
+        })
+        .join(&#x27; · &#x27;);
+      const runSummary = runs.length
+        ? `${consecutivePairs} ${consecutivePairs === 1 ? &#x27;pareja&#x27; : &#x27;parejas&#x27;} · ${runs.map((run) =&gt; run.join(&#x27;–&#x27;)).join(&#x27; · &#x27;)}`
+        : &#x27;0 · sin consecutivos&#x27;;
+
+      scrutinyWinningInput.value = winning.map((number) =&gt; String(number).padStart(2, &#x27;0&#x27;)).join(&#x27; &#x27;);
+      scrutinyAnalysisCombination.textContent = winning.map((number) =&gt; String(number).padStart(2, &#x27;0&#x27;)).join(&#x27; · &#x27;);
+      scrutinyAnalysisGrid.replaceChildren(
+        createScrutinyAnalysisItem(&#x27;Suma natural&#x27;, String(naturalSum)),
+        createScrutinyAnalysisItem(&#x27;Media natural&#x27;, (naturalSum / 6).toLocaleString(&#x27;es-ES&#x27;, { minimumFractionDigits: 2, maximumFractionDigits: 2 })),
+        createScrutinyAnalysisItem(&#x27;Firma DR9&#x27;, roots.join(&#x27; · &#x27;)),
+        createScrutinyAnalysisItem(&#x27;Suma de valores DR9&#x27;, String(digitalSum)),
+        createScrutinyAnalysisItem(&#x27;SDCD&#x27;, String(digitalRoot(digitalSum))),
+        createScrutinyAnalysisItem(&#x27;Equivalentes de la firma DR9&#x27;, `${digitalEquivalents.toLocaleString(&#x27;es-ES&#x27;)} naturales`),
+        createScrutinyAnalysisItem(&#x27;Firma de terminación&#x27;, endings.join(&#x27; · &#x27;)),
+        createScrutinyAnalysisItem(&#x27;Equivalentes de la firma de terminación&#x27;, `${terminationEquivalents.toLocaleString(&#x27;es-ES&#x27;)} naturales`),
+        createScrutinyAnalysisItem(&#x27;Pares / impares&#x27;, `${evenCount} / ${6 - evenCount}`),
+        createScrutinyAnalysisItem(&#x27;Bajos / altos&#x27;, `${lowCount} / ${6 - lowCount}`),
+        createScrutinyAnalysisItem(&#x27;Amplitud&#x27;, `${winning[5] - winning[0]} (${winning[0]}–${winning[5]})`),
+        createScrutinyAnalysisItem(&#x27;Distancias&#x27;, gaps.join(&#x27; · &#x27;)),
+        createScrutinyAnalysisItem(&#x27;Consecutivos&#x27;, runSummary),
+        createScrutinyAnalysisItem(&#x27;Distribución por decenas&#x27;, decadeSummary)
+      );
+      scrutinyAnalysisNote.textContent = &#x27;Las equivalencias indican cuántas combinaciones naturales del 6/49 comparten exactamente cada firma. Bajos: 1–24 · Altos: 25–49. Las distancias se calculan entre cada número ordenado y el siguiente.&#x27;;
+      scrutinyAnalysis.hidden = false;
+      setScrutinyMessage(&#x27;Análisis de la combinación ganadora completado. No se han escrutado apuestas.&#x27;);
+    }
+
     function getScrutinyCombinations() {
       switch (scrutinySourceSelect.value) {
         case &#x27;current&#x27;:
@@ -12266,6 +12431,10 @@ html&gt;body{padding:0}&lt;/style&gt;
       scrutinyWinningInput.value = &#x27;&#x27;;
       scrutinyComplementInput.value = &#x27;&#x27;;
       scrutinyRefundInput.value = &#x27;&#x27;;
+      scrutinyAnalysis.hidden = true;
+      scrutinyAnalysisCombination.textContent = &#x27;&#x27;;
+      scrutinyAnalysisGrid.replaceChildren();
+      scrutinyAnalysisNote.textContent = &#x27;&#x27;;
       scrutinyOutput.hidden = true;
       scrutinyDraw.replaceChildren();
       scrutinyHitSummary.replaceChildren();
@@ -12806,8 +12975,12 @@ html&gt;body{padding:0}&lt;/style&gt;
       }
     });
     scrutinyPasteButton.addEventListener(&#x27;click&#x27;, pasteScrutinyWinningCombination);
+    scrutinyAnalyseButton.addEventListener(&#x27;click&#x27;, analyseScrutinyWinningCombination);
     scrutinyCheckButton.addEventListener(&#x27;click&#x27;, scrutinizeCombinations);
     scrutinyClearButton.addEventListener(&#x27;click&#x27;, clearScrutiny);
+    scrutinyWinningInput.addEventListener(&#x27;input&#x27;, () =&gt; {
+      scrutinyAnalysis.hidden = true;
+    });
     savedPreviousButton.addEventListener(&#x27;click&#x27;, () =&gt; {
       savedPageIndex = Math.max(0, savedPageIndex - 1);
       renderSavedCombinations();
