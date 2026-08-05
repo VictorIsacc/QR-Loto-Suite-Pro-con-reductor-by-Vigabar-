@@ -39,12 +39,12 @@
   }
 })();
 </script>
-<title>QR Loto Suite V23 by Vigabar®</title>
+<title>QR Loto Suite V24 by Vigabar®</title>
 <meta name="theme-color" content="#061127">
-<meta name="application-name" content="QR Loto Suite V23">
+<meta name="application-name" content="QR Loto Suite V24">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="QR Loto Suite V23">
+<meta name="apple-mobile-web-app-title" content="QR Loto Suite V24">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icono-qr-loto-192.png">
@@ -58,6 +58,12 @@ body{box-sizing:border-box;height:100vh;height:100dvh;padding:clamp(.25rem,1vw,1
 .loto-suite-header{box-sizing:border-box;width:100%;max-width:1800px;height:clamp(96px,9vw,144px);margin:0 auto;position:relative;overflow:hidden;border:1px solid rgb(77 190 255 / 28%);border-radius:clamp(14px,1.4vw,22px);background:#061127 url("cabecera-circuitos-loto-suite.webp") center/cover no-repeat;box-shadow:0 8px 28px rgb(0 15 42 / 32%)}
 .loto-suite-header::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgb(1 10 28 / 8%),rgb(5 16 42 / 34%) 34%,rgb(5 15 38 / 32%) 66%,rgb(14 4 31 / 10%));pointer-events:none}
 .loto-suite-version{position:absolute;z-index:3;top:clamp(.55rem,1vw,.9rem);right:clamp(.65rem,1.2vw,1.15rem);display:inline-flex;align-items:center;justify-content:center;min-height:30px;padding:.28rem .72rem;border:1px solid rgb(92 210 255 / 55%);border-radius:999px;color:#dff8ff;background:rgb(3 18 43 / 78%);box-shadow:0 0 16px rgb(46 221 244 / 22%),inset 0 0 0 1px rgb(218 113 255 / 12%);font:800 clamp(.68rem,.88vw,.84rem)/1 "Segoe UI",Arial,sans-serif;letter-spacing:.055em;text-transform:uppercase;white-space:nowrap;backdrop-filter:blur(6px)}
+.loto-suite-zoom{position:absolute;z-index:5;left:clamp(.65rem,1.2vw,1.15rem);bottom:clamp(.48rem,.85vw,.75rem);display:inline-flex;align-items:center;overflow:hidden;border:1px solid rgb(92 210 255 / 48%);border-radius:999px;background:rgb(3 18 43 / 86%);box-shadow:0 0 16px rgb(46 221 244 / 18%);backdrop-filter:blur(7px)}
+.loto-suite-zoom button{display:inline-flex;align-items:center;justify-content:center;min-width:32px;min-height:30px;padding:.25rem .48rem;border:0;color:#e7f9ff;background:transparent;font:800 .82rem/1 "Segoe UI",Arial,sans-serif;cursor:pointer;touch-action:manipulation}
+.loto-suite-zoom button+button{border-left:1px solid rgb(92 210 255 / 28%)}
+.loto-suite-zoom button:hover,.loto-suite-zoom button:focus-visible{color:#061127;background:#70eaff;outline:0}
+.loto-suite-zoom button:disabled{opacity:.38;cursor:not-allowed}
+.loto-suite-zoom-value{min-width:52px;font-size:.72rem!important;letter-spacing:.02em}
 .loto-suite-install{position:absolute;z-index:4;top:clamp(.55rem,1vw,.9rem);left:clamp(.65rem,1.2vw,1.15rem);min-height:32px;padding:.32rem .78rem;border:1px solid rgb(74 222 128 / 68%);border-radius:999px;color:#052e16;background:linear-gradient(145deg,#86efac,#22c55e);box-shadow:0 0 18px rgb(34 197 94 / 30%);font:850 clamp(.68rem,.88vw,.84rem)/1 "Segoe UI",Arial,sans-serif;cursor:pointer;touch-action:manipulation}
 .loto-suite-install:hover,.loto-suite-install:focus-visible{filter:brightness(1.08);outline:2px solid #a7f3d0;outline-offset:2px}
 .loto-suite-install[hidden]{display:none}
@@ -73,15 +79,20 @@ body{box-sizing:border-box;height:100vh;height:100dvh;padding:clamp(.25rem,1vw,1
 .loto-suite-new strong{flex:0 0 auto;padding:.2rem .48rem;border-radius:999px;color:#111827;background:#fbbf24;font-size:.68em;font-weight:900;letter-spacing:.07em}
 @keyframes loto-suite-new-pulse{from{border-color:light-dark(rgb(217 119 6 / 42%),rgb(251 191 36 / 45%));box-shadow:0 0 0 rgb(245 158 11 / 0%);opacity:.84}to{border-color:#fbbf24;box-shadow:0 0 15px rgb(245 158 11 / 24%);opacity:1}}
 iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin:0 auto;border:0}
-@media(max-width:600px){body{padding:.25rem;gap:.25rem}.loto-suite-version{top:.38rem;right:.42rem;min-height:24px;padding:.2rem .5rem;font-size:.61rem;letter-spacing:.035em}.loto-suite-install{top:.38rem;left:.42rem;min-height:26px;padding:.22rem .52rem;font-size:.61rem}.loto-suite-header{height:88px;border-radius:14px}.loto-suite-brand{gap:.55rem;padding:.35rem .55rem}.loto-suite-logo{width:64px;height:64px;border-radius:18%}.loto-suite-title{font-size:clamp(1.12rem,6.2vw,1.72rem);letter-spacing:.01em}.loto-suite-by{justify-self:end;margin:.25rem .15rem 0 0;font-size:.72rem}.loto-suite-new{padding:.42rem .55rem;gap:.45rem;border-radius:10px;font-size:.72rem}}
+@media(max-width:600px){body{padding:.25rem;gap:.25rem}.loto-suite-version{top:.38rem;right:.42rem;min-height:24px;padding:.2rem .5rem;font-size:.61rem;letter-spacing:.035em}.loto-suite-install{top:.38rem;left:.42rem;min-height:26px;padding:.22rem .52rem;font-size:.61rem}.loto-suite-zoom{left:.42rem;bottom:.35rem}.loto-suite-zoom button{min-width:29px;min-height:27px;padding:.18rem .38rem;font-size:.78rem}.loto-suite-zoom-value{min-width:47px;font-size:.66rem!important}.loto-suite-header{height:88px;border-radius:14px}.loto-suite-brand{gap:.55rem;padding:.35rem .55rem}.loto-suite-logo{width:64px;height:64px;border-radius:18%}.loto-suite-title{font-size:clamp(1.12rem,6.2vw,1.72rem);letter-spacing:.01em}.loto-suite-by{justify-self:end;margin:.25rem .15rem 0 0;font-size:.72rem}.loto-suite-new{padding:.42rem .55rem;gap:.45rem;border-radius:10px;font-size:.72rem}}
 @media(max-width:370px){.loto-suite-logo{width:56px;height:56px}.loto-suite-title{font-size:1.05rem}.loto-suite-by{font-size:.67rem}}
 @media(prefers-reduced-motion:reduce){.loto-suite-new{animation:none}}
 </style>
 </head>
 <body>
-<header class="loto-suite-header" aria-label="QR Loto Suite V23 by Vigabar">
+<header class="loto-suite-header" aria-label="QR Loto Suite V24 by Vigabar">
   <button class="loto-suite-install" id="loto-suite-install" type="button" hidden>Instalar app</button>
-  <span class="loto-suite-version" aria-label="Versión 23">V23</span>
+  <span class="loto-suite-version" aria-label="Versión 24">V24</span>
+  <div class="loto-suite-zoom" role="group" aria-label="Ajustar el zoom de la aplicación">
+    <button id="loto-suite-zoom-out" type="button" aria-label="Reducir el tamaño">−</button>
+    <button class="loto-suite-zoom-value" id="loto-suite-zoom-reset" type="button" aria-label="Restablecer el zoom al cien por cien">100 %</button>
+    <button id="loto-suite-zoom-in" type="button" aria-label="Ampliar el tamaño">+</button>
+  </div>
   <div class="loto-suite-brand">
     <img class="loto-suite-logo" src="logo-loto-suite-cabecera-v2.webp" alt="Emblema de QR Loto Suite">
     <div class="loto-suite-copy">
@@ -91,8 +102,8 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
   </div>
 </header>
 <div class="loto-suite-new" role="status">
-  <strong>NUEVO · V23</strong>
-  Modo voluntario de alta carga y respaldo exportable de las configuraciones de filtros.
+  <strong>NUEVO · V24</strong>
+  Control de zoom propio para ajustar el contenido también desde la aplicación instalada.
 </div>
 <script>
 window.setTimeout(() => {
@@ -136,7 +147,7 @@ window.setTimeout(() => {
   });
 })();
 </script>
-<iframe sandbox="allow-scripts allow-same-origin allow-downloads allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer" title="QR Loto Suite by Vigabar®" srcdoc="&lt;!doctype html&gt;
+<iframe id="loto-suite-frame" sandbox="allow-scripts allow-same-origin allow-downloads allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer" title="QR Loto Suite by Vigabar®" srcdoc="&lt;!doctype html&gt;
 &lt;html lang=&quot;es&quot;&gt;
 &lt;head&gt;
 &lt;meta charset=&quot;utf-8&quot;&gt;
@@ -13020,6 +13031,65 @@ html&gt;body{padding:0}&lt;/style&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 "></iframe>
+<script>
+(() => {
+  const frame = document.querySelector('#loto-suite-frame');
+  const zoomOutButton = document.querySelector('#loto-suite-zoom-out');
+  const zoomResetButton = document.querySelector('#loto-suite-zoom-reset');
+  const zoomInButton = document.querySelector('#loto-suite-zoom-in');
+  if (!frame || !zoomOutButton || !zoomResetButton || !zoomInButton) return;
+
+  const zoomLevels = [70, 80, 90, 100, 110, 125, 140];
+  const storageKey = 'qr-loto-suite.interface-zoom.v1';
+  let zoom = 100;
+  try {
+    const stored = Number(window.localStorage.getItem(storageKey));
+    if (zoomLevels.includes(stored)) zoom = stored;
+  } catch (_) {
+    // El zoom continúa disponible aunque el navegador no permita guardarlo.
+  }
+
+  function updateButtons() {
+    zoomResetButton.textContent = `${zoom} %`;
+    zoomResetButton.setAttribute('aria-label', `Zoom actual ${zoom} por ciento. Restablecer al cien por cien`);
+    zoomOutButton.disabled = zoom === zoomLevels[0];
+    zoomInButton.disabled = zoom === zoomLevels[zoomLevels.length - 1];
+  }
+
+  function applyZoom() {
+    updateButtons();
+    const frameDocument = frame.contentDocument;
+    if (!frameDocument?.documentElement) return;
+    const scale = zoom / 100;
+    frameDocument.documentElement.style.zoom = String(scale);
+    frameDocument.documentElement.style.width = `${100 / scale}%`;
+    frameDocument.documentElement.dataset.interfaceZoom = String(zoom);
+  }
+
+  function setZoom(nextZoom) {
+    if (!zoomLevels.includes(nextZoom)) return;
+    zoom = nextZoom;
+    try {
+      window.localStorage.setItem(storageKey, String(zoom));
+    } catch (_) {
+      // El ajuste se mantiene durante la sesión si no puede guardarse.
+    }
+    applyZoom();
+  }
+
+  zoomOutButton.addEventListener('click', () => {
+    const index = zoomLevels.indexOf(zoom);
+    setZoom(zoomLevels[Math.max(0, index - 1)]);
+  });
+  zoomInButton.addEventListener('click', () => {
+    const index = zoomLevels.indexOf(zoom);
+    setZoom(zoomLevels[Math.min(zoomLevels.length - 1, index + 1)]);
+  });
+  zoomResetButton.addEventListener('click', () => setZoom(100));
+  frame.addEventListener('load', applyZoom);
+  applyZoom();
+})();
+</script>
 <!-- Cloudflare Web Analytics -->
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"33d85690239b48889c49ede73f7602ba"}'></script>
 <!-- End Cloudflare Web Analytics -->
