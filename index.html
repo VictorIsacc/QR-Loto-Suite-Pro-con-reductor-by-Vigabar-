@@ -60,10 +60,13 @@ body{box-sizing:border-box;height:100vh;height:100dvh;padding:clamp(.25rem,1vw,1
 .loto-suite-version{position:absolute;z-index:3;top:clamp(.55rem,1vw,.9rem);right:clamp(.65rem,1.2vw,1.15rem);display:inline-flex;align-items:center;justify-content:center;min-height:30px;padding:.28rem .72rem;border:1px solid rgb(92 210 255 / 55%);border-radius:999px;color:#dff8ff;background:rgb(3 18 43 / 78%);box-shadow:0 0 16px rgb(46 221 244 / 22%),inset 0 0 0 1px rgb(218 113 255 / 12%);font:800 clamp(.68rem,.88vw,.84rem)/1 "Segoe UI",Arial,sans-serif;letter-spacing:.055em;text-transform:uppercase;white-space:nowrap;backdrop-filter:blur(6px)}
 .loto-suite-zoom{position:absolute;z-index:5;left:clamp(.65rem,1.2vw,1.15rem);bottom:clamp(.48rem,.85vw,.75rem);display:inline-flex;align-items:center;overflow:hidden;border:1px solid rgb(92 210 255 / 48%);border-radius:999px;background:rgb(3 18 43 / 86%);box-shadow:0 0 16px rgb(46 221 244 / 18%);backdrop-filter:blur(7px)}
 .loto-suite-zoom button{display:inline-flex;align-items:center;justify-content:center;min-width:32px;min-height:30px;padding:.25rem .48rem;border:0;color:#e7f9ff;background:transparent;font:800 .82rem/1 "Segoe UI",Arial,sans-serif;cursor:pointer;touch-action:manipulation}
-.loto-suite-zoom button+button{border-left:1px solid rgb(92 210 255 / 28%)}
+.loto-suite-zoom>*+*{border-left:1px solid rgb(92 210 255 / 28%)}
 .loto-suite-zoom button:hover,.loto-suite-zoom button:focus-visible{color:#061127;background:#70eaff;outline:0}
 .loto-suite-zoom button:disabled{opacity:.38;cursor:not-allowed}
-.loto-suite-zoom-value{min-width:52px;font-size:.72rem!important;letter-spacing:.02em}
+.loto-suite-zoom-field{display:inline-flex;align-items:center;justify-content:center;min-height:30px;padding:0 .34rem;color:#e7f9ff;font:800 .72rem/1 "Segoe UI",Arial,sans-serif;letter-spacing:.02em}
+.loto-suite-zoom-field input{width:34px;padding:0;border:0;outline:0;color:inherit;background:transparent;font:inherit;text-align:right;-moz-appearance:textfield}
+.loto-suite-zoom-field input::-webkit-inner-spin-button,.loto-suite-zoom-field input::-webkit-outer-spin-button{margin:0;-webkit-appearance:none}
+.loto-suite-zoom-field:focus-within{color:#061127;background:#70eaff}
 .loto-suite-install{position:absolute;z-index:4;top:clamp(.55rem,1vw,.9rem);left:clamp(.65rem,1.2vw,1.15rem);min-height:32px;padding:.32rem .78rem;border:1px solid rgb(74 222 128 / 68%);border-radius:999px;color:#052e16;background:linear-gradient(145deg,#86efac,#22c55e);box-shadow:0 0 18px rgb(34 197 94 / 30%);font:850 clamp(.68rem,.88vw,.84rem)/1 "Segoe UI",Arial,sans-serif;cursor:pointer;touch-action:manipulation}
 .loto-suite-install:hover,.loto-suite-install:focus-visible{filter:brightness(1.08);outline:2px solid #a7f3d0;outline-offset:2px}
 .loto-suite-install[hidden]{display:none}
@@ -79,7 +82,7 @@ body{box-sizing:border-box;height:100vh;height:100dvh;padding:clamp(.25rem,1vw,1
 .loto-suite-new strong{flex:0 0 auto;padding:.2rem .48rem;border-radius:999px;color:#111827;background:#fbbf24;font-size:.68em;font-weight:900;letter-spacing:.07em}
 @keyframes loto-suite-new-pulse{from{border-color:light-dark(rgb(217 119 6 / 42%),rgb(251 191 36 / 45%));box-shadow:0 0 0 rgb(245 158 11 / 0%);opacity:.84}to{border-color:#fbbf24;box-shadow:0 0 15px rgb(245 158 11 / 24%);opacity:1}}
 iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin:0 auto;border:0}
-@media(max-width:600px){body{padding:.25rem;gap:.25rem}.loto-suite-version{top:.38rem;right:.42rem;min-height:24px;padding:.2rem .5rem;font-size:.61rem;letter-spacing:.035em}.loto-suite-install{top:.38rem;left:.42rem;min-height:26px;padding:.22rem .52rem;font-size:.61rem}.loto-suite-zoom{left:.42rem;bottom:.35rem}.loto-suite-zoom button{min-width:29px;min-height:27px;padding:.18rem .38rem;font-size:.78rem}.loto-suite-zoom-value{min-width:47px;font-size:.66rem!important}.loto-suite-header{height:88px;border-radius:14px}.loto-suite-brand{gap:.55rem;padding:.35rem .55rem}.loto-suite-logo{width:64px;height:64px;border-radius:18%}.loto-suite-title{font-size:clamp(1.12rem,6.2vw,1.72rem);letter-spacing:.01em}.loto-suite-by{justify-self:end;margin:.25rem .15rem 0 0;font-size:.72rem}.loto-suite-new{padding:.42rem .55rem;gap:.45rem;border-radius:10px;font-size:.72rem}}
+@media(max-width:600px){body{padding:.25rem;gap:.25rem}.loto-suite-version{top:.38rem;right:.42rem;min-height:24px;padding:.2rem .5rem;font-size:.61rem;letter-spacing:.035em}.loto-suite-install{top:.38rem;left:.42rem;min-height:26px;padding:.22rem .52rem;font-size:.61rem}.loto-suite-zoom{left:.42rem;bottom:.35rem}.loto-suite-zoom button{min-width:29px;min-height:27px;padding:.18rem .38rem;font-size:.78rem}.loto-suite-zoom-field{min-height:27px;padding-inline:.26rem;font-size:.66rem}.loto-suite-zoom-field input{width:31px}.loto-suite-header{height:88px;border-radius:14px}.loto-suite-brand{gap:.55rem;padding:.35rem .55rem}.loto-suite-logo{width:64px;height:64px;border-radius:18%}.loto-suite-title{font-size:clamp(1.12rem,6.2vw,1.72rem);letter-spacing:.01em}.loto-suite-by{justify-self:end;margin:.25rem .15rem 0 0;font-size:.72rem}.loto-suite-new{padding:.42rem .55rem;gap:.45rem;border-radius:10px;font-size:.72rem}}
 @media(max-width:370px){.loto-suite-logo{width:56px;height:56px}.loto-suite-title{font-size:1.05rem}.loto-suite-by{font-size:.67rem}}
 @media(prefers-reduced-motion:reduce){.loto-suite-new{animation:none}}
 </style>
@@ -90,7 +93,10 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
   <span class="loto-suite-version" aria-label="Versión 24">V24</span>
   <div class="loto-suite-zoom" role="group" aria-label="Ajustar el zoom de la aplicación">
     <button id="loto-suite-zoom-out" type="button" aria-label="Reducir el tamaño">−</button>
-    <button class="loto-suite-zoom-value" id="loto-suite-zoom-reset" type="button" aria-label="Restablecer el zoom al cien por cien">100 %</button>
+    <label class="loto-suite-zoom-field" for="loto-suite-zoom-value" aria-label="Porcentaje de zoom">
+      <input id="loto-suite-zoom-value" type="number" inputmode="numeric" min="50" max="200" step="1" value="100" aria-label="Escribir porcentaje de zoom">
+      <span aria-hidden="true">%</span>
+    </label>
     <button id="loto-suite-zoom-in" type="button" aria-label="Ampliar el tamaño">+</button>
   </div>
   <div class="loto-suite-brand">
@@ -103,7 +109,7 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
 </header>
 <div class="loto-suite-new" role="status">
   <strong>NUEVO · V24</strong>
-  Control de zoom propio para ajustar el contenido también desde la aplicación instalada.
+  Zoom libre y editable para ajustar el contenido en móvil, ordenador y aplicación instalada.
 </div>
 <script>
 window.setTimeout(() => {
@@ -13035,25 +13041,29 @@ html&gt;body{padding:0}&lt;/style&gt;
 (() => {
   const frame = document.querySelector('#loto-suite-frame');
   const zoomOutButton = document.querySelector('#loto-suite-zoom-out');
-  const zoomResetButton = document.querySelector('#loto-suite-zoom-reset');
+  const zoomInput = document.querySelector('#loto-suite-zoom-value');
   const zoomInButton = document.querySelector('#loto-suite-zoom-in');
-  if (!frame || !zoomOutButton || !zoomResetButton || !zoomInButton) return;
+  if (!frame || !zoomOutButton || !zoomInput || !zoomInButton) return;
 
-  const zoomLevels = [70, 80, 90, 100, 110, 125, 140];
+  const minimumZoom = 50;
+  const maximumZoom = 200;
+  const buttonStep = 5;
   const storageKey = 'qr-loto-suite.interface-zoom.v1';
   let zoom = 100;
   try {
     const stored = Number(window.localStorage.getItem(storageKey));
-    if (zoomLevels.includes(stored)) zoom = stored;
+    if (Number.isInteger(stored) && stored >= minimumZoom && stored <= maximumZoom) {
+      zoom = stored;
+    }
   } catch (_) {
     // El zoom continúa disponible aunque el navegador no permita guardarlo.
   }
 
   function updateButtons() {
-    zoomResetButton.textContent = `${zoom} %`;
-    zoomResetButton.setAttribute('aria-label', `Zoom actual ${zoom} por ciento. Restablecer al cien por cien`);
-    zoomOutButton.disabled = zoom === zoomLevels[0];
-    zoomInButton.disabled = zoom === zoomLevels[zoomLevels.length - 1];
+    zoomInput.value = String(zoom);
+    zoomInput.setAttribute('aria-label', `Zoom actual ${zoom} por ciento. Escribe un valor entre ${minimumZoom} y ${maximumZoom}`);
+    zoomOutButton.disabled = zoom <= minimumZoom;
+    zoomInButton.disabled = zoom >= maximumZoom;
   }
 
   function applyZoom() {
@@ -13063,12 +13073,22 @@ html&gt;body{padding:0}&lt;/style&gt;
     const scale = zoom / 100;
     frameDocument.documentElement.style.zoom = String(scale);
     frameDocument.documentElement.style.width = `${100 / scale}%`;
+    frameDocument.documentElement.style.overflowX = 'hidden';
+    if (frameDocument.body) {
+      frameDocument.body.style.width = '100%';
+      frameDocument.body.style.overflowX = 'hidden';
+    }
     frameDocument.documentElement.dataset.interfaceZoom = String(zoom);
   }
 
   function setZoom(nextZoom) {
-    if (!zoomLevels.includes(nextZoom)) return;
-    zoom = nextZoom;
+    const rawZoom = String(nextZoom).trim();
+    const numericZoom = rawZoom ? Math.round(Number(rawZoom)) : Number.NaN;
+    if (!Number.isFinite(numericZoom)) {
+      updateButtons();
+      return;
+    }
+    zoom = Math.min(maximumZoom, Math.max(minimumZoom, numericZoom));
     try {
       window.localStorage.setItem(storageKey, String(zoom));
     } catch (_) {
@@ -13078,14 +13098,19 @@ html&gt;body{padding:0}&lt;/style&gt;
   }
 
   zoomOutButton.addEventListener('click', () => {
-    const index = zoomLevels.indexOf(zoom);
-    setZoom(zoomLevels[Math.max(0, index - 1)]);
+    setZoom(zoom - buttonStep);
   });
   zoomInButton.addEventListener('click', () => {
-    const index = zoomLevels.indexOf(zoom);
-    setZoom(zoomLevels[Math.min(zoomLevels.length - 1, index + 1)]);
+    setZoom(zoom + buttonStep);
   });
-  zoomResetButton.addEventListener('click', () => setZoom(100));
+  zoomInput.addEventListener('change', () => setZoom(zoomInput.value));
+  zoomInput.addEventListener('blur', () => setZoom(zoomInput.value));
+  zoomInput.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter') return;
+    event.preventDefault();
+    setZoom(zoomInput.value);
+    zoomInput.blur();
+  });
   frame.addEventListener('load', applyZoom);
   applyZoom();
 })();
