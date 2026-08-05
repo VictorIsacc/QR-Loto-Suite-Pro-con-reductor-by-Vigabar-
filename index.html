@@ -39,12 +39,12 @@
   }
 })();
 </script>
-<title>QR Loto Suite V26 by Vigabar®</title>
+<title>QR Loto Suite V27 by Vigabar®</title>
 <meta name="theme-color" content="#061127">
-<meta name="application-name" content="QR Loto Suite V26">
+<meta name="application-name" content="QR Loto Suite V27">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="QR Loto Suite V26">
+<meta name="apple-mobile-web-app-title" content="QR Loto Suite V27">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icono-qr-loto-192.png">
@@ -88,9 +88,9 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
 </style>
 </head>
 <body>
-<header class="loto-suite-header" aria-label="QR Loto Suite V26 by Vigabar">
+<header class="loto-suite-header" aria-label="QR Loto Suite V27 by Vigabar">
   <button class="loto-suite-install" id="loto-suite-install" type="button" hidden>Instalar app</button>
-  <span class="loto-suite-version" aria-label="Versión 26">V26</span>
+  <span class="loto-suite-version" aria-label="Versión 27">V27</span>
   <div class="loto-suite-zoom" role="group" aria-label="Ajustar el zoom de la aplicación">
     <button id="loto-suite-zoom-out" type="button" aria-label="Reducir el tamaño">−</button>
     <label class="loto-suite-zoom-field" for="loto-suite-zoom-value" aria-label="Porcentaje de zoom">
@@ -108,8 +108,8 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
   </div>
 </header>
 <div class="loto-suite-new" role="status">
-  <strong>NUEVO · V26</strong>
-  Análisis independiente de la combinación ganadora: firmas, sumas, paridad, rangos, distancias, consecutivos y decenas.
+  <strong>NUEVO · V27</strong>
+  Desarrollo por firma de distancias, combinación entre firmas y equivalencias de distancia en el analizador.
 </div>
 <script>
 window.setTimeout(() => {
@@ -975,6 +975,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;a class=&quot;lottery-quick-link is-help&quot; id=&quot;lottery-instructions&quot; href=&quot;instrucciones-simulador-loteria.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Instrucciones&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-filters-section&quot;&gt;Filtros&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-digital-section&quot;&gt;Firmas posicionales&lt;/a&gt;
+      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-distance-section&quot;&gt;Firma de distancias&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-sorteo-section&quot;&gt;Sorteo&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-rules-section&quot;&gt;Fijos y semifijos&lt;/a&gt;
       &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-txt-section&quot;&gt;TXT y portapapeles&lt;/a&gt;
@@ -1476,10 +1477,14 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     &lt;div class=&quot;digital-combine-panel&quot; aria-labelledby=&quot;lottery-digital-combine-label&quot;&gt;
       &lt;div&gt;
-        &lt;h3 id=&quot;lottery-digital-combine-label&quot;&gt;Combinar las dos firmas&lt;/h3&gt;
-        &lt;p class=&quot;text-muted&quot;&gt;Configura por separado la raíz digital y las terminaciones. Después calcula únicamente las combinaciones que cumplan simultáneamente ambas selecciones y sus equivalencias.&lt;/p&gt;
+        &lt;h3 id=&quot;lottery-digital-combine-label&quot;&gt;Combinar firmas configuradas&lt;/h3&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;Puedes combinar raíz digital y terminaciones, añadir las distancias a la firma que estás viendo o exigir simultáneamente las tres firmas.&lt;/p&gt;
       &lt;/div&gt;
-      &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-digital-combine&quot; type=&quot;button&quot; disabled&gt;Combinar ambas firmas&lt;/button&gt;
+      &lt;div class=&quot;viz-controls digital-combine-actions&quot;&gt;
+        &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-digital-combine&quot; type=&quot;button&quot; disabled&gt;Combinar digital + terminación&lt;/button&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-digital-combine-distance&quot; type=&quot;button&quot;&gt;Combinar firma digital + distancias&lt;/button&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-digital-combine-all&quot; type=&quot;button&quot;&gt;Combinar las tres firmas&lt;/button&gt;
+      &lt;/div&gt;
     &lt;/div&gt;
 
     &lt;div class=&quot;digital-selection-summary&quot; id=&quot;lottery-digital-selection-summary&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
@@ -1530,6 +1535,94 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;/div&gt;
   &lt;/section&gt;
 
+  &lt;section class=&quot;distance-area card lottery-jump-target&quot; id=&quot;lottery-distance-section&quot; aria-labelledby=&quot;lottery-distance-label&quot; tabindex=&quot;-1&quot;&gt;
+    &lt;div class=&quot;lottery-section-label distance-heading&quot;&gt;
+      &lt;div&gt;
+        &lt;h2 id=&quot;lottery-distance-label&quot;&gt;Desarrollo por firma de distancias&lt;/h2&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;Selecciona las distancias entre las cinco parejas contiguas. La suma de la firma equivale a P6 − P1 y determina cuántas combinaciones naturales desarrolla.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-distance-total-badge&quot;&gt;Sin calcular&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;digital-explanation&quot;&gt;
+      &lt;strong&gt;Relación exacta&lt;/strong&gt;
+      &lt;p&gt;Firma: D1–2 · D2–3 · D3–4 · D4–5 · D5–6. Cada valor admite 1–44; la suma válida está entre 5 y 48 y sus equivalencias naturales son 49 menos esa suma.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;distance-panel-scroll&quot; tabindex=&quot;0&quot; aria-label=&quot;Panel desplazable de distancias por parejas contiguas&quot;&gt;
+      &lt;div class=&quot;distance-panel&quot; id=&quot;lottery-distance-panel&quot; aria-label=&quot;Selección de distancias D1-2 a D5-6&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;distance-sum-panel&quot; aria-labelledby=&quot;lottery-distance-sum-label&quot;&gt;
+      &lt;div class=&quot;distance-sum-heading&quot;&gt;
+        &lt;div&gt;
+          &lt;h3 id=&quot;lottery-distance-sum-label&quot;&gt;Sumas de firma admitidas&lt;/h3&gt;
+          &lt;p class=&quot;text-muted&quot;&gt;Selecciona valores entre 5 y 48. Si no marcas ninguno se admitirán todas las sumas compatibles.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;viz-controls distance-sum-actions&quot;&gt;
+          &lt;button class=&quot;btn&quot; id=&quot;lottery-distance-sums-all&quot; type=&quot;button&quot;&gt;Activar todas&lt;/button&gt;
+          &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-distance-sums-clear&quot; type=&quot;button&quot;&gt;Desactivar&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;distance-sum-options&quot; id=&quot;lottery-distance-sum-options&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;label class=&quot;form-label distance-cross-mode&quot; for=&quot;lottery-distance-cross-mode&quot;&gt;
+      Combinar las distancias con las firmas posicionales
+      &lt;select class=&quot;form-select&quot; id=&quot;lottery-distance-cross-mode&quot;&gt;
+        &lt;option value=&quot;none&quot; selected&gt;Solo firma de distancias&lt;/option&gt;
+        &lt;option value=&quot;digital&quot;&gt;Distancias + firma digital configurada&lt;/option&gt;
+        &lt;option value=&quot;termination&quot;&gt;Distancias + firma de terminación configurada&lt;/option&gt;
+        &lt;option value=&quot;both&quot;&gt;Distancias + ambas firmas configuradas&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/label&gt;
+
+    &lt;div class=&quot;digital-selection-summary&quot; id=&quot;lottery-distance-selection-summary&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
+
+    &lt;div class=&quot;digital-analysis&quot; aria-label=&quot;Resumen del desarrollo por firma de distancias&quot;&gt;
+      &lt;div&gt;&lt;span&gt;Firmas válidas&lt;/span&gt;&lt;strong id=&quot;lottery-distance-pattern-total&quot;&gt;Pendiente&lt;/strong&gt;&lt;/div&gt;
+      &lt;div&gt;&lt;span&gt;Combinaciones naturales&lt;/span&gt;&lt;strong id=&quot;lottery-distance-natural-total&quot;&gt;Pendiente&lt;/strong&gt;&lt;/div&gt;
+      &lt;div&gt;&lt;span&gt;Límite seguro del dispositivo&lt;/span&gt;&lt;strong id=&quot;lottery-distance-safe-limit&quot;&gt;Pendiente&lt;/strong&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;distance-breakdown&quot; id=&quot;lottery-distance-breakdown&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
+
+    &lt;div class=&quot;viz-controls distance-main-actions&quot;&gt;
+      &lt;button class=&quot;btn&quot; id=&quot;lottery-distance-select-all&quot; type=&quot;button&quot;&gt;Activar distancias&lt;/button&gt;
+      &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-distance-clear-selection&quot; type=&quot;button&quot;&gt;Desactivar distancias&lt;/button&gt;
+      &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-distance-generate&quot; type=&quot;button&quot;&gt;Calcular y generar desarrollo&lt;/button&gt;
+      &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-distance-cancel&quot; type=&quot;button&quot; hidden disabled&gt;Cancelar cálculo&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;p class=&quot;distance-message text-muted&quot; id=&quot;lottery-distance-message&quot; aria-live=&quot;polite&quot;&gt;Activa al menos una distancia en cada pareja D1–2 a D5–6. Las firmas incompatibles se descartarán automáticamente.&lt;/p&gt;
+
+    &lt;div class=&quot;digital-output&quot; id=&quot;lottery-distance-output&quot; hidden&gt;
+      &lt;div class=&quot;lottery-section-label digital-result-heading&quot;&gt;
+        &lt;div&gt;
+          &lt;h3&gt;Desarrollo por firma de distancias&lt;/h3&gt;
+          &lt;p class=&quot;text-muted&quot; id=&quot;lottery-distance-result-description&quot;&gt;&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-distance-result-count&quot;&gt;0 combinaciones&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;ol class=&quot;digital-result-list&quot; id=&quot;lottery-distance-result-list&quot; aria-label=&quot;Combinaciones generadas por firma de distancias&quot;&gt;&lt;/ol&gt;
+      &lt;div class=&quot;viz-controls digital-pagination&quot; id=&quot;lottery-distance-pagination&quot; hidden&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-distance-previous&quot; type=&quot;button&quot;&gt;Anteriores&lt;/button&gt;
+        &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-distance-page&quot;&gt;1 de 1&lt;/span&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-distance-next&quot; type=&quot;button&quot;&gt;Siguientes&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;viz-controls distance-result-actions&quot;&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-distance-copy&quot; type=&quot;button&quot;&gt;Copiar desarrollo&lt;/button&gt;
+        &lt;button class=&quot;btn lottery-filter-source-button&quot; id=&quot;lottery-filter-distance&quot; type=&quot;button&quot; data-filter-source=&quot;distance&quot;&gt;Pasar a filtros&lt;/button&gt;
+        &lt;button class=&quot;btn&quot; id=&quot;lottery-distance-reducer&quot; type=&quot;button&quot; disabled&gt;Pasar al reductor&lt;/button&gt;
+        &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-distance-qr&quot; type=&quot;button&quot;&gt;Preparar QR del desarrollo&lt;/button&gt;
+        &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-distance-clear-result&quot; type=&quot;button&quot;&gt;Limpiar resultado&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;lottery-back-row&quot;&gt;
+      &lt;a class=&quot;lottery-back-top&quot; href=&quot;#lottery-app-top&quot; aria-label=&quot;Volver al inicio desde Desarrollo por firma de distancias&quot;&gt;↑ Volver al inicio&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
   &lt;section class=&quot;filters-area card lottery-jump-target&quot; id=&quot;lottery-filters-section&quot; aria-labelledby=&quot;lottery-filters-label&quot; tabindex=&quot;-1&quot;&gt;
     &lt;div class=&quot;lottery-section-label filters-heading&quot;&gt;
       &lt;div&gt;
@@ -1549,6 +1642,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;option value=&quot;reduced&quot;&gt;Reducción matemática generada&lt;/option&gt;
           &lt;option value=&quot;development&quot;&gt;Desarrollo completo generado&lt;/option&gt;
           &lt;option value=&quot;digital&quot;&gt;Desarrollo por firma posicional&lt;/option&gt;
+          &lt;option value=&quot;distance&quot;&gt;Desarrollo por firma de distancias&lt;/option&gt;
           &lt;option value=&quot;ticket&quot;&gt;Boleto completo de «Mis boletos»&lt;/option&gt;
         &lt;/select&gt;
       &lt;/label&gt;
@@ -1934,6 +2028,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;option value=&quot;reduced&quot;&gt;Reducción matemática generada&lt;/option&gt;
           &lt;option value=&quot;development&quot;&gt;Desarrollo completo generado&lt;/option&gt;
           &lt;option value=&quot;digital&quot;&gt;Desarrollo por firma posicional&lt;/option&gt;
+          &lt;option value=&quot;distance&quot;&gt;Desarrollo por firma de distancias&lt;/option&gt;
           &lt;option value=&quot;filtered&quot;&gt;Resultado de la zona de filtros&lt;/option&gt;
           &lt;option value=&quot;ticket&quot;&gt;Boleto completo de «Mis boletos»&lt;/option&gt;
         &lt;/select&gt;
@@ -3319,7 +3414,10 @@ html&gt;body{padding:0}&lt;/style&gt;
   }
 
   #lottery-simulator-649 .digital-row-all {
-    color: #7dd3fc;
+    color: #cffafe;
+    border-color: color-mix(in srgb, #22d3ee 76%, var(--border));
+    background: linear-gradient(145deg, #164e63, #155e75);
+    box-shadow: inset 3px 0 #22d3ee;
     font-size: 0.75rem;
     font-weight: 850;
     letter-spacing: 0.025em;
@@ -3331,6 +3429,13 @@ html&gt;body{padding:0}&lt;/style&gt;
     border-color: #5eead4;
     background: linear-gradient(145deg, #99f6e4, #2dd4bf);
     box-shadow: 0 0 0 1px color-mix(in srgb, #2dd4bf 45%, transparent);
+  }
+
+  #lottery-simulator-649 .digital-global-column:not(.digital-row-all) {
+    color: #cffafe;
+    border-color: color-mix(in srgb, #22d3ee 62%, var(--border));
+    background: color-mix(in srgb, #155e75 68%, var(--card));
+    box-shadow: inset 3px 0 #22d3ee;
   }
 
   #lottery-simulator-649 .digital-column-all {
@@ -3371,6 +3476,11 @@ html&gt;body{padding:0}&lt;/style&gt;
   #lottery-simulator-649 .digital-combine-panel &gt; div:first-child {
     display: grid;
     gap: 0.25rem;
+  }
+
+  #lottery-simulator-649 .digital-combine-actions {
+    justify-content: flex-end;
+    max-width: 42rem;
   }
 
   #lottery-simulator-649 .digital-equivalence-panel[hidden] {
@@ -3544,6 +3654,219 @@ html&gt;body{padding:0}&lt;/style&gt;
 
   #lottery-simulator-649 .digital-pagination {
     justify-content: space-between;
+  }
+
+  #lottery-simulator-649 .distance-area {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 1;
+    border: 1px solid color-mix(in srgb, #a855f7 42%, var(--border));
+    background:
+      linear-gradient(135deg, color-mix(in srgb, #a855f7 9%, transparent), transparent 48%),
+      var(--card);
+  }
+
+  #lottery-simulator-649 .distance-heading {
+    align-items: flex-start;
+  }
+
+  #lottery-simulator-649 .distance-heading h2,
+  #lottery-simulator-649 .distance-heading p,
+  #lottery-simulator-649 .distance-sum-heading h3,
+  #lottery-simulator-649 .distance-sum-heading p {
+    margin: 0;
+  }
+
+  #lottery-simulator-649 .distance-panel-scroll {
+    max-width: 100%;
+    max-height: 34rem;
+    overflow: auto;
+    padding: 0.25rem 0.2rem 0.45rem;
+    border: 1px solid color-mix(in srgb, #a855f7 30%, var(--border));
+    border-radius: 0.85rem;
+    background: color-mix(in srgb, var(--background) 80%, #2e1065 20%);
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #lottery-simulator-649 .distance-panel {
+    display: grid;
+    grid-template-columns: minmax(4.4rem, 0.9fr) repeat(5, minmax(3rem, 1fr));
+    gap: 0.28rem;
+    min-width: 22rem;
+    padding: 0.35rem;
+  }
+
+  #lottery-simulator-649 .distance-grid-cell,
+  #lottery-simulator-649 .distance-panel-button {
+    min-width: 0;
+    min-height: 2.2rem;
+    display: grid;
+    place-items: center;
+    padding: 0.25rem;
+    border: 1px solid color-mix(in srgb, #c084fc 30%, var(--border));
+    border-radius: 0.35rem;
+    color: var(--foreground);
+    background: color-mix(in srgb, #3b0764 22%, var(--card));
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #lottery-simulator-649 .distance-panel-button {
+    width: 100%;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  #lottery-simulator-649 .distance-panel-button:is(:hover, :focus-visible) {
+    border-color: #d8b4fe;
+  }
+
+  #lottery-simulator-649 .distance-grid-label,
+  #lottery-simulator-649 .distance-row-all {
+    color: #d8b4fe;
+    font-size: 0.75rem;
+    font-weight: 850;
+    letter-spacing: 0.025em;
+  }
+
+  #lottery-simulator-649 .distance-row-all {
+    color: #cffafe;
+    border-color: color-mix(in srgb, #22d3ee 76%, var(--border));
+    background: linear-gradient(145deg, #164e63, #155e75);
+    box-shadow: inset 3px 0 #22d3ee;
+  }
+
+  #lottery-simulator-649 .distance-global-column:not(.distance-row-all) {
+    color: #cffafe;
+    border-color: color-mix(in srgb, #22d3ee 62%, var(--border));
+    background: color-mix(in srgb, #155e75 68%, var(--card));
+    box-shadow: inset 3px 0 #22d3ee;
+  }
+
+  #lottery-simulator-649 .distance-grid-header {
+    color: #f3e8ff;
+    background: color-mix(in srgb, #9333ea 30%, var(--card));
+    font-size: 0.78rem;
+    font-weight: 850;
+  }
+
+  #lottery-simulator-649 .distance-random-count {
+    width: 100%;
+    min-height: 2.2rem;
+    padding: 0.2rem;
+    border: 1px solid color-mix(in srgb, #c084fc 38%, var(--border));
+    border-radius: 0.35rem;
+    color: var(--foreground);
+    background: var(--card);
+    text-align: center;
+  }
+
+  #lottery-simulator-649 .distance-value-button[aria-pressed=&quot;true&quot;] {
+    color: #1f1800;
+    border-color: #fde68a;
+    background: linear-gradient(145deg, #fff36a, #facc15);
+    box-shadow: 0 0 0 1px color-mix(in srgb, #facc15 45%, transparent);
+    font-weight: 850;
+  }
+
+  #lottery-simulator-649 .distance-column-all[aria-pressed=&quot;true&quot;] {
+    color: #2e1065;
+    border-color: #c4b5fd;
+    background: linear-gradient(145deg, #ddd6fe, #a78bfa);
+  }
+
+  #lottery-simulator-649 .distance-row-all[aria-pressed=&quot;true&quot;] {
+    color: #052e2b;
+    border-color: #5eead4;
+    background: linear-gradient(145deg, #99f6e4, #2dd4bf);
+    box-shadow: inset 3px 0 #0f766e, 0 0 0 1px color-mix(in srgb, #2dd4bf 45%, transparent);
+  }
+
+  #lottery-simulator-649 .distance-sum-panel {
+    display: grid;
+    gap: 0.7rem;
+    padding: 0.8rem;
+    border: 1px solid color-mix(in srgb, #f59e0b 32%, var(--border));
+    border-radius: 0.8rem;
+    background: color-mix(in srgb, #f59e0b 6%, var(--muted));
+  }
+
+  #lottery-simulator-649 .distance-sum-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.6rem 1rem;
+  }
+
+  #lottery-simulator-649 .distance-sum-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(2.7rem, 1fr));
+    gap: 0.35rem;
+  }
+
+  #lottery-simulator-649 .distance-sum-button {
+    min-height: 2.25rem;
+    padding: 0.3rem;
+    border: 1px solid color-mix(in srgb, #f59e0b 34%, var(--border));
+    border-radius: 0.45rem;
+    color: var(--foreground);
+    background: var(--card);
+    cursor: pointer;
+  }
+
+  #lottery-simulator-649 .distance-sum-button[aria-pressed=&quot;true&quot;] {
+    color: #2b1700;
+    border-color: #fcd34d;
+    background: linear-gradient(145deg, #fde68a, #f59e0b);
+    font-weight: 850;
+  }
+
+  #lottery-simulator-649 .distance-cross-mode {
+    width: min(100%, 34rem);
+  }
+
+  #lottery-simulator-649 .distance-breakdown {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  #lottery-simulator-649 .distance-breakdown-item {
+    display: inline-flex;
+    gap: 0.28rem;
+    padding: 0.38rem 0.55rem;
+    border: 1px solid color-mix(in srgb, #a855f7 30%, var(--border));
+    border-radius: 999px;
+    background: color-mix(in srgb, #a855f7 7%, var(--muted));
+    font-size: 0.78rem;
+  }
+
+  #lottery-simulator-649 .distance-breakdown-item strong {
+    color: #e9d5ff;
+  }
+
+  #lottery-simulator-649 .distance-main-actions,
+  #lottery-simulator-649 .distance-result-actions {
+    justify-content: flex-start;
+  }
+
+  #lottery-simulator-649 .distance-message {
+    min-height: 1.4em;
+    margin: 0;
+  }
+
+  #lottery-simulator-649 .distance-message.is-error {
+    color: var(--destructive);
+  }
+
+  #lottery-simulator-649 .distance-message.is-warning {
+    color: #f59e0b;
+    font-weight: 650;
   }
 
   #lottery-simulator-649 .pasted-combinations-label {
@@ -4935,6 +5258,11 @@ html&gt;body{padding:0}&lt;/style&gt;
       align-items: stretch;
     }
 
+    #lottery-simulator-649 .digital-combine-actions {
+      justify-content: flex-start;
+      max-width: none;
+    }
+
     #lottery-simulator-649 .lottery-high-load {
       grid-template-columns: 1fr;
       align-items: stretch;
@@ -5083,7 +5411,11 @@ html&gt;body{padding:0}&lt;/style&gt;
     #lottery-simulator-649 .development-breakdown-pending-actions,
     #lottery-simulator-649 .development-actions,
     #lottery-simulator-649 .digital-main-actions,
+    #lottery-simulator-649 .digital-combine-actions,
     #lottery-simulator-649 .digital-result-actions,
+    #lottery-simulator-649 .distance-main-actions,
+    #lottery-simulator-649 .distance-result-actions,
+    #lottery-simulator-649 .distance-sum-actions,
     #lottery-simulator-649 .filter-main-actions,
     #lottery-simulator-649 .filter-result-actions {
       display: grid;
@@ -5103,7 +5435,11 @@ html&gt;body{padding:0}&lt;/style&gt;
     #lottery-simulator-649 .development-breakdown-pending-actions .btn,
     #lottery-simulator-649 .development-actions .btn,
     #lottery-simulator-649 .digital-main-actions .btn,
+    #lottery-simulator-649 .digital-combine-actions .btn,
     #lottery-simulator-649 .digital-result-actions .btn,
+    #lottery-simulator-649 .distance-main-actions .btn,
+    #lottery-simulator-649 .distance-result-actions .btn,
+    #lottery-simulator-649 .distance-sum-actions .btn,
     #lottery-simulator-649 .filter-main-actions .btn,
     #lottery-simulator-649 .filter-result-actions .btn {
       width: 100%;
@@ -5540,6 +5876,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     const digitalEquivalenceDescription = root.querySelector(&#x27;#lottery-digital-equivalence-description&#x27;);
     const digitalEquivalenceOptions = root.querySelector(&#x27;#lottery-digital-equivalence-options&#x27;);
     const digitalCombineButton = root.querySelector(&#x27;#lottery-digital-combine&#x27;);
+    const digitalCombineDistanceButton = root.querySelector(&#x27;#lottery-digital-combine-distance&#x27;);
+    const digitalCombineAllButton = root.querySelector(&#x27;#lottery-digital-combine-all&#x27;);
     const digitalSelectionSummary = root.querySelector(&#x27;#lottery-digital-selection-summary&#x27;);
     const digitalPatternLabel = root.querySelector(&#x27;#lottery-digital-pattern-label&#x27;);
     const digitalPatternTotal = root.querySelector(&#x27;#lottery-digital-pattern-total&#x27;);
@@ -5563,6 +5901,34 @@ html&gt;body{padding:0}&lt;/style&gt;
     const digitalReducerButton = root.querySelector(&#x27;#lottery-digital-reducer&#x27;);
     const digitalQrButton = root.querySelector(&#x27;#lottery-digital-qr&#x27;);
     const digitalClearResultButton = root.querySelector(&#x27;#lottery-digital-clear-result&#x27;);
+    const distancePanel = root.querySelector(&#x27;#lottery-distance-panel&#x27;);
+    const distanceSumOptions = root.querySelector(&#x27;#lottery-distance-sum-options&#x27;);
+    const distanceSumsAllButton = root.querySelector(&#x27;#lottery-distance-sums-all&#x27;);
+    const distanceSumsClearButton = root.querySelector(&#x27;#lottery-distance-sums-clear&#x27;);
+    const distanceCrossModeSelect = root.querySelector(&#x27;#lottery-distance-cross-mode&#x27;);
+    const distanceSelectionSummary = root.querySelector(&#x27;#lottery-distance-selection-summary&#x27;);
+    const distancePatternTotal = root.querySelector(&#x27;#lottery-distance-pattern-total&#x27;);
+    const distanceNaturalTotal = root.querySelector(&#x27;#lottery-distance-natural-total&#x27;);
+    const distanceSafeLimit = root.querySelector(&#x27;#lottery-distance-safe-limit&#x27;);
+    const distanceTotalBadge = root.querySelector(&#x27;#lottery-distance-total-badge&#x27;);
+    const distanceBreakdown = root.querySelector(&#x27;#lottery-distance-breakdown&#x27;);
+    const distanceSelectAllButton = root.querySelector(&#x27;#lottery-distance-select-all&#x27;);
+    const distanceClearSelectionButton = root.querySelector(&#x27;#lottery-distance-clear-selection&#x27;);
+    const distanceGenerateButton = root.querySelector(&#x27;#lottery-distance-generate&#x27;);
+    const distanceCancelButton = root.querySelector(&#x27;#lottery-distance-cancel&#x27;);
+    const distanceMessage = root.querySelector(&#x27;#lottery-distance-message&#x27;);
+    const distanceOutput = root.querySelector(&#x27;#lottery-distance-output&#x27;);
+    const distanceResultDescription = root.querySelector(&#x27;#lottery-distance-result-description&#x27;);
+    const distanceResultCount = root.querySelector(&#x27;#lottery-distance-result-count&#x27;);
+    const distanceResultList = root.querySelector(&#x27;#lottery-distance-result-list&#x27;);
+    const distancePagination = root.querySelector(&#x27;#lottery-distance-pagination&#x27;);
+    const distancePreviousButton = root.querySelector(&#x27;#lottery-distance-previous&#x27;);
+    const distanceNextButton = root.querySelector(&#x27;#lottery-distance-next&#x27;);
+    const distancePage = root.querySelector(&#x27;#lottery-distance-page&#x27;);
+    const distanceCopyButton = root.querySelector(&#x27;#lottery-distance-copy&#x27;);
+    const distanceReducerButton = root.querySelector(&#x27;#lottery-distance-reducer&#x27;);
+    const distanceQrButton = root.querySelector(&#x27;#lottery-distance-qr&#x27;);
+    const distanceClearResultButton = root.querySelector(&#x27;#lottery-distance-clear-result&#x27;);
     const filterSection = root.querySelector(&#x27;#lottery-filters-section&#x27;);
     const filterSourceSelect = root.querySelector(&#x27;#lottery-filter-source&#x27;);
     const filterSourceSummary = root.querySelector(&#x27;#lottery-filter-source-summary&#x27;);
@@ -5603,6 +5969,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     const filterImportedButton = root.querySelector(&#x27;#lottery-filter-imported&#x27;);
     const filterDevelopmentButton = root.querySelector(&#x27;#lottery-filter-development&#x27;);
     const filterDigitalButton = root.querySelector(&#x27;#lottery-filter-digital&#x27;);
+    const filterDistanceButton = root.querySelector(&#x27;#lottery-filter-distance&#x27;);
     const scrutinyGameSelect = root.querySelector(&#x27;#lottery-scrutiny-game&#x27;);
     const scrutinySourceSelect = root.querySelector(&#x27;#lottery-scrutiny-source&#x27;);
     const scrutinyWinningInput = root.querySelector(&#x27;#lottery-scrutiny-winning&#x27;);
@@ -5669,6 +6036,15 @@ html&gt;body{padding:0}&lt;/style&gt;
     let digitalCancelRequested = false;
     let digitalQrWarningArmed = false;
     let digitalLastAnalysis = null;
+    let distanceSelections = Array.from({ length: 5 }, () =&gt; new Set());
+    let distanceSumSelections = new Set();
+    let distanceGeneratedCombinations = [];
+    let distanceGeneratedPatternCount = 0;
+    let distanceGeneratedCrossMode = &#x27;none&#x27;;
+    let distancePageIndex = 0;
+    let distanceBusy = false;
+    let distanceCancelRequested = false;
+    let distanceQrWarningArmed = false;
     let qrPages = [];
     let qrPageIndex = 0;
     let currentGeneratedTicket = null;
@@ -5722,6 +6098,9 @@ html&gt;body{padding:0}&lt;/style&gt;
     const DIGITAL_COLUMN_LABELS = [&#x27;P1&#x27;, &#x27;P2&#x27;, &#x27;P3&#x27;, &#x27;P4&#x27;, &#x27;P5&#x27;, &#x27;P6&#x27;, &#x27;SDCD&#x27;];
     const TERMINATION_COLUMN_LABELS = [&#x27;P1&#x27;, &#x27;P2&#x27;, &#x27;P3&#x27;, &#x27;P4&#x27;, &#x27;P5&#x27;, &#x27;P6&#x27;];
     const DIGITAL_EQUIVALENCE_VALUES = [1, 7, 28, 84, 210];
+    const DISTANCE_COLUMN_LABELS = [&#x27;D1–2&#x27;, &#x27;D2–3&#x27;, &#x27;D3–4&#x27;, &#x27;D4–5&#x27;, &#x27;D5–6&#x27;];
+    const DISTANCE_VALUES = Array.from({ length: 44 }, (_, index) =&gt; index + 1);
+    const DISTANCE_SUM_VALUES = Array.from({ length: 44 }, (_, index) =&gt; index + 5);
     const euroFormatter = new Intl.NumberFormat(&#x27;es-ES&#x27;, {
       style: &#x27;currency&#x27;,
       currency: &#x27;EUR&#x27;
@@ -5859,6 +6238,9 @@ html&gt;body{padding:0}&lt;/style&gt;
       digitalEquivalenceDescription.textContent = terminationMode
         ? &#x27;Activa 1, 7, 28, 84 o 210. Solo se desarrollarán las firmas de terminación que representen exactamente una de esas cantidades de combinaciones naturales.&#x27;
         : &#x27;Activa 1, 7, 28, 84 o 210. Solo se desarrollarán las firmas digitales que representen exactamente una de esas cantidades de combinaciones naturales.&#x27;;
+      digitalCombineDistanceButton.textContent = terminationMode
+        ? &#x27;Combinar terminación + distancias&#x27;
+        : &#x27;Combinar firma digital + distancias&#x27;;
     }
 
     function buildDigitalPanel() {
@@ -5869,7 +6251,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       const randomButton = createDigitalPanelCell(
         &#x27;button&#x27;,
         &#x27;Azar&#x27;,
-        &#x27;digital-panel-button digital-grid-label&#x27;
+        &#x27;digital-panel-button digital-grid-label digital-global-column&#x27;
       );
       randomButton.type = &#x27;button&#x27;;
       randomButton.id = &#x27;lottery-digital-randomize&#x27;;
@@ -5896,7 +6278,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       });
 
       digitalPanel.appendChild(
-        createDigitalPanelCell(&#x27;span&#x27;, &#x27;Todos&#x27;, &#x27;digital-grid-cell digital-grid-label&#x27;)
+        createDigitalPanelCell(&#x27;span&#x27;, &#x27;Todas&#x27;, &#x27;digital-grid-cell digital-grid-label digital-global-column&#x27;)
       );
       details.labels.forEach((label, column) =&gt; {
         const button = createDigitalPanelCell(
@@ -5914,7 +6296,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       });
 
       digitalPanel.appendChild(
-        createDigitalPanelCell(&#x27;span&#x27;, details.shortLabel, &#x27;digital-grid-cell digital-grid-header&#x27;)
+        createDigitalPanelCell(&#x27;span&#x27;, details.shortLabel, &#x27;digital-grid-cell digital-grid-header digital-global-column&#x27;)
       );
       details.labels.forEach((label, column) =&gt; {
         digitalPanel.appendChild(
@@ -5926,7 +6308,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         const rowButton = createDigitalPanelCell(
           &#x27;button&#x27;,
           `Nº ${value}`,
-          &#x27;digital-panel-button digital-row-all&#x27;
+          &#x27;digital-panel-button digital-row-all digital-global-column&#x27;
         );
         rowButton.type = &#x27;button&#x27;;
         rowButton.dataset.digitalSelectRow = String(value);
@@ -6035,6 +6417,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       digitalCombineButton.disabled = digitalBusy
         || !hasCompleteSignatureConfiguration(&#x27;digital&#x27;)
         || !hasCompleteSignatureConfiguration(&#x27;termination&#x27;);
+      digitalCombineDistanceButton.disabled = digitalBusy;
+      digitalCombineAllButton.disabled = digitalBusy;
       digitalCancelButton.hidden = !digitalBusy;
       digitalCancelButton.disabled = !digitalBusy || digitalCancelRequested;
       digitalPanel.querySelectorAll(&#x27;button, select&#x27;).forEach((control) =&gt; {
@@ -6876,6 +7260,613 @@ html&gt;body{padding:0}&lt;/style&gt;
       prepareQrGeneration(digitalGeneratedCombinations, &#x27;digital&#x27;);
     }
 
+    function distanceDeviceLimit() {
+      const preventiveLimit = window.matchMedia(&#x27;(max-width: 760px)&#x27;).matches
+        ? DIGITAL_MOBILE_COMBINATION_LIMIT
+        : DIGITAL_DESKTOP_COMBINATION_LIMIT;
+      return effectiveCombinationLimit(preventiveLimit);
+    }
+
+    function createDistancePanelCell(tagName, text, className, column = null) {
+      const element = document.createElement(tagName);
+      element.className = className;
+      if (text !== null) element.textContent = text;
+      if (column !== null) element.dataset.distanceColumn = String(column);
+      return element;
+    }
+
+    function buildDistancePanel() {
+      distancePanel.replaceChildren();
+      const randomButton = createDistancePanelCell(
+        &#x27;button&#x27;,
+        &#x27;Azar&#x27;,
+        &#x27;distance-panel-button distance-grid-label distance-global-column&#x27;
+      );
+      randomButton.type = &#x27;button&#x27;;
+      randomButton.dataset.distanceRandomize = &#x27;true&#x27;;
+      randomButton.title = &#x27;Activa al azar la cantidad indicada en cada pareja&#x27;;
+      distancePanel.appendChild(randomButton);
+
+      DISTANCE_COLUMN_LABELS.forEach((label, column) =&gt; {
+        const select = createDistancePanelCell(
+          &#x27;select&#x27;,
+          null,
+          &#x27;distance-random-count&#x27;,
+          column
+        );
+        select.dataset.distanceRandomCount = String(column);
+        select.setAttribute(&#x27;aria-label&#x27;, `Cantidad aleatoria de distancias para ${label}`);
+        DISTANCE_VALUES.forEach((count) =&gt; {
+          const option = document.createElement(&#x27;option&#x27;);
+          option.value = String(count);
+          option.textContent = String(count);
+          option.selected = count === 1;
+          select.appendChild(option);
+        });
+        distancePanel.appendChild(select);
+      });
+
+      distancePanel.appendChild(
+        createDistancePanelCell(&#x27;span&#x27;, &#x27;Todas&#x27;, &#x27;distance-grid-cell distance-grid-label distance-global-column&#x27;)
+      );
+      DISTANCE_COLUMN_LABELS.forEach((label, column) =&gt; {
+        const button = createDistancePanelCell(
+          &#x27;button&#x27;,
+          &#x27;✓&#x27;,
+          &#x27;distance-panel-button distance-column-all&#x27;,
+          column
+        );
+        button.type = &#x27;button&#x27;;
+        button.dataset.distanceSelectColumn = String(column);
+        button.setAttribute(&#x27;aria-pressed&#x27;, &#x27;false&#x27;);
+        button.setAttribute(&#x27;aria-label&#x27;, `Activar o desactivar todas las distancias de ${label}`);
+        distancePanel.appendChild(button);
+      });
+
+      distancePanel.appendChild(
+        createDistancePanelCell(&#x27;span&#x27;, &#x27;Dist.&#x27;, &#x27;distance-grid-cell distance-grid-header distance-global-column&#x27;)
+      );
+      DISTANCE_COLUMN_LABELS.forEach((label, column) =&gt; {
+        distancePanel.appendChild(
+          createDistancePanelCell(&#x27;span&#x27;, label, &#x27;distance-grid-cell distance-grid-header&#x27;, column)
+        );
+      });
+
+      DISTANCE_VALUES.forEach((value) =&gt; {
+        const rowButton = createDistancePanelCell(
+          &#x27;button&#x27;,
+          String(value),
+          &#x27;distance-panel-button distance-row-all distance-global-column&#x27;
+        );
+        rowButton.type = &#x27;button&#x27;;
+        rowButton.dataset.distanceSelectRow = String(value);
+        rowButton.setAttribute(&#x27;aria-pressed&#x27;, &#x27;false&#x27;);
+        rowButton.setAttribute(&#x27;aria-label&#x27;, `Activar o desactivar la distancia ${value} en las cinco parejas`);
+        distancePanel.appendChild(rowButton);
+        DISTANCE_COLUMN_LABELS.forEach((label, column) =&gt; {
+          const button = createDistancePanelCell(
+            &#x27;button&#x27;,
+            String(value),
+            &#x27;distance-panel-button distance-value-button&#x27;,
+            column
+          );
+          button.type = &#x27;button&#x27;;
+          button.dataset.distanceValue = String(value);
+          button.setAttribute(&#x27;aria-label&#x27;, `${label}, distancia ${value}`);
+          distancePanel.appendChild(button);
+        });
+      });
+    }
+
+    function buildDistanceSumOptions() {
+      distanceSumOptions.replaceChildren();
+      DISTANCE_SUM_VALUES.forEach((sum) =&gt; {
+        const button = document.createElement(&#x27;button&#x27;);
+        button.className = &#x27;distance-sum-button&#x27;;
+        button.type = &#x27;button&#x27;;
+        button.dataset.distanceSum = String(sum);
+        button.setAttribute(&#x27;aria-pressed&#x27;, &#x27;false&#x27;);
+        button.setAttribute(
+          &#x27;aria-label&#x27;,
+          `Suma ${sum}, ${49 - sum} combinaciones naturales por firma`
+        );
+        button.title = `Suma ${sum} · ${49 - sum} equivalencias naturales`;
+        button.textContent = String(sum);
+        distanceSumOptions.appendChild(button);
+      });
+    }
+
+    function effectiveDistanceSums() {
+      return distanceSumSelections.size
+        ? distanceSumSelections
+        : new Set(DISTANCE_SUM_VALUES);
+    }
+
+    function distanceCrossModeLabel(mode = distanceGeneratedCrossMode) {
+      if (mode === &#x27;digital&#x27;) return &#x27;firma de distancias + firma digital&#x27;;
+      if (mode === &#x27;termination&#x27;) return &#x27;firma de distancias + firma de terminación&#x27;;
+      if (mode === &#x27;both&#x27;) return &#x27;firma de distancias + firmas digital y de terminación&#x27;;
+      return &#x27;firma de distancias&#x27;;
+    }
+
+    function distanceSourceLabel() {
+      const label = distanceCrossModeLabel();
+      return label.charAt(0).toUpperCase() + label.slice(1);
+    }
+
+    function renderDistanceSelectionSummary() {
+      distanceSelectionSummary.replaceChildren();
+      DISTANCE_COLUMN_LABELS.forEach((label, column) =&gt; {
+        const chip = document.createElement(&#x27;span&#x27;);
+        chip.className = &#x27;digital-selection-chip&#x27;;
+        const name = document.createElement(&#x27;strong&#x27;);
+        name.textContent = label;
+        chip.append(name, document.createTextNode(`${distanceSelections[column].size} de 44`));
+        distanceSelectionSummary.appendChild(chip);
+      });
+      const sumChip = document.createElement(&#x27;span&#x27;);
+      sumChip.className = &#x27;digital-selection-chip&#x27;;
+      const name = document.createElement(&#x27;strong&#x27;);
+      name.textContent = &#x27;Sumas&#x27;;
+      sumChip.append(
+        name,
+        document.createTextNode(
+          distanceSumSelections.size
+            ? `${distanceSumSelections.size} de 44`
+            : &#x27;todas · sin filtro&#x27;
+        )
+      );
+      distanceSelectionSummary.appendChild(sumChip);
+    }
+
+    function refreshDistanceControls() {
+      const complete = distanceSelections.every((selection) =&gt; selection.size &gt; 0);
+      distanceGenerateButton.disabled = distanceBusy || !complete;
+      distanceSelectAllButton.disabled = distanceBusy;
+      distanceClearSelectionButton.disabled = distanceBusy;
+      distanceSumsAllButton.disabled = distanceBusy;
+      distanceSumsClearButton.disabled = distanceBusy;
+      distanceCrossModeSelect.disabled = distanceBusy;
+      distanceCancelButton.hidden = !distanceBusy;
+      distanceCancelButton.disabled = !distanceBusy || distanceCancelRequested;
+      distancePanel.querySelectorAll(&#x27;button, select&#x27;).forEach((control) =&gt; {
+        control.disabled = distanceBusy;
+      });
+      distanceSumOptions.querySelectorAll(&#x27;button&#x27;).forEach((control) =&gt; {
+        control.disabled = distanceBusy;
+      });
+    }
+
+    function renderDistancePanel() {
+      distancePanel.querySelectorAll(&#x27;[data-distance-value]&#x27;).forEach((button) =&gt; {
+        const column = Number(button.dataset.distanceColumn);
+        const value = Number(button.dataset.distanceValue);
+        button.setAttribute(&#x27;aria-pressed&#x27;, String(distanceSelections[column].has(value)));
+      });
+      distancePanel.querySelectorAll(&#x27;[data-distance-select-column]&#x27;).forEach((button) =&gt; {
+        const column = Number(button.dataset.distanceSelectColumn);
+        button.setAttribute(
+          &#x27;aria-pressed&#x27;,
+          String(DISTANCE_VALUES.every((value) =&gt; distanceSelections[column].has(value)))
+        );
+      });
+      distancePanel.querySelectorAll(&#x27;[data-distance-select-row]&#x27;).forEach((button) =&gt; {
+        const value = Number(button.dataset.distanceSelectRow);
+        button.setAttribute(
+          &#x27;aria-pressed&#x27;,
+          String(distanceSelections.every((selection) =&gt; selection.has(value)))
+        );
+      });
+      distanceSumOptions.querySelectorAll(&#x27;[data-distance-sum]&#x27;).forEach((button) =&gt; {
+        button.setAttribute(
+          &#x27;aria-pressed&#x27;,
+          String(distanceSumSelections.has(Number(button.dataset.distanceSum)))
+        );
+      });
+      renderDistanceSelectionSummary();
+      refreshDistanceControls();
+    }
+
+    function setDistanceMessage(message, tone = &#x27;&#x27;) {
+      distanceMessage.textContent = message;
+      distanceMessage.classList.toggle(&#x27;is-error&#x27;, tone === &#x27;error&#x27;);
+      distanceMessage.classList.toggle(&#x27;is-warning&#x27;, tone === &#x27;warning&#x27;);
+    }
+
+    function resetDistanceQrWarning() {
+      distanceQrWarningArmed = false;
+      distanceQrButton.textContent = &#x27;Preparar QR del desarrollo&#x27;;
+    }
+
+    function clearDistanceGeneratedResult(message = &#x27;&#x27;) {
+      distanceGeneratedCombinations = [];
+      distanceGeneratedPatternCount = 0;
+      distancePageIndex = 0;
+      distanceOutput.hidden = true;
+      distanceResultList.replaceChildren();
+      distancePagination.hidden = true;
+      distancePatternTotal.textContent = &#x27;Pendiente&#x27;;
+      distanceNaturalTotal.textContent = &#x27;Pendiente&#x27;;
+      distanceSafeLimit.textContent = formatOperationLimit(distanceDeviceLimit());
+      distanceTotalBadge.textContent = &#x27;Sin calcular&#x27;;
+      distanceBreakdown.replaceChildren();
+      distanceReducerButton.disabled = true;
+      filterDistanceButton.disabled = true;
+      resetDistanceQrWarning();
+      refreshFilterSourceButtons();
+      if (message) setDistanceMessage(message);
+    }
+
+    function invalidateDistanceDevelopment(message = &#x27;Selección modificada. Pulsa «Calcular y generar desarrollo».&#x27;) {
+      if (distanceBusy) return;
+      clearDistanceGeneratedResult(message);
+      renderDistancePanel();
+    }
+
+    function setAllDistanceValues(active) {
+      if (distanceBusy) return;
+      distanceSelections = Array.from(
+        { length: 5 },
+        () =&gt; new Set(active ? DISTANCE_VALUES : [])
+      );
+      invalidateDistanceDevelopment(
+        active
+          ? &#x27;Se han activado las distancias 1–44 en las cinco parejas. Revisa el límite antes de calcular.&#x27;
+          : &#x27;Se han desactivado todas las distancias.&#x27;
+      );
+    }
+
+    function randomizeDistanceSelections() {
+      if (distanceBusy) return;
+      distanceSelections = DISTANCE_COLUMN_LABELS.map((label, column) =&gt; {
+        const requested = Math.min(
+          44,
+          Math.max(
+            1,
+            Math.trunc(
+              Number(distancePanel.querySelector(`[data-distance-random-count=&quot;${column}&quot;]`)?.value)
+            ) || 1
+          )
+        );
+        const shuffled = DISTANCE_VALUES.slice();
+        for (let index = shuffled.length - 1; index &gt; 0; index -= 1) {
+          const other = Math.floor(Math.random() * (index + 1));
+          [shuffled[index], shuffled[other]] = [shuffled[other], shuffled[index]];
+        }
+        return new Set(shuffled.slice(0, requested));
+      });
+      invalidateDistanceDevelopment(&#x27;Selección aleatoria de distancias realizada.&#x27;);
+    }
+
+    function setAllDistanceSums(active) {
+      if (distanceBusy) return;
+      distanceSumSelections = new Set(active ? DISTANCE_SUM_VALUES : []);
+      invalidateDistanceDevelopment(
+        active
+          ? &#x27;Se han activado todas las sumas válidas, de 5 a 48.&#x27;
+          : &#x27;No hay filtro de suma: se admitirán todas las sumas compatibles.&#x27;
+      );
+    }
+
+    function validateDistanceCrossMode(mode) {
+      if ((mode === &#x27;digital&#x27; || mode === &#x27;both&#x27;) &amp;&amp; !hasCompleteSignatureConfiguration(&#x27;digital&#x27;)) {
+        setDistanceMessage(&#x27;Completa primero P1–P6 y SDCD en la firma digital.&#x27;, &#x27;error&#x27;);
+        return false;
+      }
+      if ((mode === &#x27;termination&#x27; || mode === &#x27;both&#x27;) &amp;&amp; !hasCompleteSignatureConfiguration(&#x27;termination&#x27;)) {
+        setDistanceMessage(&#x27;Completa primero P1–P6 en la firma de terminación.&#x27;, &#x27;error&#x27;);
+        return false;
+      }
+      return true;
+    }
+
+    function combinationMatchesDigitalConfiguration(combination, equivalenceCache) {
+      const roots = combination.map(digitalRoot);
+      for (let position = 0; position &lt; 6; position += 1) {
+        if (!digitalSelections[position].has(roots[position])) return false;
+      }
+      const rootSum = roots.reduce((total, value) =&gt; total + value, 0);
+      if (!digitalSelections[6].has(digitalRoot(rootSum))) return false;
+      const key = roots.join(&#x27;&#x27;);
+      let equivalenceCount = equivalenceCache.get(key);
+      if (equivalenceCount === undefined) {
+        equivalenceCount = countDigitalPatternEquivalents(roots);
+        equivalenceCache.set(key, equivalenceCount);
+      }
+      return effectiveEquivalenceSelectionsForMode(&#x27;digital&#x27;).has(equivalenceCount);
+    }
+
+    function* enumerateDistancePatterns(allowed, allowedSums) {
+      const current = Array(5).fill(0);
+      const minimumRemaining = Array(6).fill(0);
+      for (let index = 4; index &gt;= 0; index -= 1) {
+        minimumRemaining[index] = minimumRemaining[index + 1] + allowed[index][0];
+      }
+
+      function* visit(position, sum) {
+        if (position === 5) {
+          if (allowedSums.has(sum)) yield [...current];
+          return;
+        }
+        for (const value of allowed[position]) {
+          const nextSum = sum + value;
+          if (nextSum + minimumRemaining[position + 1] &gt; 48) break;
+          current[position] = value;
+          yield* visit(position + 1, nextSum);
+        }
+      }
+
+      yield* visit(0, 0);
+    }
+
+    async function analyseDistanceDevelopment(safeLimit, crossMode) {
+      const allowed = distanceSelections.map((selection) =&gt;
+        [...selection].sort((first, second) =&gt; first - second)
+      );
+      const allowedSums = effectiveDistanceSums();
+      const digitalEquivalenceCache = new Map();
+      const terminationEquivalenceCache = new Map();
+      const generated = [];
+      const sumStats = Object.fromEntries(
+        DISTANCE_SUM_VALUES.map((sum) =&gt; [sum, { patterns: 0, natural: 0 }])
+      );
+      let keepGenerated = true;
+      let patternCount = 0;
+      let naturalTotal = 0;
+      let examinedPatterns = 0;
+      let examinedNaturals = 0;
+
+      for (const pattern of enumerateDistancePatterns(allowed, allowedSums)) {
+        const sum = pattern.reduce((total, value) =&gt; total + value, 0);
+        const equivalents = 49 - sum;
+        let matchingNaturals = 0;
+        for (let start = 1; start &lt;= equivalents; start += 1) {
+          const combination = [start];
+          pattern.forEach((distance) =&gt; {
+            combination.push(combination[combination.length - 1] + distance);
+          });
+          examinedNaturals += 1;
+          if ((crossMode === &#x27;digital&#x27; || crossMode === &#x27;both&#x27;)
+            &amp;&amp; !combinationMatchesDigitalConfiguration(combination, digitalEquivalenceCache)) {
+            continue;
+          }
+          if ((crossMode === &#x27;termination&#x27; || crossMode === &#x27;both&#x27;)
+            &amp;&amp; !combinationMatchesTerminationConfiguration(combination, terminationEquivalenceCache)) {
+            continue;
+          }
+          matchingNaturals += 1;
+          naturalTotal += 1;
+          if (keepGenerated) {
+            if (naturalTotal &lt;= safeLimit) generated.push(combination);
+            else {
+              generated.length = 0;
+              keepGenerated = false;
+            }
+          }
+        }
+        examinedPatterns += 1;
+        if (matchingNaturals &gt; 0) {
+          patternCount += 1;
+          sumStats[sum].patterns += 1;
+          sumStats[sum].natural += matchingNaturals;
+        }
+        if (examinedPatterns % 3000 === 0 || examinedNaturals % 50000 === 0) {
+          setDistanceMessage(
+            `Analizando firmas… ${examinedPatterns.toLocaleString(&#x27;es-ES&#x27;)} revisadas · ${naturalTotal.toLocaleString(&#x27;es-ES&#x27;)} naturales compatibles.`
+          );
+          await wait(0);
+          if (distanceCancelRequested) return null;
+        }
+      }
+
+      return {
+        patternCount,
+        naturalTotal,
+        sumStats,
+        generated: keepGenerated ? generated : [],
+        withinLimit: naturalTotal &lt;= safeLimit
+      };
+    }
+
+    function renderDistanceAnalysis(analysis, safeLimit) {
+      distancePatternTotal.textContent = analysis.patternCount.toLocaleString(&#x27;es-ES&#x27;);
+      distanceNaturalTotal.textContent = analysis.naturalTotal.toLocaleString(&#x27;es-ES&#x27;);
+      distanceSafeLimit.textContent = formatOperationLimit(safeLimit);
+      distanceTotalBadge.textContent = `${analysis.naturalTotal.toLocaleString(&#x27;es-ES&#x27;)} naturales`;
+      distanceBreakdown.replaceChildren();
+      DISTANCE_SUM_VALUES.forEach((sum) =&gt; {
+        const stats = analysis.sumStats[sum];
+        if (!stats || stats.patterns === 0) return;
+        const item = document.createElement(&#x27;span&#x27;);
+        item.className = &#x27;distance-breakdown-item&#x27;;
+        const title = document.createElement(&#x27;strong&#x27;);
+        title.textContent = `Σ ${sum} · ${49 - sum} eq.`;
+        item.append(
+          title,
+          document.createTextNode(
+            `${stats.patterns.toLocaleString(&#x27;es-ES&#x27;)} firmas · ${stats.natural.toLocaleString(&#x27;es-ES&#x27;)} naturales`
+          )
+        );
+        distanceBreakdown.appendChild(item);
+      });
+    }
+
+    function renderDistanceResults() {
+      const total = distanceGeneratedCombinations.length;
+      const pageTotal = Math.max(1, Math.ceil(total / DIGITAL_PAGE_SIZE));
+      distancePageIndex = Math.min(Math.max(0, distancePageIndex), pageTotal - 1);
+      const start = distancePageIndex * DIGITAL_PAGE_SIZE;
+      distanceResultList.replaceChildren();
+      distanceGeneratedCombinations
+        .slice(start, start + DIGITAL_PAGE_SIZE)
+        .forEach((combination, pageIndex) =&gt; {
+          const item = document.createElement(&#x27;li&#x27;);
+          item.className = &#x27;digital-result-item&#x27;;
+          const index = document.createElement(&#x27;span&#x27;);
+          index.className = &#x27;digital-result-index&#x27;;
+          index.textContent = String(start + pageIndex + 1).padStart(2, &#x27;0&#x27;);
+          const numbers = document.createElement(&#x27;span&#x27;);
+          numbers.className = &#x27;digital-result-numbers&#x27;;
+          numbers.textContent = combination.map((number) =&gt; String(number).padStart(2, &#x27;0&#x27;)).join(&#x27; · &#x27;);
+          const distances = combination.slice(1).map((number, position) =&gt; number - combination[position]);
+          const sum = distances.reduce((totalValue, value) =&gt; totalValue + value, 0);
+          const detail = document.createElement(&#x27;span&#x27;);
+          detail.className = &#x27;digital-result-roots&#x27;;
+          detail.textContent = `D ${distances.join(&#x27;-&#x27;)} · Σ ${sum} · ${49 - sum} equivalencias`;
+          item.append(index, numbers, detail);
+          distanceResultList.appendChild(item);
+        });
+      distanceOutput.hidden = total === 0;
+      distanceResultCount.textContent = `${total.toLocaleString(&#x27;es-ES&#x27;)} ${total === 1 ? &#x27;combinación&#x27; : &#x27;combinaciones&#x27;}`;
+      distancePagination.hidden = total &lt;= DIGITAL_PAGE_SIZE;
+      distancePage.textContent = `${distancePageIndex + 1} de ${pageTotal}`;
+      distancePreviousButton.disabled = distancePageIndex === 0;
+      distanceNextButton.disabled = distancePageIndex &gt;= pageTotal - 1;
+      filterDistanceButton.disabled = total === 0;
+      distanceCopyButton.disabled = total === 0;
+      distanceReducerButton.disabled = total &lt; 2;
+      distanceQrButton.disabled = total === 0;
+    }
+
+    async function generateDistanceDevelopment() {
+      if (distanceBusy) return;
+      if (distanceSelections.some((selection) =&gt; selection.size === 0)) {
+        setDistanceMessage(&#x27;Activa al menos una distancia en cada pareja D1–2 a D5–6.&#x27;, &#x27;error&#x27;);
+        return;
+      }
+      const crossMode = distanceCrossModeSelect.value;
+      if (!validateDistanceCrossMode(crossMode)) return;
+
+      distanceBusy = true;
+      distanceCancelRequested = false;
+      distanceGeneratedCombinations = [];
+      distanceGeneratedPatternCount = 0;
+      distanceGeneratedCrossMode = crossMode;
+      distanceOutput.hidden = true;
+      resetDistanceQrWarning();
+      refreshDistanceControls();
+      const safeLimit = distanceDeviceLimit();
+      distanceSafeLimit.textContent = formatOperationLimit(safeLimit);
+      setDistanceMessage(`Calculando ${distanceCrossModeLabel(crossMode)}…`);
+
+      try {
+        const analysis = await analyseDistanceDevelopment(safeLimit, crossMode);
+        if (!analysis || distanceCancelRequested) {
+          setDistanceMessage(&#x27;Cálculo cancelado. No se ha guardado un resultado parcial.&#x27;, &#x27;warning&#x27;);
+          return;
+        }
+        renderDistanceAnalysis(analysis, safeLimit);
+        if (analysis.naturalTotal === 0) {
+          setDistanceMessage(&#x27;No existen combinaciones naturales que cumplan simultáneamente los criterios seleccionados.&#x27;, &#x27;error&#x27;);
+          return;
+        }
+        if (!analysis.withinLimit) {
+          setDistanceMessage(
+            `El desarrollo contiene ${analysis.naturalTotal.toLocaleString(&#x27;es-ES&#x27;)} combinaciones y supera el límite seguro de ${safeLimit.toLocaleString(&#x27;es-ES&#x27;)}. Reduce distancias o sumas, aplica una firma posicional más restrictiva o autoriza la alta carga.`,
+            &#x27;warning&#x27;
+          );
+          return;
+        }
+        distanceGeneratedCombinations = analysis.generated;
+        distanceGeneratedPatternCount = analysis.patternCount;
+        distancePageIndex = 0;
+        distanceResultDescription.textContent =
+          `${analysis.patternCount.toLocaleString(&#x27;es-ES&#x27;)} firmas válidas han generado ${analysis.naturalTotal.toLocaleString(&#x27;es-ES&#x27;)} combinaciones naturales mediante ${distanceCrossModeLabel(crossMode)}.`;
+        renderDistanceResults();
+        refreshFilterSourceButtons();
+        setDistanceMessage(
+          `Desarrollo completado: ${analysis.naturalTotal.toLocaleString(&#x27;es-ES&#x27;)} combinaciones. Puedes copiarlas, filtrarlas, reducirlas, escrutarlas o preparar sus QR.`
+        );
+      } catch (error) {
+        distanceGeneratedCombinations = [];
+        distanceGeneratedPatternCount = 0;
+        distanceOutput.hidden = true;
+        refreshFilterSourceButtons();
+        setDistanceMessage(`No se ha podido completar el desarrollo: ${error.message || &#x27;error desconocido&#x27;}.`, &#x27;error&#x27;);
+      } finally {
+        distanceBusy = false;
+        distanceCancelRequested = false;
+        refreshDistanceControls();
+      }
+    }
+
+    function cancelDistanceDevelopment() {
+      if (!distanceBusy || distanceCancelRequested) return;
+      distanceCancelRequested = true;
+      distanceCancelButton.disabled = true;
+      setDistanceMessage(&#x27;Cancelación solicitada. El proceso se detendrá al finalizar el bloque actual.&#x27;, &#x27;warning&#x27;);
+    }
+
+    async function copyDistanceDevelopment() {
+      if (distanceGeneratedCombinations.length === 0) {
+        setDistanceMessage(&#x27;Genera primero un desarrollo por firma de distancias.&#x27;, &#x27;error&#x27;);
+        return;
+      }
+      const result = await copyTextToClipboard(
+        combinationsToClipboardText(distanceGeneratedCombinations)
+      );
+      if (result.copied) {
+        setDistanceMessage(`${distanceGeneratedCombinations.length.toLocaleString(&#x27;es-ES&#x27;)} combinaciones copiadas, una por línea.`);
+      } else if (result.manual) {
+        setDistanceMessage(&#x27;El navegador ha mostrado el desarrollo para copiarlo manualmente.&#x27;);
+      } else {
+        setDistanceMessage(&#x27;No se ha podido copiar el desarrollo.&#x27;, &#x27;error&#x27;);
+      }
+    }
+
+    function generateDistanceQr() {
+      const total = distanceGeneratedCombinations.length;
+      if (total === 0) {
+        setDistanceMessage(&#x27;Genera primero un desarrollo por firma de distancias.&#x27;, &#x27;error&#x27;);
+        return;
+      }
+      if (total &gt; DIGITAL_QR_WARNING_THRESHOLD &amp;&amp; !distanceQrWarningArmed) {
+        distanceQrWarningArmed = true;
+        distanceQrButton.textContent = &#x27;Confirmar preparación de QR&#x27;;
+        setDistanceMessage(
+          `Este desarrollo contiene ${total.toLocaleString(&#x27;es-ES&#x27;)} apuestas y puede producir aproximadamente ${Math.ceil(total / 8).toLocaleString(&#x27;es-ES&#x27;)} códigos QR. Pulsa de nuevo para continuar.`,
+          &#x27;warning&#x27;
+        );
+        return;
+      }
+      resetDistanceQrWarning();
+      prepareQrGeneration(distanceGeneratedCombinations, &#x27;distance&#x27;);
+    }
+
+    async function generateDistanceFromPositionalSignature(includeAllPositionalSignatures = false) {
+      const crossMode = includeAllPositionalSignatures ? &#x27;both&#x27; : getSignatureMode();
+      const requiredModes = crossMode === &#x27;both&#x27; ? [&#x27;digital&#x27;, &#x27;termination&#x27;] : [crossMode];
+      const missingMode = requiredModes.find((mode) =&gt; !hasCompleteSignatureConfiguration(mode));
+      if (missingMode) {
+        const missingLabel = missingMode === &#x27;digital&#x27;
+          ? &#x27;la firma digital, incluida SDCD y sus equivalencias&#x27;
+          : &#x27;la firma de terminación y sus equivalencias&#x27;;
+        setDigitalMessage(`Completa primero ${missingLabel}.`, &#x27;error&#x27;);
+        return;
+      }
+
+      distanceCrossModeSelect.value = crossMode;
+      clearDistanceGeneratedResult(
+        includeAllPositionalSignatures
+          ? &#x27;Preparado para combinar las tres firmas.&#x27;
+          : `Preparado para combinar distancias con ${signatureModeDetails(crossMode).sourceLabel.toLocaleLowerCase(&#x27;es-ES&#x27;)}.`
+      );
+      renderDistancePanel();
+      const distanceSection = root.querySelector(&#x27;#lottery-distance-section&#x27;);
+      distanceSection.scrollIntoView({ behavior: &#x27;smooth&#x27;, block: &#x27;start&#x27; });
+      distanceSection.focus({ preventScroll: true });
+
+      if (distanceSelections.some((selection) =&gt; selection.size === 0)) {
+        setDistanceMessage(
+          &#x27;La firma posicional ya está preparada. Activa ahora al menos una distancia en cada pareja y pulsa «Calcular y generar desarrollo».&#x27;,
+          &#x27;warning&#x27;
+        );
+        return;
+      }
+      await wait(0);
+      await generateDistanceDevelopment();
+    }
+
     function createFilterRangeRow(container, label, key, limits = {}) {
       const row = document.createElement(&#x27;div&#x27;);
       row.className = &#x27;filter-count-row&#x27;;
@@ -7558,6 +8549,16 @@ html&gt;body{padding:0}&lt;/style&gt;
           combinations: digitalGeneratedCombinations
         };
       }
+      if (source === &#x27;distance&#x27;) {
+        return {
+          key: &#x27;distance&#x27;,
+          label: distanceSourceLabel(),
+          description: distanceGeneratedCombinations.length
+            ? `Combinaciones naturales generadas mediante ${distanceCrossModeLabel(distanceGeneratedCrossMode)}.`
+            : &#x27;Todavía no se ha generado un desarrollo por firma de distancias.&#x27;,
+          combinations: distanceGeneratedCombinations
+        };
+      }
       if (source === &#x27;ticket&#x27;) {
         return {
           key: &#x27;saved-ticket&#x27;,
@@ -7580,6 +8581,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       filterImportedButton.disabled = importedCombinations.length === 0;
       filterDevelopmentButton.disabled = getActiveDevelopmentCombinations().length === 0;
       filterDigitalButton.disabled = digitalGeneratedCombinations.length === 0;
+      filterDistanceButton.disabled = distanceGeneratedCombinations.length === 0;
       filterDevelopmentButton.dataset.filterSource = developmentViewSelect.value === &#x27;full&#x27;
         ? &#x27;development&#x27;
         : &#x27;reduced&#x27;;
@@ -9051,6 +10053,14 @@ html&gt;body{padding:0}&lt;/style&gt;
             : digitalGeneratedSignatureMode === &#x27;termination&#x27;
               ? &#x27;Combinaciones naturales procedentes de la firma de terminaciones y sus equivalencias.&#x27;
               : &#x27;Combinaciones naturales equivalentes procedentes de la selección P1–P6, SDCD y equivalencias.&#x27;
+        };
+      }
+
+      if (source === &#x27;distance&#x27;) {
+        return {
+          key: &#x27;distance&#x27;,
+          label: distanceSourceLabel(),
+          description: `Combinaciones naturales procedentes de ${distanceCrossModeLabel(distanceGeneratedCrossMode)}.`
         };
       }
 
@@ -12055,6 +13065,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       const evenCount = winning.filter((number) =&gt; number % 2 === 0).length;
       const lowCount = winning.filter((number) =&gt; number &lt;= 24).length;
       const gaps = winning.slice(1).map((number, index) =&gt; number - winning[index]);
+      const distanceSum = gaps.reduce((total, value) =&gt; total + value, 0);
+      const distanceEquivalents = 49 - distanceSum;
       const runs = consecutiveRuns(winning);
       const consecutivePairs = runs.reduce((total, run) =&gt; total + run.length - 1, 0);
       const decadeRanges = [
@@ -12078,7 +13090,6 @@ html&gt;body{padding:0}&lt;/style&gt;
       scrutinyAnalysisCombination.textContent = winning.map((number) =&gt; String(number).padStart(2, &#x27;0&#x27;)).join(&#x27; · &#x27;);
       scrutinyAnalysisGrid.replaceChildren(
         createScrutinyAnalysisItem(&#x27;Suma natural&#x27;, String(naturalSum)),
-        createScrutinyAnalysisItem(&#x27;Media natural&#x27;, (naturalSum / 6).toLocaleString(&#x27;es-ES&#x27;, { minimumFractionDigits: 2, maximumFractionDigits: 2 })),
         createScrutinyAnalysisItem(&#x27;Firma DR9&#x27;, roots.join(&#x27; · &#x27;)),
         createScrutinyAnalysisItem(&#x27;Suma de valores DR9&#x27;, String(digitalSum)),
         createScrutinyAnalysisItem(&#x27;SDCD&#x27;, String(digitalRoot(digitalSum))),
@@ -12089,10 +13100,11 @@ html&gt;body{padding:0}&lt;/style&gt;
         createScrutinyAnalysisItem(&#x27;Bajos / altos&#x27;, `${lowCount} / ${6 - lowCount}`),
         createScrutinyAnalysisItem(&#x27;Amplitud&#x27;, `${winning[5] - winning[0]} (${winning[0]}–${winning[5]})`),
         createScrutinyAnalysisItem(&#x27;Distancias&#x27;, gaps.join(&#x27; · &#x27;)),
+        createScrutinyAnalysisItem(&#x27;Equivalentes de la firma de distancias&#x27;, `${distanceEquivalents.toLocaleString(&#x27;es-ES&#x27;)} naturales`),
         createScrutinyAnalysisItem(&#x27;Consecutivos&#x27;, runSummary),
         createScrutinyAnalysisItem(&#x27;Distribución por decenas&#x27;, decadeSummary)
       );
-      scrutinyAnalysisNote.textContent = &#x27;Las equivalencias indican cuántas combinaciones naturales del 6/49 comparten exactamente cada firma. Bajos: 1–24 · Altos: 25–49. Las distancias se calculan entre cada número ordenado y el siguiente.&#x27;;
+      scrutinyAnalysisNote.textContent = &#x27;Las equivalencias indican cuántas combinaciones naturales del 6/49 comparten exactamente cada firma. En distancias equivalen a 49 menos la suma de las cinco distancias. Bajos: 1–24 · Altos: 25–49.&#x27;;
       scrutinyAnalysis.hidden = false;
       setScrutinyMessage(&#x27;Análisis de la combinación ganadora completado. No se han escrutado apuestas.&#x27;);
     }
@@ -12113,6 +13125,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           return developmentFullCombinations.map((combination) =&gt; [...combination]);
         case &#x27;digital&#x27;:
           return digitalGeneratedCombinations.map((combination) =&gt; [...combination]);
+        case &#x27;distance&#x27;:
+          return distanceGeneratedCombinations.map((combination) =&gt; [...combination]);
         case &#x27;ticket&#x27;:
           return loadedTicketForScrutiny
             ? loadedTicketForScrutiny.combinations.map((combination) =&gt; [...combination])
@@ -12140,6 +13154,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           return &#x27;combinaciones del desarrollo completo&#x27;;
         case &#x27;digital&#x27;:
           return `combinaciones de ${signatureSourceLabel().toLocaleLowerCase(&#x27;es-ES&#x27;)}`;
+        case &#x27;distance&#x27;:
+          return `combinaciones de ${distanceCrossModeLabel(distanceGeneratedCrossMode)}`;
         case &#x27;ticket&#x27;:
           return loadedTicketForScrutiny
             ? `combinaciones del boleto completo «${loadedTicketForScrutiny.name}»`
@@ -12171,6 +13187,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           return &#x27;Desarrollo completo&#x27;;
         case &#x27;digital&#x27;:
           return signatureSourceLabel();
+        case &#x27;distance&#x27;:
+          return distanceSourceLabel();
         case &#x27;ticket&#x27;:
           return loadedTicketForScrutiny
             ? `Mis boletos · ${loadedTicketForScrutiny.name}`
@@ -12766,6 +13784,12 @@ html&gt;body{padding:0}&lt;/style&gt;
     digitalSignatureTypeSelect.addEventListener(&#x27;change&#x27;, changeSignatureMode);
     digitalGenerateButton.addEventListener(&#x27;click&#x27;, generateDigitalDevelopment);
     digitalCombineButton.addEventListener(&#x27;click&#x27;, generateCombinedSignatureDevelopment);
+    digitalCombineDistanceButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+      void generateDistanceFromPositionalSignature(false);
+    });
+    digitalCombineAllButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+      void generateDistanceFromPositionalSignature(true);
+    });
     digitalCancelButton.addEventListener(&#x27;click&#x27;, cancelDigitalDevelopment);
     digitalPreviousButton.addEventListener(&#x27;click&#x27;, () =&gt; {
       digitalPageIndex = Math.max(0, digitalPageIndex - 1);
@@ -12795,6 +13819,108 @@ html&gt;body{padding:0}&lt;/style&gt;
     digitalClearResultButton.addEventListener(&#x27;click&#x27;, () =&gt; {
       clearDigitalGeneratedResult(
         &#x27;Se ha eliminado el desarrollo generado; la selección de la firma actual se conserva.&#x27;
+      );
+    });
+    distancePanel.addEventListener(&#x27;click&#x27;, (event) =&gt; {
+      if (distanceBusy) return;
+      const randomButton = event.target.closest(&#x27;[data-distance-randomize]&#x27;);
+      if (randomButton) {
+        randomizeDistanceSelections();
+        return;
+      }
+
+      const selectColumnButton = event.target.closest(&#x27;[data-distance-select-column]&#x27;);
+      if (selectColumnButton) {
+        const column = Number(selectColumnButton.dataset.distanceSelectColumn);
+        const allSelected = DISTANCE_VALUES.every((value) =&gt;
+          distanceSelections[column].has(value)
+        );
+        distanceSelections[column] = new Set(allSelected ? [] : DISTANCE_VALUES);
+        invalidateDistanceDevelopment(
+          allSelected
+            ? `Se han desactivado todas las distancias de ${DISTANCE_COLUMN_LABELS[column]}.`
+            : `Se han activado todas las distancias de ${DISTANCE_COLUMN_LABELS[column]}.`
+        );
+        return;
+      }
+
+      const selectRowButton = event.target.closest(&#x27;[data-distance-select-row]&#x27;);
+      if (selectRowButton) {
+        const value = Number(selectRowButton.dataset.distanceSelectRow);
+        const selectedInEveryPair = distanceSelections.every((selection) =&gt;
+          selection.has(value)
+        );
+        distanceSelections.forEach((selection) =&gt; {
+          if (selectedInEveryPair) selection.delete(value);
+          else selection.add(value);
+        });
+        invalidateDistanceDevelopment(
+          selectedInEveryPair
+            ? `Distancia ${value} desactivada en las cinco parejas.`
+            : `Distancia ${value} activada en las cinco parejas.`
+        );
+        return;
+      }
+
+      const valueButton = event.target.closest(&#x27;[data-distance-value]&#x27;);
+      if (!valueButton) return;
+      const column = Number(valueButton.dataset.distanceColumn);
+      const value = Number(valueButton.dataset.distanceValue);
+      if (distanceSelections[column].has(value)) distanceSelections[column].delete(value);
+      else distanceSelections[column].add(value);
+      invalidateDistanceDevelopment(
+        `${DISTANCE_COLUMN_LABELS[column]} actualizado: ${distanceSelections[column].size} de 44 distancias activas.`
+      );
+    });
+    distanceSumOptions.addEventListener(&#x27;click&#x27;, (event) =&gt; {
+      if (distanceBusy) return;
+      const button = event.target.closest(&#x27;[data-distance-sum]&#x27;);
+      if (!button) return;
+      const sum = Number(button.dataset.distanceSum);
+      if (distanceSumSelections.has(sum)) distanceSumSelections.delete(sum);
+      else distanceSumSelections.add(sum);
+      invalidateDistanceDevelopment(
+        distanceSumSelections.size
+          ? `${distanceSumSelections.size} sumas de firma activas.`
+          : &#x27;No hay filtro de suma: se admitirán todas las sumas compatibles.&#x27;
+      );
+    });
+    distanceSelectAllButton.addEventListener(&#x27;click&#x27;, () =&gt; setAllDistanceValues(true));
+    distanceClearSelectionButton.addEventListener(&#x27;click&#x27;, () =&gt; setAllDistanceValues(false));
+    distanceSumsAllButton.addEventListener(&#x27;click&#x27;, () =&gt; setAllDistanceSums(true));
+    distanceSumsClearButton.addEventListener(&#x27;click&#x27;, () =&gt; setAllDistanceSums(false));
+    distanceCrossModeSelect.addEventListener(&#x27;change&#x27;, () =&gt; {
+      invalidateDistanceDevelopment(
+        `Modo preparado: ${distanceCrossModeLabel(distanceCrossModeSelect.value)}.`
+      );
+    });
+    distanceGenerateButton.addEventListener(&#x27;click&#x27;, generateDistanceDevelopment);
+    distanceCancelButton.addEventListener(&#x27;click&#x27;, cancelDistanceDevelopment);
+    distancePreviousButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+      distancePageIndex = Math.max(0, distancePageIndex - 1);
+      renderDistanceResults();
+    });
+    distanceNextButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+      const pageTotal = Math.max(
+        1,
+        Math.ceil(distanceGeneratedCombinations.length / DIGITAL_PAGE_SIZE)
+      );
+      distancePageIndex = Math.min(pageTotal - 1, distancePageIndex + 1);
+      renderDistanceResults();
+    });
+    distanceCopyButton.addEventListener(&#x27;click&#x27;, copyDistanceDevelopment);
+    distanceQrButton.addEventListener(&#x27;click&#x27;, generateDistanceQr);
+    distanceReducerButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+      sendCombinationsToReducer(
+        distanceGeneratedCombinations,
+        { key: &#x27;distance&#x27;, label: distanceSourceLabel() },
+        (message, isError = false) =&gt;
+          setDistanceMessage(message, isError ? &#x27;error&#x27; : &#x27;&#x27;)
+      );
+    });
+    distanceClearResultButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+      clearDistanceGeneratedResult(
+        &#x27;Se ha eliminado el desarrollo generado; las distancias seleccionadas se conservan.&#x27;
       );
     });
     highLoadOverrideInput.addEventListener(&#x27;change&#x27;, updateHighLoadOverride);
@@ -13002,6 +14128,10 @@ html&gt;body{padding:0}&lt;/style&gt;
     });
     buildDigitalPanel();
     clearDigitalGeneratedResult();
+    buildDistancePanel();
+    buildDistanceSumOptions();
+    renderDistancePanel();
+    clearDistanceGeneratedResult();
     buildFilterControls();
     loadFilterProfilesFromBrowser();
     renderFilterProfiles();
