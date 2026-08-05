@@ -53,8 +53,8 @@
 <link rel="mask-icon" href="icono-qr-loto-maskable-512.png" color="#061127">
 <style>
 :root{color-scheme:light dark;background:light-dark(rgb(255 255 255),rgb(24 24 24))}
-html,body{margin:0;min-height:100%}
-body{box-sizing:border-box;height:100vh;height:100dvh;padding:clamp(.25rem,1vw,1rem);display:grid;grid-template-rows:auto auto minmax(0,1fr);gap:clamp(.3rem,.7vw,.7rem);overflow:hidden;background:inherit}
+html,body{margin:0;min-height:100%;overflow:hidden}
+body{box-sizing:border-box;width:100%;height:100vh;height:100dvh;padding:clamp(.25rem,1vw,1rem);display:grid;grid-template-rows:auto auto minmax(0,1fr);gap:clamp(.3rem,.7vw,.7rem);overflow:hidden;background:inherit;transform-origin:top left}
 .loto-suite-header{box-sizing:border-box;width:100%;max-width:1800px;height:clamp(96px,9vw,144px);margin:0 auto;position:relative;overflow:hidden;border:1px solid rgb(77 190 255 / 28%);border-radius:clamp(14px,1.4vw,22px);background:#061127 url("cabecera-circuitos-loto-suite.webp") center/cover no-repeat;box-shadow:0 8px 28px rgb(0 15 42 / 32%)}
 .loto-suite-header::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgb(1 10 28 / 8%),rgb(5 16 42 / 34%) 34%,rgb(5 15 38 / 32%) 66%,rgb(14 4 31 / 10%));pointer-events:none}
 .loto-suite-version{position:absolute;z-index:3;top:clamp(.55rem,1vw,.9rem);right:clamp(.65rem,1.2vw,1.15rem);display:inline-flex;align-items:center;justify-content:center;min-height:30px;padding:.28rem .72rem;border:1px solid rgb(92 210 255 / 55%);border-radius:999px;color:#dff8ff;background:rgb(3 18 43 / 78%);box-shadow:0 0 16px rgb(46 221 244 / 22%),inset 0 0 0 1px rgb(218 113 255 / 12%);font:800 clamp(.68rem,.88vw,.84rem)/1 "Segoe UI",Arial,sans-serif;letter-spacing:.055em;text-transform:uppercase;white-space:nowrap;backdrop-filter:blur(6px)}
@@ -13068,17 +13068,16 @@ html&gt;body{padding:0}&lt;/style&gt;
 
   function applyZoom() {
     updateButtons();
-    const frameDocument = frame.contentDocument;
-    if (!frameDocument?.documentElement) return;
     const scale = zoom / 100;
-    frameDocument.documentElement.style.zoom = String(scale);
-    frameDocument.documentElement.style.width = `${100 / scale}%`;
-    frameDocument.documentElement.style.overflowX = 'hidden';
-    if (frameDocument.body) {
-      frameDocument.body.style.width = '100%';
-      frameDocument.body.style.overflowX = 'hidden';
-    }
-    frameDocument.documentElement.dataset.interfaceZoom = String(zoom);
+    const inverseScale = 100 / scale;
+
+    // Amplía el lienzo disponible y escala la aplicación completa.
+    // Así cabecera, contorno e interfaz se comportan como con el zoom del navegador.
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.width = `${inverseScale}%`;
+    document.body.style.height = `${inverseScale}dvh`;
+    document.body.style.transform = scale === 1 ? '' : `scale(${scale})`;
+    document.documentElement.dataset.interfaceZoom = String(zoom);
   }
 
   function setZoom(nextZoom) {
