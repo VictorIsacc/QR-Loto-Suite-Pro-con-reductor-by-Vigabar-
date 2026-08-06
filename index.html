@@ -41,10 +41,10 @@
 </script>
 <title>QR Loto Suite V28 by Vigabar®</title>
 <meta name="theme-color" content="#061127">
-<meta name="application-name" content="QR Loto Suite V27">
+<meta name="application-name" content="QR Loto Suite V28">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="QR Loto Suite V27">
+<meta name="apple-mobile-web-app-title" content="QR Loto Suite V28">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icono-qr-loto-192.png">
@@ -53,6 +53,8 @@
 <link rel="mask-icon" href="icono-qr-loto-maskable-512.png" color="#061127">
 <style>
 :root{color-scheme:light dark;background:light-dark(rgb(255 255 255),rgb(24 24 24))}
+:root[data-theme="light"]{color-scheme:light;background:#f7f9fc}
+:root[data-theme="dark"]{color-scheme:dark;background:#181818}
 html,body{margin:0;min-height:100%;overflow:hidden}
 body{box-sizing:border-box;width:100%;height:100vh;height:100dvh;padding:clamp(.25rem,1vw,1rem);display:grid;grid-template-rows:auto auto minmax(0,1fr);gap:clamp(.3rem,.7vw,.7rem);overflow:hidden;background:inherit;transform-origin:top left}
 .loto-suite-header{box-sizing:border-box;width:100%;max-width:1800px;height:clamp(96px,9vw,144px);margin:0 auto;position:relative;overflow:hidden;border:1px solid rgb(77 190 255 / 28%);border-radius:clamp(14px,1.4vw,22px);background:#061127 url("cabecera-circuitos-loto-suite.webp") center/cover no-repeat;box-shadow:0 8px 28px rgb(0 15 42 / 32%)}
@@ -63,6 +65,7 @@ body{box-sizing:border-box;width:100%;height:100vh;height:100dvh;padding:clamp(.
 .loto-suite-zoom>*+*{border-left:1px solid rgb(92 210 255 / 28%)}
 .loto-suite-zoom button:hover,.loto-suite-zoom button:focus-visible{color:#061127;background:#70eaff;outline:0}
 .loto-suite-zoom button:disabled{opacity:.38;cursor:not-allowed}
+.loto-suite-theme{min-width:34px!important;font-size:1rem!important}
 .loto-suite-zoom-field{display:inline-flex;align-items:center;justify-content:center;min-height:30px;padding:0 .34rem;color:#e7f9ff;font:800 .72rem/1 "Segoe UI",Arial,sans-serif;letter-spacing:.02em}
 .loto-suite-zoom-field input{width:34px;padding:0;border:0;outline:0;color:inherit;background:transparent;font:inherit;text-align:right;-moz-appearance:textfield}
 .loto-suite-zoom-field input::-webkit-inner-spin-button,.loto-suite-zoom-field input::-webkit-outer-spin-button{margin:0;-webkit-appearance:none}
@@ -88,9 +91,9 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
 </style>
 </head>
 <body>
-<header class="loto-suite-header" aria-label="QR Loto Suite V27 by Vigabar">
+<header class="loto-suite-header" aria-label="QR Loto Suite V28 by Vigabar">
   <button class="loto-suite-install" id="loto-suite-install" type="button" hidden>Instalar app</button>
-  <span class="loto-suite-version" aria-label="Versión 27">V27</span>
+  <span class="loto-suite-version" aria-label="Versión 28">V28</span>
   <div class="loto-suite-zoom" role="group" aria-label="Ajustar el zoom de la aplicación">
     <button id="loto-suite-zoom-out" type="button" aria-label="Reducir el tamaño">−</button>
     <label class="loto-suite-zoom-field" for="loto-suite-zoom-value" aria-label="Porcentaje de zoom">
@@ -98,6 +101,7 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
       <span aria-hidden="true">%</span>
     </label>
     <button id="loto-suite-zoom-in" type="button" aria-label="Ampliar el tamaño">+</button>
+    <button class="loto-suite-theme" id="loto-suite-theme" type="button" aria-label="Cambiar a modo claro" title="Cambiar a modo claro">☀︎</button>
   </div>
   <div class="loto-suite-brand">
     <img class="loto-suite-logo" src="logo-loto-suite-cabecera-v2.webp" alt="Emblema de QR Loto Suite">
@@ -108,8 +112,8 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
   </div>
 </header>
 <div class="loto-suite-new" role="status">
-  <strong>NUEVO · V27</strong>
-  Desarrollo por firma de distancias, combinación entre firmas y equivalencias de distancia en el analizador.
+  <strong>NUEVO · V28</strong>
+  Selector claro/oscuro restaurado y desplegables de azar legibles en ordenador.
 </div>
 <script>
 window.setTimeout(() => {
