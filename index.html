@@ -14476,6 +14476,53 @@ html&gt;body{padding:0}&lt;/style&gt;
   applyZoom();
 })();
 </script>
+<script>
+(() => {
+  const frame = document.querySelector('#loto-suite-frame');
+  const themeButton = document.querySelector('#loto-suite-theme');
+  if (!frame || !themeButton) return;
+
+  const storageKey = 'qr-loto-suite.theme.v1';
+  const systemTheme = () => window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  let theme = systemTheme();
+  try {
+    const stored = window.localStorage.getItem(storageKey);
+    if (stored === 'light' || stored === 'dark') theme = stored;
+  } catch (_) {
+    // Se mantiene el tema del sistema si el navegador no permite guardar la opción.
+  }
+
+  function applyTheme(nextTheme) {
+    theme = nextTheme === 'light' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = theme;
+    const themeColor = document.querySelector('meta[name="theme-color"]');
+    themeColor?.setAttribute('content', theme === 'light' ? '#f7f9fc' : '#061127');
+    themeButton.textContent = theme === 'light' ? '☾' : '☀︎';
+    themeButton.setAttribute(
+      'aria-label',
+      theme === 'light' ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro'
+    );
+    themeButton.title = theme === 'light' ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro';
+    try {
+      frame.contentDocument?.documentElement?.setAttribute('data-theme', theme);
+    } catch (_) {
+      // El evento load volverá a aplicar el tema cuando el iframe esté disponible.
+    }
+  }
+
+  applyTheme(theme);
+  frame.addEventListener('load', () => applyTheme(theme));
+  themeButton.addEventListener('click', () => {
+    const nextTheme = theme === 'light' ? 'dark' : 'light';
+    try {
+      window.localStorage.setItem(storageKey, nextTheme);
+    } catch (_) {
+      // El cambio sigue activo durante esta sesión.
+    }
+    applyTheme(nextTheme);
+  });
+})();
+</script>
 <!-- Cloudflare Web Analytics -->
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"33d85690239b48889c49ede73f7602ba"}'></script>
 <!-- End Cloudflare Web Analytics -->
