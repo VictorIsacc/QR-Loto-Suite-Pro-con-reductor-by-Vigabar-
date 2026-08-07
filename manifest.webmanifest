@@ -1,7 +1,7 @@
 {
   "id": "./",
-  "name": "QR Loto Suite V29 by Vigabar",
-  "short_name": "QR Loto Suite V29",
+  "name": "QR Loto Suite V30 by Vigabar",
+  "short_name": "QR Loto Suite V30",
   "description": "Generador, gestor, escrutador y creador de códigos QR para combinaciones 6/49.",
   "lang": "es",
   "dir": "ltr",
@@ -41,3 +41,4 @@
     }
   ]
 }
+
