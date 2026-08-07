@@ -1,4 +1,4 @@
-const CACHE_NAME = "qr-loto-suite-v28-revision-2-v1";
+const CACHE_NAME = "qr-loto-suite-v29-core-v1";
 const CORE_FILES = [
   "./",
   "./index.html",
@@ -59,4 +59,3 @@ self.addEventListener("fetch", (event) => {
       .catch(() => caches.match(request))
   );
 });
-
