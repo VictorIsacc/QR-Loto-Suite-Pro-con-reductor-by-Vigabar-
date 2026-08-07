@@ -778,7 +778,272 @@
 
     <section class="app-introduction" aria-labelledby="virtudes-aplicacion">
       <h2 id="virtudes-aplicacion">Una aplicación versátil para trabajar combinaciones 6/49</h2>
-      <p>QR Loto Suite reúne distintas formas de crear combinaciones: sorteo mediante bombo, fijos y semifijos, importación desde TXT o portapapeles, desarrollos c…7442 tokens truncated…s.</li>
+      <p>QR Loto Suite reúne distintas formas de crear combinaciones: sorteo mediante bombo, fijos y semifijos, importación desde TXT o portapapeles, desarrollos completos, reducciones y firmas digitales, de terminación o de distancias. Cada método puede utilizarse de forma independiente o combinarse con otros criterios; después, los resultados pueden filtrarse, reducirse, copiarse, convertirlos en códigos QR o llevarse al escrutador conservando siempre su procedencia.</p>
+    </section>
+
+    <section class="ai-disclosure" aria-labelledby="aviso-ia">
+      <h2 id="aviso-ia">Aviso sobre recursos visuales y cálculos</h2>
+      <p>La imagen de inicio y algunos recursos gráficos de la aplicación han sido creados o asistidos mediante inteligencia artificial. Se utilizan únicamente como elementos visuales y no representan resultados oficiales, datos reales ni predicciones. La generación de combinaciones, los filtros, las reducciones, las firmas, el análisis y el escrutinio se realizan mediante algoritmos y fórmulas matemáticas programados en la propia aplicación; no dependen de una predicción de IA y no garantizan ningún premio.</p>
+    </section>
+
+    <nav class="jump-nav" aria-label="Índice de instrucciones">
+      <a class="jump-link" href="#sorteo">Sorteo</a>
+      <a class="jump-link" href="#qr">Combinaciones y QR</a>
+      <a class="jump-link" href="#reglas">Fijos y semifijos</a>
+      <a class="jump-link" href="#filtros">Filtros</a>
+      <a class="jump-link" href="#reducciones">Desarrollos y reducciones</a>
+      <a class="jump-link" href="#suma-digital">Firmas y distancias</a>
+      <a class="jump-link" href="#nemesis-concepto">Némesis</a>
+      <a class="jump-link" href="#portapapeles">TXT y portapapeles</a>
+      <a class="jump-link" href="#boletos">Mis boletos</a>
+      <a class="jump-link" href="#escrutador">Escrutador</a>
+      <a class="jump-link" href="#movil">Uso móvil</a>
+    </nav>
+
+    <p class="final-note">En la aplicación, la barra <strong>«Acceso rápido»</strong> permite ir directamente a las zonas principales, incluido el nuevo modo Némesis, y abrir estas instrucciones. La cabecera V30 incorpora un control de zoom propio y un selector claro/oscuro que funcionan tanto en móvil como en ordenador, incluso cuando la aplicación está instalada. Justo después aparece la autorización <strong>«Permitir operaciones de alta carga bajo mi responsabilidad»</strong>, que mantiene la protección activa por defecto y solo permite superar sus límites preventivos durante la sesión actual. El aviso de novedades situado bajo la cabecera se recoge automáticamente después de 15 segundos para despejar la pantalla. Al final de cada zona encontrarás <strong>«↑ Volver al inicio»</strong>.</p>
+
+    <section class="guide-card" id="sorteo">
+      <div class="illustration" aria-label="Ilustración del bombo extrayendo seis bolas y ordenándolas">
+        <div class="mini-title"><span>Bombo</span><span>49 bolas</span></div>
+        <div class="drum-scene">
+          <div class="drum" aria-hidden="true">
+            <span class="mini-ball">1</span><span class="mini-ball">7</span><span class="mini-ball">14</span><span class="mini-ball">23</span><span class="mini-ball">41</span>
+            <span class="mini-ball">6</span><span class="mini-ball">18</span><span class="mini-ball">32</span><span class="mini-ball">9</span><span class="mini-ball">27</span>
+            <span class="mini-ball">45</span><span class="mini-ball">12</span><span class="mini-ball">36</span><span class="mini-ball">3</span><span class="mini-ball">49</span>
+          </div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div class="result-grid" aria-hidden="true">
+            <span class="result-ball">07</span><span class="result-ball">14</span><span class="result-ball">18</span>
+            <span class="result-ball">23</span><span class="result-ball">36</span><span class="result-ball">41</span>
+          </div>
+        </div>
+      </div>
+      <div class="copy">
+        <span class="step-number">1</span>
+        <h2>Realizar un sorteo aleatorio</h2>
+        <ol class="steps">
+          <li>Pulsa <strong>«Extraer bola»</strong>. El bombo gira y mezcla las bolas antes de cada extracción.</li>
+          <li>Repite hasta obtener las seis bolas. Ningún número puede repetirse.</li>
+          <li>La aplicación muestra el orden de salida y la combinación ordenada de menor a mayor.</li>
+          <li>En <strong>«Al guardar»</strong> decide si aceptas cualquier combinación o si debe cumplir todos los filtros activos.</li>
+          <li>Pulsa <strong>«Guardar combinación»</strong> si quieres conservarla. Si todavía quedan huecos en el boleto, <strong>«Nuevo sorteo»</strong> quedará resaltado para preparar la siguiente.</li>
+          <li>En teléfonos, pulsa <strong>«Ver combinaciones guardadas»</strong> para bajar directamente desde el bombo hasta la lista.</li>
+        </ol>
+        <div class="tip">«Nuevo sorteo» devuelve las 49 bolas al bombo y recupera su aspecto normal al comenzar la siguiente extracción.</div>
+      </div>
+    </section>
+
+    <section class="guide-card" id="qr">
+      <div class="illustration" aria-label="Ilustración de combinaciones guardadas que se convierten en códigos QR">
+        <div class="mini-title"><span>Combinaciones guardadas</span><span>Hasta 8 por QR</span></div>
+        <div class="saved-flow">
+          <div class="ticket-lines" aria-hidden="true">
+            <div class="ticket-line"><span>03</span><span>11</span><span>18</span><span>27</span><span>35</span><span>46</span></div>
+            <div class="ticket-line"><span>07</span><span>14</span><span>23</span><span>31</span><span>40</span><span>49</span></div>
+            <div class="ticket-line"><span>01</span><span>12</span><span>21</span><span>29</span><span>38</span><span>44</span></div>
+          </div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div class="qr-symbol" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+      <div class="copy">
+        <span class="step-number">2</span>
+        <h2>Guardar combinaciones y generar QR</h2>
+        <ol class="steps">
+          <li>Guarda las combinaciones aleatorias que quieras utilizar.</li>
+          <li>La zona <strong>«Combinaciones guardadas»</strong> reúne únicamente las apuestas procedentes del bombo o del generador de fijos y semifijos. La modalidad del QR se elige después.</li>
+          <li>Pulsa <strong>«Preparar QR»</strong>. Lo mismo ocurre al preparar códigos desde fijos y semifijos, TXT o portapapeles, un desarrollo completo o una reducción.</li>
+          <li>La aplicación te llevará a <strong>«Configurar y generar QR»</strong>, donde se muestran la procedencia y el número total de apuestas que vas a utilizar.</li>
+          <li>Comprueba expresamente si quieres <strong>Bonoloto</strong> o <strong>La Primitiva</strong> y selecciona «Un día» o «Semana en curso».</li>
+          <li>En La Primitiva también debes comprobar el reintegro y activar o desactivar Joker. Su logotipo rojo aparecerá junto al de La Primitiva únicamente cuando el QR incluya Joker.</li>
+          <li>En <strong>«Coste del boleto o QR»</strong> puedes mostrar u ocultar el cálculo estimado. La configuración central anticipa el coste total antes de confirmar.</li>
+          <li>Pulsa <strong>«Confirmar y generar QR»</strong>. Solo entonces se crean los códigos y la aplicación se desplaza automáticamente hasta el primero; utiliza «Anterior» y «Siguiente» cuando haya más de uno.</li>
+          <li>En el panel de los QR se muestra la <strong>procedencia de las combinaciones</strong>: bombo, fijos y semifijos, archivo TXT, portapapeles, desarrollo completo, reducción, firma posicional, firma de distancias o resultado de la zona de filtros.</li>
+          <li>En <strong>«Conservar este boleto completo»</strong> puedes ponerle un nombre, guardarlo en «Mis boletos», copiarlo o descargar una copia TXT.</li>
+          <li>El boleto completo conserva las apuestas, todos sus QR, modalidad, periodo, reintegro, Joker y procedencia; no es lo mismo que copiar únicamente las combinaciones.</li>
+        </ol>
+        <div class="tip">La confirmación central evita generar por descuido un QR de otra modalidad. Bonoloto cuesta 0,50 € por combinación y sorteo. Para un único sorteo exige al menos 2 combinaciones; una sola combinación únicamente es válida con «Semana en curso» cuando quedan 2 o más sorteos. La Primitiva cuesta 1 € por combinación y el Joker añade 1 € por QR y sorteo.</div>
+      </div>
+    </section>
+
+    <section class="guide-card" id="reglas">
+      <div class="illustration" aria-label="Ilustración del contador de posiciones y reglas de números fijos y semifijos">
+        <div class="mini-title"><span>Ejemplo · 20 combinaciones</span><span>120 posiciones</span></div>
+        <div class="position-board">
+          <div class="position-values">
+            <div><small>Total</small><strong>120</strong></div>
+            <div><small>Fijos</small><strong>40</strong></div>
+            <div><small>Semifijos</small><strong>60</strong></div>
+            <div><small>Por cubrir</small><strong>20</strong></div>
+          </div>
+          <div class="position-track" aria-hidden="true"><span class="fixed"></span><span class="semi"></span><span class="random"></span></div>
+          <div class="rules" aria-hidden="true">
+            <div class="rule-chip"><strong>01</strong>Fijo · 20</div>
+            <div class="rule-chip"><strong>14</strong>Fijo · 20</div>
+            <div class="rule-chip"><strong>18</strong>Semifijo · 10</div>
+            <div class="rule-chip"><strong>24</strong>Semifijo · 12</div>
+            <div class="rule-chip"><strong>40</strong>Semifijo · 8</div>
+            <div class="rule-chip"><strong>46</strong>Semifijo · 10</div>
+          </div>
+        </div>
+      </div>
+      <div class="copy">
+        <span class="step-number">3</span>
+        <h2>Crear de 1 a 100 combinaciones con reglas</h2>
+        <ol class="steps">
+          <li>Indica cuántas combinaciones deseas generar.</li>
+          <li>Un <strong>fijo</strong> aparece en todas; un <strong>semifijo</strong> aparece exactamente las veces indicadas.</li>
+          <li>Comprueba el contador: las posiciones «Por cubrir» se completarán con números aleatorios.</li>
+          <li>En <strong>«Generación»</strong> elige «Sin filtros» o «Aplicar filtros activos».</li>
+          <li>Pulsa <strong>«Generar»</strong>. El programa prueba distintos repartos para evitar combinaciones repetidas.</li>
+          <li>Pulsa <strong>«Ver combinaciones generadas»</strong> para desplazarte directamente hasta la lista donde se han almacenado.</li>
+          <li>Usa <strong>«Copiar fijos/semifijos»</strong> para llevar todas las combinaciones al portapapeles.</li>
+        </ol>
+        <div class="tip">Si aparecen posiciones sobrantes o no existen suficientes combinaciones distintas, reduce fijos, apariciones o la cantidad solicitada.</div>
+      </div>
+    </section>
+
+    <section class="guide-card" id="filtros">
+      <div class="illustration" aria-label="Ilustración de varios filtros aplicados a una lista de combinaciones">
+        <div class="mini-title"><span>Filtros activos</span><span>Una configuración común</span></div>
+        <div class="position-board">
+          <div class="rules" aria-hidden="true">
+            <div class="rule-chip"><strong>1</strong>Bajos y altos</div>
+            <div class="rule-chip"><strong>2</strong>Decenas</div>
+            <div class="rule-chip"><strong>5</strong>Raíces digitales</div>
+            <div class="rule-chip"><strong>6</strong>Pares e impares</div>
+            <div class="rule-chip"><strong>8</strong>Sumas</div>
+            <div class="rule-chip"><strong>9</strong>Terminaciones</div>
+          </div>
+          <div class="position-track" aria-hidden="true"><span class="fixed" style="width:72%"></span><span class="random" style="width:28%"></span></div>
+          <div class="position-values">
+            <div><small>Entrada</small><strong>120</strong></div>
+            <div><small>Cumplen</small><strong>86</strong></div>
+            <div><small>Eliminadas</small><strong>34</strong></div>
+            <div><small>Salida</small><strong>QR</strong></div>
+          </div>
+        </div>
+      </div>
+      <div class="copy">
+        <span class="step-number">4</span>
+        <h2>Configurar y aplicar filtros</h2>
+        <ol class="steps">
+          <li>Entra en <strong>«Filtros»</strong> desde el segundo botón del acceso rápido y configura los criterios una sola vez.</li>
+          <li>Activa únicamente las tarjetas que quieras exigir. Se incluyen bajos/altos, decenas y figuras, distancias, grupos de números, raíces digitales y figuras, pares/impares, números seguidos, rangos de sumas, terminaciones y figuras, y posiciones.</li>
+          <li>En <strong>«Grupos de números»</strong> puedes definir hasta 10 grupos. Escribe un rango con un guion entre el número menor y el mayor —por ejemplo, <strong>1-9</strong>— y separa los números sueltos mediante espacios o comas —por ejemplo, <strong>3, 12 27</strong>—.</li>
+          <li>En <strong>«Mis configuraciones de filtros»</strong> escribe un nombre y pulsa <strong>«Guardar configuración»</strong>. Puedes conservar varias plantillas; si vuelves a guardar con el mismo nombre, se actualizará la existente.</li>
+          <li>Para recuperar una plantilla, selecciónala y pulsa <strong>«Cargar»</strong>. Sus valores y filtros activos volverán al panel; después podrás aplicarlos a cualquier procedencia. «Eliminar» requiere una segunda pulsación de confirmación.</li>
+          <li>Pulsa <strong>«Descargar respaldo»</strong> para exportar todas las configuraciones a un archivo. Con <strong>«Importar respaldo»</strong> podrás recuperarlas si se borran los datos del navegador o trasladarlas a otro dispositivo; las configuraciones con el mismo nombre se actualizarán y las demás se añadirán.</li>
+          <li>En el bombo, fijos/semifijos, TXT/portapapeles y desarrollos/reducciones utiliza su selector para trabajar <strong>con los filtros activos o sin ellos</strong>.</li>
+          <li>También puedes filtrar después una lista ya creada mediante los botones «Filtrar» de cada zona, incluidos los desarrollos por raíz digital, terminaciones posicionales o firma de distancias. La cabecera de filtros muestra siempre la <strong>procedencia seleccionada</strong> y la cantidad de combinaciones disponibles.</li>
+          <li>Pulsa <strong>«Aplicar filtros»</strong>. Se mostrará cuántas combinaciones elimina cada criterio y una lista paginada de las que cumplen todos.</li>
+          <li>El resultado filtrado puede copiarse, enviarse a la configuración QR, llevarse al escrutador o <strong>pasarse directamente al reductor</strong>; su procedencia seguirá identificada.</li>
+        </ol>
+        <div class="tip"><strong>Importante:</strong> las configuraciones se guardan localmente en el navegador y siguen disponibles al volver a abrir la aplicación, pero pueden perderse al borrar sus datos, usar navegación privada, cambiar de navegador o utilizar otro dispositivo. Conserva el archivo de respaldo fuera del navegador para poder restaurarlas. Si aplicas filtros durante una reducción, la cobertura y el desglose se calculan sobre los casos que cumplen esos filtros. La aplicación lo identifica como <strong>«garantía condicionada a los filtros activos»</strong>; no debe interpretarse como garantía sobre todos los casos del desarrollo original. Por defecto, el filtrado posterior aplica un límite preventivo de 200.000 combinaciones en móvil y 1.000.000 en ordenador. La autorización de alta carga permite superarlo bajo responsabilidad del usuario.</div>
+      </div>
+    </section>
+
+    <section class="guide-card" id="reducciones">
+      <div class="illustration" aria-label="Ilustración de doce números que se transforman en una reducción matemática comprobada">
+        <div class="mini-title"><span>De 7 a 49 números</span><span>K=6 · M=6 · L=1</span></div>
+        <div class="reduction-scene">
+          <div class="reduction-numbers" aria-hidden="true">
+            <span class="reduction-number">01</span><span class="reduction-number">05</span><span class="reduction-number">09</span><span class="reduction-number">14</span>
+            <span class="reduction-number">18</span><span class="reduction-number">23</span><span class="reduction-number">27</span><span class="reduction-number">31</span>
+            <span class="reduction-number">36</span><span class="reduction-number">40</span><span class="reduction-number">44</span><span class="reduction-number">49</span>
+          </div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div class="reduction-result" aria-hidden="true">
+            <div class="reduction-formula">C(12,6,5,6,1)=B</div>
+            <div class="reduction-ticket"><span>01</span><span>09</span><span>18</span><span>27</span><span>36</span><span>44</span></div>
+            <div class="reduction-ticket"><span>05</span><span>14</span><span>23</span><span>31</span><span>40</span><span>49</span></div>
+            <div class="reduction-ticket"><span>01</span><span>14</span><span>18</span><span>31</span><span>44</span><span>49</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="copy">
+        <span class="step-number">5</span>
+        <h2>Crear un desarrollo completo o una reducción</h2>
+        <ol class="steps">
+          <li>Selecciona manualmente entre <strong>7 y 49 números</strong>, o indica la cantidad y pulsa <strong>«Seleccionar aleatoriamente»</strong>.</li>
+          <li>Cada número tiene tres estados: primer toque, seleccionado; segundo toque, <strong>fijo</strong>; tercer toque, eliminado. Puedes marcar hasta 5 fijos, que aparecerán en todas las apuestas.</li>
+          <li>Marca uno de los dos modos excluyentes: <strong>«Reducción»</strong> o <strong>«Desarrollo completo»</strong>.</li>
+          <li>En <strong>«Uso de los filtros configurados»</strong> decide si el cálculo debe respetar los filtros activos.</li>
+          <li>Pulsa <strong>«Calcular»</strong>; el mismo botón genera el desarrollo completo o busca la reducción según el modo seleccionado.</li>
+          <li>Antes de generar se muestra el total exacto de casos, la carga estimada y si el cálculo es viable en el navegador. Si existen fijos, solo se desarrollan las apuestas que los contienen.</li>
+          <li>En «Reducción», elige T=5, 4, 3 o 2 y el método. K=6, M=6 y L=1 permanecen fijos.</li>
+          <li>Elige entre <strong>«Garantizada · 100 %»</strong> o <strong>«Por porcentaje»</strong>. En el segundo caso indica la cobertura mínima que deben conservar los ciclos.</li>
+          <li>Con ciclos, observa el menor B y pulsa <strong>«Detener ciclos»</strong> cuando quieras conservarlo. «Aleatorio · un solo intento» ofrece un resultado más rápido.</li>
+          <li>En las reducciones, consulta el <strong>desglose por categorías</strong> para conocer la cobertura acumulada y los premios posibles de 6, 5, 4, 3, 2, 1 o 0 aciertos. Si el sistema es extraordinariamente grande, se muestra un aviso con los casos, apuestas y comparaciones estimadas. Desde ese aviso puedes solicitar voluntariamente el desglose completo o cancelar el cálculo sin perder la reducción.</li>
+          <li>Cuando hay fijos puedes alternar entre el <strong>desglose condicionado</strong>, que supone acertados todos los fijos, y el <strong>desglose general</strong> sobre todos los posibles resultados, siempre que el tamaño permita calcular ambos con seguridad.</li>
+          <li>Si hay filtros activos, la notación, la verificación y los mensajes indican que la garantía y el desglose están condicionados por esos filtros.</li>
+          <li>Después puedes copiar el resultado, generar sus QR o seleccionarlo como origen en el escrutador.</li>
+          <li>También puedes abrir el reductor desde <strong>combinaciones guardadas</strong>, <strong>fijos y semifijos</strong>, <strong>TXT o portapapeles</strong>, <strong>Filtros</strong>, <strong>Firmas posicionales</strong> y <strong>Firma de distancias</strong>. El recuadro «Universo recibido» identifica la procedencia y la cantidad exacta de combinaciones.</li>
+          <li>Cuando el reductor recibe una lista, trabaja únicamente sobre esas combinaciones y conserva sus condiciones de origen; <strong>no crea un desarrollo completo nuevo</strong> a partir de todos sus números distintos. La garantía mostrada queda condicionada a que el resultado ganador pertenezca a ese universo recibido.</li>
+          <li>Pulsa <strong>«Limpiar generador»</strong> para borrar a la vez el universo recibido, los números seleccionados y cualquier reducción o desarrollo generado. Después podrás volver a usar la selección manual.</li>
+        </ol>
+        <div class="tip">
+          <strong>Inconvenientes de trabajar con muchos números</strong>
+          <ul>
+            <li>El crecimiento no es proporcional: el desarrollo completo contiene 38.760 apuestas con 20 números, 177.100 con 25, 593.775 con 30, 3.838.380 con 40 y 13.983.816 con los 49.</li>
+            <li>Una reducción evita mostrar todo el desarrollo, pero para garantizar su cobertura debe comprobar una gran cantidad de casos. Cuantos más números se eligen y más alta es la garantía —por ejemplo, una reducida al 5—, mayores son el tiempo, la memoria y el número probable de apuestas resultantes.</li>
+            <li>Durante un cálculo exigente el navegador puede responder con lentitud. En un móvil existe más riesgo de calentamiento, consumo elevado de batería, falta de memoria o bloqueo y cierre forzado de la página.</li>
+            <li>La aplicación muestra el total antes de generar, estima la carga y bloquea preventivamente las operaciones demasiado grandes. Si necesitas realizarlas o pasar un desarrollo grande al reductor, marca <strong>«Permitir operaciones de alta carga bajo mi responsabilidad»</strong>. La autorización también se aplica a filtros y firmas posicionales, pero puede provocar lentitud, calentamiento, falta de memoria, bloqueo o cierre del navegador.</li>
+            <li>La autorización de alta carga solo dura durante la sesión actual: al recargar, cerrar o volver a abrir la aplicación, la protección queda activada de nuevo. Cuando el desglose detallado resulta demasiado pesado, puedes calcularlo voluntariamente o cancelarlo sin perder la reducción y la cobertura ya comprobada.</li>
+            <li>Los fijos pueden hacer viable una selección grande porque reducen los casos condicionados. Por ejemplo, 40 números sin fijos producen 3.838.380 casos, mientras que 40 números con 3 fijos dejan 7.770 casos que contienen esos tres fijos.</li>
+          </ul>
+          La cobertura por porcentaje se comprueba sobre casos reales y cada ciclo conserva el menor B encontrado, aunque no se afirma haber demostrado el mínimo absoluto matemático.
+        </div>
+      </div>
+    </section>
+
+    <section class="guide-card" id="suma-digital">
+      <div class="illustration" aria-label="Ilustración del panel de firmas por posición">
+        <div class="mini-title"><span>P1–P6 · raíz o terminación</span><span>Desarrollo natural equivalente</span></div>
+        <div class="position-board">
+          <div class="digital-guide-scroll">
+            <div class="digital-guide-grid" aria-hidden="true">
+              <div class="digital-guide-column"><strong>P1</strong><span class="digital-guide-roots">1 2 3 4 5 6 7 8 9</span></div>
+              <div class="digital-guide-column"><strong>P2</strong><span class="digital-guide-roots">1 2 3 4 5 6 7 8 9</span></div>
+              <div class="digital-guide-column"><strong>P3</strong><span class="digital-guide-roots">1 2 3 4 5 6 7 8 9</span></div>
+              <div class="digital-guide-column"><strong>P4</strong><span class="digital-guide-roots">1 2 3 4 5 6 7 8 9</span></div>
+              <div class="digital-guide-column"><strong>P5</strong><span class="digital-guide-roots">1 2 3 4 5 6 7 8 9</span></div>
+              <div class="digital-guide-column"><strong>P6</strong><span class="digital-guide-roots">1 2 3 4 5 6 7 8 9</span></div>
+              <div class="digital-guide-column"><strong>SDCD</strong><span class="digital-guide-roots">1 2 3 4 5 6 7 8 9</span></div>
+            </div>
+          </div>
+          <div class="digital-guide-equivalences" aria-hidden="true">
+            <span>1 eq.</span><span>7 eq.</span><span>28 eq.</span><span>84 eq.</span><span>210 eq.</span>
+          </div>
+        </div>
+      </div>
+      <div class="copy">
+        <span class="step-number">6</span>
+        <h2>Desarrollar combinaciones por firmas posicionales y distancias</h2>
+        <ol class="steps">
+          <li>Elige el tipo de firma: <strong>«Raíz digital por posición»</strong> o <strong>«Terminación por posición»</strong>. P1 siempre representa el número natural menor y P6 el mayor.</li>
+          <li>Todos los valores comienzan <strong>desactivados</strong>, pero puedes pulsar directamente cualquiera de ellos para seleccionarlo; no es necesario usar antes «Activar todo».</li>
+          <li>La marca ✓ de una columna tiene dos estados: la primera pulsación activa todos sus valores y la segunda los desactiva. También puedes indicar cuántos quieres y usar <strong>«Azar»</strong>, o emplear los botones generales de activar y desactivar.</li>
+          <li>Los valores situados en la columna izquierda también son botones de fila. Al pulsar, por ejemplo, <strong>«Nº 4»</strong>, el 4 se activa simultáneamente en P1–P6; una segunda pulsación lo desactiva en las seis posiciones. En raíz digital esta acción no modifica SDCD.</li>
+          <li>En modo <strong>raíz digital</strong>, las columnas P1–P6 y SDCD ofrecen los valores 1–9. SDCD representa la raíz digital de la suma de las seis raíces posicionales.</li>
+          <li>En <strong>«Cantidad de equivalencias naturales admitida»</strong> puedes filtrar por 1, 7, 28, 84 o 210. Si no marcas ninguna cantidad, se admitirán todas; por tanto, este filtro no impide calcular una firma configurada manualmente.</li>
+          <li>En modo <strong>terminación</strong>, las columnas P1–P6 ofrecen los valores 0–9 y no se utiliza SDCD. Las firmas de terminación también pueden representar exactamente 1, 7, 28, 84 o 210 combinaciones naturales, por lo que puedes filtrarlas mediante las mismas cantidades.</li>
+          <li>Pulsa <strong>«Calcular y generar desarrollo»</strong>. La aplicación cuenta primero el total exacto y, por defecto, solo genera la lista si cabe dentro del límite preventivo del dispositivo. Para un cálculo mayor debes autorizar previamente la alta carga bajo tu responsabilidad.</li>
+          <li>Para cruzar los dos sistemas posicionales, configura primero una firma, cambia el selector y configura la otra. Pulsa <strong>«Combinar digital + terminación»</strong> para conservar exclusivamente las apuestas que cumplan simultáneamente la raíz digital, la SDCD, las terminaciones y las equivalencias de ambos modos.</li>
+          <li>El modo <strong>«Némesis»</strong> es el cruce completo de las tres firmas: digital posicional (incluida SDCD), terminación por posición y distancias entre parejas contiguas. Configura los tres paneles y pulsa <strong>«Calcular Némesis»</strong> o «Némesis · las tres firmas configuradas» para obtener únicamente la intersección común.</li>
+          <li>La columna izquierda turquesa de los paneles posicionales actúa sobre todas las posiciones P1–P6; los valores activados dentro de cada posición aparecen en amarillo.</li>
+          <li>En <strong>«Desarrollo por firma de distancias»</strong> selecciona los valores admitidos para D1–2, D2–3, D3–4, D4–5 y D5–6. Cada distancia es la diferencia entre dos números naturales contiguos después de ordenar la combinación.</li>
+          <li>La firma de distancias debe sumar entre 5 y 48. Una firma exacta representa <strong>49 menos la suma de sus cinco distancias</strong> combinaciones naturales; el desglose presenta las firmas y equivalencias agrupadas por suma.</li>
+          <li>Puedes limitar las sumas admitidas o dejar todas sin marcar para aceptar cualquier suma compatible. La columna izquierda turquesa activa un mismo valor en las cinco parejas y los valores activados de cada pareja aparecen en amarillo.</li>
+          <li>La segunda celda de la columna izquierda es <strong>«Orden SD»</strong>. Al pulsarla, las distancias naturales 1–44 se agrupan por su raíz digital (SD1–SD9) y cada fila se identifica, por ejemplo, como «19 · SD1». Pulsa de nuevo, ahora <strong>«Orden natural»</strong>, para volver al orden 1–44. El cambio solo modifica la presentación y conserva las selecciones.</li>
           <li>Con el panel en <strong>«Orden SD»</strong>, pulsa tres veces seguidas una fila para activar en las cinco parejas todas las distancias equivalentes a ese SD. Una cuarta pulsación seguida las desactiva; después puedes corregir cualquier pareja individualmente.</li>
           <li>En el filtro <strong>«Distancias»</strong> también puedes limitar los máximos de cada SD1–SD9 y seleccionar figuras SD, igual que en el filtro de raíces digitales.</li>
           <li>En el selector de combinación elige entre solo distancias, distancias + firma digital, distancias + terminaciones o <strong>«Némesis · las tres firmas configuradas»</strong>. También puedes iniciar estos cruces desde los botones específicos de la zona posicional o desde el acceso rápido Némesis.</li>
@@ -962,4 +1227,3 @@
   </script>
 </body>
 </html>
-
