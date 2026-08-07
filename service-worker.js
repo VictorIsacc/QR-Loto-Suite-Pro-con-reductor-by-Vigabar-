@@ -9,7 +9,7 @@ const CORE_FILES = [
   "./icono-qr-loto-192.png",
   "./icono-qr-loto-512.png",
   "./icono-qr-loto-maskable-512.png",
-  "./nemesis-splash.png"
+  "./nemesis-splash.jpg"
 ];
 
 self.addEventListener("install", (event) => {
