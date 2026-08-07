@@ -13409,6 +13409,33 @@ html&gt;body{padding:0}&lt;/style&gt;
       return createScrutinySplitFigureItem(label, values, counts);
     }
 
+    function countNemesisEquivalentCombinations(winning) {
+      const digitalActors = new Set(winning.map(digitalRoot));
+      const terminationActors = new Set(winning.map((number) =&gt; number % 10));
+      const distanceActors = new Set(
+        winning.slice(1).map((number, index) =&gt; digitalRoot(number - winning[index]))
+      );
+      const memo = new Map();
+
+      function countFrom(position, previousNumber) {
+        if (position === 6) return 1;
+        const key = `${position}|${previousNumber}`;
+        if (memo.has(key)) return memo.get(key);
+        let total = 0;
+        const maximum = 49 - (5 - position);
+        for (let number = previousNumber + 1; number &lt;= maximum; number += 1) {
+          if (!digitalActors.has(digitalRoot(number))) continue;
+          if (!terminationActors.has(number % 10)) continue;
+          if (position &gt; 0 &amp;&amp; !distanceActors.has(digitalRoot(number - previousNumber))) continue;
+          total += countFrom(position + 1, number);
+        }
+        memo.set(key, total);
+        return total;
+      }
+
+      return countFrom(0, 0);
+    }
+
     function analyseScrutinyWinningCombination() {
       const winning = parseScrutinyWinningCombination();
       if (!winning) {
@@ -13439,6 +13466,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       const digitalActors = digitalActorCounts.filter((count) =&gt; count &gt; 0).length;
       const terminationActors = terminationActorCounts.filter((count) =&gt; count &gt; 0).length;
       const distanceDigitalActors = distanceDigitalActorCounts.filter((count) =&gt; count &gt; 0).length;
+      const nemesisEquivalents = countNemesisEquivalentCombinations(winning);
       const runs = consecutiveRuns(winning);
       const consecutivePairs = runs.reduce((total, run) =&gt; total + run.length - 1, 0);
       const decadeRanges = [
@@ -13477,6 +13505,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         createScrutinyAnalysisItem(&#x27;Actores SD de distancia&#x27;, `${distanceDigitalActors}/9`),
         createScrutinyActorFigureItem(&#x27;Figura de actores SD de distancia&#x27;, [1, 2, 3, 4, 5, 6, 7, 8, 9], distanceDigitalActorCounts),
         createScrutinyAnalysisItem(&#x27;Equivalentes de la firma de distancias&#x27;, `${distanceEquivalents.toLocaleString(&#x27;es-ES&#x27;)} naturales`),
+        createScrutinyAnalysisItem(&#x27;Equivalentes Némesis&#x27;, `${nemesisEquivalents.toLocaleString(&#x27;es-ES&#x27;)} naturales`),
         createScrutinyAnalysisItem(&#x27;Consecutivos&#x27;, runSummary),
         createScrutinySplitFigureItem(
           &#x27;Distribución por decenas&#x27;,
@@ -13484,7 +13513,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           decadeCounts
         )
       );
-      scrutinyAnalysisNote.textContent = &#x27;La figura de actores escribe los recuentos en orden ascendente: 9 dígitos para DR9 y SD de distancia, y 10 para terminaciones 0–9. Por ejemplo, 010020011 significa 1 valor SD2, 2 valores SD5, 1 valor SD8 y 1 valor SD9. Los actores indican cuántos valores distintos intervienen de los 9 digitales, 10 terminaciones y 9 SD de distancia. La firma de distancias natural muestra las cinco diferencias entre números contiguos; la digital convierte cada diferencia a su raíz digital. Las equivalencias indican cuántas combinaciones naturales del 6/49 comparten exactamente cada firma natural. Bajos: 1–24 · Altos: 25–49.&#x27;;
+      scrutinyAnalysisNote.textContent = &#x27;La figura de actores escribe los recuentos en orden ascendente: 9 dígitos para DR9 y SD de distancia, y 10 para terminaciones 0–9. Por ejemplo, 010020011 significa 1 valor SD2, 2 valores SD5, 1 valor SD8 y 1 valor SD9. Los actores indican cuántos valores distintos intervienen de los 9 digitales, 10 terminaciones y 9 SD de distancia. Las equivalencias individuales comparten una firma concreta; «Equivalentes Némesis» cuenta la intersección de los mismos actores digitales, terminaciones y SD de distancia aplicados en las seis posiciones, con SDCD abierto. La firma de distancias natural muestra las cinco diferencias entre números contiguos; la digital convierte cada diferencia a su raíz digital. Bajos: 1–24 · Altos: 25–49.&#x27;;
       scrutinyAnalysis.hidden = false;
       setScrutinyMessage(&#x27;Análisis de la combinación ganadora completado. No se han escrutado apuestas.&#x27;);
     }
