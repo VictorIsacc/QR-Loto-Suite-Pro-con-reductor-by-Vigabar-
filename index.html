@@ -112,7 +112,7 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
   </div>
 </header>
 <div class="loto-suite-new" role="status">
-  <strong>NUEVO · V28</strong>
+  <strong>ACTUALIZADO · V28</strong>
   Selector claro/oscuro restaurado y desplegables de azar legibles en ordenador.
 </div>
 <script>
@@ -1543,7 +1543,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;div class=&quot;lottery-section-label distance-heading&quot;&gt;
       &lt;div&gt;
         &lt;h2 id=&quot;lottery-distance-label&quot;&gt;Desarrollo por firma de distancias&lt;/h2&gt;
-        &lt;p class=&quot;text-muted&quot;&gt;Selecciona las distancias entre las cinco parejas contiguas. La suma de la firma equivale a P6 − P1 y determina cuántas combinaciones naturales desarrolla.&lt;/p&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;Selecciona las distancias entre las cinco parejas contiguas. La suma de la firma equivale a P6 − P1 y determina cuántas combinaciones naturales desarrolla. La columna izquierda muestra cada distancia natural junto a su valor digital (SD); «Orden SD» agrupa la lista 1–44 por esos valores.&lt;/p&gt;
       &lt;/div&gt;
       &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-distance-total-badge&quot;&gt;Sin calcular&lt;/span&gt;
     &lt;/div&gt;
@@ -1714,11 +1714,14 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;/details&gt;
 
       &lt;details class=&quot;filter-card&quot; data-filter-card=&quot;distances&quot;&gt;
-        &lt;summary&gt;&lt;span class=&quot;filter-number&quot;&gt;3&lt;/span&gt;&lt;strong&gt;Distancias&lt;/strong&gt;&lt;span class=&quot;filter-eliminated&quot; data-filter-eliminated=&quot;distances&quot;&gt;0 eliminadas&lt;/span&gt;&lt;/summary&gt;
+        &lt;summary&gt;&lt;span class=&quot;filter-number&quot;&gt;3&lt;/span&gt;&lt;strong&gt;Distancias, SD y figuras&lt;/strong&gt;&lt;span class=&quot;filter-eliminated&quot; data-filter-eliminated=&quot;distances&quot;&gt;0 eliminadas&lt;/span&gt;&lt;/summary&gt;
         &lt;div class=&quot;filter-card-body&quot;&gt;
           &lt;label class=&quot;filter-enable&quot;&gt;&lt;input type=&quot;checkbox&quot; data-filter-enabled=&quot;distances&quot;&gt; Activar este filtro&lt;/label&gt;
           &lt;p class=&quot;text-muted&quot;&gt;Las posiciones se calculan después de ordenar los seis números.&lt;/p&gt;
           &lt;div class=&quot;filter-count-rows&quot; id=&quot;lottery-filter-distance-rows&quot;&gt;&lt;/div&gt;
+          &lt;p class=&quot;text-muted&quot;&gt;Máximos por SD: limita cuántas de las cinco distancias pueden pertenecer a cada raíz digital. Las figuras SD describen la distribución de esos nueve recuentos.&lt;/p&gt;
+          &lt;div class=&quot;filter-count-rows&quot; id=&quot;lottery-filter-distance-sd-rows&quot;&gt;&lt;/div&gt;
+          &lt;div class=&quot;filter-figures&quot;&gt;&lt;span&gt;Figuras SD admitidas · ninguna marcada equivale a todas&lt;/span&gt;&lt;div class=&quot;filter-chip-grid&quot; id=&quot;lottery-filter-distance-sd-figures&quot;&gt;&lt;/div&gt;&lt;/div&gt;
           &lt;div class=&quot;filter-range-grid&quot;&gt;
             &lt;label class=&quot;form-label&quot;&gt;Amplitud mínima&lt;input class=&quot;form-control&quot; id=&quot;lottery-filter-span-min&quot; type=&quot;number&quot; min=&quot;5&quot; max=&quot;48&quot; value=&quot;5&quot;&gt;&lt;/label&gt;
             &lt;label class=&quot;form-label&quot;&gt;Amplitud máxima&lt;input class=&quot;form-control&quot; id=&quot;lottery-filter-span-max&quot; type=&quot;number&quot; min=&quot;5&quot; max=&quot;48&quot; value=&quot;48&quot;&gt;&lt;/label&gt;
@@ -3713,7 +3716,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
   #lottery-simulator-649 .distance-panel {
     display: grid;
-    grid-template-columns: minmax(4.4rem, 0.9fr) repeat(5, minmax(3rem, 1fr));
+    grid-template-columns: minmax(6.7rem, 1.2fr) repeat(5, minmax(3rem, 1fr));
     gap: 0.28rem;
     min-width: 22rem;
     padding: 0.35rem;
@@ -3764,6 +3767,23 @@ html&gt;body{padding:0}&lt;/style&gt;
     border-color: color-mix(in srgb, #22d3ee 62%, var(--border));
     background: color-mix(in srgb, #155e75 68%, var(--card));
     box-shadow: inset 3px 0 #22d3ee;
+  }
+
+  #lottery-simulator-649 .distance-order-toggle {
+    color: #cffafe;
+    border-color: color-mix(in srgb, #22d3ee 62%, var(--border));
+    background: linear-gradient(145deg, #164e63, #155e75);
+    box-shadow: inset 3px 0 #22d3ee;
+    font-size: 0.72rem;
+    font-weight: 850;
+    line-height: 1.15;
+  }
+
+  #lottery-simulator-649 .distance-order-toggle[aria-pressed=&quot;true&quot;] {
+    color: #052e2b;
+    border-color: #5eead4;
+    background: linear-gradient(145deg, #99f6e4, #2dd4bf);
+    box-shadow: inset 3px 0 #0f766e, 0 0 0 1px color-mix(in srgb, #2dd4bf 45%, transparent);
   }
 
   #lottery-simulator-649 .distance-grid-header {
@@ -4256,6 +4276,44 @@ html&gt;body{padding:0}&lt;/style&gt;
     color: color-mix(in srgb, #67e8f9 80%, var(--foreground));
     font-size: clamp(0.92rem, 1.2vw, 1.08rem);
     font-variant-numeric: tabular-nums;
+  }
+
+  #lottery-simulator-649 .scrutiny-actor-figure {
+    display: grid;
+    gap: 0.16rem;
+    min-width: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #lottery-simulator-649 .scrutiny-actor-values,
+  #lottery-simulator-649 .scrutiny-actor-counts {
+    display: grid;
+    grid-template-columns: repeat(var(--actor-count), minmax(0, 1fr));
+    gap: 0.12rem;
+    text-align: center;
+  }
+
+  #lottery-simulator-649 .scrutiny-analysis-item .scrutiny-actor-values {
+    color: color-mix(in srgb, #67e8f9 80%, var(--foreground));
+    font-size: clamp(0.46rem, 0.68vw, 0.64rem);
+    font-weight: 750;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    column-gap: 0.18rem;
+  }
+
+  #lottery-simulator-649 .scrutiny-analysis-item .scrutiny-actor-counts {
+    color: color-mix(in srgb, #67e8f9 80%, var(--foreground));
+    font-size: clamp(0.9rem, 1.15vw, 1.05rem);
+    font-weight: 800;
+  }
+
+  #lottery-simulator-649 .scrutiny-analysis-item .scrutiny-actor-values span {
+    color: var(--muted-foreground) !important;
+  }
+
+  #lottery-simulator-649 .scrutiny-analysis-item .scrutiny-actor-counts span {
+    color: color-mix(in srgb, #67e8f9 80%, var(--foreground)) !important;
   }
 
   #lottery-simulator-649 .scrutiny-context {
@@ -6071,6 +6129,9 @@ html&gt;body{padding:0}&lt;/style&gt;
     let digitalQrWarningArmed = false;
     let digitalLastAnalysis = null;
     let distanceSelections = Array.from({ length: 5 }, () =&gt; new Set());
+    let distancePanelOrder = &#x27;natural&#x27;;
+    let distanceSdClickState = { sd: null, count: 0, lastAt: 0 };
+    const DISTANCE_SD_CLICK_WINDOW = 1200;
     let distanceSumSelections = new Set();
     let distanceGeneratedCombinations = [];
     let distanceGeneratedPatternCount = 0;
@@ -6135,6 +6196,32 @@ html&gt;body{padding:0}&lt;/style&gt;
     const DISTANCE_COLUMN_LABELS = [&#x27;D1–2&#x27;, &#x27;D2–3&#x27;, &#x27;D3–4&#x27;, &#x27;D4–5&#x27;, &#x27;D5–6&#x27;];
     const DISTANCE_VALUES = Array.from({ length: 44 }, (_, index) =&gt; index + 1);
     const DISTANCE_SUM_VALUES = Array.from({ length: 44 }, (_, index) =&gt; index + 5);
+
+    function orderedDistanceValues() {
+      const values = [...DISTANCE_VALUES];
+      if (distancePanelOrder !== &#x27;digital&#x27;) return values;
+      return values.sort(
+        (first, second) =&gt; digitalRoot(first) - digitalRoot(second) || first - second
+      );
+    }
+
+    function distanceValuesForDigitalValue(sd) {
+      return DISTANCE_VALUES.filter((value) =&gt; digitalRoot(value) === sd);
+    }
+
+    function toggleDistanceDigitalGroup(sd) {
+      const values = distanceValuesForDigitalValue(sd);
+      const allSelected = distanceSelections.every((selection) =&gt;
+        values.every((value) =&gt; selection.has(value))
+      );
+      distanceSelections.forEach((selection) =&gt; {
+        values.forEach((value) =&gt; {
+          if (allSelected) selection.delete(value);
+          else selection.add(value);
+        });
+      });
+      return { values, allSelected };
+    }
     const euroFormatter = new Intl.NumberFormat(&#x27;es-ES&#x27;, {
       style: &#x27;currency&#x27;,
       currency: &#x27;EUR&#x27;
@@ -6151,6 +6238,9 @@ html&gt;body{padding:0}&lt;/style&gt;
     const FILTER_FIGURES_WITH_MANY_GROUPS = [
       &#x27;6-0&#x27;, &#x27;5-1&#x27;, &#x27;4-2&#x27;, &#x27;4-1-1&#x27;, &#x27;3-3&#x27;, &#x27;3-2-1&#x27;,
       &#x27;3-1-1-1&#x27;, &#x27;2-2-2&#x27;, &#x27;2-2-1-1&#x27;, &#x27;2-1-1-1-1&#x27;, &#x27;1-1-1-1-1-1&#x27;
+    ];
+    const FILTER_FIGURES_WITH_FIVE_GROUPS = [
+      &#x27;5-0&#x27;, &#x27;4-1&#x27;, &#x27;3-2&#x27;, &#x27;3-1-1&#x27;, &#x27;2-2-1&#x27;, &#x27;2-1-1-1&#x27;, &#x27;1-1-1-1-1&#x27;
     ];
 
     function setDigitalMessage(message, tone = &#x27;&#x27;) {
@@ -7340,9 +7430,17 @@ html&gt;body{padding:0}&lt;/style&gt;
         distancePanel.appendChild(select);
       });
 
-      distancePanel.appendChild(
-        createDistancePanelCell(&#x27;span&#x27;, &#x27;Todas&#x27;, &#x27;distance-grid-cell distance-grid-label distance-global-column&#x27;)
+      const orderToggle = createDistancePanelCell(
+        &#x27;button&#x27;,
+        &#x27;Orden SD&#x27;,
+        &#x27;distance-panel-button distance-order-toggle distance-global-column&#x27;
       );
+      orderToggle.type = &#x27;button&#x27;;
+      orderToggle.dataset.distanceOrderToggle = &#x27;true&#x27;;
+      orderToggle.setAttribute(&#x27;aria-pressed&#x27;, &#x27;false&#x27;);
+      orderToggle.setAttribute(&#x27;aria-label&#x27;, &#x27;Ordenar las distancias naturales por su valor digital&#x27;);
+      orderToggle.title = &#x27;Pulsa para ordenar 1–44 por SD1–SD9; vuelve a pulsar para recuperar el orden natural.&#x27;;
+      distancePanel.appendChild(orderToggle);
       DISTANCE_COLUMN_LABELS.forEach((label, column) =&gt; {
         const button = createDistancePanelCell(
           &#x27;button&#x27;,
@@ -7358,7 +7456,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       });
 
       distancePanel.appendChild(
-        createDistancePanelCell(&#x27;span&#x27;, &#x27;Dist.&#x27;, &#x27;distance-grid-cell distance-grid-header distance-global-column&#x27;)
+        createDistancePanelCell(&#x27;span&#x27;, &#x27;Dist. · SD&#x27;, &#x27;distance-grid-cell distance-grid-header distance-global-column&#x27;)
       );
       DISTANCE_COLUMN_LABELS.forEach((label, column) =&gt; {
         distancePanel.appendChild(
@@ -7366,16 +7464,18 @@ html&gt;body{padding:0}&lt;/style&gt;
         );
       });
 
-      DISTANCE_VALUES.forEach((value) =&gt; {
+      orderedDistanceValues().forEach((value) =&gt; {
+        const displayLabel = `${value} · SD${digitalRoot(value)}`;
         const rowButton = createDistancePanelCell(
           &#x27;button&#x27;,
-          String(value),
+          displayLabel,
           &#x27;distance-panel-button distance-row-all distance-global-column&#x27;
         );
         rowButton.type = &#x27;button&#x27;;
         rowButton.dataset.distanceSelectRow = String(value);
         rowButton.setAttribute(&#x27;aria-pressed&#x27;, &#x27;false&#x27;);
-        rowButton.setAttribute(&#x27;aria-label&#x27;, `Activar o desactivar la distancia ${value} en las cinco parejas`);
+        rowButton.setAttribute(&#x27;aria-label&#x27;, `Activar o desactivar la distancia natural ${value}, SD${digitalRoot(value)}, en las cinco parejas`);
+        rowButton.title = `Distancia ${value} · SD${digitalRoot(value)}. Pulsa tres veces seguidas para activar todos los valores SD${digitalRoot(value)} en las cinco parejas; una cuarta pulsación los desactiva.`;
         distancePanel.appendChild(rowButton);
         DISTANCE_COLUMN_LABELS.forEach((label, column) =&gt; {
           const button = createDistancePanelCell(
@@ -7472,6 +7572,18 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
 
     function renderDistancePanel() {
+      const orderToggle = distancePanel.querySelector(&#x27;[data-distance-order-toggle]&#x27;);
+      if (orderToggle) {
+        const digitalOrder = distancePanelOrder === &#x27;digital&#x27;;
+        orderToggle.textContent = digitalOrder ? &#x27;Orden natural&#x27; : &#x27;Orden SD&#x27;;
+        orderToggle.setAttribute(&#x27;aria-pressed&#x27;, String(digitalOrder));
+        orderToggle.setAttribute(
+          &#x27;aria-label&#x27;,
+          digitalOrder
+            ? &#x27;Restaurar el orden natural de las distancias&#x27;
+            : &#x27;Ordenar las distancias naturales por su valor digital&#x27;
+        );
+      }
       distancePanel.querySelectorAll(&#x27;[data-distance-value]&#x27;).forEach((button) =&gt; {
         const column = Number(button.dataset.distanceColumn);
         const value = Number(button.dataset.distanceValue);
@@ -7971,6 +8083,20 @@ html&gt;body{padding:0}&lt;/style&gt;
           { minimum: 1, maximum: 48, defaultMin: 1, defaultMax: 48 }
         );
       }
+      const distanceSdRows = root.querySelector(&#x27;#lottery-filter-distance-sd-rows&#x27;);
+      for (let index = 1; index &lt;= 9; index += 1) {
+        createFilterRangeRow(
+          distanceSdRows,
+          `SD${index}`,
+          `distance-sd-${index}`,
+          { minimum: 0, maximum: 5, defaultMin: 0, defaultMax: 5 }
+        );
+      }
+      createFilterFigureChips(
+        root.querySelector(&#x27;#lottery-filter-distance-sd-figures&#x27;),
+        FILTER_FIGURES_WITH_FIVE_GROUPS,
+        &#x27;distance-sd&#x27;
+      );
 
       const groups = root.querySelector(&#x27;#lottery-filter-groups&#x27;);
       for (let index = 0; index &lt; 10; index += 1) {
@@ -8735,6 +8861,10 @@ html&gt;body{padding:0}&lt;/style&gt;
       configuration.distances = Array.from({ length: 5 }, (_, index) =&gt; (
         readFilterRange(`distance-${index}`, 1, 48, `Distancia ${index + 1}`)
       ));
+      configuration.distanceSdCounts = Array.from({ length: 9 }, (_, index) =&gt; (
+        readFilterRange(`distance-sd-${index + 1}`, 0, 5, `Distancias SD${index + 1}`)
+      ));
+      configuration.distanceSdFigures = selectedFilterFigures(&#x27;distance-sd&#x27;);
       configuration.span = readStaticRange(&#x27;#lottery-filter-span-min&#x27;, &#x27;#lottery-filter-span-max&#x27;, 5, 48, &#x27;Amplitud&#x27;);
       configuration.pairDistance = readStaticRange(
         &#x27;#lottery-filter-pair-distance-min&#x27;,
@@ -8803,6 +8933,10 @@ html&gt;body{padding:0}&lt;/style&gt;
       return present.join(&#x27;-&#x27;);
     }
 
+    function actorFigure(counts) {
+      return counts.map((count) =&gt; String(count)).join(&#x27;&#x27;);
+    }
+
     function analyseFilterCombination(combination) {
       const numbers = [...combination].sort((first, second) =&gt; first - second);
       const decadeCounts = Array(5).fill(0);
@@ -8826,6 +8960,10 @@ html&gt;body{padding:0}&lt;/style&gt;
       });
 
       const distances = numbers.slice(1).map((number, index) =&gt; number - numbers[index]);
+      const distanceDigitalCounts = Array(9).fill(0);
+      distances.forEach((distance) =&gt; {
+        distanceDigitalCounts[digitalRoot(distance) - 1] += 1;
+      });
       let pairDistanceSum = 0;
       for (let first = 0; first &lt; numbers.length; first += 1) {
         for (let second = first + 1; second &lt; numbers.length; second += 1) {
@@ -8861,6 +8999,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         endingFigure: filterFigure(endingCounts),
         endingSum,
         distances,
+        distanceDigitalCounts,
+        distanceDigitalFigure: filterFigure(distanceDigitalCounts),
         span: numbers[5] - numbers[0],
         pairDistanceSum,
         consecutiveLinks,
@@ -8883,6 +9023,9 @@ html&gt;body{padding:0}&lt;/style&gt;
       }
       if (key === &#x27;distances&#x27;) {
         return metrics.distances.every((distance, index) =&gt; valueInRange(distance, configuration.distances[index]))
+          &amp;&amp; metrics.distanceDigitalCounts.every((count, index) =&gt; valueInRange(count, configuration.distanceSdCounts[index]))
+          &amp;&amp; (configuration.distanceSdFigures.size === 0
+            || configuration.distanceSdFigures.has(metrics.distanceDigitalFigure))
           &amp;&amp; valueInRange(metrics.span, configuration.span)
           &amp;&amp; valueInRange(metrics.pairDistanceSum, configuration.pairDistance);
       }
@@ -13081,6 +13224,33 @@ html&gt;body{padding:0}&lt;/style&gt;
       return item;
     }
 
+    function createScrutinySplitFigureItem(label, values, counts) {
+      const item = document.createElement(&#x27;div&#x27;);
+      item.className = &#x27;scrutiny-analysis-item&#x27;;
+      const name = document.createElement(&#x27;span&#x27;);
+      name.textContent = label;
+      const figure = document.createElement(&#x27;div&#x27;);
+      figure.className = &#x27;scrutiny-actor-figure&#x27;;
+      figure.style.setProperty(&#x27;--actor-count&#x27;, String(values.length));
+      figure.setAttribute(&#x27;aria-label&#x27;, `${label}: ${actorFigure(counts)}`);
+      const valuesLine = document.createElement(&#x27;div&#x27;);
+      valuesLine.className = &#x27;scrutiny-actor-values&#x27;;
+      const countsLine = document.createElement(&#x27;strong&#x27;);
+      countsLine.className = &#x27;scrutiny-actor-counts&#x27;;
+      values.forEach((value, index) =&gt; {
+        valuesLine.appendChild(document.createElement(&#x27;span&#x27;)).textContent = String(value);
+        countsLine.appendChild(document.createElement(&#x27;span&#x27;)).textContent = String(counts[index] ?? 0);
+      });
+      figure.append(valuesLine, countsLine);
+      item.append(name, figure);
+      item.title = `${label}: ${actorFigure(counts)}`;
+      return item;
+    }
+
+    function createScrutinyActorFigureItem(label, values, counts) {
+      return createScrutinySplitFigureItem(label, values, counts);
+    }
+
     function analyseScrutinyWinningCombination() {
       const winning = parseScrutinyWinningCombination();
       if (!winning) {
@@ -13101,6 +13271,16 @@ html&gt;body{padding:0}&lt;/style&gt;
       const gaps = winning.slice(1).map((number, index) =&gt; number - winning[index]);
       const distanceSum = gaps.reduce((total, value) =&gt; total + value, 0);
       const distanceEquivalents = 49 - distanceSum;
+      const digitalDistances = gaps.map(digitalRoot);
+      const digitalActorCounts = Array(9).fill(0);
+      roots.forEach((value) =&gt; { digitalActorCounts[value - 1] += 1; });
+      const terminationActorCounts = Array(10).fill(0);
+      endings.forEach((value) =&gt; { terminationActorCounts[value] += 1; });
+      const distanceDigitalActorCounts = Array(9).fill(0);
+      digitalDistances.forEach((value) =&gt; { distanceDigitalActorCounts[value - 1] += 1; });
+      const digitalActors = digitalActorCounts.filter((count) =&gt; count &gt; 0).length;
+      const terminationActors = terminationActorCounts.filter((count) =&gt; count &gt; 0).length;
+      const distanceDigitalActors = distanceDigitalActorCounts.filter((count) =&gt; count &gt; 0).length;
       const runs = consecutiveRuns(winning);
       const consecutivePairs = runs.reduce((total, run) =&gt; total + run.length - 1, 0);
       const decadeRanges = [
@@ -13110,12 +13290,9 @@ html&gt;body{padding:0}&lt;/style&gt;
         [30, 39],
         [40, 49]
       ];
-      const decadeSummary = decadeRanges
-        .map(([minimum, maximum]) =&gt; {
-          const count = winning.filter((number) =&gt; number &gt;= minimum &amp;&amp; number &lt;= maximum).length;
-          return `${String(minimum).padStart(2, &#x27;0&#x27;)}–${maximum}: ${count}`;
-        })
-        .join(&#x27; · &#x27;);
+      const decadeCounts = decadeRanges.map(([minimum, maximum]) =&gt;
+        winning.filter((number) =&gt; number &gt;= minimum &amp;&amp; number &lt;= maximum).length
+      );
       const runSummary = runs.length
         ? `${consecutivePairs} ${consecutivePairs === 1 ? &#x27;pareja&#x27; : &#x27;parejas&#x27;} · ${runs.map((run) =&gt; run.join(&#x27;–&#x27;)).join(&#x27; · &#x27;)}`
         : &#x27;0 · sin consecutivos&#x27;;
@@ -13128,17 +13305,28 @@ html&gt;body{padding:0}&lt;/style&gt;
         createScrutinyAnalysisItem(&#x27;Suma de valores DR9&#x27;, String(digitalSum)),
         createScrutinyAnalysisItem(&#x27;SDCD&#x27;, String(digitalRoot(digitalSum))),
         createScrutinyAnalysisItem(&#x27;Equivalentes de la firma DR9&#x27;, `${digitalEquivalents.toLocaleString(&#x27;es-ES&#x27;)} naturales`),
+        createScrutinyAnalysisItem(&#x27;Actores firma digital&#x27;, `${digitalActors}/9`),
+        createScrutinyActorFigureItem(&#x27;Figura de actores digitales&#x27;, [1, 2, 3, 4, 5, 6, 7, 8, 9], digitalActorCounts),
         createScrutinyAnalysisItem(&#x27;Firma de terminación&#x27;, endings.join(&#x27; · &#x27;)),
         createScrutinyAnalysisItem(&#x27;Equivalentes de la firma de terminación&#x27;, `${terminationEquivalents.toLocaleString(&#x27;es-ES&#x27;)} naturales`),
+        createScrutinyAnalysisItem(&#x27;Actores firma de terminación&#x27;, `${terminationActors}/10`),
+        createScrutinyActorFigureItem(&#x27;Figura de actores de terminación&#x27;, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], terminationActorCounts),
         createScrutinyAnalysisItem(&#x27;Pares / impares&#x27;, `${evenCount} / ${6 - evenCount}`),
         createScrutinyAnalysisItem(&#x27;Bajos / altos&#x27;, `${lowCount} / ${6 - lowCount}`),
         createScrutinyAnalysisItem(&#x27;Amplitud&#x27;, `${winning[5] - winning[0]} (${winning[0]}–${winning[5]})`),
-        createScrutinyAnalysisItem(&#x27;Distancias&#x27;, gaps.join(&#x27; · &#x27;)),
+        createScrutinyAnalysisItem(&#x27;Firma de distancias natural&#x27;, gaps.join(&#x27; · &#x27;)),
+        createScrutinyAnalysisItem(&#x27;Firma de distancias digital&#x27;, digitalDistances.join(&#x27; · &#x27;)),
+        createScrutinyAnalysisItem(&#x27;Actores SD de distancia&#x27;, `${distanceDigitalActors}/9`),
+        createScrutinyActorFigureItem(&#x27;Figura de actores SD de distancia&#x27;, [1, 2, 3, 4, 5, 6, 7, 8, 9], distanceDigitalActorCounts),
         createScrutinyAnalysisItem(&#x27;Equivalentes de la firma de distancias&#x27;, `${distanceEquivalents.toLocaleString(&#x27;es-ES&#x27;)} naturales`),
         createScrutinyAnalysisItem(&#x27;Consecutivos&#x27;, runSummary),
-        createScrutinyAnalysisItem(&#x27;Distribución por decenas&#x27;, decadeSummary)
+        createScrutinySplitFigureItem(
+          &#x27;Distribución por decenas&#x27;,
+          [&#x27;D00&#x27;, &#x27;D10&#x27;, &#x27;D20&#x27;, &#x27;D30&#x27;, &#x27;D40&#x27;],
+          decadeCounts
+        )
       );
-      scrutinyAnalysisNote.textContent = &#x27;Las equivalencias indican cuántas combinaciones naturales del 6/49 comparten exactamente cada firma. En distancias equivalen a 49 menos la suma de las cinco distancias. Bajos: 1–24 · Altos: 25–49.&#x27;;
+      scrutinyAnalysisNote.textContent = &#x27;La figura de actores escribe los recuentos en orden ascendente: 9 dígitos para DR9 y SD de distancia, y 10 para terminaciones 0–9. Por ejemplo, 010020011 significa 1 valor SD2, 2 valores SD5, 1 valor SD8 y 1 valor SD9. Los actores indican cuántos valores distintos intervienen de los 9 digitales, 10 terminaciones y 9 SD de distancia. La firma de distancias natural muestra las cinco diferencias entre números contiguos; la digital convierte cada diferencia a su raíz digital. Las equivalencias indican cuántas combinaciones naturales del 6/49 comparten exactamente cada firma natural. Bajos: 1–24 · Altos: 25–49.&#x27;;
       scrutinyAnalysis.hidden = false;
       setScrutinyMessage(&#x27;Análisis de la combinación ganadora completado. No se han escrutado apuestas.&#x27;);
     }
@@ -13878,9 +14066,44 @@ html&gt;body{padding:0}&lt;/style&gt;
         return;
       }
 
+      const orderToggle = event.target.closest(&#x27;[data-distance-order-toggle]&#x27;);
+      if (orderToggle) {
+        distancePanelOrder = distancePanelOrder === &#x27;digital&#x27; ? &#x27;natural&#x27; : &#x27;digital&#x27;;
+        distanceSdClickState = { sd: null, count: 0, lastAt: 0 };
+        buildDistancePanel();
+        invalidateDistanceDevelopment(
+          distancePanelOrder === &#x27;digital&#x27;
+            ? &#x27;Panel ordenado por valor digital. La selección natural se ha conservado.&#x27;
+            : &#x27;Se ha restaurado el orden natural de las distancias.&#x27;
+        );
+        return;
+      }
+
       const selectRowButton = event.target.closest(&#x27;[data-distance-select-row]&#x27;);
       if (selectRowButton) {
         const value = Number(selectRowButton.dataset.distanceSelectRow);
+        const sd = digitalRoot(value);
+        const now = Date.now();
+        const sameSequence =
+          distancePanelOrder === &#x27;digital&#x27; &amp;&amp;
+          distanceSdClickState.sd === sd &amp;&amp;
+          now - distanceSdClickState.lastAt &lt;= DISTANCE_SD_CLICK_WINDOW;
+        distanceSdClickState = {
+          sd,
+          count: sameSequence ? distanceSdClickState.count + 1 : 1,
+          lastAt: now
+        };
+        if (distancePanelOrder === &#x27;digital&#x27; &amp;&amp; distanceSdClickState.count &gt;= 3) {
+          const { values, allSelected } = toggleDistanceDigitalGroup(sd);
+          const clickCount = distanceSdClickState.count;
+          if (clickCount &gt;= 4) distanceSdClickState = { sd: null, count: 0, lastAt: 0 };
+          invalidateDistanceDevelopment(
+            allSelected
+              ? `Se han desactivado ${values.length} distancias con SD${sd} en las cinco parejas.`
+              : `Se han activado ${values.length} distancias con SD${sd} en las cinco parejas. Puedes ajustar cada pareja individualmente.`
+          );
+          return;
+        }
         const selectedInEveryPair = distanceSelections.every((selection) =&gt;
           selection.has(value)
         );
