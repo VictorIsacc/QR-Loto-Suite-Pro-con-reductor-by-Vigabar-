@@ -1,4 +1,4 @@
-const CACHE_NAME = "qr-loto-suite-v29-core-v1";
+const CACHE_NAME = "qr-loto-suite-v30-core-v1";
 const CORE_FILES = [
   "./",
   "./index.html",
@@ -8,7 +8,8 @@ const CORE_FILES = [
   "./cabecera-circuitos-loto-suite.webp",
   "./icono-qr-loto-192.png",
   "./icono-qr-loto-512.png",
-  "./icono-qr-loto-maskable-512.png"
+  "./icono-qr-loto-maskable-512.png",
+  "./nemesis-splash.png"
 ];
 
 self.addEventListener("install", (event) => {
@@ -59,3 +60,4 @@ self.addEventListener("fetch", (event) => {
       .catch(() => caches.match(request))
   );
 });
+
