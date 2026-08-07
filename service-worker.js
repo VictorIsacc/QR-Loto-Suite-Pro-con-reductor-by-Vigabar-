@@ -1,4 +1,4 @@
-const CACHE_NAME = "qr-loto-suite-v30-core-v2";
+const CACHE_NAME = "qr-loto-suite-v30-core-v3";
 const CORE_FILES = [
   "./",
   "./index.html",
@@ -9,7 +9,7 @@ const CORE_FILES = [
   "./icono-qr-loto-192.png",
   "./icono-qr-loto-512.png",
   "./icono-qr-loto-maskable-512.png",
-  "./nemesis-splash.jpg"
+  "./nemesis-splash-original.png"
 ];
 
 self.addEventListener("install", (event) => {
