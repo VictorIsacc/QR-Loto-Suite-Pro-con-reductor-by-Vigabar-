@@ -8,8 +8,7 @@ const CORE_FILES = [
   "./cabecera-circuitos-loto-suite.webp",
   "./icono-qr-loto-192.png",
   "./icono-qr-loto-512.png",
-  "./icono-qr-loto-maskable-512.png",
-  "./nemesis-splash-original.png"
+  "./icono-qr-loto-maskable-512.png"
 ];
 
 self.addEventListener("install", (event) => {
@@ -60,4 +59,3 @@ self.addEventListener("fetch", (event) => {
       .catch(() => caches.match(request))
   );
 });
-
