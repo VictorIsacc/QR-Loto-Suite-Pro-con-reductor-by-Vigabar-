@@ -59,20 +59,6 @@ html,body{margin:0;min-height:100%;overflow:hidden}
 body{box-sizing:border-box;width:100%;height:100vh;height:100dvh;padding:clamp(.25rem,1vw,1rem);display:grid;grid-template-rows:auto minmax(0,1fr);gap:clamp(.3rem,.7vw,.7rem);overflow:hidden;background:inherit;transform-origin:top left}
 .loto-suite-header{box-sizing:border-box;width:100%;max-width:1800px;height:clamp(96px,9vw,144px);margin:0 auto;position:relative;overflow:hidden;border:1px solid rgb(77 190 255 / 28%);border-radius:clamp(14px,1.4vw,22px);background:#061127 url("cabecera-circuitos-loto-suite.webp") center/cover no-repeat;box-shadow:0 8px 28px rgb(0 15 42 / 32%)}
 .loto-suite-header::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgb(1 10 28 / 8%),rgb(5 16 42 / 34%) 34%,rgb(5 15 38 / 32%) 66%,rgb(14 4 31 / 10%));pointer-events:none}
-.loto-suite-version{position:absolute;z-index:3;top:clamp(.55rem,1vw,.9rem);right:clamp(.65rem,1.2vw,1.15rem);display:inline-flex;align-items:center;justify-content:center;min-height:30px;padding:.28rem .72rem;border:1px solid rgb(92 210 255 / 55%);border-radius:999px;color:#dff8ff;background:rgb(3 18 43 / 78%);box-shadow:0 0 16px rgb(46 221 244 / 22%),inset 0 0 0 1px rgb(218 113 255 / 12%);font:800 clamp(.68rem,.88vw,.84rem)/1 "Segoe UI",Arial,sans-serif;letter-spacing:.055em;text-transform:uppercase;white-space:nowrap;backdrop-filter:blur(6px)}
-.loto-suite-zoom{position:absolute;z-index:5;left:clamp(.65rem,1.2vw,1.15rem);bottom:clamp(.48rem,.85vw,.75rem);display:inline-flex;align-items:center;overflow:hidden;border:1px solid rgb(92 210 255 / 48%);border-radius:999px;background:rgb(3 18 43 / 86%);box-shadow:0 0 16px rgb(46 221 244 / 18%);backdrop-filter:blur(7px)}
-.loto-suite-zoom button{display:inline-flex;align-items:center;justify-content:center;min-width:32px;min-height:30px;padding:.25rem .48rem;border:0;color:#e7f9ff;background:transparent;font:800 .82rem/1 "Segoe UI",Arial,sans-serif;cursor:pointer;touch-action:manipulation}
-.loto-suite-zoom>*+*{border-left:1px solid rgb(92 210 255 / 28%)}
-.loto-suite-zoom button:hover,.loto-suite-zoom button:focus-visible{color:#061127;background:#70eaff;outline:0}
-.loto-suite-zoom button:disabled{opacity:.38;cursor:not-allowed}
-.loto-suite-theme{min-width:34px!important;font-size:1rem!important}
-.loto-suite-zoom-field{display:inline-flex;align-items:center;justify-content:center;min-height:30px;padding:0 .34rem;color:#e7f9ff;font:800 .72rem/1 "Segoe UI",Arial,sans-serif;letter-spacing:.02em}
-.loto-suite-zoom-field input{width:34px;padding:0;border:0;outline:0;color:inherit;background:transparent;font:inherit;text-align:right;-moz-appearance:textfield}
-.loto-suite-zoom-field input::-webkit-inner-spin-button,.loto-suite-zoom-field input::-webkit-outer-spin-button{margin:0;-webkit-appearance:none}
-.loto-suite-zoom-field:focus-within{color:#061127;background:#70eaff}
-.loto-suite-install{position:absolute;z-index:4;top:clamp(.55rem,1vw,.9rem);left:clamp(.65rem,1.2vw,1.15rem);min-height:32px;padding:.32rem .78rem;border:1px solid rgb(74 222 128 / 68%);border-radius:999px;color:#052e16;background:linear-gradient(145deg,#86efac,#22c55e);box-shadow:0 0 18px rgb(34 197 94 / 30%);font:850 clamp(.68rem,.88vw,.84rem)/1 "Segoe UI",Arial,sans-serif;cursor:pointer;touch-action:manipulation}
-.loto-suite-install:hover,.loto-suite-install:focus-visible{filter:brightness(1.08);outline:2px solid #a7f3d0;outline-offset:2px}
-.loto-suite-install[hidden]{display:none}
 .loto-suite-brand{position:relative;z-index:1;height:100%;display:flex;align-items:center;justify-content:center;gap:clamp(.7rem,1.7vw,1.45rem);padding:clamp(.45rem,.8vw,.8rem) clamp(.75rem,2.5vw,2.5rem)}
 .loto-suite-logo{width:clamp(68px,7vw,108px);height:clamp(68px,7vw,108px);flex:0 0 auto;border-radius:22%;object-fit:cover;box-shadow:0 0 0 1px rgb(116 209 255 / 62%),0 0 22px rgb(34 181 255 / 42%),0 0 34px rgb(224 79 255 / 18%)}
 .loto-suite-copy{display:grid;min-width:0;line-height:1}
@@ -81,23 +67,12 @@ body{box-sizing:border-box;width:100%;height:100vh;height:100dvh;padding:clamp(.
 .loto-suite-by strong{color:#2eddf4;font-size:1.22em;text-shadow:0 0 10px rgb(46 221 244 / 45%)}
 .loto-suite-by sup{position:relative;top:-.34em;margin-left:.08em;color:#70eaff;font-size:.5em}
 iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin:0 auto;border:0}
-@media(max-width:600px){body{padding:.25rem;gap:.25rem}.loto-suite-version{top:.38rem;right:.42rem;min-height:24px;padding:.2rem .5rem;font-size:.61rem;letter-spacing:.035em}.loto-suite-install{top:.38rem;left:.42rem;min-height:26px;padding:.22rem .52rem;font-size:.61rem}.loto-suite-zoom{left:.42rem;bottom:.35rem}.loto-suite-zoom button{min-width:29px;min-height:27px;padding:.18rem .38rem;font-size:.78rem}.loto-suite-zoom-field{min-height:27px;padding-inline:.26rem;font-size:.66rem}.loto-suite-zoom-field input{width:31px}.loto-suite-header{height:88px;border-radius:14px}.loto-suite-brand{gap:.55rem;padding:.35rem .55rem}.loto-suite-logo{width:64px;height:64px;border-radius:18%}.loto-suite-title{font-size:clamp(1.12rem,6.2vw,1.72rem);letter-spacing:.01em}.loto-suite-by{justify-self:end;margin:.25rem .15rem 0 0;font-size:.72rem}}
+@media(max-width:600px){body{padding:.25rem;gap:.25rem}.loto-suite-header{height:88px;border-radius:14px}.loto-suite-brand{gap:.55rem;padding:.35rem .55rem}.loto-suite-logo{width:64px;height:64px;border-radius:18%}.loto-suite-title{font-size:clamp(1.12rem,6.2vw,1.72rem);letter-spacing:.01em}.loto-suite-by{justify-self:end;margin:.25rem .15rem 0 0;font-size:.72rem}}
 @media(max-width:370px){.loto-suite-logo{width:56px;height:56px}.loto-suite-title{font-size:1.05rem}.loto-suite-by{font-size:.67rem}}
 </style>
 </head>
 <body>
-<header class="loto-suite-header" aria-label="QR Loto Suite V30 by Vigabar">
-  <button class="loto-suite-install" id="loto-suite-install" type="button" hidden>Instalar app</button>
-  <span class="loto-suite-version" aria-label="Versión 30">V30</span>
-  <div class="loto-suite-zoom" role="group" aria-label="Ajustar el zoom de la aplicación">
-    <button id="loto-suite-zoom-out" type="button" aria-label="Reducir el tamaño">−</button>
-    <label class="loto-suite-zoom-field" for="loto-suite-zoom-value" aria-label="Porcentaje de zoom">
-      <input id="loto-suite-zoom-value" type="number" inputmode="numeric" min="50" max="200" step="1" value="100" aria-label="Escribir porcentaje de zoom">
-      <span aria-hidden="true">%</span>
-    </label>
-    <button id="loto-suite-zoom-in" type="button" aria-label="Ampliar el tamaño">+</button>
-    <button class="loto-suite-theme" id="loto-suite-theme" type="button" aria-label="Cambiar a modo claro" title="Cambiar a modo claro">☀︎</button>
-  </div>
+<header class="loto-suite-header" aria-label="QR Loto Suite by Vigabar">
   <div class="loto-suite-brand">
     <img class="loto-suite-logo" src="logo-loto-suite-cabecera-v2.webp" alt="Emblema de QR Loto Suite">
     <div class="loto-suite-copy">
@@ -106,41 +81,6 @@ iframe{display:block;width:100%;max-width:1800px;height:100%;min-height:0;margin
     </div>
   </div>
 </header>
-<script>
-(() => {
-  const installButton = document.querySelector('#loto-suite-install');
-  if (!installButton) return;
-  const standalone = window.matchMedia('(display-mode: standalone)').matches
-    || window.navigator.standalone === true;
-  if (standalone) return;
-
-  let installPrompt = null;
-  installButton.hidden = false;
-  window.addEventListener('beforeinstallprompt', (event) => {
-    event.preventDefault();
-    installPrompt = event;
-    installButton.hidden = false;
-  });
-  window.addEventListener('appinstalled', () => {
-    installPrompt = null;
-    installButton.hidden = true;
-  });
-  installButton.addEventListener('click', async () => {
-    if (installPrompt) {
-      installPrompt.prompt();
-      await installPrompt.userChoice;
-      installPrompt = null;
-      return;
-    }
-    const isiPhoneOrIPad = /iphone|ipad|ipod/i.test(navigator.userAgent);
-    window.alert(
-      isiPhoneOrIPad
-        ? 'En Safari pulsa Compartir y después «Añadir a pantalla de inicio».'
-        : 'Abre el menú del navegador y elige «Instalar aplicación» o «Añadir a pantalla de inicio». Si la opción aún no aparece, recarga la página una vez.'
-    );
-  });
-})();
-</script>
 <iframe id="loto-suite-frame" sandbox="allow-scripts allow-same-origin allow-downloads allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer" title="QR Loto Suite by Vigabar®" srcdoc="&lt;!doctype html&gt;
 &lt;html lang=&quot;es&quot;&gt;
 &lt;head&gt;
@@ -957,31 +897,77 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;span class=&quot;lottery-signature&quot; aria-label=&quot;QR Loto Suite by Vigabar, marca registrada&quot;&gt;QR Loto Suite by Vigabar&lt;span class=&quot;lottery-registered&quot; aria-hidden=&quot;true&quot;&gt;&#174;&lt;/span&gt;&lt;/span&gt;
   &lt;/div&gt;
 
-  &lt;nav class=&quot;lottery-quick-nav lottery-jump-target&quot; id=&quot;lottery-app-top&quot; aria-label=&quot;Acceso r&#225;pido a las zonas de la aplicaci&#243;n&quot;&gt;
-    &lt;span class=&quot;lottery-quick-nav-label&quot;&gt;Acceso r&#225;pido&lt;/span&gt;
-    &lt;div class=&quot;lottery-quick-links&quot;&gt;
-      &lt;a class=&quot;lottery-quick-link is-help&quot; id=&quot;lottery-instructions&quot; href=&quot;instrucciones-simulador-loteria.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Instrucciones&lt;/a&gt;
-      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-filters-section&quot;&gt;Filtros&lt;/a&gt;
-      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-digital-section&quot;&gt;Firmas posicionales&lt;/a&gt;
-      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-distance-section&quot;&gt;Firma de distancias&lt;/a&gt;
-      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-sorteo-section&quot;&gt;Sorteo&lt;/a&gt;
-      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-rules-section&quot;&gt;Fijos y semifijos&lt;/a&gt;
-      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-txt-section&quot;&gt;TXT y portapapeles&lt;/a&gt;
-      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-development-section&quot;&gt;Desarrollos y reducciones&lt;/a&gt;
-      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-tickets-section&quot;&gt;Mis boletos&lt;/a&gt;
-      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-scrutiny-section&quot;&gt;Escrutador&lt;/a&gt;
+  &lt;nav class=&quot;lottery-quick-nav&quot; id=&quot;lottery-app-top&quot; aria-label=&quot;Pesta&#241;as de la aplicaci&#243;n&quot;&gt;
+    &lt;div class=&quot;lottery-quick-links&quot; role=&quot;tablist&quot; aria-label=&quot;Zonas de QR Loto Suite&quot;&gt;
+      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-sorteo-section&quot; data-lottery-tab=&quot;sorteo&quot; role=&quot;tab&quot; aria-selected=&quot;true&quot;&gt;Sorteo&lt;/a&gt;
+      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-rules-section&quot; data-lottery-tab=&quot;rules&quot; role=&quot;tab&quot; aria-selected=&quot;false&quot;&gt;Fijos y semifijos&lt;/a&gt;
+      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-digital-section&quot; data-lottery-tab=&quot;digital&quot; role=&quot;tab&quot; aria-selected=&quot;false&quot;&gt;Firmas posicionales&lt;/a&gt;
+      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-distance-section&quot; data-lottery-tab=&quot;distance&quot; role=&quot;tab&quot; aria-selected=&quot;false&quot;&gt;Firma de distancias&lt;/a&gt;
+      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-filters-section&quot; data-lottery-tab=&quot;filters&quot; role=&quot;tab&quot; aria-selected=&quot;false&quot;&gt;Filtros&lt;/a&gt;
+      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-development-section&quot; data-lottery-tab=&quot;development&quot; role=&quot;tab&quot; aria-selected=&quot;false&quot;&gt;Desarrollos y reducciones&lt;/a&gt;
+      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-txt-section&quot; data-lottery-tab=&quot;txt&quot; role=&quot;tab&quot; aria-selected=&quot;false&quot;&gt;TXT y portapapeles&lt;/a&gt;
+      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-qr-setup-section&quot; data-lottery-tab=&quot;qr&quot; role=&quot;tab&quot; aria-selected=&quot;false&quot;&gt;QR&lt;/a&gt;
+      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-scrutiny-section&quot; data-lottery-tab=&quot;scrutiny&quot; role=&quot;tab&quot; aria-selected=&quot;false&quot;&gt;Escrutador&lt;/a&gt;
+      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-tickets-section&quot; data-lottery-tab=&quot;tickets&quot; role=&quot;tab&quot; aria-selected=&quot;false&quot;&gt;Mis boletos&lt;/a&gt;
+      &lt;a class=&quot;lottery-quick-link&quot; href=&quot;#lottery-settings-section&quot; data-lottery-tab=&quot;settings&quot; role=&quot;tab&quot; aria-selected=&quot;false&quot;&gt;Instrucciones, guardado y ajustes&lt;/a&gt;
     &lt;/div&gt;
   &lt;/nav&gt;
 
-  &lt;section class=&quot;lottery-high-load&quot; aria-labelledby=&quot;lottery-high-load-label&quot;&gt;
-    &lt;label class=&quot;lottery-high-load-choice&quot; for=&quot;lottery-high-load-override&quot;&gt;
-      &lt;input id=&quot;lottery-high-load-override&quot; type=&quot;checkbox&quot; aria-describedby=&quot;lottery-high-load-description lottery-high-load-status&quot;&gt;
-      &lt;span&gt;
-        &lt;strong id=&quot;lottery-high-load-label&quot;&gt;Permitir operaciones de alta carga bajo mi responsabilidad&lt;/strong&gt;
-        &lt;small id=&quot;lottery-high-load-description&quot;&gt;Autoriza desarrollos, filtros y reducciones que superen el l&#237;mite preventivo del dispositivo. Puede provocar lentitud, calentamiento, falta de memoria, bloqueo o cierre del navegador.&lt;/small&gt;
-      &lt;/span&gt;
-    &lt;/label&gt;
-    &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-high-load-status&quot;&gt;Protecci&#243;n activa&lt;/span&gt;
+  &lt;section class=&quot;lottery-settings card lottery-jump-target&quot; id=&quot;lottery-settings-section&quot; aria-labelledby=&quot;lottery-settings-label&quot;&gt;
+    &lt;div class=&quot;lottery-section-label&quot;&gt;
+      &lt;div&gt;
+        &lt;h2 id=&quot;lottery-settings-label&quot;&gt;Instrucciones, guardado y ajustes&lt;/h2&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;Ayuda, sesiones, instalaci&#243;n y apariencia reunidas en una sola zona.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;lottery-settings-grid&quot;&gt;
+      &lt;article class=&quot;lottery-settings-card&quot;&gt;
+        &lt;h3&gt;Instrucciones&lt;/h3&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;Consulta la gu&#237;a completa de todas las funciones de QR Loto Suite.&lt;/p&gt;
+        &lt;div class=&quot;lottery-settings-actions&quot;&gt;
+          &lt;a class=&quot;btn btn-primary&quot; id=&quot;lottery-instructions&quot; href=&quot;instrucciones-simulador-loteria.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Abrir instrucciones&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/article&gt;
+
+      &lt;article class=&quot;lottery-settings-card&quot;&gt;
+        &lt;h3&gt;Guardar y recuperar sesi&#243;n&lt;/h3&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;Conserva configuraciones, combinaciones, resultados y recorridos para continuar m&#225;s adelante.&lt;/p&gt;
+        &lt;div class=&quot;lottery-settings-actions&quot;&gt;
+          &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-session-save&quot; type=&quot;button&quot;&gt;Guardar sesi&#243;n&lt;/button&gt;
+          &lt;label class=&quot;btn lottery-session-load&quot; for=&quot;lottery-session-file&quot;&gt;Cargar sesi&#243;n&lt;/label&gt;
+          &lt;input class=&quot;sr-only&quot; id=&quot;lottery-session-file&quot; type=&quot;file&quot; accept=&quot;.json,application/json&quot;&gt;
+        &lt;/div&gt;
+      &lt;/article&gt;
+
+      &lt;article class=&quot;lottery-settings-card&quot;&gt;
+        &lt;h3&gt;Aplicaci&#243;n y apariencia&lt;/h3&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;Instala la aplicaci&#243;n, cambia el modo de visualizaci&#243;n o ajusta su tama&#241;o.&lt;/p&gt;
+        &lt;div class=&quot;lottery-settings-actions&quot;&gt;
+          &lt;button class=&quot;btn is-install&quot; id=&quot;lottery-tab-install&quot; type=&quot;button&quot;&gt;Instalar app&lt;/button&gt;
+          &lt;div class=&quot;lottery-settings-zoom&quot; aria-label=&quot;Ajuste de tama&#241;o de la aplicaci&#243;n&quot;&gt;
+            &lt;button class=&quot;btn&quot; id=&quot;lottery-tab-zoom-out&quot; type=&quot;button&quot; aria-label=&quot;Reducir el tama&#241;o de la aplicaci&#243;n&quot;&gt;−&lt;/button&gt;
+            &lt;label class=&quot;lottery-settings-zoom-field&quot; for=&quot;lottery-tab-zoom-value&quot; aria-label=&quot;Porcentaje de zoom&quot;&gt;
+              &lt;input id=&quot;lottery-tab-zoom-value&quot; type=&quot;number&quot; inputmode=&quot;numeric&quot; min=&quot;50&quot; max=&quot;200&quot; step=&quot;1&quot; value=&quot;100&quot; aria-label=&quot;Escribir porcentaje de zoom&quot;&gt;
+              &lt;span aria-hidden=&quot;true&quot;&gt;%&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;button class=&quot;btn&quot; id=&quot;lottery-tab-zoom-in&quot; type=&quot;button&quot; aria-label=&quot;Ampliar el tama&#241;o de la aplicaci&#243;n&quot;&gt;+&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;button class=&quot;btn is-theme&quot; id=&quot;lottery-tab-theme&quot; type=&quot;button&quot; aria-label=&quot;Cambiar a modo claro&quot; title=&quot;Cambiar a modo claro&quot;&gt;☀︎ Cambiar modo&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/article&gt;
+
+      &lt;section class=&quot;lottery-high-load lottery-settings-performance&quot; aria-labelledby=&quot;lottery-high-load-label&quot;&gt;
+        &lt;label class=&quot;lottery-high-load-choice&quot; for=&quot;lottery-high-load-override&quot;&gt;
+          &lt;input id=&quot;lottery-high-load-override&quot; type=&quot;checkbox&quot; aria-describedby=&quot;lottery-high-load-description lottery-high-load-status&quot;&gt;
+          &lt;span&gt;
+            &lt;strong id=&quot;lottery-high-load-label&quot;&gt;Permitir operaciones de alta carga bajo mi responsabilidad&lt;/strong&gt;
+            &lt;small id=&quot;lottery-high-load-description&quot;&gt;Autoriza desarrollos, filtros y reducciones que superen el l&#237;mite preventivo del dispositivo. Puede provocar lentitud, calentamiento, falta de memoria, bloqueo o cierre del navegador.&lt;/small&gt;
+          &lt;/span&gt;
+        &lt;/label&gt;
+        &lt;span class=&quot;viz-badge&quot; id=&quot;lottery-high-load-status&quot;&gt;Protecci&#243;n activa&lt;/span&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
   &lt;/section&gt;
 
   &lt;div class=&quot;lottery-workspace&quot;&gt;
@@ -1023,14 +1009,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;button class=&quot;btn&quot; id=&quot;lottery-save&quot; type=&quot;button&quot; disabled&gt;Guardar combinaci&#243;n&lt;/button&gt;
         &lt;button class=&quot;btn&quot; id=&quot;lottery-copy-random&quot; type=&quot;button&quot; disabled&gt;Copiar combinaciones aleatorias&lt;/button&gt;
         &lt;button class=&quot;btn lottery-filter-source-button&quot; id=&quot;lottery-filter-current&quot; type=&quot;button&quot; data-filter-source=&quot;current&quot; disabled&gt;Filtrar combinaci&#243;n actual&lt;/button&gt;
+        &lt;button class=&quot;btn lottery-scrutiny-source-button&quot; type=&quot;button&quot; data-scrutiny-source=&quot;current&quot; disabled&gt;Enviar al escrutador&lt;/button&gt;
         &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-reset&quot; type=&quot;button&quot;&gt;Nuevo sorteo&lt;/button&gt;
-        &lt;label class=&quot;form-label zone-filter-mode&quot; for=&quot;lottery-draw-filter-mode&quot;&gt;
-          Al guardar
-          &lt;select class=&quot;form-select&quot; id=&quot;lottery-draw-filter-mode&quot;&gt;
-            &lt;option value=&quot;off&quot; selected&gt;Sin filtros&lt;/option&gt;
-            &lt;option value=&quot;active&quot;&gt;Exigir filtros activos&lt;/option&gt;
-          &lt;/select&gt;
-        &lt;/label&gt;
         &lt;a class=&quot;btn lottery-mobile-saved-link&quot; href=&quot;#lottery-saved-section&quot; aria-label=&quot;Ver las combinaciones guardadas&quot;&gt;Ver combinaciones guardadas&lt;/a&gt;
       &lt;/div&gt;
       &lt;div class=&quot;lottery-back-row&quot;&gt;
@@ -1107,6 +1087,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-generate-qr&quot; type=&quot;button&quot;&gt;Preparar QR&lt;/button&gt;
         &lt;button class=&quot;btn lottery-filter-source-button&quot; id=&quot;lottery-filter-saved&quot; type=&quot;button&quot; data-filter-source=&quot;random&quot; disabled&gt;Filtrar guardadas&lt;/button&gt;
         &lt;button class=&quot;btn&quot; id=&quot;lottery-reduce-saved&quot; type=&quot;button&quot; disabled&gt;Pasar al reductor&lt;/button&gt;
+        &lt;button class=&quot;btn lottery-scrutiny-source-button&quot; type=&quot;button&quot; data-scrutiny-source=&quot;random&quot; disabled&gt;Enviar al escrutador&lt;/button&gt;
         &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-clear-saved&quot; type=&quot;button&quot; disabled&gt;Vaciar lista&lt;/button&gt;
       &lt;/div&gt;
       &lt;div class=&quot;lottery-back-row&quot;&gt;
@@ -1129,14 +1110,6 @@ html&gt;body{padding:0}&lt;/style&gt;
           Cantidad de combinaciones &#183; de 1 a 100
           &lt;input class=&quot;form-control&quot; id=&quot;lottery-rule-total&quot; type=&quot;number&quot; inputmode=&quot;numeric&quot; min=&quot;1&quot; max=&quot;100&quot; step=&quot;1&quot; value=&quot;8&quot; autocomplete=&quot;off&quot;&gt;
         &lt;/label&gt;
-        &lt;label class=&quot;form-label zone-filter-mode&quot; for=&quot;lottery-rules-filter-mode&quot;&gt;
-          Generaci&#243;n
-          &lt;select class=&quot;form-select&quot; id=&quot;lottery-rules-filter-mode&quot;&gt;
-            &lt;option value=&quot;off&quot; selected&gt;Sin filtros&lt;/option&gt;
-            &lt;option value=&quot;active&quot;&gt;Aplicar filtros activos&lt;/option&gt;
-          &lt;/select&gt;
-        &lt;/label&gt;
-
         &lt;div class=&quot;rule-position-summary&quot; id=&quot;lottery-rule-position-summary&quot; aria-live=&quot;polite&quot;&gt;
           &lt;div class=&quot;rule-position-values&quot;&gt;
             &lt;span&gt;Total &lt;strong id=&quot;lottery-rule-position-total&quot;&gt;48&lt;/strong&gt;&lt;/span&gt;
@@ -1182,6 +1155,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;button class=&quot;btn&quot; id=&quot;lottery-copy-rules&quot; type=&quot;button&quot; disabled&gt;Copiar fijos/semifijos&lt;/button&gt;
           &lt;button class=&quot;btn lottery-filter-source-button&quot; id=&quot;lottery-filter-rules&quot; type=&quot;button&quot; data-filter-source=&quot;rules&quot; disabled&gt;Filtrar estas combinaciones&lt;/button&gt;
           &lt;button class=&quot;btn&quot; id=&quot;lottery-reduce-rules&quot; type=&quot;button&quot; disabled&gt;Pasar al reductor&lt;/button&gt;
+          &lt;button class=&quot;btn lottery-scrutiny-source-button&quot; type=&quot;button&quot; data-scrutiny-source=&quot;rules&quot; disabled&gt;Enviar al escrutador&lt;/button&gt;
           &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-clear-rules&quot; type=&quot;button&quot; disabled&gt;Quitar reglas&lt;/button&gt;
         &lt;/div&gt;
         &lt;div class=&quot;lottery-back-row&quot;&gt;
@@ -1221,6 +1195,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-generate-txt-qr&quot; type=&quot;button&quot; disabled&gt;Preparar QR de las combinaciones&lt;/button&gt;
           &lt;button class=&quot;btn lottery-filter-source-button&quot; id=&quot;lottery-filter-imported&quot; type=&quot;button&quot; data-filter-source=&quot;imported&quot; disabled&gt;Filtrar combinaciones cargadas&lt;/button&gt;
           &lt;button class=&quot;btn&quot; id=&quot;lottery-reduce-imported&quot; type=&quot;button&quot; disabled&gt;Pasar al reductor&lt;/button&gt;
+          &lt;button class=&quot;btn lottery-scrutiny-source-button&quot; type=&quot;button&quot; data-scrutiny-source=&quot;imported&quot; disabled&gt;Enviar al escrutador&lt;/button&gt;
           &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-clear-txt&quot; type=&quot;button&quot; disabled&gt;Borrar combinaciones&lt;/button&gt;
         &lt;/div&gt;
         &lt;div class=&quot;lottery-back-row&quot;&gt;
@@ -1415,6 +1390,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;button class=&quot;btn&quot; id=&quot;lottery-development-copy&quot; type=&quot;button&quot;&gt;Copiar resultado&lt;/button&gt;
         &lt;button class=&quot;btn lottery-filter-source-button&quot; id=&quot;lottery-filter-development&quot; type=&quot;button&quot; data-filter-source=&quot;development&quot;&gt;Filtrar resultado&lt;/button&gt;
         &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-development-qr&quot; type=&quot;button&quot;&gt;Preparar QR del resultado&lt;/button&gt;
+        &lt;button class=&quot;btn lottery-scrutiny-source-button&quot; type=&quot;button&quot; data-scrutiny-source=&quot;development-auto&quot; disabled&gt;Enviar al escrutador&lt;/button&gt;
         &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-development-clear-output&quot; type=&quot;button&quot;&gt;Limpiar generador&lt;/button&gt;
       &lt;/div&gt;
     &lt;/div&gt;
@@ -1514,6 +1490,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;button class=&quot;btn lottery-filter-source-button&quot; id=&quot;lottery-filter-digital&quot; type=&quot;button&quot; data-filter-source=&quot;digital&quot;&gt;Pasar a filtros&lt;/button&gt;
         &lt;button class=&quot;btn&quot; id=&quot;lottery-digital-reducer&quot; type=&quot;button&quot; disabled&gt;Pasar al reductor&lt;/button&gt;
         &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-digital-qr&quot; type=&quot;button&quot;&gt;Preparar QR del desarrollo&lt;/button&gt;
+        &lt;button class=&quot;btn lottery-scrutiny-source-button&quot; type=&quot;button&quot; data-scrutiny-source=&quot;digital&quot; disabled&gt;Enviar al escrutador&lt;/button&gt;
         &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-digital-clear-result&quot; type=&quot;button&quot;&gt;Limpiar resultado&lt;/button&gt;
       &lt;/div&gt;
     &lt;/div&gt;
@@ -1627,6 +1604,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;button class=&quot;btn lottery-filter-source-button&quot; id=&quot;lottery-filter-distance&quot; type=&quot;button&quot; data-filter-source=&quot;distance&quot;&gt;Pasar a filtros&lt;/button&gt;
         &lt;button class=&quot;btn&quot; id=&quot;lottery-distance-reducer&quot; type=&quot;button&quot; disabled&gt;Pasar al reductor&lt;/button&gt;
         &lt;button class=&quot;btn btn-primary&quot; id=&quot;lottery-distance-qr&quot; type=&quot;button&quot;&gt;Preparar QR del desarrollo&lt;/button&gt;
+        &lt;button class=&quot;btn lottery-scrutiny-source-button&quot; type=&quot;button&quot; data-scrutiny-source=&quot;distance-auto&quot; disabled&gt;Enviar al escrutador&lt;/button&gt;
         &lt;button class=&quot;btn btn-ghost&quot; id=&quot;lottery-distance-clear-result&quot; type=&quot;button&quot;&gt;Limpiar resultado&lt;/button&gt;
       &lt;/div&gt;
     &lt;/div&gt;
@@ -1843,6 +1821,16 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;/div&gt;
     &lt;div class=&quot;lottery-back-row&quot;&gt;
       &lt;a class=&quot;lottery-back-top&quot; href=&quot;#lottery-app-top&quot; aria-label=&quot;Volver al inicio desde Filtros&quot;&gt;↑ Volver al inicio&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;qr-setup-area card&quot; id=&quot;lottery-qr-empty&quot; aria-labelledby=&quot;lottery-qr-empty-label&quot;&gt;
+    &lt;div class=&quot;lottery-section-label&quot;&gt;
+      &lt;div&gt;
+        &lt;h2 id=&quot;lottery-qr-empty-label&quot;&gt;Generador de c&#243;digos QR&lt;/h2&gt;
+        &lt;p class=&quot;text-muted&quot;&gt;Todav&#237;a no hay combinaciones preparadas. Utiliza &#171;Preparar QR&#187; desde cualquiera de las pesta&#241;as de generaci&#243;n.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;span class=&quot;viz-badge&quot;&gt;Pendiente&lt;/span&gt;
     &lt;/div&gt;
   &lt;/section&gt;
 
@@ -2101,6 +2089,10 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;span&gt;Procedencia de las combinaciones&lt;/span&gt;
           &lt;strong id=&quot;lottery-scrutiny-context-source&quot;&gt;&lt;/strong&gt;
         &lt;/div&gt;
+        &lt;div class=&quot;scrutiny-context-item scrutiny-context-route&quot; id=&quot;lottery-scrutiny-context-route-item&quot;&gt;
+          &lt;span&gt;Recorrido de las combinaciones&lt;/span&gt;
+          &lt;strong id=&quot;lottery-scrutiny-context-route&quot;&gt;&lt;/strong&gt;
+        &lt;/div&gt;
       &lt;/div&gt;
       &lt;div class=&quot;scrutiny-draw&quot; id=&quot;lottery-scrutiny-draw&quot; aria-label=&quot;Resultado utilizado para el escrutinio&quot;&gt;&lt;/div&gt;
       &lt;p class=&quot;scrutiny-summary&quot; id=&quot;lottery-scrutiny-summary&quot;&gt;&lt;/p&gt;
@@ -2129,13 +2121,14 @@ html&gt;body{padding:0}&lt;/style&gt;
 
 &lt;style&gt;
   #lottery-simulator-649 {
+    --lottery-fixed-nav-height: 4.25rem;
     box-sizing: border-box;
     color: color-mix(in srgb, var(--foreground) 28%, var(--primary));
     width: 100%;
     position: relative;
     isolation: isolate;
-    overflow: hidden;
-    padding: clamp(0.75rem, 1.35vw, 1.4rem);
+    overflow: visible;
+    padding: calc(clamp(0.75rem, 1.35vw, 1.4rem) + var(--lottery-fixed-nav-height) + 0.65rem) clamp(0.75rem, 1.35vw, 1.4rem) clamp(0.75rem, 1.35vw, 1.4rem);
     border-radius: 1.5rem;
   }
 
@@ -2219,14 +2212,15 @@ html&gt;body{padding:0}&lt;/style&gt;
   }
 
   #lottery-simulator-649 .lottery-quick-nav {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    align-items: center;
-    gap: 0.75rem;
+    display: block;
     margin-bottom: 1rem;
     padding: 0.65rem 0.75rem;
-    position: relative;
-    z-index: 3;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: clamp(0.75rem, 1.35vw, 1.4rem);
+    right: clamp(0.75rem, 1.35vw, 1.4rem);
+    z-index: 50;
     border: 1px solid color-mix(in srgb, var(--primary) 24%, var(--border));
     border-radius: 1rem;
     background: color-mix(in srgb, var(--card) 88%, transparent);
@@ -2244,28 +2238,32 @@ html&gt;body{padding:0}&lt;/style&gt;
   }
 
   #lottery-simulator-649 .lottery-quick-links {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(11, minmax(0, 1fr));
     gap: 0.45rem;
     min-width: 0;
+    overflow: visible;
+    padding: 0.1rem 0.05rem;
   }
 
   #lottery-simulator-649 .lottery-quick-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    min-width: 0;
     min-height: 2.35rem;
-    padding: 0.45rem 0.72rem;
+    padding: 0.45rem clamp(0.3rem, 0.55vw, 0.72rem);
     border: 1px solid color-mix(in srgb, var(--primary) 36%, var(--border));
     border-radius: var(--radius-full);
     color: color-mix(in srgb, var(--foreground) 84%, var(--primary));
-    background: color-mix(in srgb, var(--secondary) 88%, transparent);
-    font-size: var(--font-size-small);
+    background: color-mix(in srgb, var(--card) 38%, transparent);
+    font-size: clamp(0.66rem, 0.72vw, var(--font-size-small));
     font-weight: 650;
     line-height: 1.1;
     text-align: center;
     text-decoration: none;
     transition: transform 150ms ease, border-color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+    overflow-wrap: anywhere;
   }
 
   #lottery-simulator-649 .lottery-quick-link:is(:hover, :focus-visible) {
@@ -2303,19 +2301,122 @@ html&gt;body{padding:0}&lt;/style&gt;
     letter-spacing: 0.04em;
   }
 
-  #lottery-simulator-649 .lottery-quick-link[aria-current=&quot;location&quot;] {
-    border-color: var(--primary);
-    color: var(--foreground);
-    background: color-mix(in srgb, var(--primary) 22%, var(--card));
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 22%, transparent);
+  #lottery-simulator-649 .lottery-quick-link[aria-current=&quot;location&quot;],
+  #lottery-simulator-649 .lottery-quick-link[aria-selected=&quot;true&quot;] {
+    border-color: color-mix(in srgb, var(--primary) 88%, white 12%);
+    color: var(--primary-foreground);
+    background: linear-gradient(135deg, var(--primary), color-mix(in srgb, var(--primary) 62%, var(--viz-series-5)));
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 25%, transparent), 0 0 1rem color-mix(in srgb, var(--primary) 42%, transparent);
+    text-shadow: 0 1px 0 color-mix(in srgb, black 35%, transparent);
   }
+
+  #lottery-simulator-649 .lottery-session-load { cursor: pointer; }
+
+  #lottery-simulator-649 .lottery-settings {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  #lottery-simulator-649 .lottery-settings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  #lottery-simulator-649 .lottery-settings-card {
+    display: grid;
+    align-content: start;
+    gap: 0.75rem;
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid color-mix(in srgb, var(--primary) 22%, var(--border));
+    border-radius: var(--radius-xl);
+    background: color-mix(in srgb, var(--secondary) 72%, transparent);
+  }
+
+  #lottery-simulator-649 .lottery-settings-card :is(h3, p) { margin: 0; }
+
+  #lottery-simulator-649 .lottery-settings-performance {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+
+  #lottery-simulator-649 .lottery-settings-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem;
+    margin-top: auto;
+  }
+
+  #lottery-simulator-649 .lottery-settings-actions .is-install {
+    border-color: color-mix(in srgb, #22c55e 68%, var(--border));
+    color: light-dark(#065f46, #bbf7d0);
+    background: color-mix(in srgb, #22c55e 13%, var(--secondary));
+    font-weight: 850;
+  }
+
+  #lottery-simulator-649 .lottery-settings-zoom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--primary) 36%, var(--border));
+    border-radius: var(--radius-full);
+    background: color-mix(in srgb, var(--card) 80%, transparent);
+  }
+
+  #lottery-simulator-649 .lottery-settings-zoom .btn {
+    min-width: 2.5rem;
+    border: 0;
+    border-radius: 0;
+  }
+
+  #lottery-simulator-649 .lottery-settings-zoom &gt; * + * {
+    border-left: 1px solid color-mix(in srgb, var(--primary) 28%, var(--border));
+  }
+
+  #lottery-simulator-649 .lottery-settings-zoom-field {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.35rem;
+    padding: 0 0.5rem;
+    color: var(--foreground);
+    font: 750 var(--font-size-small)/1 var(--font-sans);
+  }
+
+  #lottery-simulator-649 .lottery-settings-zoom-field input {
+    width: 2.5rem;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    color: inherit;
+    background: transparent;
+    font: inherit;
+    text-align: right;
+    -moz-appearance: textfield;
+  }
+
+  #lottery-simulator-649 .lottery-settings-zoom-field input::-webkit-inner-spin-button,
+  #lottery-simulator-649 .lottery-settings-zoom-field input::-webkit-outer-spin-button { margin: 0; -webkit-appearance: none; }
+
+  #lottery-simulator-649 .lottery-tab-panel:not(.is-tab-active),
+  #lottery-simulator-649 .lottery-tab-child:not(.is-tab-active) { display: none !important; }
+
+  #lottery-simulator-649 .bulk-area.is-tab-shell { grid-template-columns: minmax(0, 1fr); }
+  #lottery-simulator-649 .bulk-area.is-tab-shell &gt; .lottery-section-label { display: none; }
+  #lottery-simulator-649 .bulk-area.is-tab-shell .bulk-grid { grid-template-columns: minmax(0, 1fr); }
+  #lottery-simulator-649 .bulk-area.is-tab-shell .bulk-section { padding-left: 0; border-left: 0; }
 
   #lottery-simulator-649 .lottery-jump-target {
     scroll-margin-top: 1rem;
   }
 
   #lottery-simulator-649 .lottery-back-row {
-    display: flex;
+    display: none !important;
     justify-content: flex-end;
     margin-top: 0.65rem;
   }
@@ -5517,7 +5618,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
   @media (max-width: 620px) {
     #lottery-simulator-649 {
-      padding: 0.65rem;
+      padding: calc(0.65rem + var(--lottery-fixed-nav-height) + 0.5rem) 0.65rem 0.65rem;
       border-radius: 1rem;
     }
 
@@ -5528,7 +5629,13 @@ html&gt;body{padding:0}&lt;/style&gt;
       padding: 0.55rem;
     }
 
+    #lottery-simulator-649 .lottery-quick-nav-label {
+      display: none;
+    }
+
     #lottery-simulator-649 .lottery-quick-links {
+      display: flex;
+      grid-template-columns: none;
       flex-wrap: nowrap;
       overflow-x: auto;
       padding: 0.1rem 0.05rem 0.3rem;
@@ -5543,6 +5650,25 @@ html&gt;body{padding:0}&lt;/style&gt;
       min-height: 2.7rem;
       padding-inline: 0.85rem;
       scroll-snap-align: start;
+    }
+
+    #lottery-simulator-649 .lottery-settings-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    #lottery-simulator-649 .lottery-settings-actions {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    #lottery-simulator-649 .lottery-settings-actions &gt; :is(.btn, .lottery-settings-zoom) {
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    #lottery-simulator-649 .lottery-settings-zoom .btn,
+    #lottery-simulator-649 .lottery-settings-zoom-field {
+      flex: 1 1 0;
     }
 
     #lottery-simulator-649 .lottery-back-top {
@@ -5857,26 +5983,124 @@ html&gt;body{padding:0}&lt;/style&gt;
     const highLoadPanel = root.querySelector(&#39;.lottery-high-load&#39;);
     const highLoadOverrideInput = root.querySelector(&#39;#lottery-high-load-override&#39;);
     const highLoadStatus = root.querySelector(&#39;#lottery-high-load-status&#39;);
-    const quickNavLinks = Array.from(root.querySelectorAll(&#39;.lottery-quick-link[href^=&quot;#&quot;]&#39;));
-    const sectionScrollLinks = Array.from(root.querySelectorAll(&#39;.lottery-quick-link[href^=&quot;#&quot;], .lottery-back-top[href^=&quot;#&quot;], .lottery-mobile-saved-link[href^=&quot;#&quot;]&#39;));
-    sectionScrollLinks.forEach((link) =&gt; {
+    const quickNavLinks = Array.from(root.querySelectorAll(&#39;.lottery-quick-link[data-lottery-tab]&#39;));
+    const bulkTabShell = root.querySelector(&#39;.bulk-area&#39;);
+    const tabPanels = {
+      sorteo: [root.querySelector(&#39;.lottery-workspace&#39;)],
+      rules: [bulkTabShell],
+      digital: [root.querySelector(&#39;#lottery-digital-section&#39;)],
+      distance: [root.querySelector(&#39;#lottery-distance-section&#39;)],
+      filters: [root.querySelector(&#39;#lottery-filters-section&#39;)],
+      development: [root.querySelector(&#39;#lottery-development-section&#39;)],
+      txt: [bulkTabShell],
+      qr: [root.querySelector(&#39;#lottery-qr-empty&#39;), root.querySelector(&#39;#lottery-qr-setup-section&#39;), root.querySelector(&#39;#lottery-qr-area&#39;)],
+      scrutiny: [root.querySelector(&#39;#lottery-scrutiny-section&#39;)],
+      tickets: [root.querySelector(&#39;#lottery-tickets-section&#39;)],
+      settings: [root.querySelector(&#39;#lottery-settings-section&#39;)]
+    };
+    const allTabPanels = [...new Set(Object.values(tabPanels).flat().filter(Boolean))];
+    const rulesTabChild = root.querySelector(&#39;#lottery-rules-section&#39;);
+    const txtTabChild = root.querySelector(&#39;#lottery-txt-section&#39;);
+    const qrEmptyArea = root.querySelector(&#39;#lottery-qr-empty&#39;);
+    bulkTabShell?.classList.add(&#39;is-tab-shell&#39;, &#39;lottery-tab-panel&#39;);
+    allTabPanels.forEach((panel) =&gt; panel.classList.add(&#39;lottery-tab-panel&#39;));
+    rulesTabChild?.classList.add(&#39;lottery-tab-child&#39;);
+    txtTabChild?.classList.add(&#39;lottery-tab-child&#39;);
+    let activeLotteryTab = &#39;sorteo&#39;;
+
+    function activateLotteryTab(tabName, options = {}) {
+      const nextTab = tabPanels[tabName] ? tabName : &#39;sorteo&#39;;
+      activeLotteryTab = nextTab;
+      allTabPanels.forEach((panel) =&gt; panel.classList.remove(&#39;is-tab-active&#39;));
+      tabPanels[nextTab].forEach((panel) =&gt; panel?.classList.add(&#39;is-tab-active&#39;));
+      rulesTabChild?.classList.toggle(&#39;is-tab-active&#39;, nextTab === &#39;rules&#39;);
+      txtTabChild?.classList.toggle(&#39;is-tab-active&#39;, nextTab === &#39;txt&#39;);
+      if (qrEmptyArea) {
+        const setupHidden = root.querySelector(&#39;#lottery-qr-setup-section&#39;)?.hidden !== false;
+        const resultHidden = root.querySelector(&#39;#lottery-qr-area&#39;)?.hidden !== false;
+        qrEmptyArea.hidden = !(nextTab === &#39;qr&#39; &amp;&amp; setupHidden &amp;&amp; resultHidden);
+      }
+      quickNavLinks.forEach((link) =&gt; {
+        const selected = link.dataset.lotteryTab === nextTab;
+        link.setAttribute(&#39;aria-selected&#39;, String(selected));
+        link.toggleAttribute(&#39;aria-current&#39;, selected);
+        if (selected) link.scrollIntoView({ block: &#39;nearest&#39;, inline: &#39;nearest&#39; });
+      });
+      const behavior = options.instant || window.matchMedia(&#39;(prefers-reduced-motion: reduce)&#39;).matches
+        ? &#39;auto&#39;
+        : &#39;smooth&#39;;
+      window.scrollTo({ top: 0, behavior });
+      if (options.focusTarget) {
+        requestAnimationFrame(() =&gt; options.focusTarget.focus?.({ preventScroll: true }));
+      }
+    }
+
+    quickNavLinks.forEach((link) =&gt; {
       link.addEventListener(&#39;click&#39;, (event) =&gt; {
-        const targetId = link.getAttribute(&#39;href&#39;).slice(1);
-        const target = document.getElementById(targetId);
-        if (!target) return;
         event.preventDefault();
-        const reducedMotion = window.matchMedia(&#39;(prefers-reduced-motion: reduce)&#39;).matches;
-        const targetTop = target.getBoundingClientRect().top + window.scrollY - 12;
-        window.scrollTo({
-          top: Math.max(0, targetTop),
-          behavior: reducedMotion ? &#39;auto&#39; : &#39;smooth&#39;
-        });
-        quickNavLinks.forEach((item) =&gt; item.removeAttribute(&#39;aria-current&#39;));
-        if (link.classList.contains(&#39;lottery-quick-link&#39;)) {
-          link.setAttribute(&#39;aria-current&#39;, &#39;location&#39;);
-        }
+        activateLotteryTab(link.dataset.lotteryTab);
       });
     });
+
+    root.querySelectorAll(&#39;.lottery-mobile-saved-link[href=&quot;#lottery-saved-section&quot;]&#39;).forEach((link) =&gt; {
+      link.addEventListener(&#39;click&#39;, (event) =&gt; {
+        event.preventDefault();
+        activateLotteryTab(&#39;sorteo&#39;, { instant: true });
+        requestAnimationFrame(() =&gt; root.querySelector(&#39;#lottery-saved-section&#39;)?.scrollIntoView({
+          behavior: window.matchMedia(&#39;(prefers-reduced-motion: reduce)&#39;).matches ? &#39;auto&#39; : &#39;smooth&#39;,
+          block: &#39;start&#39;
+        }));
+      });
+    });
+
+    const tabInstallButton = root.querySelector(&#39;#lottery-tab-install&#39;);
+    const tabZoomOutButton = root.querySelector(&#39;#lottery-tab-zoom-out&#39;);
+    const tabZoomInput = root.querySelector(&#39;#lottery-tab-zoom-value&#39;);
+    const tabZoomInButton = root.querySelector(&#39;#lottery-tab-zoom-in&#39;);
+    const tabThemeButton = root.querySelector(&#39;#lottery-tab-theme&#39;);
+    const sessionSaveButton = root.querySelector(&#39;#lottery-session-save&#39;);
+    const sessionFileInput = root.querySelector(&#39;#lottery-session-file&#39;);
+    const fixedQuickNav = root.querySelector(&#39;#lottery-app-top&#39;);
+    const updateFixedNavigationSpace = () =&gt; {
+      const height = Math.ceil(fixedQuickNav?.getBoundingClientRect().height ?? 0);
+      if (height &gt; 0) root.style.setProperty(&#39;--lottery-fixed-nav-height&#39;, `${height}px`);
+    };
+    const fixedNavigationObserver = typeof ResizeObserver === &#39;function&#39;
+      ? new ResizeObserver(updateFixedNavigationSpace)
+      : null;
+    fixedNavigationObserver?.observe(fixedQuickNav);
+    window.addEventListener(&#39;resize&#39;, updateFixedNavigationSpace, { passive: true });
+    requestAnimationFrame(updateFixedNavigationSpace);
+    tabInstallButton?.addEventListener(&#39;click&#39;, () =&gt; window.parent.postMessage({ type: &#39;qr-loto-suite-install&#39; }, &#39;*&#39;));
+    tabZoomOutButton?.addEventListener(&#39;click&#39;, () =&gt; window.parent.postMessage({ type: &#39;qr-loto-suite-zoom-step&#39;, value: -5 }, &#39;*&#39;));
+    tabZoomInButton?.addEventListener(&#39;click&#39;, () =&gt; window.parent.postMessage({ type: &#39;qr-loto-suite-zoom-step&#39;, value: 5 }, &#39;*&#39;));
+    const requestTypedZoom = () =&gt; window.parent.postMessage({ type: &#39;qr-loto-suite-zoom-set&#39;, value: tabZoomInput?.value }, &#39;*&#39;);
+    tabZoomInput?.addEventListener(&#39;change&#39;, requestTypedZoom);
+    tabZoomInput?.addEventListener(&#39;blur&#39;, requestTypedZoom);
+    tabZoomInput?.addEventListener(&#39;keydown&#39;, (event) =&gt; {
+      if (event.key !== &#39;Enter&#39;) return;
+      event.preventDefault();
+      requestTypedZoom();
+      tabZoomInput.blur();
+    });
+    tabThemeButton?.addEventListener(&#39;click&#39;, () =&gt; window.parent.postMessage({ type: &#39;qr-loto-suite-theme-toggle&#39; }, &#39;*&#39;));
+    window.addEventListener(&#39;message&#39;, (event) =&gt; {
+      const data = event.data;
+      if (!data || data.type !== &#39;qr-loto-suite-ui-state&#39;) return;
+      const zoom = Number(data.zoom) || 100;
+      if (tabZoomInput) tabZoomInput.value = String(zoom);
+      if (tabZoomOutButton) tabZoomOutButton.disabled = zoom &lt;= 50;
+      if (tabZoomInButton) tabZoomInButton.disabled = zoom &gt;= 200;
+      if (tabThemeButton) {
+        const isLight = data.theme === &#39;light&#39;;
+        tabThemeButton.textContent = isLight ? &#39;☾ Modo oscuro&#39; : &#39;☀︎ Modo claro&#39;;
+        tabThemeButton.setAttribute(&#39;aria-label&#39;, isLight ? &#39;Cambiar a modo oscuro&#39; : &#39;Cambiar a modo claro&#39;);
+        tabThemeButton.title = isLight ? &#39;Cambiar a modo oscuro&#39; : &#39;Cambiar a modo claro&#39;;
+      }
+      if (tabInstallButton) tabInstallButton.hidden = data.installVisible === false;
+    });
+    window.parent.postMessage({ type: &#39;qr-loto-suite-ui-ready&#39; }, &#39;*&#39;);
+    activateLotteryTab(&#39;sorteo&#39;, { instant: true });
     const drum = root.querySelector(&#39;#lottery-drum&#39;);
     const ballsContainer = root.querySelector(&#39;#lottery-balls&#39;);
     const remainingLabel = root.querySelector(&#39;#lottery-remaining&#39;);
@@ -5974,8 +6198,6 @@ html&gt;body{padding:0}&lt;/style&gt;
     const rulePositionFixedBar = root.querySelector(&#39;#lottery-rule-position-fixed-bar&#39;);
     const rulePositionSemiBar = root.querySelector(&#39;#lottery-rule-position-semi-bar&#39;);
     const rulePositionNote = root.querySelector(&#39;#lottery-rule-position-note&#39;);
-    const drawFilterModeSelect = root.querySelector(&#39;#lottery-draw-filter-mode&#39;);
-    const rulesFilterModeSelect = root.querySelector(&#39;#lottery-rules-filter-mode&#39;);
     const txtFilterModeSelect = root.querySelector(&#39;#lottery-txt-filter-mode&#39;);
     const developmentFilterModeSelect = root.querySelector(&#39;#lottery-development-filter-mode&#39;);
     const generateTicketButton = root.querySelector(&#39;#lottery-generate-ticket&#39;);
@@ -6166,10 +6388,12 @@ html&gt;body{padding:0}&lt;/style&gt;
     const scrutinyContextGame = root.querySelector(&#39;#lottery-scrutiny-context-game&#39;);
     const scrutinyContextSourceItem = root.querySelector(&#39;#lottery-scrutiny-context-source-item&#39;);
     const scrutinyContextSource = root.querySelector(&#39;#lottery-scrutiny-context-source&#39;);
+    const scrutinyContextRoute = root.querySelector(&#39;#lottery-scrutiny-context-route&#39;);
     const scrutinyDraw = root.querySelector(&#39;#lottery-scrutiny-draw&#39;);
     const scrutinySummary = root.querySelector(&#39;#lottery-scrutiny-summary&#39;);
     const scrutinyHitSummary = root.querySelector(&#39;#lottery-scrutiny-hit-summary&#39;);
     const scrutinyList = root.querySelector(&#39;#lottery-scrutiny-list&#39;);
+    const scrutinySourceButtons = Array.from(root.querySelectorAll(&#39;.lottery-scrutiny-source-button&#39;));
     const scrutinyNote = root.querySelector(&#39;#lottery-scrutiny-note&#39;);
     const reducedMotion = window.matchMedia(&#39;(prefers-reduced-motion: reduce)&#39;).matches;
     const qrGameLogoSources = {
@@ -6235,6 +6459,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     let loadedTicketForFilters = null;
     let filteredCombinations = [];
     let filteredSourceDetails = null;
+    let scrutinyPreparedRoute = null;
+    let scrutinyPreparedSource = null;
     let filterPageIndex = 0;
     let filterBusy = false;
     let filterCancelRequested = false;
@@ -7107,6 +7333,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     function renderDigitalResults() {
       const total = digitalGeneratedCombinations.length;
+      refreshScrutinySourceButtons();
       const pageTotal = Math.max(1, Math.ceil(total / DIGITAL_PAGE_SIZE));
       digitalPageIndex = Math.min(Math.max(0, digitalPageIndex), pageTotal - 1);
       const start = digitalPageIndex * DIGITAL_PAGE_SIZE;
@@ -7989,6 +8216,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
 
     function renderDistanceResults() {
+      refreshScrutinySourceButtons();
       const total = distanceGeneratedCombinations.length;
       const pageTotal = Math.max(1, Math.ceil(total / DIGITAL_PAGE_SIZE));
       distancePageIndex = Math.min(Math.max(0, distancePageIndex), pageTotal - 1);
@@ -8150,8 +8378,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       );
       renderDistancePanel();
       const distanceSection = root.querySelector(&#39;#lottery-distance-section&#39;);
-      distanceSection.scrollIntoView({ behavior: &#39;smooth&#39;, block: &#39;start&#39; });
-      distanceSection.focus({ preventScroll: true });
+      activateLotteryTab(&#39;distance&#39;, { focusTarget: distanceSection });
 
       if (effectiveDistanceSelections().some((selection) =&gt; selection.length === 0)) {
         setDistanceMessage(
@@ -8791,31 +9018,38 @@ html&gt;body{padding:0}&lt;/style&gt;
           description: combinations.length
             ? &#39;La combinaci&#243;n completa que aparece actualmente en la zona del bombo.&#39;
             : &#39;Todav&#237;a no hay una combinaci&#243;n completa para filtrar.&#39;,
+          route: [&#39;Sorteo aleatorio&#39;],
           combinations
         };
       }
       if (source === &#39;random&#39;) {
         const combinations = savedOrigin === &#39;random&#39; ? savedCombinations : [];
+        const route = [&#39;Sorteo aleatorio&#39;, &#39;Combinaciones guardadas&#39;];
         return {
           key: &#39;random&#39;,
           label: &#39;Bombo &#183; combinaciones guardadas&#39;,
           description: combinations.length
             ? &#39;Combinaciones extra&#237;das mediante el bombo y guardadas en la lista.&#39;
             : &#39;No hay combinaciones aleatorias guardadas.&#39;,
+          route,
           combinations
         };
       }
       if (source === &#39;rules&#39;) {
+        const route = [&#39;Fijos y semifijos&#39;];
         return {
           key: &#39;rules&#39;,
           label: &#39;Generador con fijos y semifijos&#39;,
           description: ruleGeneratedCombinations.length
             ? &#39;Combinaciones creadas aplicando los fijos y semifijos seleccionados.&#39;
             : &#39;Todav&#237;a no se han generado combinaciones con fijos y semifijos.&#39;,
+          route,
           combinations: ruleGeneratedCombinations
         };
       }
       if (source === &#39;imported&#39;) {
+        const route = [importedSource === &#39;clipboard&#39; ? &#39;Portapapeles&#39; : &#39;Archivo TXT&#39;];
+        if (txtFilterModeSelect.value === &#39;active&#39;) route.push(&#39;Filtros activos&#39;);
         return {
           key: importedSource === &#39;clipboard&#39; ? &#39;clipboard&#39; : &#39;file&#39;,
           label: importedSource === &#39;clipboard&#39;
@@ -8824,26 +9058,33 @@ html&gt;body{padding:0}&lt;/style&gt;
           description: importedCombinations.length
             ? &#39;Combinaciones cargadas en la zona de TXT y portapapeles.&#39;
             : &#39;Todav&#237;a no se han cargado combinaciones desde TXT o portapapeles.&#39;,
+          route,
           combinations: importedCombinations
         };
       }
       if (source === &#39;reduced&#39;) {
+        const route = [...(developmentExternalSource?.route ?? []), &#39;Reducci&#243;n&#39;];
+        if (developmentFilterModeSelect.value === &#39;active&#39;) route.push(&#39;Filtros activos&#39;);
         return {
           key: &#39;reduced&#39;,
           label: &#39;Reducci&#243;n matem&#225;tica&#39;,
           description: developmentReducedCombinations.length
             ? &#39;Combinaciones que forman la &#250;ltima reducci&#243;n calculada.&#39;
             : &#39;Todav&#237;a no se ha generado una reducci&#243;n.&#39;,
+          route,
           combinations: developmentReducedCombinations
         };
       }
       if (source === &#39;development&#39;) {
+        const route = [...(developmentExternalSource?.route ?? []), &#39;Desarrollo completo&#39;];
+        if (developmentFilterModeSelect.value === &#39;active&#39;) route.push(&#39;Filtros activos&#39;);
         return {
           key: &#39;full&#39;,
           label: &#39;Desarrollo completo&#39;,
           description: developmentFullCombinations.length
             ? &#39;Combinaciones que forman el &#250;ltimo desarrollo completo.&#39;
             : &#39;Todav&#237;a no se ha generado un desarrollo completo.&#39;,
+          route,
           combinations: developmentFullCombinations
         };
       }
@@ -8859,6 +9100,7 @@ html&gt;body{padding:0}&lt;/style&gt;
                 ? &#39;Combinaciones naturales generadas con las terminaciones y equivalencias seleccionadas en P1–P6.&#39;
                 : &#39;Combinaciones naturales equivalentes generadas mediante P1–P6, SDCD y las clases de equivalencia seleccionadas.&#39;
             : `Todav&#237;a no se ha generado un desarrollo de ${label.toLocaleLowerCase(&#39;es-ES&#39;)}.`,
+          route: [label],
           combinations: digitalGeneratedCombinations
         };
       }
@@ -8870,6 +9112,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           description: combinations.length
             ? `Combinaciones naturales generadas mediante ${distanceCrossModeLabel(distanceGeneratedCrossMode)}.`
             : &#39;Todav&#237;a no se ha generado un desarrollo por firma de distancias.&#39;,
+          route: [distanceCrossModeLabel(distanceGeneratedCrossMode)],
           combinations
         };
       }
@@ -8883,6 +9126,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           description: combinations.length
             ? &#39;Combinaciones que cumplen simult&#225;neamente la firma digital, la firma de terminaci&#243;n y la firma de distancia.&#39;
             : &#39;Todav&#237;a no se ha calculado el cruce de las tres firmas.&#39;,
+          route: [&#39;Firma digital&#39;, &#39;Firma de terminaci&#243;n&#39;, &#39;Firma de distancia&#39;],
           combinations
         };
       }
@@ -8916,6 +9160,48 @@ html&gt;body{padding:0}&lt;/style&gt;
         ? &#39;development&#39;
         : &#39;reduced&#39;;
       if (filterSourceSelect.value) updateFilterSourceSummary(false);
+      refreshScrutinySourceButtons();
+    }
+
+    function scrutinySourceAvailable(source) {
+      switch (source) {
+        case &#39;current&#39;: return drawn.length === 6;
+        case &#39;random&#39;: return savedOrigin === &#39;random&#39; &amp;&amp; savedCombinations.length &gt; 0;
+        case &#39;rules&#39;: return ruleGeneratedCombinations.length &gt; 0;
+        case &#39;imported&#39;: return importedCombinations.length &gt; 0;
+        case &#39;development-auto&#39;: return getActiveDevelopmentCombinations().length &gt; 0;
+        case &#39;digital&#39;: return digitalGeneratedCombinations.length &gt; 0;
+        case &#39;distance-auto&#39;: return distanceGeneratedCombinations.length &gt; 0;
+        default: return false;
+      }
+    }
+
+    function resolveScrutinySource(source) {
+      if (source === &#39;development-auto&#39;) {
+        return developmentViewSelect.value === &#39;full&#39; ? &#39;development&#39; : &#39;reduced&#39;;
+      }
+      if (source === &#39;distance-auto&#39;) {
+        return distanceGeneratedCrossMode === &#39;both&#39; ? &#39;triple-signature&#39; : &#39;distance&#39;;
+      }
+      return source;
+    }
+
+    function refreshScrutinySourceButtons() {
+      scrutinySourceButtons.forEach((button) =&gt; {
+        button.disabled = !scrutinySourceAvailable(button.dataset.scrutinySource);
+      });
+    }
+
+    function sendSourceToScrutinizer(source) {
+      if (!scrutinySourceAvailable(source)) return;
+      const resolvedSource = resolveScrutinySource(source);
+      scrutinySourceSelect.value = resolvedSource;
+      const details = filterSourceDetails(resolvedSource);
+      scrutinyPreparedSource = resolvedSource;
+      scrutinyPreparedRoute = [...(details.route ?? [details.label]), &#39;Escrutador&#39;];
+      scrutinyOutput.hidden = true;
+      setScrutinyMessage(`${getScrutinyCombinations().length.toLocaleString(&#39;es-ES&#39;)} combinaciones de ${scrutinySourceName()} preparadas para el escrutinio.`);
+      activateLotteryTab(&#39;scrutiny&#39;, { focusTarget: root.querySelector(&#39;#lottery-scrutiny-section&#39;) });
     }
 
     function clearFilteredResult(message = &#39;&#39;) {
@@ -8950,14 +9236,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
 
     function scrollToFilters() {
-      requestAnimationFrame(() =&gt; {
-        const targetTop = filterSection.getBoundingClientRect().top + window.scrollY - 12;
-        window.scrollTo({ top: Math.max(0, targetTop), behavior: reducedMotion ? &#39;auto&#39; : &#39;smooth&#39; });
-        filterSection.focus({ preventScroll: true });
-        quickNavLinks.forEach((item) =&gt; item.removeAttribute(&#39;aria-current&#39;));
-        const quickFilterLink = quickNavLinks.find((link) =&gt; link.getAttribute(&#39;href&#39;) === &#39;#lottery-filters-section&#39;);
-        quickFilterLink?.setAttribute(&#39;aria-current&#39;, &#39;location&#39;);
-      });
+      activateLotteryTab(&#39;filters&#39;, { focusTarget: filterSection });
     }
 
     function openFiltersForSource(source, ticket = null) {
@@ -9382,7 +9661,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       filteredSourceDetails = {
         key: &#39;filtered&#39;,
         label: `Filtros &#183; ${source.label}`,
-        description: `Combinaciones filtradas a partir de ${source.label}.`
+        description: `Combinaciones filtradas a partir de ${source.label}.`,
+        route: [...(source.route ?? [source.label]), &#39;Filtros&#39;]
       };
       filterPageIndex = 0;
       configuration.enabled.forEach((key) =&gt; {
@@ -9447,15 +9727,170 @@ html&gt;body{padding:0}&lt;/style&gt;
         return;
       }
       scrutinySourceSelect.value = &#39;filtered&#39;;
+      scrutinyPreparedSource = &#39;filtered&#39;;
+      scrutinyPreparedRoute = [...(filteredSourceDetails?.route ?? [&#39;Filtros&#39;]), &#39;Escrutador&#39;];
       scrutinyOutput.hidden = true;
       setScrutinyMessage(`${filteredCombinations.length.toLocaleString(&#39;es-ES&#39;)} combinaciones filtradas preparadas para el escrutinio.`);
       const scrutinySection = root.querySelector(&#39;#lottery-scrutiny-section&#39;);
-      const targetTop = scrutinySection.getBoundingClientRect().top + window.scrollY - 12;
-      window.scrollTo({ top: Math.max(0, targetTop), behavior: reducedMotion ? &#39;auto&#39; : &#39;smooth&#39; });
+      activateLotteryTab(&#39;scrutiny&#39;, { focusTarget: scrutinySection });
     }
 
     function makeTicketId() {
       return window.crypto?.randomUUID?.() ?? `ticket-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+    }
+
+    function captureSessionFormState() {
+      const values = {};
+      root.querySelectorAll(&#39;input[id], select[id], textarea[id]&#39;).forEach((field) =&gt; {
+        if (field.type === &#39;file&#39;) return;
+        values[field.id] = field.type === &#39;checkbox&#39; || field.type === &#39;radio&#39;
+          ? { checked: field.checked }
+          : { value: field.value };
+      });
+      return values;
+    }
+
+    function restoreSessionFormState(values = {}) {
+      Object.entries(values).forEach(([id, state]) =&gt; {
+        const field = document.getElementById(id);
+        if (!field) return;
+        if (&#39;checked&#39; in state) field.checked = Boolean(state.checked);
+        if (&#39;value&#39; in state) field.value = String(state.value ?? &#39;&#39;);
+      });
+    }
+
+    function serialiseSetList(list) {
+      return list.map((entry) =&gt; [...entry]);
+    }
+
+    function buildSessionSnapshot() {
+      return {
+        schema: &#39;QR-LOTO-SUITE-SESSION&#39;,
+        version: 1,
+        savedAt: new Date().toISOString(),
+        activeTab: activeLotteryTab,
+        form: captureSessionFormState(),
+        state: {
+          remaining, drawn, savedCombinations, savedOrigin,
+          ruleGeneratedCombinations, importedCombinations, importedSource, numberRules,
+          developmentSelectedNumbers, developmentFixedNumbers, developmentExternalSource,
+          developmentReducedCombinations, developmentFullCombinations,
+          developmentGeneratedFixedNumbers, developmentGeneratedExternalSourceLabel,
+          digitalSelections: serialiseSetList(digitalSelections),
+          terminationSelections: serialiseSetList(terminationSelections),
+          digitalEquivalenceSelections: [...digitalEquivalenceSelections],
+          terminationEquivalenceSelections: [...terminationEquivalenceSelections],
+          digitalGeneratedCombinations, digitalGeneratedPatternCount, digitalGeneratedSignatureMode,
+          distanceSelections: serialiseSetList(distanceSelections),
+          distanceDigitalSelections: [...distanceDigitalSelections],
+          distancePanelOrder, distanceSumSelections: [...distanceSumSelections],
+          distanceGeneratedCombinations, distanceGeneratedPatternCount, distanceGeneratedCrossMode,
+          filteredCombinations, filteredSourceDetails,
+          scrutinyPreparedRoute, scrutinyPreparedSource,
+          qrPages, qrPageIndex, pendingQrRequest, currentGeneratedTicket
+        }
+      };
+    }
+
+    function saveCurrentSession() {
+      const snapshot = buildSessionSnapshot();
+      const blob = new Blob([JSON.stringify(snapshot, null, 2)], { type: &#39;application/json;charset=utf-8&#39; });
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement(&#39;a&#39;);
+      const stamp = snapshot.savedAt.slice(0, 19).replace(/[:T]/g, &#39;-&#39;);
+      anchor.href = url;
+      anchor.download = `QR-Loto-Suite-sesion-${stamp}.json`;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      URL.revokeObjectURL(url);
+      summary.textContent = &#39;Sesi&#243;n completa descargada. Podr&#225;s cargarla desde esta misma barra en este u otro dispositivo.&#39;;
+    }
+
+    function copyCombinations(value) {
+      return Array.isArray(value) ? value.map((combination) =&gt; Array.isArray(combination) ? combination.map(Number) : combination) : [];
+    }
+
+    function restoreSessionSnapshot(snapshot) {
+      if (snapshot?.schema !== &#39;QR-LOTO-SUITE-SESSION&#39; || snapshot?.version !== 1 || !snapshot.state) {
+        throw new Error(&#39;El archivo no corresponde a una sesi&#243;n compatible de QR Loto Suite.&#39;);
+      }
+      restoreSessionFormState(snapshot.form);
+      const state = snapshot.state;
+      remaining = Array.isArray(state.remaining) ? state.remaining.map(Number) : [];
+      drawn = Array.isArray(state.drawn) ? state.drawn.map(Number) : [];
+      savedCombinations = copyCombinations(state.savedCombinations);
+      savedOrigin = state.savedOrigin ?? null;
+      ruleGeneratedCombinations = copyCombinations(state.ruleGeneratedCombinations);
+      importedCombinations = copyCombinations(state.importedCombinations);
+      importedSource = state.importedSource ?? null;
+      numberRules = Array.isArray(state.numberRules) ? state.numberRules : [];
+      developmentSelectedNumbers = Array.isArray(state.developmentSelectedNumbers) ? state.developmentSelectedNumbers.map(Number) : [];
+      developmentFixedNumbers = Array.isArray(state.developmentFixedNumbers) ? state.developmentFixedNumbers.map(Number) : [];
+      developmentExternalSource = state.developmentExternalSource ?? null;
+      developmentReducedCombinations = copyCombinations(state.developmentReducedCombinations);
+      developmentFullCombinations = copyCombinations(state.developmentFullCombinations);
+      developmentGeneratedFixedNumbers = Array.isArray(state.developmentGeneratedFixedNumbers) ? state.developmentGeneratedFixedNumbers.map(Number) : [];
+      developmentGeneratedExternalSourceLabel = state.developmentGeneratedExternalSourceLabel ?? &#39;&#39;;
+      digitalSelections = (state.digitalSelections ?? []).map((entry) =&gt; new Set(entry.map(Number)));
+      while (digitalSelections.length &lt; 7) digitalSelections.push(new Set());
+      terminationSelections = (state.terminationSelections ?? []).map((entry) =&gt; new Set(entry.map(Number)));
+      while (terminationSelections.length &lt; 6) terminationSelections.push(new Set());
+      digitalEquivalenceSelections = new Set((state.digitalEquivalenceSelections ?? []).map(Number));
+      terminationEquivalenceSelections = new Set((state.terminationEquivalenceSelections ?? []).map(Number));
+      digitalGeneratedCombinations = copyCombinations(state.digitalGeneratedCombinations);
+      digitalGeneratedPatternCount = Number(state.digitalGeneratedPatternCount) || 0;
+      digitalGeneratedSignatureMode = state.digitalGeneratedSignatureMode ?? &#39;digital&#39;;
+      distanceSelections = (state.distanceSelections ?? []).map((entry) =&gt; new Set(entry.map(Number)));
+      while (distanceSelections.length &lt; 5) distanceSelections.push(new Set());
+      distanceDigitalSelections = new Set((state.distanceDigitalSelections ?? []).map(Number));
+      distancePanelOrder = state.distancePanelOrder === &#39;digital&#39; ? &#39;digital&#39; : &#39;natural&#39;;
+      distanceSumSelections = new Set((state.distanceSumSelections ?? []).map(Number));
+      distanceGeneratedCombinations = copyCombinations(state.distanceGeneratedCombinations);
+      distanceGeneratedPatternCount = Number(state.distanceGeneratedPatternCount) || 0;
+      distanceGeneratedCrossMode = state.distanceGeneratedCrossMode ?? &#39;none&#39;;
+      filteredCombinations = copyCombinations(state.filteredCombinations);
+      filteredSourceDetails = state.filteredSourceDetails ?? null;
+      scrutinyPreparedRoute = Array.isArray(state.scrutinyPreparedRoute) ? state.scrutinyPreparedRoute : null;
+      scrutinyPreparedSource = state.scrutinyPreparedSource ?? null;
+      qrPages = Array.isArray(state.qrPages) ? state.qrPages : [];
+      qrPageIndex = Math.max(0, Number(state.qrPageIndex) || 0);
+      pendingQrRequest = state.pendingQrRequest ?? null;
+      currentGeneratedTicket = state.currentGeneratedTicket ?? null;
+
+      createDrumBalls();
+      drawn.forEach((number) =&gt; ballsContainer.querySelector(`[data-number=&quot;${number}&quot;]`)?.remove());
+      refreshResults();
+      renderSavedCombinations();
+      renderNumberRules();
+      renderDigitalPanel();
+      renderDigitalResults();
+      renderDistancePanel();
+      renderDistanceResults();
+      renderDevelopmentExternalSource();
+      refreshDevelopmentControls();
+      renderDevelopmentResults();
+      updateImportedControls();
+      updateTxtGuidance();
+      refreshFilterCardStates();
+      renderFilteredCombinations();
+      if (qrPages.length) showQrPage(Math.min(qrPageIndex, qrPages.length - 1));
+      qrSetupArea.hidden = !pendingQrRequest;
+      refreshFilterSourceButtons();
+      refreshScrutinySourceButtons();
+      activateLotteryTab(snapshot.activeTab ?? &#39;sorteo&#39;, { instant: true });
+      summary.textContent = `Sesi&#243;n del ${new Date(snapshot.savedAt).toLocaleString(&#39;es-ES&#39;)} restaurada con sus configuraciones, resultados y recorridos.`;
+    }
+
+    async function loadSessionFile(file) {
+      try {
+        const snapshot = JSON.parse(await file.text());
+        restoreSessionSnapshot(snapshot);
+      } catch (error) {
+        window.alert(`No se ha podido cargar la sesi&#243;n. ${error.message}`);
+      } finally {
+        sessionFileInput.value = &#39;&#39;;
+      }
     }
 
     function ticketGameName(game) {
@@ -9749,8 +10184,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           ? `Boleto &#171;${loadedTicketForScrutiny.name}&#187; cargado. Se usar&#225; su reintegro jugado (${loadedTicketForScrutiny.reintegro}). Introduce el resultado oficial.`
           : `Boleto &#171;${loadedTicketForScrutiny.name}&#187; cargado. Introduce el resultado oficial de Bonoloto.`
       );
-      const targetTop = root.querySelector(&#39;#lottery-scrutiny-section&#39;).getBoundingClientRect().top + window.scrollY - 12;
-      window.scrollTo({ top: Math.max(0, targetTop), behavior: reducedMotion ? &#39;auto&#39; : &#39;smooth&#39; });
+      activateLotteryTab(&#39;scrutiny&#39;, { focusTarget: root.querySelector(&#39;#lottery-scrutiny-section&#39;) });
     }
 
     function safeTicketFilename(ticket) {
@@ -9968,18 +10402,11 @@ html&gt;body{padding:0}&lt;/style&gt;
       currentGeneratedTicket = null;
       ticketNameInput.value = &#39;&#39;;
       setTicketActionMessage(&#39;La copia TXT permite recuperar el boleto en otro dispositivo o navegador.&#39;);
+      if (qrEmptyArea) qrEmptyArea.hidden = activeLotteryTab !== &#39;qr&#39; || !qrSetupArea.hidden;
     }
 
     function scrollToGeneratedQr() {
-      const reducedMotion = window.matchMedia(&#39;(prefers-reduced-motion: reduce)&#39;).matches;
-      requestAnimationFrame(() =&gt; {
-        const targetTop = qrArea.getBoundingClientRect().top + window.scrollY - 12;
-        window.scrollTo({
-          top: Math.max(0, targetTop),
-          behavior: reducedMotion ? &#39;auto&#39; : &#39;smooth&#39;
-        });
-        quickNavLinks.forEach((item) =&gt; item.removeAttribute(&#39;aria-current&#39;));
-      });
+      activateLotteryTab(&#39;qr&#39;, { focusTarget: qrArea });
     }
 
     function formatEuro(amount) {
@@ -10232,26 +10659,6 @@ html&gt;body{padding:0}&lt;/style&gt;
       }
 
       const combination = [...drawn].sort((a, b) =&gt; a - b);
-      let filterConfiguration;
-      try {
-        filterConfiguration = readZoneFilterConfiguration(
-          drawFilterModeSelect,
-          &#39;Combinaci&#243;n del bombo&#39;
-        );
-      } catch (error) {
-        status.textContent = error.message;
-        return;
-      }
-      if (
-        filterConfiguration
-        &amp;&amp; !combinationPassesActiveFilters(combination, filterConfiguration)
-      ) {
-        status.textContent =
-          &#39;La combinaci&#243;n extra&#237;da no cumple todos los filtros activos y no se ha guardado. Puedes iniciar otro sorteo o cambiar los filtros.&#39;;
-        summary.textContent =
-          &#39;La combinaci&#243;n se mantiene visible, pero no se a&#241;adi&#243; a la lista porque no supera las condiciones seleccionadas.&#39;;
-        return;
-      }
       const key = combinationKey(combination);
       if (savedCombinations.some((saved) =&gt; combinationKey(saved) === key)) {
         status.textContent = &#39;Esta combinaci&#243;n ya est&#225; guardada.&#39;;
@@ -10534,16 +10941,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
 
     function scrollToQrSetup() {
-      const reducedMotion = window.matchMedia(&#39;(prefers-reduced-motion: reduce)&#39;).matches;
-      requestAnimationFrame(() =&gt; {
-        const targetTop = qrSetupArea.getBoundingClientRect().top + window.scrollY - 12;
-        window.scrollTo({
-          top: Math.max(0, targetTop),
-          behavior: reducedMotion ? &#39;auto&#39; : &#39;smooth&#39;
-        });
-        qrSetupArea.focus({ preventScroll: true });
-        quickNavLinks.forEach((item) =&gt; item.removeAttribute(&#39;aria-current&#39;));
-      });
+      activateLotteryTab(&#39;qr&#39;, { focusTarget: qrSetupArea });
     }
 
     function prepareQrGeneration(combinations, source) {
@@ -10586,6 +10984,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       qrSetupArea.hidden = true;
       setQrSetupMessage(&#39;Revisa los datos y confirma la generaci&#243;n.&#39;);
       summary.textContent = &#39;Se ha cancelado la configuraci&#243;n del c&#243;digo QR.&#39;;
+      if (qrEmptyArea &amp;&amp; activeLotteryTab === &#39;qr&#39;) qrEmptyArea.hidden = false;
     }
 
     function confirmQrGeneration() {
@@ -10865,6 +11264,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       savedPageIndex = 0;
       renderSavedCombinations();
       summary.textContent = `Mostrando ${savedCombinations.length} combinaciones generadas con fijos y semifijos.`;
+      activateLotteryTab(&#39;sorteo&#39;, { instant: true });
       requestAnimationFrame(() =&gt; {
         savedSection.scrollIntoView({
           behavior: reducedMotion ? &#39;auto&#39; : &#39;smooth&#39;,
@@ -11392,19 +11792,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       const semiRules = numberRules.filter((rule) =&gt; rule.type === &#39;semi&#39;);
       const fixedNumbers = fixedRules.map((rule) =&gt; rule.number);
       const reservedNumbers = numberRules.map((rule) =&gt; rule.number);
-      let filterConfiguration;
-      try {
-        filterConfiguration = readZoneFilterConfiguration(
-          rulesFilterModeSelect,
-          &#39;Generador con fijos y semifijos&#39;
-        );
-      } catch (error) {
-        setRuleMessage(error.message, true);
-        return;
-      }
-      const combinationPredicate = filterConfiguration
-        ? (combination) =&gt; combinationPassesActiveFilters(combination, filterConfiguration)
-        : null;
+      const combinationPredicate = null;
       const automaticSearches = total &lt;= 30 ? 6 : 3;
       let schedule = null;
       let creation = null;
@@ -11429,7 +11817,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
       if (!creation.combinations) {
         setRuleMessage(
-          `${creation.message}${filterConfiguration ? &#39; Los filtros activos pueden ser incompatibles con algunas reglas.&#39; : &#39;&#39;} Se han probado autom&#225;ticamente varios repartos. Pulsa de nuevo &#171;${generateTicketButton.textContent}&#187; para iniciar otra b&#250;squeda o modifica los criterios.`,
+          `${creation.message} Se han probado autom&#225;ticamente varios repartos. Pulsa de nuevo &#171;${generateTicketButton.textContent}&#187; para iniciar otra b&#250;squeda o modifica los criterios.`,
           true
         );
         return;
@@ -11842,20 +12230,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
 
     function scrollToDevelopment() {
-      requestAnimationFrame(() =&gt; {
-        const targetTop =
-          developmentSection.getBoundingClientRect().top + window.scrollY - 12;
-        window.scrollTo({
-          top: Math.max(0, targetTop),
-          behavior: reducedMotion ? &#39;auto&#39; : &#39;smooth&#39;
-        });
-        developmentSection.focus({ preventScroll: true });
-        quickNavLinks.forEach((item) =&gt; item.removeAttribute(&#39;aria-current&#39;));
-        const quickDevelopmentLink = quickNavLinks.find(
-          (link) =&gt; link.getAttribute(&#39;href&#39;) === &#39;#lottery-development-section&#39;
-        );
-        quickDevelopmentLink?.setAttribute(&#39;aria-current&#39;, &#39;location&#39;);
-      });
+      activateLotteryTab(&#39;development&#39;, { focusTarget: developmentSection });
     }
 
     function sendCombinationsToReducer(combinations, sourceDetails, feedback) {
@@ -11906,7 +12281,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         key: sourceDetails.key,
         label: sourceDetails.label,
         combinations: prepared.map((combination) =&gt; [...combination]),
-        numbers
+        numbers,
+        route: [...(sourceDetails.route ?? [sourceDetails.label])]
       };
       developmentSelectedNumbers = numbers.slice();
       developmentFixedNumbers = [];
@@ -12943,6 +13319,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     function renderDevelopmentResults() {
       const combinations = getActiveDevelopmentCombinations();
+      refreshScrutinySourceButtons();
       const pageTotal = Math.max(1, Math.ceil(combinations.length / DEVELOPMENT_PAGE_SIZE));
       developmentPageIndex = Math.min(Math.max(0, developmentPageIndex), pageTotal - 1);
       const start = developmentPageIndex * DEVELOPMENT_PAGE_SIZE;
@@ -13631,6 +14008,20 @@ html&gt;body{padding:0}&lt;/style&gt;
       }
     }
 
+    function scrutinyRouteDisplayName() {
+      if (scrutinyPreparedSource === scrutinySourceSelect.value &amp;&amp; scrutinyPreparedRoute?.length) {
+        return scrutinyPreparedRoute.join(&#39; → &#39;);
+      }
+      if (scrutinySourceSelect.value === &#39;filtered&#39;) {
+        return [...(filteredSourceDetails?.route ?? [&#39;Filtros&#39;]), &#39;Escrutador&#39;].join(&#39; → &#39;);
+      }
+      if (scrutinySourceSelect.value === &#39;ticket&#39;) {
+        return `Mis boletos${loadedTicketForScrutiny?.name ? ` &#183; ${loadedTicketForScrutiny.name}` : &#39;&#39;} → Escrutador`;
+      }
+      const details = filterSourceDetails(scrutinySourceSelect.value);
+      return [...(details.route ?? [scrutinySourceDisplayName()]), &#39;Escrutador&#39;].join(&#39; → &#39;);
+    }
+
     function classifyScrutinyCombination(combination, winning, complement, refund, playedRefund) {
       const hits = combination.filter((number) =&gt; winning.includes(number)).length;
       const complementHit = hits === 5 &amp;&amp; combination.includes(complement);
@@ -13816,6 +14207,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       scrutinyContextGame.textContent = gameName;
       scrutinyContextSourceItem.dataset.source = scrutinySourceSelect.value;
       scrutinyContextSource.textContent = sourceDisplayName;
+      scrutinyContextRoute.textContent = scrutinyRouteDisplayName();
       scrutinySummary.textContent = `${gameName} &#183; Procedencia: ${sourceDisplayName} &#183; ${results.length} ${results.length === 1 ? &#39;combinaci&#243;n escrutada&#39; : &#39;combinaciones escrutadas&#39;} &#183; mejor resultado: ${best.category}.`;
       if (isPrimitiva &amp;&amp; scrutinizedTicket) {
         const jokerNote = scrutinizedTicket.joker === &#39;0&#39;
@@ -14063,7 +14455,10 @@ html&gt;body{padding:0}&lt;/style&gt;
           key: fromRules ? &#39;rules-saved&#39; : &#39;drum-saved&#39;,
           label: fromRules
             ? &#39;Generador con fijos y semifijos &#183; combinaciones guardadas&#39;
-            : &#39;Bombo &#183; combinaciones guardadas&#39;
+            : &#39;Bombo &#183; combinaciones guardadas&#39;,
+          route: fromRules
+            ? [&#39;Fijos y semifijos&#39;, &#39;Combinaciones guardadas&#39;]
+            : [&#39;Sorteo aleatorio&#39;, &#39;Combinaciones guardadas&#39;]
         },
         (message, isError = false) =&gt; setQrMessage(message, isError)
       );
@@ -14111,7 +14506,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         ruleGeneratedCombinations,
         {
           key: &#39;rules&#39;,
-          label: &#39;Generador con fijos y semifijos&#39;
+          label: &#39;Generador con fijos y semifijos&#39;,
+          route: [&#39;Fijos y semifijos&#39;]
         },
         (message, isError = false) =&gt; setRuleMessage(message, isError)
       );
@@ -14129,7 +14525,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           key: fromClipboard ? &#39;clipboard&#39; : &#39;file&#39;,
           label: fromClipboard
             ? &#39;Combinaciones pegadas desde el portapapeles&#39;
-            : &#39;Archivo TXT cargado&#39;
+            : &#39;Archivo TXT cargado&#39;,
+          route: [fromClipboard ? &#39;Portapapeles&#39; : &#39;Archivo TXT&#39;]
         },
         (message, isError = false) =&gt; setTxtMessage(message, isError)
       );
@@ -14241,7 +14638,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         digitalGeneratedCombinations,
         {
           key: &#39;digital&#39;,
-          label: signatureSourceLabel()
+          label: signatureSourceLabel(),
+          route: [signatureSourceLabel()]
         },
         (message, isError = false) =&gt;
           setDigitalMessage(message, isError ? &#39;error&#39; : &#39;&#39;)
@@ -14395,7 +14793,10 @@ html&gt;body{padding:0}&lt;/style&gt;
         distanceGeneratedCombinations,
         {
           key: isTripleSignature ? &#39;triple-signature&#39; : &#39;distance&#39;,
-          label: isTripleSignature ? &#39;Cruce de las tres firmas&#39; : distanceSourceLabel()
+          label: isTripleSignature ? &#39;Cruce de las tres firmas&#39; : distanceSourceLabel(),
+          route: isTripleSignature
+            ? [&#39;Firma digital&#39;, &#39;Firma de terminaci&#243;n&#39;, &#39;Firma de distancia&#39;]
+            : [distanceSourceLabel()]
         },
         (message, isError = false) =&gt;
           setDistanceMessage(message, isError ? &#39;error&#39; : &#39;&#39;)
@@ -14450,12 +14851,21 @@ html&gt;body{padding:0}&lt;/style&gt;
         filteredCombinations,
         {
           key: &#39;filtered&#39;,
-          label: filteredSourceDetails?.label ?? &#39;Resultado de la zona de filtros&#39;
+          label: filteredSourceDetails?.label ?? &#39;Resultado de la zona de filtros&#39;,
+          route: [...(filteredSourceDetails?.route ?? [&#39;Filtros&#39;])]
         },
         (message, isError = false) =&gt; setFilterMessage(message, isError)
       );
     });
     filterScrutinyButton.addEventListener(&#39;click&#39;, sendFilteredToScrutinizer);
+    sessionSaveButton.addEventListener(&#39;click&#39;, saveCurrentSession);
+    sessionFileInput.addEventListener(&#39;change&#39;, () =&gt; {
+      const file = sessionFileInput.files?.[0];
+      if (file) loadSessionFile(file);
+    });
+    scrutinySourceButtons.forEach((button) =&gt; {
+      button.addEventListener(&#39;click&#39;, () =&gt; sendSourceToScrutinizer(button.dataset.scrutinySource));
+    });
     developmentFilterModeSelect.addEventListener(&#39;change&#39;, () =&gt; {
       invalidateDevelopmentResults(
         developmentFilterModeSelect.value === &#39;active&#39;
@@ -14571,6 +14981,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     costSelect.addEventListener(&#39;change&#39;, updateQrCost);
     scrutinyGameSelect.addEventListener(&#39;change&#39;, updateScrutinyGame);
     scrutinySourceSelect.addEventListener(&#39;change&#39;, () =&gt; {
+      scrutinyPreparedSource = null;
+      scrutinyPreparedRoute = null;
       scrutinyOutput.hidden = true;
       if (scrutinySourceSelect.value === &#39;ticket&#39;) {
         if (loadedTicketForScrutiny) {
@@ -14887,94 +15299,63 @@ html&gt;body{padding:0}&lt;/style&gt;
 <script>
 (() => {
   const frame = document.querySelector('#loto-suite-frame');
-  const zoomOutButton = document.querySelector('#loto-suite-zoom-out');
-  const zoomInput = document.querySelector('#loto-suite-zoom-value');
-  const zoomInButton = document.querySelector('#loto-suite-zoom-in');
-  if (!frame || !zoomOutButton || !zoomInput || !zoomInButton) return;
+  if (!frame) return;
 
   const minimumZoom = 50;
   const maximumZoom = 200;
-  const buttonStep = 5;
-  const storageKey = 'qr-loto-suite.interface-zoom.v1';
+  const zoomStorageKey = 'qr-loto-suite.interface-zoom.v1';
+  const themeStorageKey = 'qr-loto-suite.theme.v1';
+  const standalone = window.matchMedia('(display-mode: standalone)').matches
+    || window.navigator.standalone === true;
+  let installPrompt = null;
+  let installAvailable = !standalone;
   let zoom = 100;
+  let theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   try {
-    const stored = Number(window.localStorage.getItem(storageKey));
+    const stored = Number(window.localStorage.getItem(zoomStorageKey));
     if (Number.isInteger(stored) && stored >= minimumZoom && stored <= maximumZoom) {
       zoom = stored;
     }
+    const storedTheme = window.localStorage.getItem(themeStorageKey);
+    if (storedTheme === 'light' || storedTheme === 'dark') theme = storedTheme;
   } catch (_) {
-    // El zoom continúa disponible aunque el navegador no permita guardarlo.
+    // Los ajustes continúan disponibles durante esta sesión.
   }
 
-  function updateButtons() {
-    zoomInput.value = String(zoom);
-    zoomInput.setAttribute('aria-label', `Zoom actual ${zoom} por ciento. Escribe un valor entre ${minimumZoom} y ${maximumZoom}`);
-    zoomOutButton.disabled = zoom <= minimumZoom;
-    zoomInButton.disabled = zoom >= maximumZoom;
+  function sendUiState() {
+    frame.contentWindow?.postMessage({
+      type: 'qr-loto-suite-ui-state',
+      zoom,
+      theme,
+      installVisible: installAvailable
+    }, '*');
   }
 
   function applyZoom() {
-    updateButtons();
     const scale = zoom / 100;
     const inverseScale = 100 / scale;
-
-    // Amplía el lienzo disponible y escala la aplicación completa.
-    // Así cabecera, contorno e interfaz se comportan como con el zoom del navegador.
     document.documentElement.style.overflow = 'hidden';
     document.body.style.width = `${inverseScale}%`;
     document.body.style.height = `${inverseScale}dvh`;
     document.body.style.transform = scale === 1 ? '' : `scale(${scale})`;
     document.documentElement.dataset.interfaceZoom = String(zoom);
+    sendUiState();
   }
 
   function setZoom(nextZoom) {
     const rawZoom = String(nextZoom).trim();
     const numericZoom = rawZoom ? Math.round(Number(rawZoom)) : Number.NaN;
     if (!Number.isFinite(numericZoom)) {
-      updateButtons();
+      sendUiState();
       return;
     }
     zoom = Math.min(maximumZoom, Math.max(minimumZoom, numericZoom));
     try {
-      window.localStorage.setItem(storageKey, String(zoom));
+      window.localStorage.setItem(zoomStorageKey, String(zoom));
     } catch (_) {
       // El ajuste se mantiene durante la sesión si no puede guardarse.
     }
     applyZoom();
-  }
-
-  zoomOutButton.addEventListener('click', () => {
-    setZoom(zoom - buttonStep);
-  });
-  zoomInButton.addEventListener('click', () => {
-    setZoom(zoom + buttonStep);
-  });
-  zoomInput.addEventListener('change', () => setZoom(zoomInput.value));
-  zoomInput.addEventListener('blur', () => setZoom(zoomInput.value));
-  zoomInput.addEventListener('keydown', (event) => {
-    if (event.key !== 'Enter') return;
-    event.preventDefault();
-    setZoom(zoomInput.value);
-    zoomInput.blur();
-  });
-  frame.addEventListener('load', applyZoom);
-  applyZoom();
-})();
-</script>
-<script>
-(() => {
-  const frame = document.querySelector('#loto-suite-frame');
-  const themeButton = document.querySelector('#loto-suite-theme');
-  if (!frame || !themeButton) return;
-
-  const storageKey = 'qr-loto-suite.theme.v1';
-  const systemTheme = () => window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-  let theme = systemTheme();
-  try {
-    const stored = window.localStorage.getItem(storageKey);
-    if (stored === 'light' || stored === 'dark') theme = stored;
-  } catch (_) {
-    // Se mantiene el tema del sistema si el navegador no permite guardar la opción.
   }
 
   function applyTheme(nextTheme) {
@@ -14982,30 +15363,57 @@ html&gt;body{padding:0}&lt;/style&gt;
     document.documentElement.dataset.theme = theme;
     const themeColor = document.querySelector('meta[name="theme-color"]');
     themeColor?.setAttribute('content', theme === 'light' ? '#f7f9fc' : '#061127');
-    themeButton.textContent = theme === 'light' ? '☾' : '☀︎';
-    themeButton.setAttribute(
-      'aria-label',
-      theme === 'light' ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro'
-    );
-    themeButton.title = theme === 'light' ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro';
     try {
       frame.contentDocument?.documentElement?.setAttribute('data-theme', theme);
     } catch (_) {
       // El evento load volverá a aplicar el tema cuando el iframe esté disponible.
     }
+    sendUiState();
   }
 
-  applyTheme(theme);
-  frame.addEventListener('load', () => applyTheme(theme));
-  themeButton.addEventListener('click', () => {
-    const nextTheme = theme === 'light' ? 'dark' : 'light';
-    try {
-      window.localStorage.setItem(storageKey, nextTheme);
-    } catch (_) {
-      // El cambio sigue activo durante esta sesión.
+  async function requestInstall() {
+    if (installPrompt) {
+      installPrompt.prompt();
+      await installPrompt.userChoice;
+      installPrompt = null;
+      return;
     }
-    applyTheme(nextTheme);
+    const isiPhoneOrIPad = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    window.alert(isiPhoneOrIPad
+      ? 'En Safari pulsa Compartir y después «Añadir a pantalla de inicio».'
+      : 'Abre el menú del navegador y elige «Instalar aplicación» o «Añadir a pantalla de inicio». Si la opción aún no aparece, recarga la página una vez.');
+  }
+
+  window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    installPrompt = event;
+    sendUiState();
   });
+  window.addEventListener('appinstalled', () => {
+    installPrompt = null;
+    installAvailable = false;
+    sendUiState();
+  });
+  window.addEventListener('message', (event) => {
+    if (event.source !== frame.contentWindow || !event.data) return;
+    const { type, value } = event.data;
+    if (type === 'qr-loto-suite-ui-ready') sendUiState();
+    if (type === 'qr-loto-suite-zoom-step') setZoom(zoom + Number(value || 0));
+    if (type === 'qr-loto-suite-zoom-set') setZoom(value);
+    if (type === 'qr-loto-suite-theme-toggle') {
+      const nextTheme = theme === 'light' ? 'dark' : 'light';
+      try { window.localStorage.setItem(themeStorageKey, nextTheme); } catch (_) {}
+      applyTheme(nextTheme);
+    }
+    if (type === 'qr-loto-suite-install') requestInstall();
+  });
+
+  frame.addEventListener('load', () => {
+    applyTheme(theme);
+    applyZoom();
+  });
+  applyTheme(theme);
+  applyZoom();
 })();
 </script>
 <!-- Cloudflare Web Analytics -->
